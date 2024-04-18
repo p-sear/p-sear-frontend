@@ -10,30 +10,33 @@ import {
 } from "@material-tailwind/react";
 import RatingBar from "./RatingBar";
 
-const HotelCard = () => {
+
+
+const HotelCard = (props) => {
+    const {id,name,description,imageUrl}=props;
+
     return (
-      <Card className="w-full max-w-[96rem] flex-row">
+      <Card className="w-full max-w-6xl flex-row mt-8">
       <CardHeader
         shadow={false}
         floated={false}
         className="m-0 w-2/5 shrink-0 rounded-r-none"
       >
         <img
-          src="https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+          src={imageUrl}
           alt="card-image"
           className="h-full w-full object-cover"
         />
       </CardHeader>
       <CardBody className="relative">
         <Typography variant="h6" color="gray" className="mb-4 uppercase">
-          블랙.5성급.호텔
+          {id}
         </Typography>
         <Typography variant="h4" color="blue-gray" className="mb-2">
-          서울신라호텔
+          {name}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다.
-          3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.
+          {description}
         </Typography>
 
       <RatingBar></RatingBar>

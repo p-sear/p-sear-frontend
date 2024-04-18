@@ -9,7 +9,7 @@ import MyApp from './pages/HotelInquiry/MyApp';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <MyApp />,
   },
   {
     path: '/profile',

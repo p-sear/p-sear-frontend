@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
+
 const {kakao} = window; 
 
 const KaKaoMap = () => {
@@ -23,9 +24,10 @@ const KaKaoMap = () => {
 
 
     return (
-        <div>
-        <div id="map" style={{width:"300px", height:"200px"}}></div>
-       
+        <div >
+         
+          <div id="map" style={{width:"300px", height:"200px"}}></div>
+         
         </div>
     )
 }

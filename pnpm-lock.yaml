@@ -88,6 +88,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.5.11
     version: 0.5.13(@trivago/prettier-plugin-sort-imports@4.3.0)(prettier@3.2.5)
+  tailwind-scrollbar:
+    specifier: ^3.1.0
+    version: 3.1.0(tailwindcss@3.4.3)
   tailwindcss:
     specifier: ^3.4.3
     version: 3.4.3
@@ -3563,6 +3566,15 @@ packages:
   /tailwind-merge@1.8.1:
     resolution: {integrity: sha512-+fflfPxvHFr81hTJpQ3MIwtqgvefHZFUHFiIHpVIRXvG/nX9+gu2P7JNlFu2bfDMJ+uHhi/pUgzaYacMoXv+Ww==}
     dev: false
+
+  /tailwind-scrollbar@3.1.0(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-pmrtDIZeHyu2idTejfV59SbaJyvp1VRjYxAjZBH0jnyrPRo6HL1kD5Glz8VPagasqr6oAx6M05+Tuw429Z8jxg==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.4.3
+    dev: true
 
   /tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
