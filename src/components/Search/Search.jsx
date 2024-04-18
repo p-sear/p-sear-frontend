@@ -1,8 +1,8 @@
 import React from 'react'
 import './Search.css';
 import { FiSearch } from "react-icons/fi";
-import DateSelector from '../../components/Calendar/DateSelector';
-import PeopleSelector from '../../components/PeopleSelector/PeopleSelector';
+import DateSelector from './DateSelector';
+import PeopleSelector from './PeopleSelector';
 
 const Search = () => {
     return (

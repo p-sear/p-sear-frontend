@@ -1,5 +1,5 @@
 import React from 'react'
-import Search from './Search';
+import Search from '../../components/Search/Search';
 import RecommendedLocation from './RecommendedLocation';
 import BidableHotel from './BidableHotel';
 import TimeSpecials from './TimeSpecials';
