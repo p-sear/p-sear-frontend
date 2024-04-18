@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import HomePage from './pages/Home';
+import Main from './pages/Home/Main';
 import ProfilePage from './pages/Profile';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <Main />,
   },
   {
     path: '/profile',
