@@ -1,0 +1,37 @@
+.people-num {
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.peopleSelector-box {
+    padding: 20px;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.peopleSelector-box>div>h3 {
+    font-size: 20px;
+}
+.peopleSelector-box>div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.peopleSelector-box>div:nth-child(2)>span:nth-child(2) {
+    font-size: 20px;
+    font-weight: bold;
+}
+.plus-btn, .minus-btn {
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 50%;
+}
