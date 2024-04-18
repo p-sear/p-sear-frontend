@@ -2,6 +2,7 @@ import React from 'react'
 import Search from './Search';
 import RecommendedLocation from './RecommendedLocation';
 import BidableHotel from './BidableHotel';
+import TimeSpecials from './TimeSpecials';
 
 const Main = () => {
     return (
@@ -11,6 +12,7 @@ const Main = () => {
             <div style={{padding: 100}}>
                 <RecommendedLocation />
                 <BidableHotel />
+                <TimeSpecials />
             </div>
         </div>
     )

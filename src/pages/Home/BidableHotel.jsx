@@ -27,8 +27,8 @@ const BidableHotel = () => {
         name: '호텔 A', 
         location: '서울', 
         rating: 5, 
-        highestBid: '100,000원', 
-        instantBid: '150,000원', 
+        highestBid: '100,000', 
+        instantBid: '150,000', 
         photo: hotelImg
       },
       { 
@@ -36,8 +36,8 @@ const BidableHotel = () => {
         name: '호텔 B', 
         location: '부산', 
         rating: 4.5, 
-        highestBid: '80,000원', 
-        instantBid: '130,000원', 
+        highestBid: '80,000', 
+        instantBid: '130,000', 
         photo: hotelImg
       },
       { 
@@ -45,8 +45,8 @@ const BidableHotel = () => {
         name: '호텔 B', 
         location: '부산', 
         rating: 4.5, 
-        highestBid: '80,000원', 
-        instantBid: '130,000원', 
+        highestBid: '80,000', 
+        instantBid: '130,000', 
         photo: hotelImg
       },
       { 
@@ -54,8 +54,8 @@ const BidableHotel = () => {
         name: '호텔 B', 
         location: '부산', 
         rating: 4.5, 
-        highestBid: '80,000원', 
-        instantBid: '130,000원', 
+        highestBid: '80,000', 
+        instantBid: '130,000', 
         photo: hotelImg
       }
     ];
