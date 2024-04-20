@@ -1,5 +1,5 @@
 .timespecials-container {
-    margin-top: 100px;
+    width: 100%;
 }
 
 .timespecials-title>h1 {
@@ -9,13 +9,27 @@
 
 .timespecials-content {
     margin-top: 30px;
+    display: grid;
+    flex: none;
+    gap: 20px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(4,minmax(40px,1fr));
+    grid-template-rows: repeat(2,min-content);
+    height: auto;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    width: 100%;
 }
 .timespecials-box {
     gap: 5px;
-    /* flex: 0 0 25%; */
+    align-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    grid-column: auto;
+    width: 100%;
 }
 .hotel-img {
-    width: 300px;
     border-radius: 10px;
 }
 .timespecials-box>h3 {
@@ -45,4 +59,22 @@
 }
 .timespecials-box>p:nth-of-type(3)>span:nth-of-type(2) {
     color: #D83131;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .timespecials-container {
+        width: 100%;
+    }
+
+    .timespecials-content {
+        grid-template-columns: repeat(2,minmax(40px,1fr));
+    }
+    .timespecials-box {
+        align-self: unset;
+        border-radius: 20px;
+        gap: 20px;
+        height: min-content;
+        padding: 20px;
+    }
 }

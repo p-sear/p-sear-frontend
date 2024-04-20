@@ -50,8 +50,8 @@ const TimeSpecials = () => {
                 <h1>타임 특가 숙소</h1>
                 <a href='' className='flex justify-center items-center'>더보기 <span><IoIosArrowForward /></span></a>
             </div>
-
-            <div className="timespecials-content flex justify-between items-center flex-wrap">
+            
+            <div className="timespecials-content">
             {hotels.map(hotel => (
                 <div className='timespecials-box flex flex-col justify-center' key={hotel.id}>
                 <img src={hotel.photo} alt="" className='hotel-img'/>

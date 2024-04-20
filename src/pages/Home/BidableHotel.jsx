@@ -80,7 +80,7 @@ const BidableHotel = () => {
           ))}
           </div> */}
 
-          <div className="bidableHotel-content flex justify-between items-center flex-wrap">
+          <div className="bidableHotel-content">
           {hotels.map(hotel => (
             <div className='bidableHotel-box flex flex-col justify-center' key={hotel.id}>
               <img src={hotel.photo} alt="" className='hotel-img'/>
