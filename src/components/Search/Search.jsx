@@ -13,9 +13,13 @@ const Search = () => {
                     <input type="text" placeholder='여행지나 숙소를 검색해보세요'/>
                 </div>
 
-                <DateSelector />
+                <div className="comp-wrapper">
+                    <DateSelector />
+                </div>
 
-                <PeopleSelector />
+                <div className="comp-wrapper">
+                    <PeopleSelector />
+                </div>
 
                 <button className='search-btn'>검색</button>
             </div>
