@@ -71,10 +71,16 @@ const ServiceCenter = () => {
               open={open === index + 1}
               icon={<Icon id={index + 1} open={open} />}
             >
-              <AccordionHeader onClick={() => handleOpen(index + 1)}>
+              <AccordionHeader
+                onClick={() => handleOpen(index + 1)}
+                style={{ fontFamily: 'SUITE-Regular' }}
+                className='text-md font-normal text-black'
+              >
                 Q {item.title}
               </AccordionHeader>
-              <AccordionBody>{item.content}</AccordionBody>
+              <AccordionBody style={{ fontFamily: 'SUITE-Regular' }}>
+                {item.content}
+              </AccordionBody>
             </Accordion>
           ))}
         </div>
