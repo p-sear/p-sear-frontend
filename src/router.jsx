@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Main from './pages/Home/Main';
 import ProfilePage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
- 
+import ServiceCenter from './pages/ServiceCenter/index'
 
 import ReviewRegister from './pages/Review/register';
 
@@ -27,4 +27,8 @@ export const router = createBrowserRouter([
     path: '/review-register',
     element: <ReviewRegister />,
   },
+  {
+    path: '/service-center',
+    element: <ServiceCenter />,
+  }
 ]);
