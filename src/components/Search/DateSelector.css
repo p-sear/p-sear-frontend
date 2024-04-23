@@ -6,6 +6,7 @@
     align-items: center;
     gap: 10px;
     width: 100%;
+    text-wrap: nowrap;
 }
 
 .date-range {

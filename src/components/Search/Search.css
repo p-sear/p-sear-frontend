@@ -31,6 +31,20 @@
     color: white;
     font-weight: bold;
     border-radius: 10px;
+    text-wrap: nowrap;
+    padding: 10px;
 
     flex: 1;
+}
+
+@media screen and (max-width: 1000px) {
+    .search-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .search-container {
+        padding: 50px 20px;
+    }
 }

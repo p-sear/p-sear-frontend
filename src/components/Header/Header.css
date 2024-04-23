@@ -4,14 +4,14 @@ header {
 }
 
 .logo {
-    width: 150px;
+    width: 120px;
 }
 
 .header-name {
-    padding: 10px;
+    padding: 0 10px;
     border-radius: 20px;
     border: 1px solid lightgray;
-    gap: 5px;
+    gap: 4px;
 }
 .header-name:hover {
     background-color: #F8F8F8;

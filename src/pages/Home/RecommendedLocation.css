@@ -14,7 +14,6 @@
     gap: 50px;
     grid-auto-rows: min-content;
     grid-template-columns: repeat(5,minmax(40px,1fr));
-    grid-template-rows: repeat(2,min-content);
     height: auto;
     justify-content: center;
     padding: 0;
@@ -39,4 +38,11 @@
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 30px;
+}
+
+
+@media screen and (max-width: 500px) {
+    .recLocation-content {
+        grid-template-columns: repeat(1,minmax(40px,1fr));
+    }
 }

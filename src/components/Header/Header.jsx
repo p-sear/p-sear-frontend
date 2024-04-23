@@ -11,7 +11,7 @@ const Header = () => {
 
                 <button className='flex items-center justify-center cursor-pointer header-name'>
                     <span>최혜빈님</span>
-                    <FaRegUserCircle style={{fontSize: '20px'}}/>
+                    <FaRegUserCircle size="20"/>
                 </button>
             </header>
         </>

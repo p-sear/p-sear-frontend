@@ -72,9 +72,21 @@
     }
     .timespecials-box {
         align-self: unset;
-        border-radius: 20px;
-        gap: 20px;
         height: min-content;
-        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .timespecials-content {
+        grid-template-columns: repeat(1,minmax(40px,1fr));
+    }
+    
+    .timespecials-box {
+        align-self: unset;
+        height: min-content;
+        margin-bottom: 20px;
+    }
+    .timespecials-box:last-child {
+        margin-bottom: 0;
     }
 }
