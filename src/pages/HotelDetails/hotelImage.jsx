@@ -32,7 +32,7 @@ const HotelImage = () => {
     <div className="grid gap-4 justify-center">
       <div>
         <img
-          className="h-auto  max-w-4xl rounded-lg object-cover object-center md:h-[480px]"
+          className="h-auto w-full max-w-4xl rounded-lg object-cover object-center md:h-[480px]"
           src={active}
           alt=""
         />
@@ -43,7 +43,7 @@ const HotelImage = () => {
             <img
               onClick={() => setActive(imgelink)}
               src={imgelink}
-              className="h-20 max-w-m cursor-pointer rounded-lg object-cover object-center"
+              className="h-20 w-full max-w-full cursor-pointer rounded-lg object-cover object-center"
               alt="gallery-image"
             />
           </div>
