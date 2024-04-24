@@ -63,7 +63,7 @@ const Register = () => {
 
             <div className='flex justify-between items-center'>
                 <p className='flex justify-center items-center gap-3'>
-                    <input type="checkbox" style={{scale: '1.5'}}/>
+                    <input type="checkbox" style={{scale: '1.5'}} checked={allChecked} onChange={handleAllChecked}/>
                     <span>전체 동의</span>
                 </p>
                 <span className='cursor-pointer' onClick={toggleMenu}>
@@ -73,15 +73,15 @@ const Register = () => {
             {isOpen && (
             <div className='detail-terms'>
                 <p className='flex items-center gap-3'>
-                    <input type="checkbox" style={{scale: '1.5'}}/>
+                    <input type="checkbox" style={{scale: '1.5'}} name="checkbox1" checked={checkboxes.checkbox1} onChange={handleSingleCheck}/>
                     <span>[필수] 이용 약관 동의</span>
                 </p>
                 <p className='flex items-center gap-3'>
-                    <input type="checkbox" style={{scale: '1.5'}}/>
+                    <input type="checkbox" style={{scale: '1.5'}} name="checkbox2" checked={checkboxes.checkbox2} onChange={handleSingleCheck}/>
                     <span>[선택] 개인 정보 수집 및 이용 동의</span>
                 </p>
                 <p className='flex items-center gap-3'>
-                    <input type="checkbox" style={{scale: '1.5'}}/>
+                    <input type="checkbox" style={{scale: '1.5'}} name="checkbox3" checked={checkboxes.checkbox3} onChange={handleSingleCheck}/>
                     <span>[선택] 마케팅 활용 동의 및 광고 수신 동의</span>
                 </p>
             </div>
