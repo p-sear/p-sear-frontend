@@ -1,0 +1,24 @@
+.socialLogin-container {
+    width: 100%;
+}
+
+hr {
+    border: 1px solid lightgray;
+    width: 100%;
+}
+
+.btn-box {
+    gap: 20px;
+    margin-top: 30px;
+}
+.btn-box>button {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.kakao-icon, .naver-icon, .google-icon {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
