@@ -52,7 +52,7 @@ function DateSelector() {
 
             {showPicker && (
             <DateRange
-            className='date-range absolute'
+            className='date-range absolute z-10'
             onChange={handleSelect}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}

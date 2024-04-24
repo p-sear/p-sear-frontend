@@ -2,6 +2,7 @@ import React from 'react'
 import './TimeSpecials.css';
 import { IoIosArrowForward } from "react-icons/io";
 import hotelImg from '../../assets/images/hotel.png';
+import { FaStar } from "react-icons/fa";
 
 const TimeSpecials = () => {
     const hotels = [
@@ -49,14 +50,14 @@ const TimeSpecials = () => {
                 <h1>타임 특가 숙소</h1>
                 <a href='' className='flex justify-center items-center'>더보기 <span><IoIosArrowForward /></span></a>
             </div>
-
-            <div className="timespecials-content flex justify-between items-center flex-wrap">
+            
+            <div className="timespecials-content">
             {hotels.map(hotel => (
                 <div className='timespecials-box flex flex-col justify-center' key={hotel.id}>
                 <img src={hotel.photo} alt="" className='hotel-img'/>
                 <h3>{hotel.name}</h3>
                 <p>{hotel.location}</p>
-                <p>⭐ {hotel.rating}</p>
+                <p className='relative'><span className='star-icon absolute'>⭐</span> {hotel.rating}</p>
                 <b>타임 특가</b>
                 <p><span>{hotel.price}</span> ➡️ <span>{hotel.special} 원</span></p>
                 </div>
