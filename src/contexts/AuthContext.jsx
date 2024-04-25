@@ -1,26 +1,33 @@
 import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [isLogged, setIsLogged] = useState(false);
-    const [userName, setUserName] = useState('');
+export function useAuth() {
+    return useContext(AuthContext);
+}
 
-    const login = (name) => {
-        setIsLogged(true);
-        setUserName(name);
+export const AuthProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null);
+
+    const login = async (email, password) => {
+        try {
+            const response = await axios.post('/member/signin', { email, password });
+            setCurrentUser(response.data); // 응답으로 받은 사용자 정보를 상태에 저장
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const logout = () => {
-        setIsLogged(false);
-        setUserName('');
+        setCurrentUser(null);
     };
 
-    return (
-        <AuthContext.Provider value={{ isLogged, userName, login, logout }}>
-        {children}
-        </AuthContext.Provider>
-    );
-};
+    const value = {
+        currentUser,
+        login,
+        logout,
+    };
 
-export const useAuth = () => useContext(AuthContext);
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
