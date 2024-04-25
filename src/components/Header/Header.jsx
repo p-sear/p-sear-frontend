@@ -2,8 +2,12 @@ import React from 'react'
 import logo from '../../assets/images/logo.png';
 import { FaRegUserCircle } from "react-icons/fa";
 import './Header.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Header = () => {
+    const { isLogged, userName, login, logout } = useAuth();
+    const [showDropdown, setShowDropdown] = useState(false);
+
     return (
         <>
             <header className='flex content-center justify-between'>
