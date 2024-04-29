@@ -1,24 +1,50 @@
 import React from 'react'
+import { useState } from 'react';
 import logo from '../../assets/images/logo.png';
 import { FaRegUserCircle } from "react-icons/fa";
 import './Header.css';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Header = () => {
-    const { isLogged, userName, login, logout } = useAuth();
-    const [showDropdown, setShowDropdown] = useState(false);
+    const { user, logout } = useAuth();
+    const [showDropdown, setShowDropdown] = useState(false); // 로그인 후 이름 클릭시, 드롭 다운 메뉴
+    const [showLogin, setShowLogin] = useState(false); // 로그인 폼 표시 상태
 
     return (
-        <>
-            <header className='flex content-center justify-between'>
-                <a href="/"><img src={logo} alt="" className='logo'/></a>
+        <header className='flex content-center justify-between'>
+            <a href="/"><img src={logo} alt="" className='logo'/></a>
 
-                <button className='flex items-center justify-center cursor-pointer header-name'>
-                    <span>최혜빈님</span>
-                    <FaRegUserCircle size="20"/>
-                </button>
-            </header>
-        </>
+            <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
+                <FaRegUserCircle size="20"/>
+                <span>최혜빈님</span>
+            </button>
+            {showDropdown && (
+            <div className='absolute top-12 flex flex-col items-center justify-center header-menu'>
+            <a href="/mypage">마이페이지</a>
+            <a href="/settings">설정</a>
+            <button onClick={logout}>로그아웃</button>
+            </div>
+            )}
+
+            {user ? (
+            <div>
+            <button onClick={() => setShowDropdown(!showDropdown)}>
+                {user.name}
+                <FaRegUserCircle size="20"/>
+            </button>
+            {showDropdown && (
+                <div>
+                <a href="/mypage">마이페이지</a>
+                <a href="/settings">설정</a>
+                <button onClick={logout}>로그아웃</button>
+                </div>
+            )}
+            </div>
+            ) : (
+            <button onClick={() => setShowLogin(true)} className='header-btn'><a href="/login">로그인/회원가입</a></button>
+            )}
+
+        </header>
     );
 };
 

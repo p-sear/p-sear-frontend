@@ -1,0 +1,33 @@
+.accountform-container{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.accountform {
+    width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.account-tap {
+    width: 100%;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .accountform {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .accountform-container {
+        padding: 100px 50px;
+    }
+}

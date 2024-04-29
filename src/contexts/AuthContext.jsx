@@ -3,31 +3,30 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-export function useAuth() {
-    return useContext(AuthContext);
-}
-
 export const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-    const login = async (email, password) => {
+    const login = async (username, password) => {
         try {
-            const response = await axios.post('/member/signin', { email, password });
-            setCurrentUser(response.data); // 응답으로 받은 사용자 정보를 상태에 저장
+        const response = await axios.post('/member/signin', {
+            username,
+            password,
+        });
+        setUser(response.data); // 성공적인 로그인 후 사용자 데이터 저장
         } catch (error) {
-            console.error(error);
+        console.error("로그인 실패:", error);
         }
     };
 
     const logout = () => {
-        setCurrentUser(null);
+        setUser(null);
     };
 
-    const value = {
-        currentUser,
-        login,
-        logout,
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
+        {children}
+        </AuthContext.Provider>
+    );
     };
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+export const useAuth = () => useContext(AuthContext);

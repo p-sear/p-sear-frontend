@@ -15,9 +15,7 @@ const Login = () => {
                     <input type="password" placeholder='비밀번호를 입력해주세요' />
                 </div>
             </div>
-
             <button className='login-btn'>로그인</button>
-
             <div>
                 <SocialLogin />
             </div>
