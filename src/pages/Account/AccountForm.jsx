@@ -5,18 +5,6 @@ import Register from './Register';
 import './AccountForm.css';
 
 const AccountForm = () => {
-    const btnStyle = {
-        color: 'lightgray'
-    }
-    const selectedBtnStyle = {
-        fontWeight: 'bold',
-        borderRadius: '10px 10px 0 0',
-        padding: '5px 20px',
-        border: '2px solid #87CDFF',
-        borderBottom: 'none',
-        backgroundColor: 'white'
-    }
-
     const [view, setView] = useState('login');
 
     return (
@@ -28,8 +16,8 @@ const AccountForm = () => {
 
              <div className='accountform'>
                 <div className='account-tap flex'>
-                    <button onClick={() => setView('login')} style={view === 'login' ? selectedBtnStyle : btnStyle}>로그인</button>
-                    <button onClick={() => setView('register')} style={view === 'register' ? selectedBtnStyle : btnStyle}>회원가입</button>
+                    <button onClick={() => setView('login')} className={view === 'login' ? 'tab-selected-btn' : 'tap-btn'}>로그인</button>
+                    <button onClick={() => setView('register')} className={view === 'register' ? 'tab-selected-btn' : 'tap-btn'}>회원가입</button>
                 </div>
 
                 {view === 'login' ? <Login /> : <Register />}

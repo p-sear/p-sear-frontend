@@ -1,6 +1,7 @@
 footer {
     padding: 50px 100px;
     background-color: #f6fbff;
+    gap: 20px;
 }
 
 .footer-logo {
@@ -38,4 +39,35 @@ footer {
 }
 .git-icon {
     font-size: 30px;
+}
+
+
+@media screen and (max-width: 500px) {
+    footer {
+        padding: 50px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .inquiry-box>button {
+        width: 100%;
+    }
+
+    .footer-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 }

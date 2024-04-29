@@ -9,10 +9,10 @@ import { FaGithub } from "react-icons/fa";
 const Footer = () => {
     return (
         <>
-            <footer className='flex flex-col gap-5'>
+            <footer className='flex flex-col'>
                 <img src={imgLogo} alt="" className='footer-logo'/>
 
-                <div className='flex justify-between'>
+                <div className='footer-nav flex justify-between'>
                     <div className="service-box">
                         <h3>서비스</h3>
                         <p>회사 소개</p>
@@ -34,7 +34,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className='flex justify-between items-center'>
+                <div className='footer-icon flex justify-between items-center'>
                     <p className='copy'>&copy; Copyright 2024, All Rights Reserved by Pser</p>
 
                     <div className='flex justify-center items-center gap-2'>
