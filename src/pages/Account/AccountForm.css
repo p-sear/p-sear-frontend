@@ -41,15 +41,6 @@
 
 @media screen and (max-width: 500px) {
     .accountform-container {
-        padding: 100px 50px;
-    }
-
-    .accountform {
-        border: none;
-    }
-
-    .tab-selected-btn {
-        border: none;
-        background-color: #ebf7ff;
+        padding: 100px 20px;
     }
 }

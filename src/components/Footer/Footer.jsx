@@ -28,7 +28,7 @@ const Footer = () => {
                         <p>개인정보처리방침</p>
                         <p>소비자 분정 해결 기준</p>
                     </div>
-                    <div className="inquiry-box flex flex-col items-center">
+                    <div className="inquiry-box flex flex-col items-center justify-center">
                         <button className='flex justify-center items-center tel-btn'><BsFillTelephoneFill />0000-0000</button>
                         <button className='flex justify-center items-center talk-btn'><RiKakaoTalkFill />카카오톡 문의</button>
                     </div>
