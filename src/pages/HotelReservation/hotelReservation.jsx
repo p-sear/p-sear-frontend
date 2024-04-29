@@ -55,7 +55,7 @@ const HotelReservation = () => {
       <div className='flex justify-center'>
         <img
           src='https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp'
-          className='m-4 w-96 rounded-xl '
+          className='m-4 w-1/3 rounded-xl '
         ></img>
       </div>
 
