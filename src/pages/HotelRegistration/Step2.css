@@ -1,0 +1,9 @@
+.step2-container {
+    width: 100%;
+    gap: 30px;
+}
+
+.step2-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './StepProgress.css';
 import Step1 from './Step1';
 import Step2 from './Step2';
@@ -7,7 +8,21 @@ import Step3 from './Step3';
 const progressArr = [1, 2, 3, 4, 5, 6]; // 1부터 시작하도록 수정
 
 const StepProgress = () => {
-    const [currentProgress, setCurrentProgress] = useState(1); // 초기 상태를 1로 설정
+    // 초기 상태 설정을 localStorage에서 가져온 값으로 설정하거나 없으면 1로 설정
+    const [currentProgress, setCurrentProgress] = useState(
+        parseInt(localStorage.getItem('currentProgress'), 10) || 1
+    );
+
+    const navigate = useNavigate();
+
+    // currentProgress 상태가 변경될 때마다 localStorage에 저장
+    useEffect(() => {
+        localStorage.setItem('currentProgress', currentProgress);
+        // 마지막 단계(7단계)에서 '홈 화면으로 이동' 버튼 클릭 시 홈 화면으로 이동
+        if (currentProgress === 7) {
+            navigate('/');
+        }
+    }, [currentProgress, navigate]);
 
     const updateProgress = (newProgress) => {
         setCurrentProgress(newProgress);
