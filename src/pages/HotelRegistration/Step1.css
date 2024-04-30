@@ -1,0 +1,21 @@
+.step1-container {
+    margin-top: 50px;
+    width: 100%;
+    gap: 50px;
+}
+.step1-container>img {
+    width: 200px;
+}
+
+.step1-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.step1-content {
+    gap: 10px;
+}
+.step1-content>h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
