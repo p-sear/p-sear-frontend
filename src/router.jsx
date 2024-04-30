@@ -5,6 +5,7 @@ import ProfilePage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
 
 import AccountForm from './pages/Account/AccountForm';
+import StepProgress from './pages/HotelRegistration/StepProgress';
  
 
 import ReviewRegister from './pages/Review/register';
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
     path: '/myapp',
     element: <MyApp />
     ,
+  },
+  {
+    path: '/hotel/new',
+    element: <StepProgress />
   },
 
 
