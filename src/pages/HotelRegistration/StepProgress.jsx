@@ -4,6 +4,7 @@ import './StepProgress.css';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4';
 
 const progressArr = [1, 2, 3, 4, 5, 6]; // 1부터 시작하도록 수정
 
@@ -50,7 +51,8 @@ const StepProgress = () => {
     const stepComponents = {
         1: <Step1 />,
         2: <Step2 />,
-        3: <Step3 />
+        3: <Step3 />,
+        4: <Step4 />
     };
 
     return (

@@ -1,0 +1,34 @@
+.step4-container {
+    gap: 50px;
+}
+.step4-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.step4-box {
+    width: 400px;
+    gap: 50px;
+}
+.step4-box>div {
+    width: 100%;
+}
+.step4-box>div>h3, .step4-box>div>div>h3 {
+    font-size: 20px;
+}
+.step4-box>div>input {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.step4-box>div>input:focus {
+    outline: none;
+}
+
+.step4-email>div>button {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: lightgray;
+    width: 70px;
+}
