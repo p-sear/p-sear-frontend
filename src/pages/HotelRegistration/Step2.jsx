@@ -84,9 +84,9 @@ const Step2 = () => {
                     </div>
                 </div>
 
-                <div className="step2-service flex flex-col justify-center items-center">
+                <div className="step2-service flex flex-col justify-center items-center w-full">
                     <h3>숙소 공통 서비스</h3>
-                    <ul className="step2-service-box">
+                    <ul className="step2-service-box w-full">
                         <li><FaCarSide size={30} />주차</li>
                         <li><TbBaguette size={30} />조식</li>
                         <li><FaWifi size={30} />와이파이</li>
