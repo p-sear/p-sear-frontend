@@ -1,9 +1,91 @@
 .step2-container {
     width: 100%;
-    gap: 30px;
+    gap: 50px;
 }
-
 .step2-container>h1 {
     font-size: 30px;
     font-weight: bold;
+}
+
+.step2-box {
+    gap: 50px;
+    width: 400px;
+}
+.step2-box input, .step2-box textarea{
+    border: 1px solid #b6b6b6;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.step2-box input:focus, .step2-box textarea:focus {
+    outline: none;
+}
+
+.step2-box>div>h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+.step2-category, .step2-name, .step2-address, .step2-info, .step2-thumbnail, .step2-reservation, .step2-end, .step2-notice{
+    gap: 10px;
+    width: 100%;
+}
+.step2-category-box, .step2-service-box {
+    display: grid;
+    flex: none;
+    gap: 20px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(3,minmax(40px,1fr));
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+}
+.step2-category-box>li, .step2-service-box>li {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+    aspect-ratio: auto 1 / 1;
+}
+.step2-category-box>li:hover, .step2-service-box>li:hover {
+    background-color: #F8F8F8;
+}
+.step2-category-box>li>img {
+    width: 50px;
+}
+
+
+.step2-hotel-thumbnail {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    border: 2px dashed lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    background: url('https://ifh.cc/g/dFPtar.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: 50%;
+}
+.step2-hotel-thumbnail>img {
+    border-radius: 10px;
+}
+.file-btn {
+    cursor: pointer;
+    background-color: #f0eaea;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.step2-date {
+    border: 1px solid lightgray;
+    border-radius: 10px;
 }
