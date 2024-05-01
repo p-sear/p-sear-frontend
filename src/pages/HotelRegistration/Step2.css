@@ -25,7 +25,7 @@
     font-size: 20px;
     font-weight: bold;
 }
-.step2-category, .step2-name, .step2-address, .step2-info, .step2-thumbnail, .step2-reservation, .step2-end, .step2-notice{
+.step2-category, .step2-name, .step2-address, .step2-info, .step2-thumbnail, .step2-service, .step2-reservation, .step2-notice{
     gap: 10px;
     width: 100%;
 }
@@ -61,6 +61,9 @@
 }
 .step2-category-box>li>img {
     width: 50px;
+}
+.step2-category-box>li.selected, .step2-service-box>li.selected {
+    background-color: #F8F8F8;
 }
 
 

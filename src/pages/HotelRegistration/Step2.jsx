@@ -35,6 +35,58 @@ const Step2 = () => {
         reader.readAsDataURL(event.target.files[0]);
     }
 
+    // 숙소 카테고리 버튼에 사용될 아이콘
+    const icons = [
+        { src: icon1, alt: "", name: "호텔" },
+        { src: icon2, alt: "", name: "모텔" },
+        { src: icon3, alt: "", name: "리조트" },
+        { src: icon4, alt: "", name: "펜션" },
+        { src: icon5, alt: "", name: "캠핑/글램핑" },
+        { src: icon6, alt: "", name: "게스트 하우스" },
+        { src: icon7, alt: "", name: "한옥" },
+        { src: icon8, alt: "", name: "풀빌라" },
+        { src: icon9, alt: "", name: "단톡 주택" },
+    ];
+    const [selected, setSelected] = useState(null);
+    const handleSelect = (index) => {
+        if (selected === index) {
+        setSelected(null); // 이미 선택된 항목을 다시 클릭하면 선택 취소
+        } else {
+        setSelected(index); // 다른 항목을 클릭하면 선택
+        }
+    };
+
+
+    // 숙소 서비스 버튼에 사용될 아이콘
+    const services = [
+        { Icon: FaCarSide, name: '주차' },
+        { Icon: TbBaguette, name: '조식' },
+        { Icon: FaWifi, name: '와이파이' },
+        { Icon: FaSmoking, name: '흡연 구역' },
+        { Icon: FaSmokingBan, name: '객실 금연' },
+        { Icon: FaWineGlassAlt, name: '루프탑' },
+        { Icon: FaInfoCircle, name: '24시간 데스크' },
+        { Icon: PiLockersFill, name: '수화물 보관' },
+        { Icon: PiThermometerHotFill, name: '스파' },
+        { Icon: IoRestaurant, name: '레스토랑' },
+        { Icon: IoIosFitness, name: '피트니스' },
+        { Icon: FaFireBurner, name: '사우나' },
+        { Icon: FaSwimmingPool, name: '수영장' },
+        { Icon: MdOutdoorGrill, name: 'BBQ' },
+        { Icon: FaStore, name: '매점' },
+        { Icon: BiSolidDryer, name: '건조기' },
+        { Icon: FaSuitcaseRolling, name: '짐 보관' },
+        { Icon: PiDogFill, name: '반려견 동반' },
+    ];
+    const [selectedItems, setSelectedItems] = useState([]);
+    const toggleItem = (name) => {
+        setSelectedItems(
+            selectedItems.includes(name)
+            ? selectedItems.filter((i) => i !== name)
+            : [...selectedItems, name]
+        );
+    };
+
     return (
         <div className='step2-container flex flex-col justify-center items-center'>
             <h1>숙소 정보를 알려주세요</h1>
@@ -43,15 +95,16 @@ const Step2 = () => {
                 <div className="step2-category flex flex-col justify-center items-center">
                     <h3>숙소 카테고리</h3>
                     <ul className='step2-category-box'>
-                        <li><img src={icon1} alt="" /><p>호텔</p></li>
-                        <li><img src={icon2} alt="" /><p>모텔</p></li>
-                        <li><img src={icon3} alt="" /><p>리조트</p></li>
-                        <li><img src={icon4} alt="" /><p>펜션</p></li>
-                        <li><img src={icon5} alt="" /><p>캠핑/글램핑</p></li>
-                        <li><img src={icon6} alt="" /><p>게스트 하우스</p></li>
-                        <li><img src={icon7} alt="" /><p>한옥</p></li>
-                        <li><img src={icon8} alt="" /><p>풀빌라</p></li>
-                        <li><img src={icon9} alt="" /><p>단독 주택</p></li>
+                    {icons.map((icon, index) => (
+                        <li 
+                        key={index}
+                        className={selected === index ? 'selected' : ''} 
+                        onClick={() => handleSelect(index)}
+                        >
+                        <img src={icon.src} alt={icon.alt} />
+                        <p>{icon.name}</p>
+                        </li>
+                    ))}
                     </ul>
                 </div>
 
@@ -87,24 +140,11 @@ const Step2 = () => {
                 <div className="step2-service flex flex-col justify-center items-center w-full">
                     <h3>숙소 공통 서비스</h3>
                     <ul className="step2-service-box w-full">
-                        <li><FaCarSide size={30} />주차</li>
-                        <li><TbBaguette size={30} />조식</li>
-                        <li><FaWifi size={30} />와이파이</li>
-                        <li><FaSmoking size={30} />흡연 구역</li>
-                        <li><FaSmokingBan size={30} />객실 금연</li>
-                        <li><FaWineGlassAlt size={30} />루프탑</li>
-                        <li><FaInfoCircle size={30} />24시간 데스크</li>
-                        <li><PiLockersFill size={30} />수화물 보관</li>
-                        <li><PiThermometerHotFill size={30} />스파</li>
-                        <li><IoRestaurant size={30} />레스토랑</li>
-                        <li><IoIosFitness size={30} />피트니스</li>
-                        <li><FaFireBurner size={30} />사우나</li>
-                        <li><FaSwimmingPool size={30} />수영장</li>
-                        <li><MdOutdoorGrill size={30}/>BBQ</li>
-                        <li><FaStore size={30}/>매점</li>
-                        <li><BiSolidDryer size={30}/>건조기</li>
-                        <li><FaSuitcaseRolling size={30}/>짐 보관</li>
-                        <li><PiDogFill size={30}/>반려견 동반</li>
+                    {services.map(({ Icon, name }, index) => (
+                        <li key={index} className={selectedItems.includes(name) ? 'selected' : ''} onClick={() => toggleItem(name)}>
+                        <Icon size={30} />{name}
+                        </li>
+                    ))}
                     </ul>
                 </div>
 
