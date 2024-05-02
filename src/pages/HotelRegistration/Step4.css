@@ -15,6 +15,7 @@
 }
 .step4-box>div>h3, .step4-box>div>div>h3 {
     font-size: 20px;
+    font-weight: bold;
 }
 .step4-box>div>input {
     border: 1px solid lightgray;
