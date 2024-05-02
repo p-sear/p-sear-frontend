@@ -10,7 +10,7 @@ import HotelImage from './hotelImage';
 import RoomCard from './roomcard';
 
 const HotelDetail = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal open/close
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -99,13 +99,10 @@ const HotelDetail = () => {
             name={room.name}
             description={room.description}
             imageUrl={room.imageUrl}
-            onMoreButtonClick={handleModalOpen} // Pass the function to handle modal open
+            onMoreButtonClick={handleModalOpen}
           />
         ))}
       </div>
-
-      {/* Modal */}
-      <DetailModal isOpen={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 };

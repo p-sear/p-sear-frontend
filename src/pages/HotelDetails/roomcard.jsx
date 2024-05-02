@@ -1,18 +1,27 @@
+import React from 'react';
+
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-  IconButton,
-  Tooltip,
   Typography,
 } from '@material-tailwind/react';
 
 import RatingBar from '../HotelInquiry/RatingBar';
+import DetailModal from './detailModal';
+
+// 파일명 수정
 
 const RoomCard = props => {
   const { id, name, description, imageUrl, onMoreButtonClick } = props;
+
+  const handleDetailButtonClick = event => {
+    event.preventDefault(); // 기본 동작 막기
+    // 디테일 모달을 열도록 상태 변경
+    // 이 코드는 디테일 모달을 상태에 따라 열고 닫는 로직이어야 합니다.
+  };
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>
@@ -39,30 +48,9 @@ const RoomCard = props => {
         </Typography>
 
         <RatingBar></RatingBar>
-
-        <a href='#' className='absolute bottom-4 right-4'>
-          <Button
-            variant='text'
-            className='flex items-center gap-2'
-            onClick={onMoreButtonClick}
-          >
-            더보기
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              strokeWidth={2}
-              className='h-4 w-4'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
-              />
-            </svg>
-          </Button>
-        </a>
+        <div className='mt-5 flex justify-end'>
+          <DetailModal></DetailModal>
+        </div>
       </CardBody>
     </Card>
   );
