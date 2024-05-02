@@ -21,7 +21,7 @@ const Header = () => {
             {showDropdown && (
             <div className='absolute top-12 flex flex-col items-center justify-center header-menu'>
             <a href="/mypage">마이페이지</a>
-            <a href="/settings">설정</a>
+            <a href="">설정</a>
             <button onClick={logout}>로그아웃</button>
             </div>
             )}
