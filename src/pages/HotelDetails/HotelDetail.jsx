@@ -5,7 +5,7 @@ import { Button, Typography } from '@material-tailwind/react';
 import DateSelector from '../../components/Calendar/DateSelector';
 import PeopleSelector from '../../components/PeopleSelector/PeopleSelector';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
-import DetailModal from './detailModal';
+import RatingBar from '../HotelInquiry/RatingBar';
 import HotelImage from './hotelImage';
 import RoomCard from './roomcard';
 
@@ -45,17 +45,17 @@ const HotelDetail = () => {
   ];
 
   return (
-    <div className='max-w-8xl'>
-      <div className='bg-blue-gray-50'>
+    <div className='max-w-8xl '>
+      <div className=''>
         <HotelImage />
       </div>
 
-      <div className='flex flex-col items-center justify-between lg:flex-row '>
+      <div className='mt-4 flex flex-col items-center justify-between bg-blue-50 lg:flex-row'>
         <div>
-          <Typography variant='h6' color='black' className=' bg-blue-gray-50'>
+          <Typography variant='h6' color='black' className=''>
             Black.5성급.호텔
           </Typography>
-          <Typography variant='h3' color='black' className=' bg-blue-gray-50'>
+          <Typography variant='h3' color='black' className=' '>
             히든 클리프 호텔&네이쳐
           </Typography>
           <Typography variant='h5' color='black' className=''>
@@ -74,23 +74,27 @@ const HotelDetail = () => {
           </Typography>
         </div>
 
-        <div>
-          <div className='flex flex-col'>
-            <div className='m-4 flex overflow-hidden rounded-xl'>
-              <KaKaoMap />
-            </div>
-            <div className='z-30 mt-4 flex-col'>
-              <DateSelector />
-              <PeopleSelector />
-            </div>
-
-            <Button color='blue' className='m-10'>
+        <div className='mt-4 flex flex-col '>
+          <div className='m-2 rounded-xl'>
+            <KaKaoMap />
+          </div>
+          <div className='z-30 m-2 w-full'>
+            <DateSelector />
+          </div>
+          <div className='z-30 m-2'>
+            <PeopleSelector fullWidth />
+          </div>
+          <div className='m-2 '>
+            <Button color='blue' fullWidth>
               예약하기
             </Button>
           </div>
         </div>
       </div>
-
+      <div className='m-4 flex justify-between'>
+        <RatingBar></RatingBar>
+        <Button color='white'>더보기</Button>
+      </div>
       <div className='mx-auto mb-8 flex w-full flex-col items-center lg:w-2/3'>
         {roomData.map(room => (
           <RoomCard

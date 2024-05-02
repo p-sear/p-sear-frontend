@@ -9,7 +9,6 @@ import {
   Typography,
 } from '@material-tailwind/react';
 
-import RatingBar from '../HotelInquiry/RatingBar';
 import DetailModal from './detailModal';
 
 // 파일명 수정
@@ -47,7 +46,6 @@ const RoomCard = props => {
           {description}
         </Typography>
 
-        <RatingBar></RatingBar>
         <div className='mt-5 flex justify-end'>
           <DetailModal></DetailModal>
         </div>
