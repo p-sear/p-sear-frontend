@@ -7,13 +7,13 @@ header {
     width: 120px;
 }
 
-.header-btn {
-    padding: 0 10px;
+.header-info-btn {
+    padding: 5px 10px;
     border-radius: 20px;
     border: 1px solid lightgray;
     gap: 4px;
 }
-.header-btn:hover, .header-login-btn:hover {
+.header-info-btn:hover, .header-login-btn:hover {
     background-color: #F8F8F8;
 }
 

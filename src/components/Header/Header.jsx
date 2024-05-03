@@ -6,37 +6,29 @@ import './Header.css';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Header = () => {
-    const { user, logout } = useAuth();
+    const { isLoggedIn, userInfo, logout} = useAuth();
     const [showDropdown, setShowDropdown] = useState(false); // 로그인 후 이름 클릭시, 드롭 다운 메뉴
-    const [showLogin, setShowLogin] = useState(false); // 로그인 폼 표시 상태
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
     return (
         <header className='flex content-center justify-between'>
             <a href="/"><img src={logo} alt="" className='logo'/></a>
 
-            {/* <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
-                <FaRegUserCircle size="20"/>
-                <span>최혜빈님</span>
-            </button>
-            {showDropdown && (
-            <div className='absolute top-12 flex flex-col items-center justify-center header-menu'>
-            <a href="/mypage">마이페이지</a>
-            <a href="">설정</a>
-            <button onClick={logout}>로그아웃</button>
-            </div>
-            )} */}
-
-            {user ? (
+            {isLoggedIn ? (
             <div>
-            <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
+            <button className='flex items-center justify-center cursor-pointer header-info-btn' onClick={() => setShowDropdown(!showDropdown)}>
                 <FaRegUserCircle size="20"/>
-                <span>{user.name}님</span>
+                <span>{userInfo.name}님</span>
             </button>
             {showDropdown && (
                 <div className='absolute top-12 flex flex-col items-center justify-center header-menu'>
                     <a href="/mypage">마이페이지</a>
                     <a href="">설정</a>
-                    <button onClick={logout}>로그아웃</button>
+                    <button onClick={handleLogout}>로그아웃</button>
                 </div>
             )}
             </div>
