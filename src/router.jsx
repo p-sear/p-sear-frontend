@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Main from './pages/Home/Main';
-import ProfilePage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
 
+import MyPage from './pages/MyPage/MyPage';
 import AccountForm from './pages/Account/AccountForm';
 import StepProgress from './pages/HotelRegistration/StepProgress';
  
@@ -20,8 +20,8 @@ export const router = createBrowserRouter([
     element: <AccountForm />
   },
   {
-    path: '/profile',
-    element: <ProfilePage />,
+    path: '/mypage',
+    element: <MyPage />
   },
   {
     path: '/myapp',
@@ -32,8 +32,6 @@ export const router = createBrowserRouter([
     path: '/hotel/new',
     element: <StepProgress />
   },
-
-
   {
     path: '/review-register',
     element: <ReviewRegister />,
