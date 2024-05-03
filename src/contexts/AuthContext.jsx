@@ -8,29 +8,22 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userInfo, setUserInfo] = useState({});
 
-    const login = async (email, password) => {
-        try {
-            const response = await axios.post('/member/signin', { email, password });
-            const { token, name } = response.data;
-            localStorage.setItem('token', token);
-            setUser({ name });
-        } catch (error) {
-            console.error('로그인 실패:', error);
-        }
+    const login = (user) => {
+        setIsLoggedIn(true);
+        setUserInfo(user);
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
-        setUser(null);
+        setIsLoggedIn(false);
+        setUserInfo({});
     };
 
-    const value = {
-        user,
-        login,
-        logout,
-    };
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ isLoggedIn, userInfo, login, logout }}>
+        {children}
+        </AuthContext.Provider>
+    );
 }

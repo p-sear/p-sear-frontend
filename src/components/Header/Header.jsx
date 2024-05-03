@@ -14,7 +14,7 @@ const Header = () => {
         <header className='flex content-center justify-between'>
             <a href="/"><img src={logo} alt="" className='logo'/></a>
 
-            <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
+            {/* <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
                 <FaRegUserCircle size="20"/>
                 <span>최혜빈님</span>
             </button>
@@ -24,24 +24,24 @@ const Header = () => {
             <a href="">설정</a>
             <button onClick={logout}>로그아웃</button>
             </div>
-            )}
+            )} */}
 
             {user ? (
             <div>
-            <button onClick={() => setShowDropdown(!showDropdown)}>
-                {user.name}
+            <button className='flex items-center justify-center cursor-pointer header-btn' onClick={() => setShowDropdown(!showDropdown)}>
                 <FaRegUserCircle size="20"/>
+                <span>{user.name}님</span>
             </button>
             {showDropdown && (
-                <div>
-                <a href="/mypage">마이페이지</a>
-                <a href="">설정</a>
-                <button onClick={logout}>로그아웃</button>
+                <div className='absolute top-12 flex flex-col items-center justify-center header-menu'>
+                    <a href="/mypage">마이페이지</a>
+                    <a href="">설정</a>
+                    <button onClick={logout}>로그아웃</button>
                 </div>
             )}
             </div>
             ) : (
-            <button onClick={() => setShowLogin(true)} className='header-btn'><a href="/login">로그인/회원가입</a></button>
+            <a href="/login" className='header-login-btn'>로그인/회원가입</a>
             )}
 
         </header>
