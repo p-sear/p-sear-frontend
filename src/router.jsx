@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     element: <AccountForm />
   },
   {
-    path: '/mypage',
+    path: '/profile',
     element: <MyPage />
   },
   {

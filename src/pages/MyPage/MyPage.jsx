@@ -2,7 +2,9 @@ import React from 'react'
 
 const MyPage = () => {
     return (
-        <div>MyPage</div>
+        <div className='mypage-container'>
+            마이페이지
+        </div>
     )
 }
 
