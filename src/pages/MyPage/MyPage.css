@@ -1,0 +1,28 @@
+.mypage-container {
+    padding: 100px 200px;
+    gap: 50px;
+}
+
+.mypage-container>nav {
+    gap: 50px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 30px;
+    width: 200px;
+    font-weight: bold;
+}
+
+.link {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+}
+.link-active {
+    color: #0c69ff;
+}
+
+.right-arrow-icon {
+    fill: gray;
+}
