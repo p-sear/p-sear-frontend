@@ -1,9 +1,10 @@
 import React from 'react'
+import './MyInfo.css';
 
 const MyInfo = () => {
     return (
         <div className="myinfo-container">
-            내 정보 확인
+            <h1>나의 정보</h1>
         </div>
     )
 }
