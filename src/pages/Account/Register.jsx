@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './Register.css';
-import { FaPlus, FaMinus, FaCheck } from "react-icons/fa6";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 import SocialLogin from './SocialLogin';
 
 const Register = () => {

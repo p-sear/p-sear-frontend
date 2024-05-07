@@ -1,10 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
-
-import Auction from './pages/HotelAution/auction';
+import MyPage from './pages/MyPage/MyPage';
 import MyApp from './pages/HotelInquiry/MyApp';
+
+import AccountForm from './pages/Account/AccountForm';
+import StepProgress from './pages/HotelRegistration/StepProgress';
+ 
+
 import ReviewRegister from './pages/Review/register';
 
 export const router = createBrowserRouter([
@@ -17,13 +20,21 @@ export const router = createBrowserRouter([
     element: <AccountForm />,
   },
   {
-    path: '/profile',
-    element: <ProfilePage />,
+    path: '/profile/*',
+    element: <MyPage />
   },
   
   {
     path: '/myapp',
-    element: <MyApp />,
+    element: <MyApp />
+    ,
+  },
+  {
+    path: '/hotel/new',
+    element: <StepProgress />
+  },
+
+
   {
     path: '/review-register',
     element: <ReviewRegister />,

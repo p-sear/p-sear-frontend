@@ -1,0 +1,48 @@
+.mypage-container {
+    padding: 100px;
+    gap: 80px;
+}
+
+.mypage-container>div>nav {
+    gap: 50px;
+    /* border: 1px solid lightgray; */
+    /* border-radius: 10px; */
+    /* padding: 30px; */
+    width: 200px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.link {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+}
+.link-active {
+    color: #5389ff;
+}
+
+.right-arrow-icon {
+    fill: gray;
+}
+
+
+.profile-img>img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.camera-icon {
+    fill: gray;
+    right: 0;
+    bottom: 10px;
+    size: 30px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}

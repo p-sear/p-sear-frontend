@@ -1,0 +1,34 @@
+.myinfo-container {
+    flex-grow: 1;
+    gap: 50px;
+}
+
+.myinfo-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.myinfo-box {
+    gap: 50px;
+
+    h3 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+.myinfo-box>div {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px -4px lightgray;
+}
+.myinfo-box>div>button {
+    color: #5389ff;
+    font-weight: bold;
+}
+
+.exit-btn {
+    align-self: flex-end;
+    width: auto;
+    color: lightgray;
+}
