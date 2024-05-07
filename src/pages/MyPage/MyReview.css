@@ -31,8 +31,20 @@
     gap: 50px;
 }
 
-.myrev-detail-btn {
-    color: #5389ff;
+.myrev-fin {
+    align-self: flex-end;
+    padding: 5px 10px;
+    background-color: #b9e9b9;
+    color: #394d39;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.myrev-btn {
     font-weight: bold;
     align-self: flex-end;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    color: #5389ff;
+    background-color: white;
 }

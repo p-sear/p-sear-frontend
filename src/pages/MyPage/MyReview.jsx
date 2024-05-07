@@ -60,9 +60,9 @@ const MyReview = () => {
 
                     </div>
 
-                    <div>
-                        <p>완료됨</p>
-                        <button>이용 후기 작성하기</button>
+                    <div className='flex flex-col justify-between h-full'>
+                        <p className='myrev-fin'>완료됨</p>
+                        <button className='myrev-btn'>이용 후기 작성하기</button>
                     </div>
                 </div>
                 ))}
