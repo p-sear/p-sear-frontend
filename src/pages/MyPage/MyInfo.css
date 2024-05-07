@@ -16,3 +16,13 @@
         font-weight: bold;
     }
 }
+.myinfo-box>div {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px -4px lightgray;
+}
+.myinfo-box>div>button {
+    color: #5389ff;
+    font-weight: bold;
+}
