@@ -7,25 +7,39 @@
     font-weight: bold;
 }
 
+.myreservation-box {
+    gap: 50px;
+}
 
-.myreservation-item>div {
+.myreservation-item {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+}
+.myreservation-item>div:nth-of-type(1) {
     gap: 30px;
     flex-grow: 1;
 }
-.myreservation-item>button {
-    align-self: flex-end;
-}
-.myreservation-item>div>div {
+
+.myreservation-item>div:nth-of-type(1)>div {
     width: 100%;
 }
-.myreservation-item>div>img {
+.myreservation-item>div:nth-of-type(1)>img {
     width: 150px;
     height: 150px;
     border-radius: 10px;
     object-fit: cover;
+    flex-grow: 1;
 }
 
+
+.myreservation-item>div:nth-of-type(2) {
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 .detail-btn {
     color: #5389ff;
     font-weight: bold;
+    align-self: flex-end;
 }

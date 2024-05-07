@@ -7,8 +7,6 @@ import MyPage from './pages/MyPage/MyPage';
 import AccountForm from './pages/Account/AccountForm';
 import StepProgress from './pages/HotelRegistration/StepProgress';
 
-import MyInfo from './pages/MyPage/MyInfo';
-
 import ReviewRegister from './pages/Review/register';
 
 export const router = createBrowserRouter([
