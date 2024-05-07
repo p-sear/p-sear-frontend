@@ -9,29 +9,30 @@ const MyReservation = () => {
 
             <div className="myreservation-box w-full">
 
-                <div className='myreservation-item w-full flex justify-between items-center'>
-                    <img src={hotelImg} alt="" />
-
-                    <div>
-                        <div>
-                            <p>숙소</p>
-                            <p>히든 클리프 & 네이처</p>
-                        </div>
-                        <div>
-                            <p>객실</p>
-                            <p>스탠다드</p>
-                        </div>
-                        <div>
-                            <p>체크인/체크아웃</p>
-                            <p>2024.05.20 ~ 2024.05.22</p>
-                        </div>
-                        <div>
-                            <p>결제 금액</p>
-                            <p>120,000 원</p>
+                <div className='myreservation-item w-full flex justify-between items-center gap-20 h-full'>
+                    <div className='flex items-center h-full'>
+                        <img src={hotelImg} alt="" />
+                        <div className='flex flex-col justify-between h-full'>
+                            <div className='flex justify-between'>
+                                <p>숙소</p>
+                                <p>히든 클리프 & 네이처</p>
+                            </div>
+                            <div className='flex justify-between'>
+                                <p>객실</p>
+                                <p>스탠다드</p>
+                            </div>
+                            <div className='flex justify-between'>
+                                <p>체크인/체크아웃</p>
+                                <p>2024.05.20 ~ 2024.05.22</p>
+                            </div>
+                            <div className='flex justify-between'>
+                                <p>결제 금액</p>
+                                <p>120,000 원</p>
+                            </div>
                         </div>
                     </div>
 
-                    <button>상세 조회</button>
+                    <button className='detail-btn'>상세 조회 &gt;</button>
                 </div>
 
             </div>

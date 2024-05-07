@@ -7,9 +7,25 @@
     font-weight: bold;
 }
 
-.myreservation-item>img {
-    width: 200px;
-    height: 200px;
+
+.myreservation-item>div {
+    gap: 30px;
+    flex-grow: 1;
+}
+.myreservation-item>button {
+    align-self: flex-end;
+}
+.myreservation-item>div>div {
+    width: 100%;
+}
+.myreservation-item>div>img {
+    width: 150px;
+    height: 150px;
     border-radius: 10px;
     object-fit: cover;
+}
+
+.detail-btn {
+    color: #5389ff;
+    font-weight: bold;
 }
