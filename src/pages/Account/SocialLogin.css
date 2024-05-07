@@ -22,3 +22,6 @@ hr {
     top: 50%;
     transform: translateY(-50%);
 }
+.naver-i {
+    fill: #0ec10e;
+}

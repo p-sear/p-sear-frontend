@@ -7,12 +7,32 @@ header {
     width: 120px;
 }
 
-.header-name {
-    padding: 0 10px;
+.header-info-btn {
+    padding: 5px 10px;
     border-radius: 20px;
     border: 1px solid lightgray;
     gap: 4px;
 }
-.header-name:hover {
+.header-info-btn:hover, .header-login-btn:hover {
     background-color: #F8F8F8;
+}
+
+.header-menu {
+    background-color: rgb(255, 254, 246);
+    box-shadow: 0 5px 8px -4px gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+    gap: 10px;
+    top: 70px;
+    right: 30px;
+}
+.header-menu>a:hover, .header-menu>button:hover {
+    color: #0c69ff;
+    font-weight: bold;
+}
+
+.header-login-btn {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid lightgray;
 }

@@ -43,3 +43,10 @@
     padding: 10px;
     width: 100%;
 }
+
+
+@media screen and (max-width: 500px) {
+    .register-container {
+        padding: 20px;
+    }
+}

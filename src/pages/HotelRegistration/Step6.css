@@ -1,0 +1,10 @@
+.step6-container {
+    gap: 50px;
+}
+.step6-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+.step6-container>img {
+    width: 200px;
+}
