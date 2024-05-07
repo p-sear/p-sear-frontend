@@ -1,3 +1,18 @@
 .myinfo-container {
     flex-grow: 1;
+    gap: 50px;
+}
+
+.myinfo-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.myinfo-box {
+    gap: 50px;
+
+    h3 {
+        font-size: 20px;
+        font-weight: bold;
+    }
 }

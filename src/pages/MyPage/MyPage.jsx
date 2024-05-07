@@ -19,7 +19,7 @@ const MyPage = () => {
     
     return (
         <div className='mypage-container flex w-full'>
-            <div className='flex flex-col justify-center items-center gap-20'>
+            <div className='flex flex-col justify-center items-center gap-20 h-full'>
                 <div className='profile-img relative'>
                     <img src={image} alt="" />
                     <label className="upload-btn" for="input-file"><IoCamera className='camera-icon absolute' size={'40px'}/></label>
