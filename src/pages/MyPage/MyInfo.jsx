@@ -39,6 +39,8 @@ const MyInfo = () => {
                     </div>
                     <button>변경하기</button>
                 </div>
+
+                <button className='exit-btn'>회원 탈퇴</button>
             </div>
         </div>
     )

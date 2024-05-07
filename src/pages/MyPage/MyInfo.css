@@ -26,3 +26,9 @@
     color: #5389ff;
     font-weight: bold;
 }
+
+.exit-btn {
+    align-self: flex-end;
+    width: auto;
+    color: lightgray;
+}
