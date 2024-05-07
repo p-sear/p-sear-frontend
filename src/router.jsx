@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
-import ProfilePage from './pages/Profile';
+import MyPage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
 
 import AccountForm from './pages/Account/AccountForm';
