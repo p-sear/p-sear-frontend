@@ -3,6 +3,7 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import './MyPage.css';
 import MyInfo from './MyInfo';
 import MyReservation from './MyReservation';
+import MyReview from './MyReview';
 import MySetting from './MySetting';
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoCamera } from "react-icons/io5";
@@ -35,10 +36,10 @@ const MyPage = () => {
                         예약 내역
                         <IoIosArrowDropright className='right-arrow-icon' />
                     </NavLink>
-                    <a href="/review-register" className='flex items-center justify-between' style={{color: 'gray'}}>
+                    <NavLink to="/profile/reviews" className={({ isActive }) => (isActive ? 'link link-active' : 'link')}>
                         이용 후기
                         <IoIosArrowDropright className='right-arrow-icon' />
-                    </a>
+                    </NavLink>
                     <a href="/hotel/new" className='flex items-center justify-between' style={{color: 'gray'}}>
                         숙소 등록
                         <IoIosArrowDropright className='right-arrow-icon' />
@@ -53,6 +54,7 @@ const MyPage = () => {
                 <Route path="/" element={<Navigate replace to="/profile/info" />} />
                 <Route path="/info" element={<MyInfo />} />
                 <Route path="/reservations" element={<MyReservation />} />
+                <Route path="/reviews" element={<MyReview />} />
                 <Route path="/settings" element={<MySetting />} />
             </Routes>
         </div>
