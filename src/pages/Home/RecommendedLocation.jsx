@@ -14,8 +14,8 @@ const RecommendedLocation = () => {
                 <h1>추천 여행지</h1>
                 <a href='' className='flex justify-center items-center'>더보기 <span><IoIosArrowForward /></span></a>
             </div>
-
-            <div className="recLocation-content flex items-center justify-between">
+            
+            <div className="recLocation-content">
                 <div>
                     <img src={seoulImg} alt="" />
                     <p>서울</p>

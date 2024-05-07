@@ -33,8 +33,8 @@ function PeopleSelector() {
             </button>
             
             {showSelector && (
-            <div className='peopleSelector-box absolute bg-white'>
-                <div>
+            <div className='peopleSelector-box absolute bg-white z-10'>
+                <div className='w-full'>
                     <h3>인원 선택</h3>
                     <p>유아 및 아동도 포함해주세요.</p>
                 </div>

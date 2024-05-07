@@ -1,0 +1,42 @@
+.login-container {
+    width: 100%;
+    gap: 30px;
+    border-radius: 0;
+    border: 2px solid #87CDFF;
+    border-radius: 0 10px 10px 10px;
+    padding: 30px;
+}
+
+.login-form {
+    width: 100%;
+    gap: 20px;
+}
+
+.email-box, .pw-box {
+    gap: 10px;
+}
+.email-box>input, .pw-box>input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+.email-box>input:focus, .pw-box>input:focus {
+    outline: none;
+}
+
+.login-btn {
+    background-color: #87CDFF;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+
+@media screen and (max-width: 500px) {
+    .login-container {
+        padding: 20px;
+    }
+}

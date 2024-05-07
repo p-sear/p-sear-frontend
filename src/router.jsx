@@ -1,15 +1,20 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
-import ProfilePage from './pages/Profile';
+import Auction from './pages/HotelAution/auction';
 import MyApp from './pages/HotelInquiry/MyApp';
-import HotelDetail from './pages/HotelDetails/HotelDetail';
+
 import ReviewRegister from './pages/Review/register';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+  },
+  {
+    path: '/login',
+    element: <AccountForm />,
   },
   {
     path: '/profile',
@@ -19,14 +24,6 @@ export const router = createBrowserRouter([
   {
     path: '/myapp',
     element: <MyApp />,
-  },
-
-  {
-    path: '/hotel-detail',
-    element: <HotelDetail />,
-  },
-
-
 
   {
     path: '/review-register',
