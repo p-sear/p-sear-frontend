@@ -14,8 +14,13 @@ const AuctionBar = () => {
             입찰하기
           </Typography>
 
-          <Typography variant='h6'>남은시간</Typography>
-          <Typography variant='h6'>시작가격</Typography>
+          <Typography variant='h6' className=''>
+            남은시간
+          </Typography>
+          <div className='mb-2 flex justify-between '>
+            <Typography variant='h6'>시작가격</Typography>
+            <Typography variant='h6'>35,000원</Typography>
+          </div>
           <Typography variant='h6' className='text-center'>
             현재 최고 입찰가
           </Typography>
