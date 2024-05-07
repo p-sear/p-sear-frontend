@@ -17,9 +17,7 @@ const RoomCard = props => {
   const { id, name, description, imageUrl, onMoreButtonClick } = props;
 
   const handleDetailButtonClick = event => {
-    event.preventDefault(); // 기본 동작 막기
-    // 디테일 모달을 열도록 상태 변경
-    // 이 코드는 디테일 모달을 상태에 따라 열고 닫는 로직이어야 합니다.
+    event.preventDefault();
   };
 
   return (
