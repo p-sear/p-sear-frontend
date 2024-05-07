@@ -35,6 +35,10 @@ const MyPage = () => {
                         예약 내역
                         <IoIosArrowDropright className='right-arrow-icon' />
                     </NavLink>
+                    <a href="/review-register" className='flex items-center justify-between' style={{color: 'gray'}}>
+                        이용 후기
+                        <IoIosArrowDropright className='right-arrow-icon' />
+                    </a>
                     <a href="/hotel/new" className='flex items-center justify-between' style={{color: 'gray'}}>
                         숙소 등록
                         <IoIosArrowDropright className='right-arrow-icon' />
