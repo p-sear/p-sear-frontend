@@ -60,8 +60,6 @@ const MyApp = () => {
                     ))}
                
                 </div>
-               
-                <FooterWithSocialLinks></FooterWithSocialLinks>
             </div>
             
         </div>

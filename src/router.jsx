@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
+import ProfilePage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
 
-import MyPage from './pages/MyPage/MyPage';
 import AccountForm from './pages/Account/AccountForm';
 import StepProgress from './pages/HotelRegistration/StepProgress';
+ 
 
 import ReviewRegister from './pages/Review/register';
 
@@ -16,12 +18,13 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <AccountForm />
+    element: <AccountForm />,
   },
   {
     path: '/profile/*',
     element: <MyPage />
   },
+  
   {
     path: '/myapp',
     element: <MyApp />
@@ -31,6 +34,8 @@ export const router = createBrowserRouter([
     path: '/hotel/new',
     element: <StepProgress />
   },
+
+
   {
     path: '/review-register',
     element: <ReviewRegister />,

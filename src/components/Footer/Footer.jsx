@@ -1,10 +1,12 @@
-import React from 'react'
-import './Footer.css';
-import imgLogo from '../../assets/images/logo.png';
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { RiKakaoTalkFill } from "react-icons/ri";
+import React from 'react';
+
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import { FaGithub } from 'react-icons/fa';
+import { RiKakaoTalkFill } from 'react-icons/ri';
+
 import instagram from '../../assets/icons/insta.png';
-import { FaGithub } from "react-icons/fa";
+import imgLogo from '../../assets/images/logo.png';
+import './Footer.css';
 
 const Footer = () => {
     return (
@@ -37,14 +39,17 @@ const Footer = () => {
                 <div className='footer-icon flex justify-between items-center'>
                     <p className='copy'>&copy; Copyright 2024, All Rights Reserved by Pser</p>
 
-                    <div className='flex justify-center items-center gap-2'>
-                        <img src={instagram} alt="" className='insta-icon'/>
-                        <a href='https://github.com/p-ser' className='git-icon'><FaGithub /></a>
-                    </div>
-                </div>
-            </footer>
-        </>
-    )
-}
 
-export default Footer
+          <div className='flex items-center justify-center gap-2'>
+            <img src={instagram} alt='' className='insta-icon' />
+            <a href='https://github.com/p-ser' className='git-icon'>
+              <FaGithub />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default Footer;
