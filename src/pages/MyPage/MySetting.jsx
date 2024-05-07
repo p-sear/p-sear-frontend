@@ -22,13 +22,13 @@ const MySetting = () => {
 
     return (
         <div className="mysetting-container flex flex-col">
-            <div>
+            <div className='flex flex-col'>
                 <h1>설정</h1>
                 <p>경매 마감, 타임 특가 등 이벤트 정보를 빠르게 알려드립니다.</p>
             </div>
 
-            <div className="mysetting-box">
-                <div>
+            <div className="mysetting-box flex flex-col">
+                <div className='mysetting-checkbox flex flex-col'>
                     <p className='flex items-center gap-3'>
                         <input type="checkbox" style={{scale: '1.5'}} checked={isAllChecked} onChange={handleAllCheckedChange}/>
                         <span>알림 수신 동의(선택)</span>
@@ -50,7 +50,9 @@ const MySetting = () => {
                     </p>
                 </div>
 
-                <button>저장</button>
+                <div className='mysetting-btnl flex flex-col'>
+                    <button className='mysettig-save-btn'>저장</button>
+                </div>
             </div>
         </div>
     )
