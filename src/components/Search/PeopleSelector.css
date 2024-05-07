@@ -9,10 +9,12 @@
 }
 
 .peopleSelector-box {
+    width: 400px;
     padding: 20px;
     border: 1px solid rgb(188, 188, 188);
     border-radius: 10px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
     margin-top: 10px;
@@ -21,8 +23,9 @@
     font-size: 20px;
 }
 .peopleSelector-box>div:nth-child(2) {
+    width: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 5px;
 }
