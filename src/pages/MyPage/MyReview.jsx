@@ -34,10 +34,10 @@ const MyReview = () => {
     ]
 
     return (
-        <div className="myreview-container">
+        <div className="myreview-container flex flex-col">
             <h1>이용 후기</h1>
 
-            <div className="myreview-box">
+            <div className="myreview-box w-full flex flex-col justify-center items-center">
             {reservations.map((reservation) => (
                 <div className='myreview-item w-full flex justify-between items-center gap-20'>
                     <div className='flex items-center h-full'>
@@ -60,7 +60,10 @@ const MyReview = () => {
 
                     </div>
 
-                    <button className='detail-btn'>상세 조회 &gt;</button>
+                    <div>
+                        <p>완료됨</p>
+                        <button>이용 후기 작성하기</button>
+                    </div>
                 </div>
                 ))}
             </div>

@@ -1,0 +1,38 @@
+.myreview-container {
+    flex-grow: 1;
+    gap: 50px;
+}
+.myreview-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.myreview-box {
+    gap: 50px;
+}
+
+.myreview-item {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+}
+.myreview-item>div {
+    gap: 30px;
+    flex-grow: 1;
+}
+.myreview-item>div>img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.myreview-item>div>div {
+    gap: 50px;
+}
+
+.myrev-detail-btn {
+    color: #5389ff;
+    font-weight: bold;
+    align-self: flex-end;
+}
