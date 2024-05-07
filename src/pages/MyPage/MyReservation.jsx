@@ -61,7 +61,7 @@ const MyReservation = () => {
 
                     </div>
 
-                    <button className='detail-btn'>상세 조회 &gt;</button>
+                    <button className='myres-detail-btn'>상세 조회 &gt;</button>
                 </div>
                 ))}
 
