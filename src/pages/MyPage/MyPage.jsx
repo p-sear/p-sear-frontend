@@ -4,6 +4,7 @@ import './MyPage.css';
 import MyInfo from './MyInfo';
 import MyReservation from './MyReservation';
 import MyReview from './MyReview';
+import MyBookmark from './MyBookmark';
 import MySetting from './MySetting';
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoCamera } from "react-icons/io5";
@@ -40,6 +41,10 @@ const MyPage = () => {
                         이용 후기
                         <IoIosArrowDropright className='right-arrow-icon' />
                     </NavLink>
+                    <NavLink to="/profile/bookmarks" className={({ isActive }) => (isActive ? 'link link-active' : 'link')}>
+                        찜한 숙소
+                        <IoIosArrowDropright className='right-arrow-icon' />
+                    </NavLink>
                     <a href="/hotel/new" className='flex items-center justify-between' style={{color: 'gray'}}>
                         숙소 등록
                         <IoIosArrowDropright className='right-arrow-icon' />
@@ -54,6 +59,7 @@ const MyPage = () => {
                 <Route path="/" element={<Navigate replace to="/profile/info" />} />
                 <Route path="/info" element={<MyInfo />} />
                 <Route path="/reservations" element={<MyReservation />} />
+                <Route path="/bookmarks" element={<MyBookmark />} />
                 <Route path="/reviews" element={<MyReview />} />
                 <Route path="/settings" element={<MySetting />} />
             </Routes>
