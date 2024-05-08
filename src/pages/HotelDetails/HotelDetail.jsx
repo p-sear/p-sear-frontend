@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { Button, Typography } from '@material-tailwind/react';
 
-import DateSelector from '../../components/Calendar/DateSelector';
-import PeopleSelector from '../../components/PeopleSelector/PeopleSelector';
+import DateSelector from '../../components/Search/DateSelector';
+import PeopleSelector from '../../components/Search/PeopleSelector';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
 import RatingBar from '../HotelInquiry/RatingBar';
 import HotelImage from './hotelImage';

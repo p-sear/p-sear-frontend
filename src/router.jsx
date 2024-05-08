@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Main from './pages/Home/Main';
-import MyPage from './pages/MyPage/MyPage';
-import MyApp from './pages/HotelInquiry/MyApp';
-
 import AccountForm from './pages/Account/AccountForm';
+import Main from './pages/Home/Main';
+import Auction from './pages/HotelAution/auction';
+import HotelDetail from './pages/HotelDetails/HotelDetail';
+import MyApp from './pages/HotelInquiry/MyApp';
 import StepProgress from './pages/HotelRegistration/StepProgress';
- 
-
+import HotelReservation from './pages/HotelReservation/hotelReservation';
+import HotelReservation2 from './pages/HotelReservation/hotelReservation2';
+import MyPage from './pages/MyPage/MyPage';
 import ReviewRegister from './pages/Review/register';
 
 export const router = createBrowserRouter([
@@ -21,20 +22,30 @@ export const router = createBrowserRouter([
   },
   {
     path: '/profile/*',
-    element: <MyPage />
+    element: <MyPage />,
   },
-  
+
   {
     path: '/myapp',
-    element: <MyApp />
-    ,
+    element: <MyApp />,
+  },
+  {
+    path: '/hotel-detail',
+    element: <HotelDetail />,
+  },
+
+  {
+    path: '/hotel-reservation',
+    element: <HotelReservation />,
+  },
+  {
+    path: '/hotel-reservation2',
+    element: <HotelReservation2 />,
   },
   {
     path: '/hotel/new',
-    element: <StepProgress />
+    element: <StepProgress />,
   },
-
-
   {
     path: '/review-register',
     element: <ReviewRegister />,
