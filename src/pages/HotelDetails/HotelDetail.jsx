@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button, Typography } from '@material-tailwind/react';
+import { Badge } from '@material-tailwind/react';
 
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
@@ -45,12 +46,10 @@ const HotelDetail = () => {
   ];
 
   return (
-    <div className='max-w-8xl '>
-      <div className=''>
-        <HotelImage />
-      </div>
+    <div className='max-w-full '>
+      <HotelImage />
 
-      <div className='mt-4 flex flex-col items-center justify-between ring-1 ring-blue-100 lg:flex-row'>
+      <div className='mx-40 flex flex-col items-center justify-between lg:flex-row'>
         <div>
           <Typography variant='h5' color='black' className='m-4'>
             Black.5성급.호텔

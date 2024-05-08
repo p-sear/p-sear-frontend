@@ -24,6 +24,10 @@ export const router = createBrowserRouter([
     path: '/profile/*',
     element: <MyPage />,
   },
+  {
+    path: '/hotel-auction',
+    element: <Auction />,
+  },
 
   {
     path: '/myapp',
