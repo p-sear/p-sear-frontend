@@ -50,31 +50,36 @@ const HotelDetail = () => {
         <HotelImage />
       </div>
 
-      <div className='mt-4 flex flex-col items-center justify-between bg-blue-50 lg:flex-row'>
+      <div className='mt-4 flex flex-col items-center justify-between ring-1 ring-blue-100 lg:flex-row'>
         <div>
-          <Typography variant='h6' color='black' className=''>
+          <Typography variant='h5' color='black' className='m-4'>
             Black.5성급.호텔
           </Typography>
-          <Typography variant='h3' color='black' className=' '>
+          <Typography variant='h2' color='blue' textGradient className='m-4 '>
             히든 클리프 호텔&네이쳐
           </Typography>
-          <Typography variant='h5' color='black' className=''>
+          <div className='m-4 flex justify-between'>
+            <RatingBar></RatingBar>
+            <Button color='blue'>더보기</Button>
+          </div>
+
+          <Typography variant='h5' color='black' className='mb-2 ml-4'>
             서비스 및 부대시설
           </Typography>
-          <Typography variant='h6' color='black' className=''>
+          <Typography variant='h6' color='black' className='mb-2 ml-4'>
             🛁욕실 🚽화장실 🚿샤워실 🛏침대 ♨스파{' '}
           </Typography>
-          <Typography variant='h4' color='black' className=''>
+          <Typography variant='h4' color='black' className='mb-2 ml-4'>
             숙소 소개
           </Typography>
-          <Typography variant='h6' color='black'>
+          <Typography variant='h6' color='black' className='mb-2 ml-4'>
             "전통이라는 지붕 위에 모더니즘적 디자인 요소를 가미, 삶에 여유와
             품격을 한층 높여 주는 프리미엄 라이프스타일 공간으로 변화를 거듭해
             오는 세계 최고의 럭셔리 호텔입니다"
           </Typography>
         </div>
 
-        <div className='mt-4 flex flex-col '>
+        <div className=' flex flex-col '>
           <div className='m-2 rounded-xl'>
             <KaKaoMap />
           </div>
@@ -91,11 +96,8 @@ const HotelDetail = () => {
           </div>
         </div>
       </div>
-      <div className='m-4 flex justify-between'>
-        <RatingBar></RatingBar>
-        <Button color='white'>더보기</Button>
-      </div>
-      <div className='mx-auto mb-8 flex w-full flex-col items-center lg:w-2/3'>
+
+      <div className='mx-auto mb-4 flex w-full flex-col items-center rounded-lg lg:w-2/3'>
         {roomData.map(room => (
           <RoomCard
             key={room.id}
