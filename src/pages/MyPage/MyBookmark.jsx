@@ -1,6 +1,7 @@
 import React from 'react'
 import './MyBookmark.css';
 import hotelImg from '../../assets/images/hotel.png';
+import { GoHeartFill } from "react-icons/go";
 
 const MyBookmark = () => {
     const reservations = [
@@ -33,7 +34,10 @@ const MyBookmark = () => {
                 {reservations.map((reservation) => (
                 <div className='mybookmark-item w-full flex justify-between items-center gap-20'>
                     <div className='flex items-center h-full'>
-                        <img src={hotelImg} alt="" />
+                        <div className='mybookmark-img relative'>
+                            <img src={reservation.photo} alt="" />
+                            <GoHeartFill className='absolute mybookmark-heart' size={'30px'} />
+                        </div>
 
                         <div className='flex items-center h-full'>
                             <div className='flex flex-col justify-evenly h-full'>

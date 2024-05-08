@@ -20,15 +20,24 @@
     gap: 30px;
     flex-grow: 1;
 }
-.mybookmark-item>div>img {
+.mybookmark-img>img {
     width: 150px;
     height: 150px;
     border-radius: 10px;
     object-fit: cover;
 }
 
-.mybookmark-item>div>div {
+.mybookmark-img {
     gap: 50px;
+}
+
+.mybookmark-heart {
+    fill: #ff5a5a;
+    stroke: #fff8f8;
+    stroke-width: 2px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
 
 .mybook-reserve-btn {
