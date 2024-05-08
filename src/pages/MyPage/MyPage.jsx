@@ -9,6 +9,8 @@ import MySetting from './MySetting';
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoCamera } from "react-icons/io5";
 
+import ScrollToTop from '../../helps/ScrollToTop';
+
 const MyPage = () => {
     const [image,setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
     const setPreview = (event) => {
@@ -21,6 +23,7 @@ const MyPage = () => {
     
     return (
         <div className='mypage-container flex w-full'>
+            <ScrollToTop />
             <div className='flex flex-col justify-center items-center gap-20 h-full'>
                 <div className='profile-img relative'>
                     <img src={image} alt="" />
