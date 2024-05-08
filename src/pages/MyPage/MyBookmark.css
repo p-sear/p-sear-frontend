@@ -1,0 +1,38 @@
+.mybookmark-container {
+    flex-grow: 1;
+    gap: 50px;
+}
+.mybookmark-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.mybookmark-box {
+    gap: 50px;
+}
+
+.mybookmark-item {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+}
+.mybookmark-item>div {
+    gap: 30px;
+    flex-grow: 1;
+}
+.mybookmark-item>div>img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.mybookmark-item>div>div {
+    gap: 50px;
+}
+
+.mybook-reserve-btn {
+    color: #5389ff;
+    font-weight: bold;
+    align-self: flex-end;
+}
