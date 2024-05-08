@@ -4,6 +4,8 @@ import RecommendedLocation from './RecommendedLocation';
 import BidableHotel from './BidableHotel';
 import TimeSpecials from './TimeSpecials';
 
+import ScrollToTop from '../../helps/ScrollToTop';
+
 const Main = () => {
     const mainStyle = {
         padding: '100px',
@@ -16,6 +18,7 @@ const Main = () => {
 
     return (
         <div className='main-container'>
+            <ScrollToTop />
             <Search />
 
             <div style={mainStyle}>
