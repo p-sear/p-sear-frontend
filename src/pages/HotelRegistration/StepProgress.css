@@ -1,0 +1,86 @@
+.step-container {
+    padding: 100px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.steps {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: #ded6d6;
+    border: 4px solid white;
+    transition: all 200ms ease;
+    transition-delay: 0s;
+}
+
+.step-circle.active {
+    background-color: white;
+    transition-delay: 100ms;
+    border-color: #4e98ff;
+    color: #4e98ff;
+}
+
+.progress-bar {
+    left: 0;
+    top: 50%;
+    height: 4px;
+    width: 0;
+    background-color: #4e98ff;
+    transition: all 300ms ease;
+    z-index: -1;
+}
+
+.step-btns {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 20px;
+    width: 100%;
+}
+
+.step-btns button {
+    padding: 8px 25px;
+    background-color: #4e98ff;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 200ms linear;
+}
+
+.step-btns button:active {
+    transform: scale(0.97);
+}
+
+.step-btns button:disabled {
+    background: #c9dfff;
+    cursor: not-allowed;
+}
+
+.next-btn {
+    padding: 10px;
+    background-color: #4e98ff;
+    border-radius: 10px;
+    width: 400px;
+    color: white;
+    font-weight: bold;
+}

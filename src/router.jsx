@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
-import ProfilePage from './pages/Profile';
 import MyApp from './pages/HotelInquiry/MyApp';
-import ServiceCenter from './pages/ServiceCenter/index'
-
+import StepProgress from './pages/HotelRegistration/StepProgress';
+import MyPage from './pages/MyPage/MyPage';
 import ReviewRegister from './pages/Review/register';
+import ServiceCenter from './pages/ServiceCenter/index';
 
 export const router = createBrowserRouter([
   {
@@ -13,15 +14,22 @@ export const router = createBrowserRouter([
     element: <Main />,
   },
   {
-    path: '/profile',
-    element: <ProfilePage />,
+    path: '/login',
+    element: <AccountForm />,
   },
   {
-    path: '/myapp',
-    element: <MyApp />
-    ,
+    path: '/profile/*',
+    element: <MyPage />,
   },
 
+  {
+    path: '/myapp',
+    element: <MyApp />,
+  },
+  {
+    path: '/hotel/new',
+    element: <StepProgress />,
+  },
 
   {
     path: '/review-register',
@@ -30,5 +38,5 @@ export const router = createBrowserRouter([
   {
     path: '/service-center',
     element: <ServiceCenter />,
-  }
+  },
 ]);

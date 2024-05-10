@@ -1,0 +1,51 @@
+.myreview-container {
+    flex-grow: 1;
+    gap: 50px;
+}
+.myreview-container>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.myreview-box {
+    gap: 50px;
+}
+
+.myreview-item {
+    background-color: #F8F8F8;
+    padding: 30px;
+    border-radius: 10px;
+}
+.myreview-item>div {
+    gap: 30px;
+    flex-grow: 1;
+}
+.myreview-item>div>img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.myreview-item>div>div {
+    gap: 50px;
+}
+
+.myrev-fin {
+    align-self: flex-end;
+    padding: 5px 10px;
+    background-color: #b9e9b9;
+    color: #394d39;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.myrev-btn {
+    font-weight: bold;
+    align-self: flex-end;
+    padding: 10px;
+    width: 150px;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    color: #5389ff;
+    background-color: white;
+}

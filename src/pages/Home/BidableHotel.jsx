@@ -80,13 +80,13 @@ const BidableHotel = () => {
           ))}
           </div> */}
 
-          <div className="bidableHotel-content flex justify-between items-center flex-wrap">
+          <div className="bidableHotel-content">
           {hotels.map(hotel => (
             <div className='bidableHotel-box flex flex-col justify-center' key={hotel.id}>
               <img src={hotel.photo} alt="" className='hotel-img'/>
               <h3>{hotel.name}</h3>
               <p>{hotel.location}</p>
-              <p>⭐ {hotel.rating}</p>
+              <p className='relative'><span className="star-icon absolute">⭐</span> {hotel.rating}</p>
               <p>최고 입잘가: {hotel.highestBid} 원</p>
               <p>즉시 입찰가: {hotel.instantBid} 원</p>
             </div>

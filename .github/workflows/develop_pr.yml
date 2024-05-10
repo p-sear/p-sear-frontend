@@ -1,0 +1,23 @@
+name: frontend CI
+
+on:
+  pull_request:
+    branches: [develop]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - name: set .env
+        run: echo "${{secrets.ENV}}" > .env
+      - name: install dependencies and build
+        run: pnpm install --frozen-lockfile && pnpm run build
+      - name: check lint
+        run: pnpm lint

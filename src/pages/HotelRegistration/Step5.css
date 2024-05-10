@@ -1,0 +1,36 @@
+.step5-conatiner {
+    gap: 50px;
+    width: 400px;
+}
+.step5-conatiner>h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.step5-box {
+    gap: 50px;
+}
+.step5-box>div {
+    gap: 10px;
+}
+
+.step5-image {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    border: 2px dashed lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    background: url('https://ifh.cc/g/dFPtar.png');
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: 50%;
+}
+.step5-image>img {
+    border-radius: 10px;
+}
+.file-btn {
+    cursor: pointer;
+    background-color: #f0eaea;
+    border-radius: 10px;
+    padding: 10px;
+}

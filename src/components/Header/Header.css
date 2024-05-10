@@ -1,21 +1,38 @@
 header {
-    padding: 20px;
+    padding: 30px;
     border-bottom: 1px solid #E0E0E0;
 }
 
 .logo {
-    width: 100px;
+    width: 120px;
 }
 
-.header-name {
-    background-color: #F8F8F8;
-    padding: 10px;
+.header-info-btn {
+    padding: 5px 10px;
     border-radius: 20px;
-    border: 1px solid gray;
-    gap: 5px;
+    border: 1px solid lightgray;
+    gap: 4px;
 }
-.user-icon {
-    width: 25px;
-    height: 25px;
-    object-fit: cover;
+.header-info-btn:hover, .header-login-btn:hover {
+    background-color: #F8F8F8;
+}
+
+.header-menu {
+    background-color: rgb(255, 254, 246);
+    box-shadow: 0 5px 8px -4px gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+    gap: 10px;
+    top: 70px;
+    right: 30px;
+}
+.header-menu>a:hover, .header-menu>button:hover {
+    color: #0c69ff;
+    font-weight: bold;
+}
+
+.header-login-btn {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid lightgray;
 }

@@ -1,0 +1,28 @@
+name: frontend CD
+
+on:
+  push:
+    branches: [develop]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - name: set .env
+        run: echo "${{secrets.ENV}}" > .env
+      - name: install dependencies and build
+        run: pnpm install --frozen-lockfile && pnpm run build
+      - name: deploy to firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{secrets.GITHUB_TOKEN}}'
+          firebaseServiceAccount: '${{secrets.FIREBASE_SERVICE_ACCOUNT_KAKAOCLOUD_DEV}}'
+          channelId: live
+          projectId: kakaocloud-dev
