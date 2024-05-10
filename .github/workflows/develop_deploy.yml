@@ -22,7 +22,7 @@ jobs:
       - name: deploy to firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{secrets.REPO_TOKEN}}'
+          repoToken: '${{secrets.GITHUB_TOKEN}}'
           firebaseServiceAccount: '${{secrets.FIREBASE_SERVICE_ACCOUNT_KAKAOCLOUD_DEV}}'
           channelId: live
           projectId: kakaocloud-dev
