@@ -15,6 +15,8 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 9
+      - name: set .env
+        run: echo "${{secrets.ENV}}" > .env
       - name: install dependencies and build
         run: pnpm install --frozen-lockfile && pnpm run build
       - name: deploy to firebase
