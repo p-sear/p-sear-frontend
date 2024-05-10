@@ -4,7 +4,7 @@ import RecommendedLocation from './RecommendedLocation';
 import BidableHotel from './BidableHotel';
 import TimeSpecials from './TimeSpecials';
 
-import ScrollToTop from '../../helps/ScrollToTop';
+import ScrollToTop from '../../helpers/ScrollToTop';
 
 const Main = () => {
     const mainStyle = {
