@@ -42,7 +42,8 @@
 .myrev-btn {
     font-weight: bold;
     align-self: flex-end;
-    padding: 10px 20px;
+    padding: 10px;
+    width: 150px;
     border-radius: 20px;
     border: 1px solid lightgray;
     color: #5389ff;
