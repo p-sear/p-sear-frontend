@@ -1,0 +1,21 @@
+.filter-category>ul>li {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.selected .circle {
+    background-color: #4a86ff;
+    border: none;
+}

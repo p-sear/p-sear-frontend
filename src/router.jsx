@@ -10,6 +10,8 @@ import StepProgress from './pages/HotelRegistration/StepProgress';
 
 import ReviewRegister from './pages/Review/register';
 
+import MapModal from './components/Modal/MapModal';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -33,8 +35,10 @@ export const router = createBrowserRouter([
     path: '/hotel/new',
     element: <StepProgress />
   },
-
-
+  {
+    path: 'mapmodal',
+    element: <MapModal />
+  },
   {
     path: '/review-register',
     element: <ReviewRegister />,
