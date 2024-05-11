@@ -2,7 +2,6 @@ import { Outlet, createBrowserRouter } from 'react-router-dom';
 
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
-import MapModal from './components/Modal/MapModal';
 import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
 import MyApp from './pages/HotelInquiry/MyApp';
@@ -28,7 +27,6 @@ export const router = createBrowserRouter([
       { path: '/profile/*', element: <MyPage /> },
       { path: '/myapp', element: <MyApp /> },
       { path: '/hotel/new', element: <StepProgress /> },
-      { path: 'mapmodal', element: <MapModal /> },
       { path: '/review-register', element: <ReviewRegister /> },
     ],
   },

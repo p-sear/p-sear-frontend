@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState } from 'react';
 
+import MapModal from '../../components/Modal/MapModal';
 import CheckBox2 from './CheckBox2';
 import CheckBox3 from './CheckBox3';
 import FooterWithSocialLinks from './FooterWithSocialLinks';
@@ -7,6 +8,12 @@ import HotelCard from './HotelCard';
 import KaKaoMap from './KaKaoMap';
 
 const MyApp = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
   const hotelData = [
     {
       id: '블랙.5성급.호텔',
@@ -49,9 +56,13 @@ const MyApp = () => {
 
         <div className='max-w-auto mb-8 flex justify-center space-x-8  '>
           <CheckBox2 id='a' />
-          <div className='ml-4 overflow-hidden rounded-xl'>
+          <div className='ml-4 rounded-xl' onClick={openModal}>
             <KaKaoMap />
           </div>
+          <MapModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
         <div className='mb-8 flex flex-col items-center  '>
           {hotelData.map(hotel => (

@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
+import { IoIosClose } from 'react-icons/io';
+
 import './MapModal.css';
 
-const MapModal = () => {
+const MapModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
   const hotelCategory = [
     '전체',
     '호텔',
@@ -89,8 +93,11 @@ const MapModal = () => {
   };
 
   return (
-    <div className='mapmodal-container'>
-      <div className='mapmodal-filter'>
+    <div className='mapmodal-container relative flex justify-center'>
+      <p onClick={onClose}>
+        <IoIosClose className='mapmodal-close absolute' size={'50px'} />
+      </p>
+      <div className='mapmodal-filter w-full'>
         <h1>필터</h1>
         <div className='mapmodal-filter-box'>
           <div className='filter-category'>
@@ -155,7 +162,9 @@ const MapModal = () => {
         </div>
       </div>
 
-      <div className='mapmodal-map'>kakao map</div>
+      <div className='mapmodal-map w-full'>
+        <h1>지도</h1>
+      </div>
     </div>
   );
 };
