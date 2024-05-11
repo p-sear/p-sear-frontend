@@ -24,3 +24,16 @@
   background-color: #4a86ff;
   border: none;
 }
+
+.service-btn {
+  /* background-color: #ece5e5; */
+  padding: 5px 20px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+.service-selected {
+  background-color: #ece5e5;
+  padding: 5px 20px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}

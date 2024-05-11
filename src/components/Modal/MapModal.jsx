@@ -123,8 +123,8 @@ const MapModal = () => {
                   key={index}
                   className={
                     selectedPublicServices.includes(service)
-                      ? 'selected-btn'
-                      : ''
+                      ? 'service-selected'
+                      : 'service-btn'
                   }
                   onClick={() => handleSelectPublicService(service)}
                 >
@@ -141,7 +141,9 @@ const MapModal = () => {
                 <button
                   key={index}
                   className={
-                    selectedRoomServices.includes(service) ? 'selected' : ''
+                    selectedRoomServices.includes(service)
+                      ? 'service-selected'
+                      : 'service-btn'
                   }
                   onClick={() => handleSelectRoomService(service)}
                 >
