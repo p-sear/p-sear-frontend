@@ -11,6 +11,8 @@ const Header = () => {
   const { isLoggedIn, userInfo, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false); // 로그인 후 이름 클릭시, 드롭 다운 메뉴
 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     logout();
     navigate('/');
