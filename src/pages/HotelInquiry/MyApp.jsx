@@ -6,6 +6,7 @@ import CheckBox3 from './CheckBox3';
 import FooterWithSocialLinks from './FooterWithSocialLinks';
 import HotelCard from './HotelCard';
 import KaKaoMap from './KaKaoMap';
+import './MyApp.css';
 
 const MyApp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +51,7 @@ const MyApp = () => {
   ];
 
   return (
-    <div className='flex justify-center  '>
+    <div className='flex justify-center'>
       <div className='flex-1 bg-blue-50 p-8'>
         <h1 className='text-center'></h1>
 
