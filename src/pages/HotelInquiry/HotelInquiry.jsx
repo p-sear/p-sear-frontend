@@ -1,20 +1,17 @@
 import React from 'react';
-import './HotelInquiry.css';
+
 import Calendar from './Calendar';
+import './HotelInquiry.css';
 
 const HotelInquiry = () => {
-
-    
-    return (
-        <><div class="bg-primary-darken text-bold text-white inline-flex items-center p-4 rounded shadow-md bg-green-300 ">
-            Not Pretty Code 😵
-        </div>
-        <Calendar></Calendar></>
-
-
-    );
+  return (
+    <>
+      <div class='bg-primary-darken text-bold inline-flex items-center rounded bg-green-300 p-4 text-white shadow-md '>
+        Not Pretty Code 😵
+      </div>
+      <Calendar></Calendar>
+    </>
+  );
 };
-
-
 
 export default HotelInquiry;

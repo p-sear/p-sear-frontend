@@ -1,26 +1,26 @@
-.filter-category>ul>li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.filter-category > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.filter-category>ul>li>p {
-    cursor: pointer;
+.filter-category > ul > li > p {
+  cursor: pointer;
 }
 
 .circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s;
-    cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .selected .circle {
-    background-color: #4a86ff;
-    border: none;
+  background-color: #4a86ff;
+  border: none;
 }
