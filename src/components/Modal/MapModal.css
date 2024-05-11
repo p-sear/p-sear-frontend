@@ -1,18 +1,23 @@
 .filter-category>ul>li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-category>ul>li>p {
     cursor: pointer;
-    display: inline-block;
-    margin-right: 10px;
 }
 
 .circle {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ddd;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .selected .circle {
