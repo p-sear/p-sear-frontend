@@ -19,3 +19,5 @@ jobs:
         run: echo "${{secrets.ENV}}" > .env
       - name: install dependencies and build
         run: pnpm install --frozen-lockfile && pnpm run build
+      - name: check lint
+        run: pnpm lint
