@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 
 import './MapModal.css';
+import RangeSlider from './RangeSlider';
 
 const MapModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -120,6 +121,9 @@ const MapModal = ({ isOpen, onClose }) => {
 
           <div className='filter-price'>
             <h3>가격</h3>
+            <div>
+              <RangeSlider />
+            </div>
           </div>
 
           <div className='filter-publicService'>
