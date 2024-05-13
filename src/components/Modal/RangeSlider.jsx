@@ -1,96 +1,90 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import './RangeSlider.css';
 
 const RangeSlider = () => {
-  const [range, setRange] = useState({ start: 0, end: 500000 });
-  const [dragging, setDragging] = useState(null);
-  const sliderRef = useRef();
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(500000);
 
-  const startDrag = (e, handle) => {
-    e.preventDefault();
-    setDragging(handle);
-    document.addEventListener('mousemove', onDrag);
-    document.addEventListener('mouseup', stopDrag);
+  const handleMinPriceChange = e => {
+    const value = Math.min(Number(e.target.value), maxPrice - 10000);
+    setMinPrice(value);
   };
 
-  const onDrag = e => {
-    if (!dragging) return;
-
-    const slider = sliderRef.current;
-    const rect = slider.getBoundingClientRect();
-    const newRange = { ...range };
-
-    let newValue = ((e.clientX - rect.left) / rect.width) * 500000;
-
-    newValue = Math.max(0, newValue);
-    newValue = Math.min(500000, newValue);
-
-    if (dragging === 'start') {
-      newRange.start = Math.min(newValue, range.end);
-    } else {
-      newRange.end = Math.max(newValue, range.start);
-    }
-
-    setRange(newRange);
+  const handleMaxPriceChange = e => {
+    const value = Math.max(Number(e.target.value), minPrice + 10000);
+    setMaxPrice(value);
   };
 
-  const stopDrag = () => {
-    setDragging(null);
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
+  const handleMinPriceInputChange = e => {
+    const value = Math.min(Number(e.target.value), maxPrice - 10000);
+    setMinPrice(value);
   };
 
-  const handleSliderChange = e => {
-    const { name, value } = e.target;
-    setRange(prev => ({ ...prev, [name]: Number(value) }));
-  };
-
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setRange(prev => ({ ...prev, [name]: Number(value) }));
+  const handleMaxPriceInputChange = e => {
+    const value = Math.max(Number(e.target.value), minPrice + 10000);
+    setMaxPrice(value);
   };
 
   return (
-    <div className='slider-container flex flex-col items-center justify-center gap-4'>
-      <div className='slider-box' ref={sliderRef}>
-        <div
-          className='slider-range'
-          style={{
-            left: `${(range.start / 500000) * 100}%`,
-            right: `${100 - (range.end / 500000) * 100}%`,
-          }}
-        ></div>
-        <div
-          className='slider-handle'
-          style={{ left: `${(range.start / 500000) * 100}%` }}
-          onMouseDown={e => startDrag(e, 'start')}
-        ></div>
-        <div
-          className='slider-handle'
-          style={{ left: `${(range.end / 500000) * 100}%` }}
-          onMouseDown={e => startDrag(e, 'end')}
-        ></div>
+    <div className='slider-container'>
+      <div className='slider-box w-full'>
+        <div className='multi-range-slider w-full'>
+          <input
+            type='range'
+            min='0'
+            max='500000'
+            value={minPrice}
+            step='10000'
+            onChange={handleMinPriceChange}
+          />
+          <input
+            type='range'
+            min='0'
+            max='500000'
+            value={maxPrice}
+            step='10000'
+            onChange={handleMaxPriceChange}
+          />
+          <div className='slider'>
+            <div className='track'></div>
+            <div
+              className='range'
+              style={{
+                left: `${(minPrice / 500000) * 100}%`,
+                right: `${100 - (maxPrice / 500000) * 100}%`,
+              }}
+            ></div>
+            <div
+              className='thumb left'
+              style={{ left: `${(minPrice / 500000) * 100}%` }}
+            ></div>
+            <div
+              className='thumb right'
+              style={{ right: `${100 - (maxPrice / 500000) * 100}%` }}
+            ></div>
+          </div>
+        </div>
       </div>
 
       <div className='flex w-full items-center justify-center gap-2'>
         <div className='flex w-full items-center justify-center gap-1'>
+          {' '}
           <input
             type='text'
-            name='start'
-            value={range.start}
-            onChange={handleInputChange}
+            value={minPrice}
+            onChange={handleMinPriceInputChange}
             className='range-start-input w-full'
           />
           <p>원</p>
         </div>
         <p>~</p>
         <div className='flex w-full items-center justify-center gap-1'>
+          {' '}
           <input
             type='text'
-            name='end'
-            value={range.end}
-            onChange={handleInputChange}
+            value={maxPrice}
+            onChange={handleMaxPriceInputChange}
             className='range-end-input w-full'
           />
           <p>원</p>
