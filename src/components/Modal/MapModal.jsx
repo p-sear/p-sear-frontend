@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { IoIosClose } from 'react-icons/io';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-import KakaoMap from './KakaoMap';
 import './MapModal.css';
 import RangeSlider from './RangeSlider';
 
@@ -95,7 +95,7 @@ const MapModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className='mapmodal-container relative flex justify-center'>
+    <div className='mapmodal-container relative flex h-full justify-center'>
       <p onClick={onClose}>
         <IoIosClose className='mapmodal-close absolute' size={'50px'} />
       </p>
@@ -167,10 +167,18 @@ const MapModal = ({ isOpen, onClose }) => {
         </div>
       </div>
 
-      <div className='mapmodal-map'>
+      <div className='mapmodal-map h-full w-full'>
         <h1>지도</h1>
-        <div className='w-full' style={{ backgroundColor: 'transparent' }}>
-          <KakaoMap />
+        <div className='h-full w-full'>
+          <Map
+            center={{ lat: 37.365264512305174, lng: 127.10676860117488 }}
+            style={{ width: '100%', height: '100%' }}
+            level={3}
+          >
+            <MapMarker
+              position={{ lat: 37.365264512305174, lng: 127.10676860117488 }}
+            ></MapMarker>
+          </Map>
         </div>
       </div>
     </div>
