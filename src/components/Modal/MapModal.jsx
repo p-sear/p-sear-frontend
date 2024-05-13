@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { IoIosClose } from 'react-icons/io';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
