@@ -99,12 +99,12 @@ const MapModal = ({ isOpen, onClose }) => {
       <p onClick={onClose}>
         <IoIosClose className='mapmodal-close absolute' size={'50px'} />
       </p>
-      <div className='mapmodal-filter w-full'>
+      <div className='mapmodal-filter flex w-full flex-col'>
         <h1>필터</h1>
-        <div className='mapmodal-filter-box'>
-          <div className='filter-category'>
+        <div className='mapmodal-filter-box flex w-full flex-col'>
+          <div className='filter-category flex w-full flex-col gap-2'>
             <h3>숙소 유형</h3>
-            <ul>
+            <ul className='w-full'>
               {hotelCategory.map((category, index) => (
                 <li
                   key={index}
@@ -120,16 +120,16 @@ const MapModal = ({ isOpen, onClose }) => {
             </ul>
           </div>
 
-          <div className='filter-price'>
+          <div className='filter-price flex w-full flex-col gap-2'>
             <h3>가격</h3>
-            <div>
+            <div className='w-full'>
               <RangeSlider />
             </div>
           </div>
 
-          <div className='filter-publicService'>
+          <div className='filter-publicService flex w-full flex-col gap-2'>
             <h3>공용 시설</h3>
-            <div>
+            <div className='flex w-full flex-wrap gap-2'>
               {publicServices.map((service, index) => (
                 <button
                   key={index}
@@ -146,9 +146,9 @@ const MapModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div className='filter-roomService'>
+          <div className='filter-roomService flex w-full flex-col gap-2'>
             <h3>객실 내 시설</h3>
-            <div>
+            <div className='flex w-full flex-wrap gap-2'>
               {roomServices.map((service, index) => (
                 <button
                   key={index}
@@ -167,7 +167,7 @@ const MapModal = ({ isOpen, onClose }) => {
         </div>
       </div>
 
-      <div className='mapmodal-map w-full'>
+      <div className='mapmodal-map'>
         <h1>지도</h1>
         <div className='w-full' style={{ backgroundColor: 'transparent' }}>
           <KakaoMap />

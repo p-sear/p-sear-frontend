@@ -52,10 +52,10 @@ const RangeSlider = () => {
   };
 
   return (
-    <div>
+    <div className='range-slider flex w-full flex-col items-center justify-center'>
       <div className='slider-container' ref={sliderRef}>
         <div
-          className='slider-range'
+          className='slider-range w-full'
           style={{
             left: `${(range.start / 500000) * 100}%`,
             right: `${100 - (range.end / 500000) * 100}%`,
@@ -73,12 +73,13 @@ const RangeSlider = () => {
         ></div>
       </div>
 
-      <div className='flex'>
+      <div className='flex w-full'>
         <input
           type='text'
           name='start'
           value={range.start}
           onChange={handleInputChange}
+          className='w-full'
         />
         <p>~</p>
         <input
@@ -86,11 +87,9 @@ const RangeSlider = () => {
           name='end'
           value={range.end}
           onChange={handleInputChange}
+          className='w-full'
         />
       </div>
-      {/* <div>
-        가격: {range.start}원 - {range.end}원
-      </div> */}
     </div>
   );
 };

@@ -8,6 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  height: 90%;
   background-color: #ffffff;
   border: 2px solid #bfbfbf;
 }
@@ -17,9 +18,32 @@
   cursor: pointer;
 }
 
+.mapmodal-filter {
+  gap: 30px;
+  overflow-y: scroll;
+  width: 400px;
+  padding-right: 20px;
+}
+.mapmodal-filter::-webkit-scrollbar {
+  width: 10px;
+}
+.mapmodal-filter::-webkit-scrollbar-thumb {
+  background: #e6e3e3;
+  border-radius: 10px;
+}
+
 .mapmodal-filter > h1,
 .mapmodal-map > h1 {
   font-size: 25px;
+  font-weight: bold;
+}
+
+.mapmodal-filter-box {
+  gap: 30px;
+}
+
+.mapmodal-filter-box > div > h3 {
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -60,4 +84,8 @@
   padding: 5px 20px;
   border: 1px solid lightgray;
   border-radius: 20px;
+}
+
+.mapmodal-map {
+  flex-grow: 1;
 }
