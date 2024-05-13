@@ -17,6 +17,12 @@
   cursor: pointer;
 }
 
+.mapmodal-filter > h1,
+.mapmodal-map > h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .filter-category > ul > li {
   display: flex;
   align-items: center;

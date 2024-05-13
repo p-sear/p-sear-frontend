@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { IoIosClose } from 'react-icons/io';
 
+import KakaoMap from './KakaoMap';
 import './MapModal.css';
 import RangeSlider from './RangeSlider';
 
@@ -168,6 +169,9 @@ const MapModal = ({ isOpen, onClose }) => {
 
       <div className='mapmodal-map w-full'>
         <h1>지도</h1>
+        <div className='w-full' style={{ backgroundColor: 'transparent' }}>
+          <KakaoMap />
+        </div>
       </div>
     </div>
   );
