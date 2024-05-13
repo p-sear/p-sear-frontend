@@ -1,4 +1,4 @@
-.slider-container {
+.slider-box {
   position: relative;
   width: 90%;
   height: 10px;
@@ -9,7 +9,7 @@
 .slider-range {
   position: absolute;
   height: 100%;
-  background-color: #3b89ff;
+  background-color: #4a86ff;
 }
 
 .slider-handle {
@@ -17,9 +17,20 @@
   width: 25px;
   height: 25px;
   background-color: white;
-  border: 2px solid #3b89ff;
+  border: 2px solid #4a86ff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
   cursor: pointer;
+}
+
+.range-start-input,
+.range-end-input {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 5px;
+}
+.range-start-input:focus,
+.range-end-input:focus {
+  outline: none;
 }

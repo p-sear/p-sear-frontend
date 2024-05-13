@@ -120,7 +120,7 @@ const MapModal = ({ isOpen, onClose }) => {
             </ul>
           </div>
 
-          <div className='filter-price flex w-full flex-col gap-2'>
+          <div className='filter-price flex w-full flex-col gap-4'>
             <h3>가격</h3>
             <div className='w-full'>
               <RangeSlider />

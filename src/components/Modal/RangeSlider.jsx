@@ -52,10 +52,10 @@ const RangeSlider = () => {
   };
 
   return (
-    <div className='range-slider flex w-full flex-col items-center justify-center'>
-      <div className='slider-container' ref={sliderRef}>
+    <div className='slider-container flex flex-col items-center justify-center gap-4'>
+      <div className='slider-box' ref={sliderRef}>
         <div
-          className='slider-range w-full'
+          className='slider-range'
           style={{
             left: `${(range.start / 500000) * 100}%`,
             right: `${100 - (range.end / 500000) * 100}%`,
@@ -73,22 +73,28 @@ const RangeSlider = () => {
         ></div>
       </div>
 
-      <div className='flex w-full'>
-        <input
-          type='text'
-          name='start'
-          value={range.start}
-          onChange={handleInputChange}
-          className='w-full'
-        />
+      <div className='flex w-full items-center justify-center gap-2'>
+        <div className='flex w-full items-center justify-center gap-1'>
+          <input
+            type='text'
+            name='start'
+            value={range.start}
+            onChange={handleInputChange}
+            className='range-start-input w-full'
+          />
+          <p>원</p>
+        </div>
         <p>~</p>
-        <input
-          type='text'
-          name='end'
-          value={range.end}
-          onChange={handleInputChange}
-          className='w-full'
-        />
+        <div className='flex w-full items-center justify-center gap-1'>
+          <input
+            type='text'
+            name='end'
+            value={range.end}
+            onChange={handleInputChange}
+            className='range-end-input w-full'
+          />
+          <p>원</p>
+        </div>
       </div>
     </div>
   );
