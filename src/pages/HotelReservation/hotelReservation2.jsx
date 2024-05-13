@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Input, Typography } from '@material-tailwind/react';
 import { Button, Checkbox } from '@material-tailwind/react';
 
