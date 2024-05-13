@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import PropTypes from 'prop-types';
 import { IoIosClose } from 'react-icons/io';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
@@ -7,6 +8,10 @@ import './MapModal.css';
 import RangeSlider from './RangeSlider';
 
 const MapModal = ({ isOpen, onClose }) => {
+  const [selected, setSelected] = useState([]);
+  const [selectedPublicServices, setSelectedPublicServices] = useState([]);
+  const [selectedRoomServices, setSelectedRoomServices] = useState([]);
+
   if (!isOpen) return null;
 
   const hotelCategory = [
@@ -21,8 +26,6 @@ const MapModal = ({ isOpen, onClose }) => {
     '풀빌라',
     '단독 주택',
   ];
-
-  const [selected, setSelected] = useState([]);
 
   const handleSelect = category => {
     if (category === '전체') {
@@ -74,9 +77,6 @@ const MapModal = ({ isOpen, onClose }) => {
     '객실 내 취사',
     '반려견 동반',
   ];
-
-  const [selectedPublicServices, setSelectedPublicServices] = useState([]);
-  const [selectedRoomServices, setSelectedRoomServices] = useState([]);
 
   const handleSelectPublicService = service => {
     setSelectedPublicServices(prev =>
