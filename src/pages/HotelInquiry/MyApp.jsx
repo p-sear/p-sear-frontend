@@ -65,9 +65,10 @@ const MyApp = () => {
             onClose={() => setIsModalOpen(false)}
           />
         </div>
-        <div className='mb-8 flex flex-col items-center  '>
+        <div className='mb-8 flex flex-col items-center'>
           {hotelData.map(hotel => (
             <HotelCard
+              key={hotelData.id}
               id={hotel.id}
               name={hotel.name}
               description={hotel.description}
