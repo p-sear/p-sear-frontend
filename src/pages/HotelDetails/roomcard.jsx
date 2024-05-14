@@ -1,10 +1,6 @@
-import React from 'react';
-
 import {
-  Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Typography,
 } from '@material-tailwind/react';
@@ -14,11 +10,8 @@ import DetailModal from './detailModal';
 // 파일명 수정
 
 const RoomCard = props => {
-  const { id, name, description, imageUrl, onMoreButtonClick } = props;
-
-  const handleDetailButtonClick = event => {
-    event.preventDefault();
-  };
+  // eslint-disable-next-line react/prop-types
+  const { id, name, description, imageUrl } = props;
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>

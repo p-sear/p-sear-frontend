@@ -11,7 +11,7 @@ const RatingBar = () => {
         리뷰
       </Typography>
       {rated}.0
-      <div ratedColor='amber'>
+      <div>
         <Rating
           value={4}
           onChange={value => setRated(value)}
