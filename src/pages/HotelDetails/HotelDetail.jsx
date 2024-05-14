@@ -2,12 +2,16 @@ import { Button, Typography } from '@material-tailwind/react';
 
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
+import { router } from '../../router';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
 import RatingBar from '../HotelInquiry/RatingBar';
 import HotelImage from './hotelImage';
 import RoomCard from './roomcard';
 
 const HotelDetail = () => {
+  const handleButtonClick = () => {
+    router.navigate('/hotel-reservation');
+  };
   const roomData = [
     {
       id: '디럭스 트윈',
@@ -73,7 +77,7 @@ const HotelDetail = () => {
             <PeopleSelector fullWidth />
           </div>
           <div className='m-2 '>
-            <Button color='blue' fullWidth>
+            <Button color='blue' fullWidth onClick={handleButtonClick}>
               예약하기
             </Button>
           </div>

@@ -6,11 +6,16 @@ import {
   Typography,
 } from '@material-tailwind/react';
 
+import { router } from '../../router';
 import RatingBar from './RatingBar';
 
 const HotelCard = props => {
   // eslint-disable-next-line react/prop-types
   const { id, name, description, imageUrl } = props;
+
+  const handleButtonClick = () => {
+    router.navigate('/hotel-detail');
+  };
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>
@@ -39,7 +44,11 @@ const HotelCard = props => {
         <RatingBar></RatingBar>
 
         <a href='#' className='absolute bottom-4 right-4'>
-          <Button variant='text' className='flex items-center gap-2'>
+          <Button
+            variant='text'
+            className='flex items-center gap-2'
+            onClick={handleButtonClick}
+          >
             더보기
             <svg
               xmlns='http://www.w3.org/2000/svg'
