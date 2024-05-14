@@ -10,6 +10,7 @@ import StepProgress from './pages/HotelRegistration/StepProgress';
 import MyPage from './pages/MyPage/MyPage';
 import ReviewRegister from './pages/Review/register';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => (
   <>
     <Header />
