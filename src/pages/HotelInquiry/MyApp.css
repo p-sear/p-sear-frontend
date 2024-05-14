@@ -1,7 +1,0 @@
-.darken-background {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.blur-background {
-  filter: blur(8px);
-}

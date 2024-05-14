@@ -2,11 +2,8 @@ import { useState } from 'react';
 
 import MapModal from '../../components/Modal/MapModal';
 import CheckBox2 from './CheckBox2';
-import CheckBox3 from './CheckBox3';
-import FooterWithSocialLinks from './FooterWithSocialLinks';
 import HotelCard from './HotelCard';
 import KaKaoMap from './KaKaoMap';
-import './MyApp.css';
 
 const MyApp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,7 +65,7 @@ const MyApp = () => {
         <div className='mb-8 flex flex-col items-center'>
           {hotelData.map(hotel => (
             <HotelCard
-              key={hotelData.id}
+              key={hotel.id}
               id={hotel.id}
               name={hotel.name}
               description={hotel.description}

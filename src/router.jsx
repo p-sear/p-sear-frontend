@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
+import HotelDetail from './pages/HotelDetails/HotelDetail.jsx';
 import MyApp from './pages/HotelInquiry/MyApp';
 import StepProgress from './pages/HotelRegistration/StepProgress';
 import MyPage from './pages/MyPage/MyPage';
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: '/myapp', element: <MyApp /> },
       { path: '/hotel/new', element: <StepProgress /> },
       { path: '/review-register', element: <ReviewRegister /> },
+      { path: '/hotel-detail', element: <HotelDetail /> },
     ],
   },
 ]);

@@ -2,16 +2,14 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  IconButton,
-  Tooltip,
   Typography,
 } from '@material-tailwind/react';
 
 import RatingBar from './RatingBar';
 
 const HotelCard = props => {
+  // eslint-disable-next-line react/prop-types
   const { id, name, description, imageUrl } = props;
 
   return (
