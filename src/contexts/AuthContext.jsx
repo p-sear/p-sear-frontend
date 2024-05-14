@@ -6,6 +6,7 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+// eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});

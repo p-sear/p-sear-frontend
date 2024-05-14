@@ -6,6 +6,7 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import './MapModal.css';
 import RangeSlider from './RangeSlider';
 
+// eslint-disable-next-line react/prop-types
 const MapModal = ({ isOpen, onClose }) => {
   const [selected, setSelected] = useState([]);
   const [selectedPublicServices, setSelectedPublicServices] = useState([]);
