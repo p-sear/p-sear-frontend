@@ -9,7 +9,6 @@ import { Typography } from '@material-tailwind/react';
 import { Input } from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
 
-import MyApp from '../HotelInquiry/MyApp';
 import AuctionBar from './auctionBar';
 
 const data = [
@@ -59,7 +58,7 @@ const Auction = () => {
           </AccordionHeader>
 
           {data.map(data => (
-            <AccordionBody className=''>
+            <AccordionBody className='' key={data.price}>
               <Typography variant='h5' className='float-left'>
                 {data.date}
               </Typography>

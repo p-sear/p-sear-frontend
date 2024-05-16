@@ -53,21 +53,22 @@ const ServiceCenter = () => {
         <div className='ml-3 text-3xl'>고객 센터</div>
       </div>
       <div className='container mx-auto'>
-        <div className='w-100 mb-5 rounded-lg bg-gray-300 p-8'>
+        <div className='w-100 rounded-lg bg-gray-300 p-8'>
           <div className='mb-4 text-xl'>
-            <i class='fas fa-phone fa-rotate-90 fa-sm'></i>{' '}
+            <i className='fas fa-phone fa-rotate-90 fa-sm'></i>{' '}
             <span className='ml-5'>0000 - 0000</span>
           </div>
           <div className='text-sm text-gray-600'>환불, 취소, 경매 문의</div>
           <div className='text-sm text-gray-600'>9시 ~ 18시</div>
         </div>
-        <div className='mb-10 flex justify-center rounded-lg bg-yellow-400 py-5'>
+        <div className='mb-16 mt-10 flex justify-center rounded-lg bg-yellow-400 py-5'>
           카카오톡으로 문의하기
         </div>
-        <div>
+        <div className='pb-20'>
           <div className='mb-5 ml-3 text-xl'>자주 묻는 질문</div>
           {data.map((item, index) => (
             <Accordion
+              key={index}
               open={open === index + 1}
               icon={<Icon id={index + 1} open={open} />}
             >

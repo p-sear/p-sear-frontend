@@ -1,25 +1,13 @@
-import React, { useState } from 'react';
-
 import { Button, Typography } from '@material-tailwind/react';
 
-import DateSelector from '../../components/Calendar/DateSelector';
-import PeopleSelector from '../../components/PeopleSelector/PeopleSelector';
+import DateSelector from '../../components/Search/DateSelector';
+import PeopleSelector from '../../components/Search/PeopleSelector';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
 import RatingBar from '../HotelInquiry/RatingBar';
 import HotelImage from './hotelImage';
 import RoomCard from './roomcard';
 
 const HotelDetail = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
-
   const roomData = [
     {
       id: '디럭스 트윈',
@@ -68,9 +56,9 @@ const HotelDetail = () => {
             숙소 소개
           </Typography>
           <Typography variant='h6' color='black'>
-            "전통이라는 지붕 위에 모더니즘적 디자인 요소를 가미, 삶에 여유와
-            품격을 한층 높여 주는 프리미엄 라이프스타일 공간으로 변화를 거듭해
-            오는 세계 최고의 럭셔리 호텔입니다"
+            &quot;전통이라는 지붕 위에 모더니즘적 디자인 요소를 가미, 삶에
+            여유와 품격을 한층 높여 주는 프리미엄 라이프스타일 공간으로 변화를
+            거듭해 오는 세계 최고의 럭셔리 호텔입니다&quot;
           </Typography>
         </div>
 
@@ -103,7 +91,6 @@ const HotelDetail = () => {
             name={room.name}
             description={room.description}
             imageUrl={room.imageUrl}
-            onMoreButtonClick={handleModalOpen}
           />
         ))}
       </div>
