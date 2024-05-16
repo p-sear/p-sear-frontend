@@ -1,0 +1,30 @@
+.review-container {
+  padding: 50px 100px 100px 100px;
+  gap: 50px;
+}
+.review-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 20px;
+}
+
+.review-box > div {
+  gap: 50px;
+}
+
+.review-user {
+  width: 300px;
+}
+
+.review-preview > img {
+  width: 250px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.review-comment > h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
