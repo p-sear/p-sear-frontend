@@ -10,6 +10,7 @@ import StepProgress from './pages/HotelRegistration/StepProgress';
 import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
 import MyPage from './pages/MyPage/MyPage';
+import Review from './pages/Review/Review';
 import ReviewRegister from './pages/Review/register';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
+      { path: '/review', element: <Review /> },
     ],
   },
 ]);
