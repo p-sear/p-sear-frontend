@@ -22,8 +22,12 @@ const KaKaoMap = () => {
   }, []);
 
   return (
-    <div>
-      <div id='map' style={{ width: '300px', height: '200px' }}></div>
+    <div className='h-64 w-64'>
+      <div
+        id='map'
+        style={{ width: '100%', height: '100%' }}
+        className='rounded-lg'
+      ></div>
     </div>
   );
 };

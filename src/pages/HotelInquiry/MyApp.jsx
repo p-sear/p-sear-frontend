@@ -54,7 +54,7 @@ const MyApp = () => {
 
         <div className='max-w-auto mb-8 flex justify-center space-x-8  '>
           <CheckBox2 id='a' />
-          <div className='ml-4 rounded-xl' onClick={openModal}>
+          <div className='ml-4 rounded-xl ' onClick={openModal}>
             <KaKaoMap />
           </div>
           <MapModal
