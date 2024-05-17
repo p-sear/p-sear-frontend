@@ -81,7 +81,7 @@ const HotelDetail = () => {
         </div>
 
         <div className='flex w-full flex-col space-y-4 lg:w-1/4'>
-          <div className='h-64 w-72 rounded-lg'>
+          <div className='h-40 w-72 rounded-lg'>
             <Map
               center={{ lat: 37.55605010732486, lng: 127.00496835047365 }}
               style={{ width: '100%', height: '100%' }}
@@ -111,7 +111,7 @@ const HotelDetail = () => {
         </Card>
       </div>
 
-      <div className='mx-auto mb-8 w-full lg:w-2/3'>
+      <div className='mx-auto mb-8 w-full  lg:w-2/3'>
         {roomData.map(room => (
           <RoomCard
             key={room.id}

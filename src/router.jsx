@@ -4,7 +4,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import AccountForm from './pages/Account/AccountForm';
 import Main from './pages/Home/Main';
-import Auction from './pages/HotelAution/auction.jsx';
+import HotelAuction from './pages/HotelAution/HotelAuction.jsx';
 import HotelDetail from './pages/HotelDetails/HotelDetail.jsx';
 import MyApp from './pages/HotelInquiry/MyApp';
 import StepProgress from './pages/HotelRegistration/StepProgress';
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
-      { path: '/hotel-auction', element: <Auction /> },
+      { path: '/hotel-auction', element: <HotelAuction /> },
     ],
   },
 ]);

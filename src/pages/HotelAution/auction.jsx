@@ -9,8 +9,6 @@ import { Typography } from '@material-tailwind/react';
 import { Input } from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
 
-import AuctionBar from './auctionBar';
-
 const data = [
   {
     date: '24/04/30/12:00',
@@ -69,7 +67,6 @@ const Auction = () => {
           ))}
         </Accordion>
       </div>
-      <AuctionBar></AuctionBar>
     </div>
   );
 };
