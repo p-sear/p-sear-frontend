@@ -19,7 +19,6 @@
   gap: 10px;
 }
 .name-box > input,
-.email-box > input,
 .pw-box > input,
 .pwCheck-box > input {
   width: 100%;
@@ -28,10 +27,30 @@
   padding: 10px;
 }
 .name-box > input:focus,
-.email-box > input:focus,
 .pw-box > input:focus,
 .pwCheck-box > input:focus {
   outline: none;
+}
+
+.email-box > div {
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 0 10px;
+}
+
+.email-box > div > input {
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  outline: none;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.email-send,
+.email-validation {
+  background-color: #87cdff;
+  border-radius: 10px;
+  padding: 3px;
+  margin: 5px 0;
 }
 
 .box {
@@ -52,13 +71,8 @@
   padding: 10px;
   width: 100%;
 }
-.register-btn-disabled {
+.disabled {
   background-color: #d0d3d5;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
 }
 
 @media screen and (max-width: 500px) {

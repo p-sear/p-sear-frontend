@@ -4,13 +4,18 @@ import { FaMinus, FaPlus } from 'react-icons/fa6';
 
 import './Register.css';
 import SocialLogin from './SocialLogin';
+import Timer from './Timer';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [emailConfirm, setEmailConfirm] = useState('');
   const [isOpen, setIsOpen] = useState(false); // 이용약관에서 +, - 버튼 초기값을 false로 설정
+  const [isEmailSend, setIsEmailSend] = useState(false);
+  const [isEmailConfirmSend, setIsEmailConfirmSend] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(isOpen => !isOpen); // on, off
   };
@@ -60,6 +65,24 @@ const Register = () => {
     return true;
   };
 
+  const sendEmail = () => {
+    if (email == '') {
+      alert('이메일을 입력해주세요.');
+      return;
+    }
+    setIsEmailSend(true);
+  };
+
+  const handleEmailConfirm = () => {
+    if (emailConfirm == '') {
+      alert('인증 번호를 입력해주세요.');
+      return;
+    }
+    setIsEmailConfirmSend(true);
+    console.log(emailConfirm);
+    // 이메일 인증 API 호출 구현 예정
+  };
+
   useEffect(() => {
     const allAreChecked = Object.values(checkboxes).every(Boolean);
     setAllChecked(allAreChecked);
@@ -83,11 +106,41 @@ const Register = () => {
         </div>
         <div className='email-box'>
           <h1>이메일</h1>
-          <input
-            type='email'
-            placeholder='이메일을 입력해주세요.'
-            onChange={e => setEmail(e.target.value)}
-          />
+          <div className='mb-2 flex'>
+            <input
+              type='email'
+              placeholder='이메일을 입력해주세요.'
+              onChange={e => setEmail(e.target.value)}
+            />
+            <button className={`email-send ${isEmailSend ? 'disabled' : ''}`}>
+              <span
+                className='p-2 text-white'
+                disabled={isEmailSend}
+                onClick={() => sendEmail()}
+              >
+                이메일 인증
+              </span>
+            </button>
+          </div>
+          {isEmailSend ? (
+            <div className='flex'>
+              <input
+                type='text'
+                placeholder='인증 번호를 입력해주세요.'
+                onChange={e => setEmailConfirm(e.target.value)}
+              />
+              <Timer count={5} className='flex items-center px-4'></Timer>
+              <button
+                className={`email-validation ${isEmailConfirmSend ? 'disabled' : ''}`}
+                onClick={handleEmailConfirm}
+              >
+                <span className='p-2 text-white'>확인</span>
+              </button>
+            </div>
+          ) : (
+            ''
+          )}
+
           {email == '' ? (
             <p className='pt-2 text-red-800'>이메일은 필수 입력 사항입니다.</p>
           ) : (
@@ -178,7 +231,7 @@ const Register = () => {
       )}
 
       <button
-        className={submitCheck() ? 'register-btn-disabled' : 'register-btn'}
+        className={`register-btn ${submitCheck() ? 'disabled' : ''}`}
         disabled={submitCheck()}
         onClick={handleSubmit}
       >
