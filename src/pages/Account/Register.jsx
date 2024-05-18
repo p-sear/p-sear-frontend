@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import axios from 'axios';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 
 import './Register.css';
@@ -11,10 +12,11 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [emailConfirm, setEmailConfirm] = useState('');
+  const [emailCode, setEmailCode] = useState('');
   const [isOpen, setIsOpen] = useState(false); // 이용약관에서 +, - 버튼 초기값을 false로 설정
   const [isEmailSend, setIsEmailSend] = useState(false);
-  const [isEmailConfirmSend, setIsEmailConfirmSend] = useState(false);
+  const [isEmailCodeSend, setIsEmailCodeSend] = useState(false);
+  const [isEmailAuthentication, setIsEmailAuthentication] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(isOpen => !isOpen); // on, off
@@ -66,21 +68,66 @@ const Register = () => {
   };
 
   const sendEmail = () => {
+    const emailRegex = /^[A-Za-z0-9]+@[A-Za-z]+\.[A-Za-z]+$/;
     if (email == '') {
       alert('이메일을 입력해주세요.');
       return;
     }
-    setIsEmailSend(true);
+
+    if (!emailRegex.test(email)) {
+      alert('이메일 형식을 확인해주세요.');
+      return;
+    }
+
+    const apiUrl = 'http://localhost:5173/dummy/sendEmailSuccess.json';
+
+    axios
+      .post(apiUrl, {
+        email,
+      })
+      .then(res => {
+        if (res.status == 200) {
+          // 200일 때, body 값 내용 없음
+          setIsEmailSend(true);
+          console.log('인증 번호 보내기 성공');
+        }
+        if (res.status == 400) {
+          alert('이메일 형식을 확인해주세요.');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-  const handleEmailConfirm = () => {
-    if (emailConfirm == '') {
+  const handleEmailCode = () => {
+    if (emailCode == '') {
       alert('인증 번호를 입력해주세요.');
       return;
     }
-    setIsEmailConfirmSend(true);
-    console.log(emailConfirm);
+
     // 이메일 인증 API 호출 구현 예정
+    const apiUrl = 'http://localhost:5173/dummy/validationEmailSuccess.json';
+
+    axios
+      .post(apiUrl, {
+        email,
+        emailCode,
+      })
+      .then(res => {
+        if (res.data.body == true) {
+          setIsEmailAuthentication(true);
+          setIsEmailCodeSend(true);
+          console.log('이메일 인증 성공');
+        } else {
+          setEmail('');
+          setEmailCode('');
+          setIsEmailSend(false);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -109,7 +156,9 @@ const Register = () => {
           <div className='mb-2 flex'>
             <input
               type='email'
+              value={email}
               placeholder='이메일을 입력해주세요.'
+              readOnly={isEmailAuthentication}
               onChange={e => setEmail(e.target.value)}
             />
             <button className={`email-send ${isEmailSend ? 'disabled' : ''}`}>
@@ -118,7 +167,7 @@ const Register = () => {
                 disabled={isEmailSend}
                 onClick={() => sendEmail()}
               >
-                이메일 인증
+                {isEmailAuthentication ? '인증 완료' : '이메일 인증'}
               </span>
             </button>
           </div>
@@ -127,12 +176,13 @@ const Register = () => {
               <input
                 type='text'
                 placeholder='인증 번호를 입력해주세요.'
-                onChange={e => setEmailConfirm(e.target.value)}
+                readOnly={isEmailAuthentication}
+                onChange={e => setEmailCode(e.target.value)}
               />
               <Timer count={5} className='flex items-center px-4'></Timer>
               <button
-                className={`email-validation ${isEmailConfirmSend ? 'disabled' : ''}`}
-                onClick={handleEmailConfirm}
+                className={`email-validation ${isEmailCodeSend ? 'disabled' : ''}`}
+                onClick={handleEmailCode}
               >
                 <span className='p-2 text-white'>확인</span>
               </button>
