@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 
 import './Register.css';
 import SocialLogin from './SocialLogin';
@@ -17,6 +18,7 @@ const Register = () => {
   const [isEmailSend, setIsEmailSend] = useState(false);
   const [isEmailCodeSend, setIsEmailCodeSend] = useState(false);
   const [isEmailAuthentication, setIsEmailAuthentication] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(isOpen => !isOpen); // on, off
@@ -48,19 +50,35 @@ const Register = () => {
   };
 
   const handleSubmit = () => {
-    if (checkboxes.checkbox1 === false) {
-      alert('필수 이용 약관에 동의해주세요.');
-      return;
-    }
-    // 회원 가입 api 호출
+    const apiUrl = 'http://localhost:5173/dummy/signupSuccess.json';
+
+    axios
+      .post(apiUrl, {
+        email,
+      })
+      .then(res => {
+        if (res.status == 200) {
+          alert('회원가입 성공');
+          navigate('/');
+        }
+        if (res.status == 403 || res.status == 500) {
+          // 이메일 인증이 되지 않은 경우 or 중복된 이메일
+          alert('중복된 이메일입니다.');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const submitCheck = () => {
     if (
-      (name != '' && email != '' && password != '',
+      name != '' &&
+      isEmailAuthentication == true &&
+      password != '' &&
       passwordConfirm != '' &&
-        password == passwordConfirm &&
-        checkboxes.checkbox1 == true)
+      password == passwordConfirm &&
+      checkboxes.checkbox1 == true
     ) {
       return false;
     }
@@ -93,6 +111,9 @@ const Register = () => {
         }
         if (res.status == 400) {
           alert('이메일 형식을 확인해주세요.');
+        }
+        if (res.status == 500) {
+          alert('중복된 이메일입니다.');
         }
       })
       .catch(error => {
