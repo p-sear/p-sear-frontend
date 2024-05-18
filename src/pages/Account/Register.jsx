@@ -6,6 +6,10 @@ import './Register.css';
 import SocialLogin from './SocialLogin';
 
 const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [isOpen, setIsOpen] = useState(false); // 이용약관에서 +, - 버튼 초기값을 false로 설정
   const toggleMenu = () => {
     setIsOpen(isOpen => !isOpen); // on, off
@@ -36,6 +40,26 @@ const Register = () => {
     });
   };
 
+  const handleSubmit = () => {
+    if (checkboxes.checkbox1 === false) {
+      alert('필수 이용 약관에 동의해주세요.');
+      return;
+    }
+    // 회원 가입 api 호출
+  };
+
+  const submitCheck = () => {
+    if (
+      (name != '' && email != '' && password != '',
+      passwordConfirm != '' &&
+        password == passwordConfirm &&
+        checkboxes.checkbox1 == true)
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   useEffect(() => {
     const allAreChecked = Object.values(checkboxes).every(Boolean);
     setAllChecked(allAreChecked);
@@ -44,24 +68,63 @@ const Register = () => {
   return (
     <div className='register-container flex flex-col'>
       <div className='register-form flex flex-col'>
-        <div className='name-box flex flex-col'>
+        <div className='name-box'>
           <h1>이름</h1>
-          <input type='text' placeholder='이름을 입력해주세요.' />
+          <input
+            type='text'
+            placeholder='이름을 입력해주세요.'
+            onChange={e => setName(e.target.value)}
+          />
+          {name == '' ? (
+            <p className='pt-2 text-red-800'>이름은 필수 입력 사항입니다.</p>
+          ) : (
+            <p></p>
+          )}
         </div>
         <div className='email-box'>
           <h1>이메일</h1>
-          <input type='email' placeholder='이메일을 입력해주세요.' />
+          <input
+            type='email'
+            placeholder='이메일을 입력해주세요.'
+            onChange={e => setEmail(e.target.value)}
+          />
+          {email == '' ? (
+            <p className='pt-2 text-red-800'>이메일은 필수 입력 사항입니다.</p>
+          ) : (
+            <p></p>
+          )}
         </div>
         <div className='pw-box'>
           <h1>비밀번호</h1>
           <input
             type='password'
             placeholder='영문자, 숫자, 특수문자 포함 8~20자'
+            onChange={e => setPassword(e.target.value)}
           />
+          {password == '' ? (
+            <p className='pt-2 text-red-800'>
+              비밀번호는 필수 입력 사항입니다.
+            </p>
+          ) : (
+            <p></p>
+          )}
         </div>
         <div className='pwCheck-box'>
           <h1>비밀번호 확인</h1>
-          <input type='password' placeholder='비밀번호를 확인해주세요.' />
+          <input
+            type='password'
+            placeholder='비밀번호를 확인해주세요.'
+            onChange={e => setPasswordConfirm(e.target.value)}
+          />
+          {passwordConfirm == '' ? (
+            <p className='pt-2 text-red-800'>
+              비밀번호 확인은 필수 입력 사항입니다.
+            </p>
+          ) : password != passwordConfirm ? (
+            <p className='text-red-800'>비밀번호가 일치하지 않습니다.</p>
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
 
@@ -114,7 +177,13 @@ const Register = () => {
         </div>
       )}
 
-      <button className='register-btn'>회원가입</button>
+      <button
+        className={submitCheck() ? 'register-btn-disabled' : 'register-btn'}
+        disabled={submitCheck()}
+        onClick={handleSubmit}
+      >
+        회원가입
+      </button>
 
       <div>
         <SocialLogin />
