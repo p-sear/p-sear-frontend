@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import busanImg from '../../assets/images/busan.png';
 import chungbukImg from '../../assets/images/chungbuk.png';
 import chungnamImg from '../../assets/images/chungnam.png';
@@ -93,17 +95,23 @@ const getRandomRecommendations = (data, size) => {
   return data.slice(0, size);
 };
 const LocationData = props => {
+  const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
   const displayData = getRandomRecommendations(recommendData, props.size);
-  // eslint-disable-next-line react/prop-types
-  // const displayData = getRandomRecommendations(recommendData, props.size);
+
+  const onSearch = location => {
+    console.log('클릭');
+    navigate(`/myapp?keyword=${location}&page=1`);
+  };
   return (
     <div className='recLocation-content flex flex-row'>
       {displayData.map((item, index) => (
-        <div key={index}>
-          <img src={item.image} alt='' />
-          <p>{item.location}</p>
-        </div>
+        <button key={index} onClick={() => onSearch(item.location)}>
+          <div>
+            <img src={item.image} alt='' />
+            <p>{item.location}</p>
+          </div>
+        </button>
       ))}
     </div>
   );
