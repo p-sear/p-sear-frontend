@@ -50,15 +50,16 @@ const HotelList = () => {
   return (
     <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
       <div className='flex flex-col space-y-4 lg:w-1/4'>
-        <div className='m-4 rounded-lg shadow-md'>
+        <div className=' m-4 rounded-lg shadow-md ' onClick={openModal}>
           <KaKaoMap />
         </div>
+        <MapModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         <div className='m-4'>
           <ListFilter />
         </div>
       </div>
       <div className='lg:flex lg:w-3/4 lg:justify-center'>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 '>
           {hotelData.map(hotel => (
             <HotelCard
               key={hotel.id}

@@ -18,7 +18,7 @@ const HotelCard = props => {
   };
 
   return (
-    <Card className='m-4 w-full max-w-6xl flex-row'>
+    <Card className='m-4 w-full max-w-6xl flex-row shadow-md'>
       <CardHeader
         shadow={false}
         floated={false}
