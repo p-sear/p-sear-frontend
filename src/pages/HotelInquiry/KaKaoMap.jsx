@@ -22,7 +22,7 @@ const KaKaoMap = () => {
   }, []);
 
   return (
-    <div className='h-64 w-64'>
+    <div className='h-60 w-72'>
       <div
         id='map'
         style={{ width: '100%', height: '100%' }}
