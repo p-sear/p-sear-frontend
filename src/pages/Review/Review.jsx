@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { FaArrowAltCircleLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { IoIosArrowUp } from 'react-icons/io';
 
 import hotelImg from '../../assets/images/hotel.png';
 import roomImg from '../../assets/images/room.jpg';
@@ -40,7 +41,8 @@ const Review = () => {
       rating: 4,
       reviewDate: '2024.04.16',
       roomName: '[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰',
-      reviewContent: '정말 좋았어요.',
+      reviewContent:
+        '아난티 코브로 이름이 변경되었는데 코브란 말 자체가 대형 리조트란 뜻이라 호텔 규모가 엄청큽니다.주말에는 주차요원이 있었는데 평일이라 지하에 안내요원이 없어 처음오면 잘 찾아가야 합니다.G층을 거쳐1층 컨시어지를 지나 10층이 체크인(9층은 이그제큐티브 이상객실 체크인)하는 곳으로 엘베 각 층마다 오션뷰가 펼쳐지고 곳곳이 포토존 입니다.엘베에서 먼 843호에 투숙했습니다.',
       reviewImages: [hotelImg, roomImg, hotelImg, roomImg, hotelImg, roomImg],
     },
     {
@@ -86,6 +88,42 @@ const Review = () => {
         (newSlideIndices[index] - 1 + imagesLength) % imagesLength;
       return newSlideIndices;
     });
+  };
+
+  const [expandedReviews, setExpandedReviews] = useState({});
+  const toggleExpand = index => {
+    setExpandedReviews(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+  const renderReviewContent = (content, index) => {
+    const isExpanded = expandedReviews[index];
+    if (content.length <= 200 || isExpanded) {
+      return (
+        <>
+          <p>{content}</p>
+          {content.length > 200 && (
+            <button
+              onClick={() => toggleExpand(index)}
+              className='fold-btn flex items-center gap-1'
+            >
+              <IoIosArrowUp />
+              접기
+            </button>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p className='inline'>{`${content.substring(0, 200)}...`}</p>
+          <button
+            onClick={() => toggleExpand(index)}
+            className='more-btn inline'
+          >
+            [더보기]
+          </button>
+        </>
+      );
+    }
   };
 
   return (
@@ -159,7 +197,7 @@ const Review = () => {
               </div>
               <div className='review-comment flex flex-col gap-1'>
                 <h3>{review.roomName}</h3>
-                <p>{review.reviewContent}</p>
+                <p>{renderReviewContent(review.reviewContent, reviewIndex)}</p>
               </div>
             </div>
           </div>

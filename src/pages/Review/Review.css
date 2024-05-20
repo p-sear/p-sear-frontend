@@ -76,6 +76,14 @@
   font-weight: bold;
 }
 
+.more-btn {
+  color: #0c69ff;
+  font-weight: bold;
+}
+.fold-btn {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 1300px) {
   .review-container {
     padding: 50px 100px 100px 100px;
