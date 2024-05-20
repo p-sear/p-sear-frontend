@@ -6,7 +6,7 @@ import { Input } from '@material-tailwind/react';
 const AuctionBar = () => {
   return (
     <div className='m-4 flex justify-end'>
-      <Card className=' jus flex w-1/6 bg-blue-50 '>
+      <Card className=' flex w-1/5 bg-gray-50 shadow-md'>
         <div className='m-3 flex flex-col'>
           <Typography variant='h4' color='blue' className='m-1 text-center'>
             입찰하기
