@@ -1,25 +1,36 @@
 import { useState } from 'react';
 
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
-import { useAuth } from '../../contexts/AuthContext';
+import authInstance from '../../axios/utils/authInstance';
+import userinfoState from '../../recoils/userinfoState';
 import './Login.css';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const [loginResult, setLoginResult] = useState('true');
+  const setUserinfo = useSetRecoilState(userinfoState);
   const navigate = useNavigate();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      await login(email, password);
-      navigate('/');
-    } catch (error) {
-      console.error('Failed to login', error);
-    }
+  const handleSubmit = async () => {
+    const apiUrl = 'http://localhost:5173/dummy/login.json';
+
+    axios
+      .post(apiUrl, {
+        email,
+        password,
+      })
+      .then(response => {
+        authInstance.registerToken(setUserinfo, response.data.body.token);
+        navigate('/');
+      })
+      .catch(() => {
+        setLoginResult(false);
+      });
   };
 
   return (
