@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
 import MapModal from '../../components/Modal/MapModal';
 import HotelCard from './HotelCard';
@@ -13,137 +16,11 @@ const HotelList = () => {
   const [visibleHotels, setVisibleHotels] = useState(4);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const observer = useRef();
-
-  const hotelData = [
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔1',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔2',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔3',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔4',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔5',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔6',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔7',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔8',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔9',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔10',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔11',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔12',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔13',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔14',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔15',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-    {
-      id: '블랙.5성급.호텔',
-      name: '서울신라호텔',
-      description:
-        '서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.',
-      imageUrl:
-        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
-    },
-  ];
+  const [searchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword');
+  const page = searchParams.get('page');
+  const size = 10;
+  const [data, setData] = useState([]);
 
   const lastHotelCardRef = useCallback(node => {
     if (observer.current) observer.current.disconnect();
@@ -179,6 +56,22 @@ const HotelList = () => {
     };
   }, []);
 
+  const fetchData = useCallback(async () => {
+    const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
+    console.log('fetchData');
+    await axios
+      .get(apiUrl)
+      .then(response => {
+        console.log(response.data.body);
+        setData(response.data.body, ...data);
+      })
+      .catch(() => {});
+  }, [keyword, page, size]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
       <div className='flex flex-col space-y-4 lg:w-1/4'>
@@ -192,12 +85,12 @@ const HotelList = () => {
       </div>
       <div className='lg:flex lg:w-3/4 lg:justify-center'>
         <div className='flex flex-col gap-4'>
-          {hotelData.slice(0, visibleHotels).map((hotel, index) => {
+          {data.slice(0, visibleHotels).map((hotel, index) => {
             if (index + 1 === visibleHotels) {
               return (
                 <HotelCard
                   ref={lastHotelCardRef}
-                  key={hotel.id}
+                  key={index}
                   id={hotel.id}
                   name={hotel.name}
                   description={hotel.description}
@@ -207,7 +100,7 @@ const HotelList = () => {
             } else {
               return (
                 <HotelCard
-                  key={hotel.id}
+                  key={index}
                   id={hotel.id}
                   name={hotel.name}
                   description={hotel.description}
