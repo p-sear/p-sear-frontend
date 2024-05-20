@@ -38,6 +38,9 @@ export const router = createBrowserRouter([
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
+      { path: '/hotel-auction', element: <HotelAuction /> },
+      { path: '/service-center', element: <ServiceCenter /> },
+      { path: '/review', element: <Review /> },
     ],
   },
 ]);
