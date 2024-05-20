@@ -12,7 +12,7 @@ const Search = () => {
   const navigate = useNavigate();
 
   const onSearch = () => {
-    navigate(`/myapp?keyword=${keyword}&page=1`);
+    navigate(`/hotel-list?keyword=${keyword}&page=1`);
   };
 
   return (
