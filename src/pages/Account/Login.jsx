@@ -57,6 +57,13 @@ const Login = () => {
           />
         </div>
       </div>
+      <div>
+        {!loginResult && (
+          <div>
+            잘못된 아이디 혹은 비밀번호입니다. 다시 입력해주시길바랍니다.
+          </div>
+        )}
+      </div>
       <button className='login-btn' onClick={handleSubmit}>
         로그인
       </button>
