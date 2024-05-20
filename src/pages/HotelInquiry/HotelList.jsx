@@ -55,7 +55,7 @@ const HotelList = () => {
     };
   }, []);
 
-  useEffect(() => {
+  const fetchData = useCallback(async () => {
     const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
     axios
       .get(apiUrl)
@@ -64,7 +64,11 @@ const HotelList = () => {
         setData(response.data.body, ...data);
       })
       .catch(() => {});
-  }, [data, keyword, page, size]);
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, [keyword, page, size]);
 
   return (
     <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
@@ -84,7 +88,7 @@ const HotelList = () => {
               return (
                 <HotelCard
                   ref={lastHotelCardRef}
-                  key={hotel.id}
+                  key={index}
                   id={hotel.id}
                   name={hotel.name}
                   description={hotel.description}
@@ -94,7 +98,7 @@ const HotelList = () => {
             } else {
               return (
                 <HotelCard
-                  key={hotel.id}
+                  key={index}
                   id={hotel.id}
                   name={hotel.name}
                   description={hotel.description}
