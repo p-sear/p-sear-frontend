@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import {
   Button,
   Card,
@@ -9,7 +11,8 @@ import {
 import { router } from '../../router';
 import RatingBar from './RatingBar';
 
-const HotelCard = props => {
+// eslint-disable-next-line react/display-name
+const HotelCard = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
   const { id, name, description, imageUrl } = props;
 
@@ -18,7 +21,7 @@ const HotelCard = props => {
   };
 
   return (
-    <Card className='m-4 w-full max-w-6xl flex-row shadow-md'>
+    <Card ref={ref} className='m-4 w-full max-w-6xl flex-row shadow-md'>
       <CardHeader
         shadow={false}
         floated={false}
@@ -41,7 +44,7 @@ const HotelCard = props => {
           {description}
         </Typography>
 
-        <RatingBar></RatingBar>
+        <RatingBar />
 
         <a href='#' className='absolute bottom-4 right-4'>
           <Button
@@ -69,5 +72,6 @@ const HotelCard = props => {
       </CardBody>
     </Card>
   );
-};
+});
+
 export default HotelCard;
