@@ -1,0 +1,9 @@
+{
+  "message": "",
+  "body": {
+    "id": 1,
+    "email": "wulovesk@naver.com",
+    "username": "테스트 유저",
+    "role": "USER"
+  }
+}
