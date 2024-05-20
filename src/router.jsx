@@ -7,7 +7,6 @@ import Main from './pages/Home/Main';
 import HotelAuction from './pages/HotelAution/HotelAuction.jsx';
 import HotelDetail from './pages/HotelDetails/HotelDetail.jsx';
 import HotelList from './pages/HotelInquiry/HotelList.jsx';
-import MyApp from './pages/HotelInquiry/MyApp';
 import StepProgress from './pages/HotelRegistration/StepProgress';
 import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
