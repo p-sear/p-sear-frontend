@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -57,18 +58,19 @@ const HotelList = () => {
 
   const fetchData = useCallback(async () => {
     const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
-    axios
+    console.log('fetchData');
+    await axios
       .get(apiUrl)
       .then(response => {
         console.log(response.data.body);
         setData(response.data.body, ...data);
       })
       .catch(() => {});
-  });
+  }, [keyword, page, size]);
 
   useEffect(() => {
     fetchData();
-  }, [keyword, page, size]);
+  }, [fetchData]);
 
   return (
     <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
