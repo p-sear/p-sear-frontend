@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { FaArrowAltCircleLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
-import { IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowUp, IoIosClose } from 'react-icons/io';
 
 import hotelImg from '../../assets/images/hotel.png';
 import roomImg from '../../assets/images/room.jpg';
@@ -205,11 +205,22 @@ const Review = () => {
       ))}
 
       {modalIsOpen && (
-        <div>
-          <img src={currentImages[currentImageIndex]} alt='' />
-          <button onClick={prevImage}>Prev</button>
-          <button onClick={nextImage}>Next</button>
-          <button onClick={closeModal}>Close</button>
+        <div className='modal-backdrop'>
+          <div className='modal-content relative flex items-center justify-center'>
+            <button onClick={closeModal} className='rev-modal-close absolute'>
+              <IoIosClose size={'40px'} />
+            </button>
+            <button onClick={prevImage} className='rev-modal-left absolute'>
+              <FaChevronLeft />
+            </button>
+            <img
+              src={currentImages[currentImageIndex]}
+              className='rev-modal-img'
+            />
+            <button onClick={nextImage} className='rev-modal-right absolute'>
+              <FaChevronRight />
+            </button>
+          </div>
         </div>
       )}
     </div>
