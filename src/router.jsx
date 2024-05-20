@@ -13,6 +13,7 @@ import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
 import MyPage from './pages/MyPage/MyPage';
 import ReviewRegister from './pages/Review/register';
+import ServiceCenter from './pages/ServiceCenter/index';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => (
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
       { path: '/hotel-auction', element: <HotelAuction /> },
+      { path: '/service-center', element: <ServiceCenter /> },
     ],
   },
 ]);
