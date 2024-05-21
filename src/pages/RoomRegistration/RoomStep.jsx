@@ -22,7 +22,7 @@ const RoomStep = () => {
     window.scrollTo(0, 0);
 
     return () => {
-      if (location.pathname !== '/hotel/new') {
+      if (location.pathname !== '/room/new') {
         localStorage.removeItem('currentProcess');
       }
     };
@@ -65,7 +65,7 @@ const RoomStep = () => {
       <button
         id='next'
         onClick={() => {
-          if (currentProgress === 6) {
+          if (currentProgress === 3) {
             goToHome();
           } else {
             updateProgress(currentProgress + 1);
