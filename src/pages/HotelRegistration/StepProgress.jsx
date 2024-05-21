@@ -4,13 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import Step1 from './Step1';
 import Step2 from './Step2';
-import Step3 from './Step3';
+// import Step3 from './Step3';
 import Step4 from './Step4';
-import Step5 from './Step5';
+// import Step5 from './Step5';
 import Step6 from './Step6';
 import './StepProgress.css';
 
-const progressArr = [1, 2, 3, 4, 5, 6]; // 1부터 시작하도록 수정
+const progressArr = [1, 2, 3, 4]; // 1부터 시작하도록 수정
 
 const StepProgress = () => {
   // 초기 상태 설정을 localStorage에서 가져온 값으로 설정하거나 없으면 1로 설정
@@ -55,10 +55,10 @@ const StepProgress = () => {
   const stepComponents = {
     1: <Step1 />,
     2: <Step2 />,
-    3: <Step3 />,
-    4: <Step4 />,
-    5: <Step5 />,
-    6: <Step6 />,
+    // 3: <Step3 />,
+    3: <Step4 />,
+    // 5: <Step5 />,
+    4: <Step6 />,
   };
 
   return (
@@ -74,7 +74,7 @@ const StepProgress = () => {
         ))}
         <span
           className='progress-bar absolute'
-          style={{ width: `${(currentProgress - 1) * 20}%` }}
+          style={{ width: `${(currentProgress - 1) * 33.3}%` }}
         ></span>
       </div>
 
@@ -83,7 +83,7 @@ const StepProgress = () => {
       <button
         id='next'
         onClick={() => {
-          if (currentProgress === 6) {
+          if (currentProgress === 4) {
             goToHome(); // 6단계에서 버튼 클릭 시 홈 화면으로 이동
           } else {
             updateProgress(currentProgress + 1); // 그 외 단계에서는 다음 단계로 진행
@@ -93,9 +93,9 @@ const StepProgress = () => {
       >
         {currentProgress === 1
           ? '시작하기'
-          : currentProgress === 5
+          : currentProgress === 3
             ? '등록 완료'
-            : currentProgress === 6
+            : currentProgress === 4
               ? '홈 화면으로 이동'
               : '다음'}
       </button>
