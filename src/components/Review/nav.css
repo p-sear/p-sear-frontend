@@ -1,0 +1,6 @@
+section > div:hover {
+  color: #0c69ff;
+}
+section > div {
+  cursor: pointer;
+}
