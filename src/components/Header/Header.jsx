@@ -2,19 +2,19 @@ import { useState } from 'react';
 
 import { FaRegUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import logo from '../../assets/images/logo.png';
-import { useAuth } from '../../contexts/AuthContext';
+import userinfoState from '../../recoils/userinfoState';
 import './Header.css';
 
 const Header = () => {
-  const { isLoggedIn, userInfo, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false); // 로그인 후 이름 클릭시, 드롭 다운 메뉴
-
   const navigate = useNavigate();
+  const userinfo = useRecoilValue(userinfoState);
 
   const handleLogout = () => {
-    logout();
+    localStorage.clear();
     navigate('/');
   };
 
@@ -24,14 +24,19 @@ const Header = () => {
         <img src={logo} alt='' className='logo' />
       </a>
 
-      {isLoggedIn ? (
+      {localStorage.getItem('token') != null ? (
         <div>
           <button
             className='header-info-btn flex cursor-pointer items-center justify-center'
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <FaRegUserCircle size='20' />
-            <span>{userInfo.name}님</span>
+            <span>
+              {userinfo.username == null
+                ? localStorage.getItem('username')
+                : userinfo.username}
+              님
+            </span>
           </button>
           {showDropdown && (
             <div className='header-menu absolute top-12 flex flex-col items-center justify-center'>
