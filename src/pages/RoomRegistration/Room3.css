@@ -1,0 +1,10 @@
+.room3-container {
+  gap: 50px;
+}
+.room3-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.room3-container > img {
+  width: 200px;
+}

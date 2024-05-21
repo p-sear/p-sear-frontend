@@ -13,7 +13,6 @@ const Step1 = () => {
         <ul>
           <li>🚩 숙소 정보 입력</li>
           <li>🚩 숙소 사진 제출</li>
-          <li>🚩 사업자 인증</li>
         </ul>
       </div>
     </div>
