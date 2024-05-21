@@ -1,0 +1,20 @@
+.room1-container {
+  width: 100%;
+  gap: 50px;
+}
+.room1-container > img {
+  width: 200px;
+}
+
+.room1-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.room1-content {
+  gap: 10px;
+}
+.room1-content > h3 {
+  font-size: 20px;
+  font-weight: bold;
+}

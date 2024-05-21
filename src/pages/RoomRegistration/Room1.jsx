@@ -1,9 +1,9 @@
 import roomIcon from '../../assets/icons/room_icon.png';
-import './Ste1.css';
+import './Room1.css';
 
 const Room1 = () => {
   return (
-    <div className='room1-container'>
+    <div className='room1-container flex w-full flex-col items-center justify-center'>
       <img src={roomIcon} alt='' />
 
       <h1>당신의 객실을 등록하세요!</h1>

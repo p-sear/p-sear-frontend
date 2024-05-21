@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import Room1 from './Room1';
 import './RoomStep.css';
 
 const progressArr = [1, 2, 3];
@@ -34,7 +35,7 @@ const RoomStep = () => {
     navigate('/');
   };
 
-  const stepComponents = {};
+  const stepComponents = { 1: <Room1 /> };
 
   return (
     <div className='step-container'>
