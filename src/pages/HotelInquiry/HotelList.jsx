@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
@@ -93,6 +94,9 @@ const HotelList = () => {
         </div>
         <div className='lg:flex lg:w-3/4 lg:justify-center'>
           <div className='flex flex-col gap-4'>
+            <Typography variant='h3' className='-mb-4 mt-4'>
+              &apos;지역&apos; 숙소 ---개
+            </Typography>
             {data.slice(0, visibleHotels).map((hotel, index) => {
               if (index + 1 === visibleHotels) {
                 return (
