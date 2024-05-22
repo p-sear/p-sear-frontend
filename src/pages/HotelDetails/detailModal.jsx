@@ -7,11 +7,71 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@material-tailwind/react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 const DetailModal = () => {
+  const data = [
+    {
+      imgelink:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
+    },
+    {
+      imgelink:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
+    },
+    {
+      imgelink:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
+    },
+    {
+      imgelink:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4f/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
+    },
+    {
+      imgelink:
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4e/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
+    },
+  ];
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => setOpen(!open);
+  const handleClose = () => setOpen(false);
+
+  const CustomPrevArrow = props => {
+    // eslint-disable-next-line react/prop-types
+    const { onClick } = props;
+    return (
+      <button
+        className='slick-arrow  absolute right-full top-1/2 -translate-y-1/2 transform p-2 text-white'
+        onClick={onClick}
+      >
+        <i className='fas fa-chevron-left'></i>
+      </button>
+    );
+  };
+
+  const CustomNextArrow = props => {
+    // eslint-disable-next-line react/prop-types
+    const { onClick } = props;
+    return (
+      <button
+        className='slick-arrow  absolute left-full top-1/2 -translate-y-1/2 transform p-2 text-white'
+        onClick={onClick}
+      >
+        <i className='fas fa-chevron-right'></i>
+      </button>
+    );
+  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+  };
 
   return (
     <>
@@ -20,13 +80,13 @@ const DetailModal = () => {
         variant='text'
         className='flex items-center gap-2'
       >
-        상세설명
+        상세설명 및 예약
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'
-          strokeWidth={2}
+          strokeWidth={5}
           className='h-4 w-4'
         >
           <path
@@ -36,16 +96,30 @@ const DetailModal = () => {
           />
         </svg>
       </Button>
-      <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>스탠다드</DialogHeader>
-        <img src='https://res.klook.com/image/upload/c_fill,w_627,h_470/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/awessankdbaeuib4xjks.webp'></img>
-        <DialogBody>객실 정보 입력</DialogBody>
-        <DialogFooter>
-          <Button color='blue' onClick={handleOpen} className='mr-1'>
-            <span>예약하기</span>
+      <Dialog open={open} handler={handleOpen} dismissible={false}>
+        <DialogHeader className='ml-4 mt-4'>스탠다드</DialogHeader>
+        <DialogBody>
+          <Slider {...settings} className='mx-8 mb-8'>
+            {data.map(({ imgelink }, index) => (
+              <div key={index}>
+                <img src={imgelink} />
+              </div>
+            ))}
+          </Slider>
+          객실 정보 숙박 | 체크인 15:00 - 체크아웃 11:00 2인 기준 최대 3인
+          (유료) 인원 추가시 비용이 발생되며, 현장에서 결제 바랍니다. 싱글베드
+          1개, 더블베드 1개 객실+욕실 / 10평
+        </DialogBody>
+        <DialogFooter className='flex justify-end gap-2'>
+          <Button
+            color='blue'
+            onClick={handleClose}
+            className='mr-1 text-white'
+          >
+            예약하기
           </Button>
-          <Button color='white' onClick={handleOpen}>
-            <span>나가기</span>
+          <Button color='white' onClick={handleClose}>
+            나가기
           </Button>
         </DialogFooter>
       </Dialog>

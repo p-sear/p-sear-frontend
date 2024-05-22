@@ -26,21 +26,22 @@ const RoomCard = props => {
           className='h-full w-full object-cover'
         />
       </CardHeader>
-      <CardBody className='relative'>
-        <Typography variant='h6' color='gray' className='mb-4 uppercase'>
-          {id}
-        </Typography>
-        <Typography variant='h4' color='blue-gray' className='mb-2'>
-          {name}
-        </Typography>
-        <Typography color='gray' className='mb-8 font-normal'>
-          {description}
-        </Typography>
-
-        <div className='mt-5 flex justify-end'>
-          <DetailModal></DetailModal>
+      <div className='flex w-full flex-col justify-between p-4'>
+        <CardBody className='relative'>
+          <Typography variant='h6' color='gray' className='mb-4 uppercase'>
+            {id}
+          </Typography>
+          <Typography variant='h4' color='blue-gray' className='mb-2'>
+            {name}
+          </Typography>
+          <Typography color='gray' className='mb-8 font-normal'>
+            {description}
+          </Typography>
+        </CardBody>
+        <div className='mt-auto flex justify-end  '>
+          <DetailModal />
         </div>
-      </CardBody>
+      </div>
     </Card>
   );
 };

@@ -45,28 +45,28 @@ const HotelDetail = () => {
     {
       id: '블랙.5성급.호텔',
       name: '서울신라호텔',
-      description: '서울',
+      description: '가격',
       imageUrl:
         'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
     },
     {
       id: '블랙.5성급.호텔',
       name: '강원도 신라호텔2',
-      description: '서울',
+      description: '가격',
       imageUrl:
         'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
     },
     {
       id: '블랙.5성급.호텔',
       name: '인천신라호텔3',
-      description: '서울',
+      description: '가격',
       imageUrl:
         'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
     },
     {
       id: '블랙.5성급.호텔',
       name: '시흥 신라호텔4',
-      description: '서울 ',
+      description: '가격 ',
       imageUrl:
         'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
     },
@@ -80,6 +80,8 @@ const HotelDetail = () => {
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '0px',
+    autoplay: true,
+    autoplaySpeed: 1000,
     responsive: [
       {
         breakpoint: 1024,
@@ -191,18 +193,20 @@ const HotelDetail = () => {
         ))}
       </div>
 
-      <div className='m-8'>
+      <div className=''>
         <Typography variant='h4' color='black' className='mb-4'>
           추천 숙소
         </Typography>
-        <Slider {...sliderSettings} className=''>
+        <Slider {...sliderSettings}>
           {recommendedHotels.map(hotel => (
-            <div key={hotel.id} className='px-2'>
-              <RecommendCard
-                name={hotel.name}
-                description={hotel.description}
-                imageUrl={hotel.imageUrl}
-              />
+            <div key={hotel.id} className='p-3'>
+              <div className=''>
+                <RecommendCard
+                  name={hotel.name}
+                  description={hotel.description}
+                  imageUrl={hotel.imageUrl}
+                />
+              </div>
             </div>
           ))}
         </Slider>
