@@ -56,7 +56,7 @@ const HotelImage = () => {
           <div key={index} className='flex items-center justify-center'>
             <img
               src={imgelink}
-              className='h-auto w-full max-w-4xl rounded-xl object-cover object-center shadow-md'
+              className='h-auto w-full max-w-3xl rounded-xl object-cover object-center shadow-md'
               alt={`gallery-image-${index}`}
             />
           </div>
