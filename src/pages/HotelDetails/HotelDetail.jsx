@@ -1,10 +1,14 @@
 import { Button, Card, Typography } from '@material-tailwind/react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 import { router } from '../../router';
 import RatingBar from '../HotelInquiry/RatingBar';
+import RecommendCard from './RecommendCard';
 import HotelImage from './hotelImage';
 import RoomCard from './roomcard';
 
@@ -36,6 +40,70 @@ const HotelDetail = () => {
         'https://res.klook.com/image/upload/c_fill,w_627,h_470/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/awessankdbaeuib4xjks.webp',
     },
   ];
+
+  const recommendedHotels = [
+    {
+      id: '블랙.5성급.호텔',
+      name: '서울신라호텔',
+      description: '서울',
+      imageUrl:
+        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
+    },
+    {
+      id: '블랙.5성급.호텔',
+      name: '강원도 신라호텔2',
+      description: '서울',
+      imageUrl:
+        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
+    },
+    {
+      id: '블랙.5성급.호텔',
+      name: '인천신라호텔3',
+      description: '서울',
+      imageUrl:
+        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
+    },
+    {
+      id: '블랙.5성급.호텔',
+      name: '시흥 신라호텔4',
+      description: '서울 ',
+      imageUrl:
+        'https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp',
+    },
+  ];
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0px',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div className='mx-auto max-w-7xl p-4'>
@@ -111,7 +179,7 @@ const HotelDetail = () => {
         </Card>
       </div>
 
-      <div className='mx-auto mb-8 w-full  lg:w-2/3'>
+      <div className='mx-auto mb-8 w-full lg:w-2/3'>
         {roomData.map(room => (
           <RoomCard
             key={room.id}
@@ -121,6 +189,23 @@ const HotelDetail = () => {
             imageUrl={room.imageUrl}
           />
         ))}
+      </div>
+
+      <div className='m-8'>
+        <Typography variant='h4' color='black' className='mb-4'>
+          추천 숙소
+        </Typography>
+        <Slider {...sliderSettings} className=''>
+          {recommendedHotels.map(hotel => (
+            <div key={hotel.id} className='px-2'>
+              <RecommendCard
+                name={hotel.name}
+                description={hotel.description}
+                imageUrl={hotel.imageUrl}
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
