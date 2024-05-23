@@ -41,7 +41,7 @@ const Header = () => {
           {showDropdown && (
             <div className='header-menu absolute top-12 flex flex-col items-center justify-center'>
               <a href='/profile'>마이페이지</a>
-              <a href=''>설정</a>
+              <a href='/profile/settings'>설정</a>
               <button onClick={handleLogout}>로그아웃</button>
             </div>
           )}
