@@ -44,45 +44,6 @@ const TimeSpecials = () => {
     fetchHotels();
   }, []);
 
-  // const hotels = [
-  //   {
-  //     id: 1,
-  //     name: '호텔 A',
-  //     location: '서울',
-  //     rating: 5,
-  //     price: '150,000',
-  //     special: '50,000',
-  //     photo: hotelImg,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: '호텔 B',
-  //     location: '부산',
-  //     rating: 4.5,
-  //     price: '150,000',
-  //     special: '50,000',
-  //     photo: hotelImg,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: '호텔 B',
-  //     location: '부산',
-  //     rating: 4.5,
-  //     price: '150,000',
-  //     special: '50,000',
-  //     photo: hotelImg,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: '호텔 B',
-  //     location: '부산',
-  //     rating: 4.5,
-  //     price: '150,000',
-  //     special: '50,000',
-  //     photo: hotelImg,
-  //   },
-  // ];
-
   return (
     <div className='timespecials-container'>
       <div className='timespecials-title flex items-center justify-between'>
