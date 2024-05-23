@@ -63,7 +63,7 @@ const BidableHotel = () => {
       </div>
 
       <div className='bidableHotel-content'>
-        {hotels.map(hotel => (
+        {hotels.slice(0, 4).map(hotel => (
           <div
             className='bidableHotel-box flex flex-col justify-center'
             key={hotel.id}
