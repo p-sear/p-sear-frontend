@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import logo from '../../assets/images/logo.png';
-import userinfoState from '../../recoils/userinfoState';
+import userinfoState from '../../recoils/userinfoState.js';
 import './Header.css';
 
 const Header = () => {
