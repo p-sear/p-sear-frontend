@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
@@ -8,6 +8,14 @@ import './MyInfo.css';
 
 const MyInfo = () => {
   const [userInfo, setUserInfo] = useRecoilState(userinfoState);
+  const [editMode, setEditMode] = useState({
+    username: false,
+    email: false,
+    tel: false,
+    password: false,
+    description: false,
+  });
+  const [tempInfo, setTempInfo] = useState({});
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -33,6 +41,21 @@ const MyInfo = () => {
     fetchUserInfo();
   }, [setUserInfo]);
 
+  const handleEditClick = field => {
+    setTempInfo({ ...userInfo });
+    setEditMode({ ...editMode, [field]: true });
+  };
+
+  const handleSaveClick = field => {
+    setUserInfo({ ...userInfo, [field]: tempInfo[field] });
+    setEditMode({ ...editMode, [field]: false });
+  };
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setTempInfo({ ...tempInfo, [name]: value });
+  };
+
   return (
     <div className='myinfo-container flex flex-col'>
       <h1>나의 정보</h1>
@@ -41,13 +64,30 @@ const MyInfo = () => {
         <div className='myinfo-name flex items-center justify-between'>
           <div className='flex flex-col justify-center gap-3'>
             <h3>이름</h3>
-            <p>
-              {userInfo.username == null
-                ? localStorage.getItem('username')
-                : userInfo.username}
-            </p>
+            {editMode.username ? (
+              <input
+                type='text'
+                name='username'
+                value={tempInfo.username}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>
+                {userInfo.username == null
+                  ? localStorage.getItem('username')
+                  : userInfo.username}
+              </p>
+            )}
           </div>
-          <button>변경하기</button>
+          <button
+            onClick={() =>
+              editMode.username
+                ? handleSaveClick('username')
+                : handleEditClick('username')
+            }
+          >
+            {editMode.username ? '저장하기' : '변경하기'}
+          </button>
         </div>
         <div className='myinfo-email flex flex-col justify-center gap-3'>
           <h3>이메일</h3>
@@ -60,35 +100,83 @@ const MyInfo = () => {
         <div className='myinfo-tel flex items-center justify-between'>
           <div className='flex flex-col justify-center gap-3'>
             <h3>휴대폰 번호</h3>
-            <p>
-              {userInfo.tel == null
-                ? localStorage.getItem('tel')
-                : userInfo.tel}
-            </p>
+            {editMode.tel ? (
+              <input
+                type='tel'
+                name='tel'
+                value={tempInfo.tel}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>
+                {userInfo.tel == null
+                  ? localStorage.getItem('tel')
+                  : userInfo.tel}
+              </p>
+            )}
           </div>
-          <button>변경하기</button>
+          <button
+            onClick={() =>
+              editMode.tel ? handleSaveClick('tel') : handleEditClick('tel')
+            }
+          >
+            {editMode.tel ? '저장하기' : '변경하기'}
+          </button>
         </div>
         <div className='myinfo-pw flex items-center justify-between'>
           <div className='flex flex-col justify-center gap-3'>
             <h3>비밀번호</h3>
-            <p>
-              {userInfo.password == null
-                ? localStorage.getItem('password')
-                : userInfo.password}
-            </p>
+            {editMode.password ? (
+              <input
+                type='password'
+                name='password'
+                value={tempInfo.password}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>
+                {userInfo.password == null
+                  ? localStorage.getItem('password')
+                  : userInfo.password}
+              </p>
+            )}
           </div>
-          <button>변경하기</button>
+          <button
+            onClick={() =>
+              editMode.password
+                ? handleSaveClick('password')
+                : handleEditClick('password')
+            }
+          >
+            {editMode.password ? '저장하기' : '변경하기'}
+          </button>
         </div>
         <div className='myinfo-intro flex items-center justify-between'>
           <div className='flex flex-col justify-center gap-3'>
             <h3>자기소개</h3>
-            <p>
-              {userInfo.description == null
-                ? localStorage.getItem('description')
-                : userInfo.description}
-            </p>
+            {editMode.description ? (
+              <textarea
+                name='description'
+                value={tempInfo.description}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>
+                {userInfo.description == null
+                  ? localStorage.getItem('description')
+                  : userInfo.description}
+              </p>
+            )}
           </div>
-          <button>변경하기</button>
+          <button
+            onClick={() =>
+              editMode.description
+                ? handleSaveClick('description')
+                : handleEditClick('description')
+            }
+          >
+            {editMode.description ? '저장하기' : '변경하기'}
+          </button>
         </div>
 
         <button className='exit-btn'>회원 탈퇴</button>
