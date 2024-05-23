@@ -6,6 +6,7 @@ const userinfoState = atom({
     id: undefined,
     email: undefined,
     username: undefined,
+    password: undefined,
     tel: undefined,
     description: undefined,
   },
