@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 import RangeSlider from '../../components/Modal/RangeSlider';
+import DateSelector from '../../components/Search/DateSelector';
+import PeopleSelector from '../../components/Search/PeopleSelector';
 
 // eslint-disable-next-line react/prop-types
 const ListFilter = ({ onFilterChange }) => {
@@ -101,6 +103,10 @@ const ListFilter = ({ onFilterChange }) => {
 
   return (
     <div className='rounded-lg p-4 shadow-md'>
+      <div className='m-2'>
+        <DateSelector></DateSelector>
+        <PeopleSelector></PeopleSelector>
+      </div>
       <h1 className='mb-2 text-lg font-bold'>필터</h1>
       <div className='mb-4'>
         <h3 className='text-base font-semibold'>숙소 유형</h3>

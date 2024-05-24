@@ -1,35 +1,25 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 import { Carousel } from '@material-tailwind/react';
+import axios from 'axios';
 
 const HotelImage = () => {
-  const data = [
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4f/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4e/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-  ];
+  const [hotelImages, setHotelImages] = useState([]);
 
-  // eslint-disable-next-line no-unused-vars
-  const [active, setActive] = React.useState(
-    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
-  );
+  useEffect(() => {
+    const fetchHotelImages = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/hotelImage.json',
+        );
+        setHotelImages(response.data.body);
+      } catch (error) {
+        console.error('호텔 이미지 오류', error);
+      }
+    };
+
+    fetchHotelImages();
+  }, []);
 
   return (
     <div>
@@ -52,7 +42,7 @@ const HotelImage = () => {
           </div>
         )}
       >
-        {data.map(({ imgelink }, index) => (
+        {hotelImages.map(({ imgelink }, index) => (
           <div key={index} className='flex items-center justify-center'>
             <img
               src={imgelink}

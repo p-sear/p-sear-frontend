@@ -8,7 +8,6 @@ import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
 import MapModal from '../../components/Modal/MapModal';
-import Search from '../../components/Search/Search';
 import HotelCard from './HotelCard';
 import KaKaoMap from './KaKaoMap';
 import ListFilter from './ListFilter';
@@ -76,18 +75,17 @@ const HotelList = () => {
 
   return (
     <div>
-      <div className='  shadow-md'>
-        <Search></Search>
-      </div>
       <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
         <div className='flex flex-col space-y-4 lg:w-1/4'>
           <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
             <KaKaoMap />
           </div>
+
           <MapModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
+
           <div className='m-4'>
             <ListFilter />
           </div>
