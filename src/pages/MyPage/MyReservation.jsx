@@ -47,36 +47,6 @@ const MyReservation = () => {
     return <div>에러 발생: {error.message}</div>;
   }
 
-  // const reservations = [
-  //   {
-  //     id: 1,
-  //     photo: hotelImg,
-  //     name: '호텔 A',
-  //     roomType: '스탠다드',
-  //     checkIn: '2024.05.20',
-  //     checkOut: '2024.05.22',
-  //     price: '100,000',
-  //   },
-  //   {
-  //     id: 2,
-  //     photo: hotelImg,
-  //     name: '호텔 B',
-  //     roomType: '스위트',
-  //     checkIn: '2024.05.20',
-  //     checkOut: '2024.05.22',
-  //     price: '100,000',
-  //   },
-  //   {
-  //     id: 3,
-  //     photo: hotelImg,
-  //     name: '호텔 C',
-  //     roomType: '스탠다드',
-  //     checkIn: '2024.05.20',
-  //     checkOut: '2024.05.22',
-  //     price: '100,000',
-  //   },
-  // ];
-
   return (
     <div className='myreservation-container flex flex-col'>
       <h1>예약 내역</h1>
