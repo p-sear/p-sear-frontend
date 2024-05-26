@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './MyReservation.css';
 
 const MyReservation = () => {
@@ -25,7 +25,7 @@ const MyReservation = () => {
             checkIn: myReservation.checkIn,
             checkOut: myReservation.checkOut,
             price: myReservation.price,
-            photo: myReservation.mainImage || hotelImg,
+            photo: myReservation.mainImage || pserLoading,
           }),
         );
         setReservations(myReservationDatas);
@@ -58,7 +58,7 @@ const MyReservation = () => {
             className='myreservation-item flex w-full items-center justify-between gap-20'
           >
             <div className='flex h-full items-center'>
-              <img src={reservation.photo || hotelImg} alt='' />
+              <img src={reservation.photo || pserLoading} alt='' />
 
               <div className='flex h-full items-center'>
                 <div className='flex h-full flex-col justify-between'>
