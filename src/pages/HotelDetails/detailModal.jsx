@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -7,36 +7,31 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@material-tailwind/react';
+import axios from 'axios';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 const DetailModal = () => {
-  const data = [
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4f/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4e/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-  ];
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(!open);
   const handleClose = () => setOpen(false);
+  const [roomImage, setRoomImage] = useState([]);
+
+  useEffect(() => {
+    const fetchRoomImage = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/roomImage.json',
+        );
+        setRoomImage(response.data.body);
+      } catch (error) {
+        console.error('객실 이미지 오류', error);
+      }
+    };
+
+    fetchRoomImage();
+  }, []);
 
   const CustomPrevArrow = props => {
     // eslint-disable-next-line react/prop-types
@@ -100,7 +95,7 @@ const DetailModal = () => {
         <DialogHeader className='ml-4 mt-4'>스탠다드</DialogHeader>
         <DialogBody>
           <Slider {...settings} className='mx-8 mb-8'>
-            {data.map(({ imgelink }, index) => (
+            {roomImage.map(({ imgelink }, index) => (
               <div key={index}>
                 <img src={imgelink} />
               </div>
