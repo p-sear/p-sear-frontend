@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './BidableHotel.css';
 
 const BidableHotel = () => {
@@ -32,7 +32,7 @@ const BidableHotel = () => {
           rating: hotel.rating, // 실제 API에 아직 별점 없음
           highestBid: hotel.highestBid, // 실제 백엔드 API에 아직 최고 입찰가 없는 상태
           instantBid: hotel.instantBid, // 실제 백엔드 API에 아직 즉시 입찰가 없는 상태
-          photo: hotel.mainImage || hotelImg, // 이미지가 없는 경우 기본 이미지 사용
+          photo: hotel.mainImage || pserLoading, // 이미지가 없는 경우 기본 이미지 사용
         }));
 
         setHotels(hotelsData);

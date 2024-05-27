@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './TimeSpecials.css';
 
 const TimeSpecials = () => {
@@ -32,7 +32,7 @@ const TimeSpecials = () => {
             rating: hotel.rating,
             price: hotel.price,
             special: hotel.special,
-            photo: hotel.mainImage || hotelImg,
+            photo: hotel.mainImage || pserLoading,
           }));
 
         setHotels(hotelsData);

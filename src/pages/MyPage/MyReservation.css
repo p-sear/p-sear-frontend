@@ -1,38 +1,67 @@
 .myreservation-container {
-    flex-grow: 1;
-    gap: 50px;
+  flex-grow: 1;
+  gap: 50px;
 }
-.myreservation-container>h1 {
-    font-size: 30px;
-    font-weight: bold;
+.myreservation-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .myreservation-box {
-    gap: 50px;
+  gap: 50px;
 }
 
 .myreservation-item {
-    background-color: #F8F8F8;
-    padding: 30px;
-    border-radius: 10px;
+  background-color: #f8f8f8;
+  padding: 30px;
+  border-radius: 10px;
 }
-.myreservation-item>div {
-    gap: 30px;
-    flex-grow: 1;
+.myreservation-item > div {
+  gap: 30px;
+  flex-grow: 1;
 }
-.myreservation-item>div>img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    object-fit: cover;
+.myreservation-item > div > img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.myreservation-item>div>div {
-    gap: 50px;
+.myreservation-item > div > div {
+  gap: 50px;
 }
 
 .myres-detail-btn {
-    color: #5389ff;
-    font-weight: bold;
-    align-self: flex-end;
+  color: #5389ff;
+  font-weight: bold;
+  align-self: flex-end;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.page-number {
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-number.active {
+  font-weight: bold;
+  background-color: #84c0ff;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.page-number:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
