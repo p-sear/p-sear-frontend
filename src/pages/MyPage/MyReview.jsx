@@ -1,11 +1,11 @@
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './MyReview.css';
 
 const MyReview = () => {
   const reservations = [
     {
       id: 1,
-      photo: hotelImg,
+      photo: pserLoading,
       name: '호텔 A',
       roomType: '스탠다드',
       checkIn: '2024.05.20',
@@ -14,7 +14,7 @@ const MyReview = () => {
     },
     {
       id: 2,
-      photo: hotelImg,
+      photo: pserLoading,
       name: '호텔 B',
       roomType: '스위트',
       checkIn: '2024.05.20',
@@ -23,7 +23,7 @@ const MyReview = () => {
     },
     {
       id: 3,
-      photo: hotelImg,
+      photo: pserLoading,
       name: '호텔 C',
       roomType: '스탠다드',
       checkIn: '2024.05.20',
@@ -43,7 +43,7 @@ const MyReview = () => {
             className='myreview-item flex w-full items-center justify-between gap-20'
           >
             <div className='flex h-full items-center'>
-              <img src={hotelImg} alt='' />
+              <img src={pserLoading} alt='' />
 
               <div className='flex h-full items-center'>
                 <div className='flex h-full flex-col justify-between'>
