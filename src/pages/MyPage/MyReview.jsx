@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
+import ScrollToTop from '../../helpers/ScrollToTop';
 import './MyReview.css';
 
 const MyReview = () => {
@@ -32,8 +34,15 @@ const MyReview = () => {
     fetchReservations();
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/review-register');
+  };
+
   return (
     <div className='myreview-container flex flex-col'>
+      <ScrollToTop />
       <h1>이용 후기</h1>
 
       <div className='myreview-box flex w-full flex-col items-center justify-center'>
@@ -68,7 +77,9 @@ const MyReview = () => {
 
             <div className='flex h-full flex-col justify-between'>
               <p className='myrev-fin'>완료됨</p>
-              <button className='myrev-btn'>이용 후기 작성하기</button>
+              <button className='myrev-btn' onClick={handleClick}>
+                이용 후기 작성하기
+              </button>
             </div>
           </div>
         ))}
