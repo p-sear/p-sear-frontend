@@ -12,7 +12,9 @@ const HotelImage = () => {
         const response = await axios.get(
           'http://localhost:5173/dummy/hotelImage.json',
         );
-        setHotelImages(response.data.body);
+        // 모든 이미지 링크들을 배열로 펼쳐서 하나의 배열로 만듦
+        const images = response.data.body.flatMap(item => item.imgelink);
+        setHotelImages(images);
       } catch (error) {
         console.error('호텔 이미지 오류', error);
       }
@@ -42,7 +44,7 @@ const HotelImage = () => {
           </div>
         )}
       >
-        {hotelImages.map(({ imgelink }, index) => (
+        {hotelImages.map((imgelink, index) => (
           <div key={index} className='flex items-center justify-center'>
             <img
               src={imgelink}
