@@ -240,10 +240,10 @@ const HotelDetail = () => {
         </Card>
       </div>
       <div className='mx-auto mb-8 w-full lg:w-2/3'>
-        {roomData.map(room => (
+        {roomData.map((room, index) => (
           <RoomCard
-            key={room.id}
-            id={room.id}
+            key={index}
+            roomId={room.roomId}
             name={room.name}
             description={room.description}
             imageUrl={room.imageUrl}

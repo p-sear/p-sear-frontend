@@ -7,66 +7,60 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@material-tailwind/react';
+import { Carousel } from '@material-tailwind/react';
 import axios from 'axios';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-const DetailModal = () => {
-  const [open, setOpen] = React.useState(false);
+// eslint-disable-next-line react/prop-types
+const DetailModal = ({ roomId }) => {
+  const [open, setOpen] = useState(false);
+  const [roomImages, setRoomImages] = useState([]);
+  const [roomAmenities, setRoomAmenities] = useState([]);
+
   const handleOpen = () => setOpen(!open);
   const handleClose = () => setOpen(false);
-  const [roomImage, setRoomImage] = useState([]);
 
   useEffect(() => {
     const fetchRoomImage = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5173/dummy/roomImage.json',
+          `http://localhost:5173/dummy/roomImage.json`,
         );
-        setRoomImage(response.data.body);
+        const images = response.data.body.find(item => item.roomId === roomId);
+        if (images) {
+          setRoomImages(images.imagelink);
+        } else {
+          setRoomImages([]);
+        }
       } catch (error) {
         console.error('객실 이미지 오류', error);
       }
     };
 
-    fetchRoomImage();
-  }, []);
+    const fetchRoomAmenity = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5173/dummy/roomAmenity.json`,
+        );
+        const amenities = response.data.body.content.find(
+          amenity => amenity.roomId === roomId,
+        );
+        if (amenities) {
+          setRoomAmenities(amenities);
+        } else {
+          setRoomAmenities({});
+        }
+      } catch (error) {
+        console.error('객실 시설 오류', error);
+      }
+    };
 
-  const CustomPrevArrow = props => {
-    // eslint-disable-next-line react/prop-types
-    const { onClick } = props;
-    return (
-      <button
-        className='slick-arrow  absolute right-full top-1/2 -translate-y-1/2 transform p-2 text-white'
-        onClick={onClick}
-      >
-        <i className='fas fa-chevron-left'></i>
-      </button>
-    );
-  };
-
-  const CustomNextArrow = props => {
-    // eslint-disable-next-line react/prop-types
-    const { onClick } = props;
-    return (
-      <button
-        className='slick-arrow  absolute left-full top-1/2 -translate-y-1/2 transform p-2 text-white'
-        onClick={onClick}
-      >
-        <i className='fas fa-chevron-right'></i>
-      </button>
-    );
-  };
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-  };
+    if (open && roomId) {
+      fetchRoomImage();
+      fetchRoomAmenity();
+    }
+  }, [open, roomId]);
 
   return (
     <>
@@ -94,16 +88,84 @@ const DetailModal = () => {
       <Dialog open={open} handler={handleOpen} dismissible={false}>
         <DialogHeader className='ml-4 mt-4'>스탠다드</DialogHeader>
         <DialogBody>
-          <Slider {...settings} className='mx-8 mb-8'>
-            {roomImage.map(({ imgelink }, index) => (
-              <div key={index}>
-                <img src={imgelink} />
-              </div>
-            ))}
-          </Slider>
-          객실 정보 숙박 | 체크인 15:00 - 체크아웃 11:00 2인 기준 최대 3인
-          (유료) 인원 추가시 비용이 발생되며, 현장에서 결제 바랍니다. 싱글베드
-          1개, 더블베드 1개 객실+욕실 / 10평
+          {roomImages.length > 0 && (
+            <Carousel
+              loop={true}
+              autoplay={true}
+              autoplayDelay={5000}
+              className='rounded-xl'
+              navigation={({ setActiveIndex, activeIndex, length }) => (
+                <div className='absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2'>
+                  {new Array(length).fill('').map((_, i) => (
+                    <span
+                      key={i}
+                      className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                        activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
+                      }`}
+                      onClick={() => setActiveIndex(i)}
+                    />
+                  ))}
+                </div>
+              )}
+            >
+              {roomImages.map((imagelink, index) => (
+                <div key={index} className='flex items-center justify-center'>
+                  <img
+                    src={imagelink}
+                    className='h-auto w-full max-w-3xl rounded-xl object-cover object-center shadow-md'
+                    alt={`gallery-image-${index}`}
+                  />
+                </div>
+              ))}
+            </Carousel>
+          )}
+          <div className='mb-4 flex flex-wrap'>
+            {roomAmenities.heatingSystem && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>난방</span>
+            )}
+            {roomAmenities.tv && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>TV</span>
+            )}
+            {roomAmenities.refrigerator && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>냉장고</span>
+            )}
+            {roomAmenities.airConditioner && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>에어컨</span>
+            )}
+            {roomAmenities.washer && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                스타일러
+              </span>
+            )}
+            {roomAmenities.terrace && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>테라스</span>
+            )}
+            {roomAmenities.coffeeMachine && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                커피머신
+              </span>
+            )}
+            {roomAmenities.internet && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>인터넷</span>
+            )}
+            {roomAmenities.kitchen && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>주방</span>
+            )}
+            {roomAmenities.bathub && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>욕조</span>
+            )}
+            {roomAmenities.iron && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>다리미</span>
+            )}
+            {roomAmenities.pool && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>개인풀</span>
+            )}
+            {roomAmenities.inAnnex && (
+              <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                별관위치
+              </span>
+            )}
+          </div>
         </DialogBody>
         <DialogFooter className='flex justify-end gap-2'>
           <Button

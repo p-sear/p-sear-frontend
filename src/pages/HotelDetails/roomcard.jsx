@@ -7,11 +7,10 @@ import {
 
 import DetailModal from './detailModal';
 
-// 파일명 수정
-
 const RoomCard = props => {
   // eslint-disable-next-line react/prop-types
-  const { name, description, imageUrl, checkIn, checkOut, price } = props;
+  const { roomId, name, description, imageUrl, checkIn, checkOut, price } =
+    props;
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>
@@ -45,7 +44,7 @@ const RoomCard = props => {
           </Typography>
         </CardBody>
         <div className='mt-auto flex justify-end  '>
-          <DetailModal />
+          <DetailModal roomId={roomId} />
         </div>
       </div>
     </Card>
