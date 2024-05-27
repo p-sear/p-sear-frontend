@@ -1,36 +1,36 @@
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
+
 import pserLoading from '../../assets/images/loading.png';
 import './MyReview.css';
 
 const MyReview = () => {
-  const reservations = [
-    {
-      id: 1,
-      photo: pserLoading,
-      name: '호텔 A',
-      roomType: '스탠다드',
-      checkIn: '2024.05.20',
-      checkOut: '2024.05.22',
-      price: '100,000',
-    },
-    {
-      id: 2,
-      photo: pserLoading,
-      name: '호텔 B',
-      roomType: '스위트',
-      checkIn: '2024.05.20',
-      checkOut: '2024.05.22',
-      price: '100,000',
-    },
-    {
-      id: 3,
-      photo: pserLoading,
-      name: '호텔 C',
-      roomType: '스탠다드',
-      checkIn: '2024.05.20',
-      checkOut: '2024.05.22',
-      price: '100,000',
-    },
-  ];
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    const fetchReservations = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/myReservation.json',
+        );
+        const data = response.data.body.content;
+
+        // 현재 날짜를 가져와서 체크인/체크아웃 날짜와 비교하여 완료된 예약만 필터링
+        const now = new Date();
+        const completedReservations = data.filter(reservation => {
+          const checkOutDate = new Date(reservation.checkOut);
+          return checkOutDate < now;
+        });
+
+        setReservations(completedReservations);
+      } catch (error) {
+        console.error('Error fetching reservations:', error);
+      }
+    };
+
+    fetchReservations();
+  }, []);
 
   return (
     <div className='myreview-container flex flex-col'>
@@ -39,11 +39,14 @@ const MyReview = () => {
       <div className='myreview-box flex w-full flex-col items-center justify-center'>
         {reservations.map(reservation => (
           <div
-            key={reservations.id}
+            key={reservation.id}
             className='myreview-item flex w-full items-center justify-between gap-20'
           >
             <div className='flex h-full items-center'>
-              <img src={pserLoading} alt='' />
+              <img
+                src={reservation.mainImage || pserLoading}
+                alt={reservation.name}
+              />
 
               <div className='flex h-full items-center'>
                 <div className='flex h-full flex-col justify-between'>
