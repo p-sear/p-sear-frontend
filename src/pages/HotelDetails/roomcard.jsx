@@ -11,7 +11,7 @@ import DetailModal from './detailModal';
 
 const RoomCard = props => {
   // eslint-disable-next-line react/prop-types
-  const { id, name, description, imageUrl, checkIn, checkOut, price } = props;
+  const { name, description, imageUrl, checkIn, checkOut, price } = props;
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>
