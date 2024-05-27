@@ -247,6 +247,9 @@ const HotelDetail = () => {
             name={room.name}
             description={room.description}
             imageUrl={room.imageUrl}
+            checkIn={room.checkIn}
+            checkOut={room.checkOut}
+            price={room.price}
           />
         ))}
       </div>
