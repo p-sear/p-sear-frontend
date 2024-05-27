@@ -21,12 +21,12 @@ const MyReview = () => {
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,
-            config,
           },
         };
 
         const response = await axios.get(
           'http://localhost:5173/dummy/myReservation.json',
+          config,
         );
         const data = response.data.body.content;
 
