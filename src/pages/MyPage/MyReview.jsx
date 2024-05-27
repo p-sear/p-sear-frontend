@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import {
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
@@ -9,6 +15,8 @@ import './MyReview.css';
 
 const MyReview = () => {
   const [reservations, setReservations] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // 페이지당 항목 수
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -46,6 +54,38 @@ const MyReview = () => {
     fetchReservations();
   }, []);
 
+  const totalPages = Math.ceil(reservations.length / itemsPerPage);
+
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1;
+    const endPage = Math.min(startPage + 9, totalPages);
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`page-number ${currentPage === i ? 'active' : ''}`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i}
+        </button>,
+      );
+    }
+
+    return pageNumbers;
+  };
+
+  const currentReservations = reservations.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -58,7 +98,7 @@ const MyReview = () => {
       <h1>이용 후기</h1>
 
       <div className='myreview-box flex w-full flex-col items-center justify-center'>
-        {reservations.map(reservation => (
+        {currentReservations.map(reservation => (
           <div
             key={reservation.id}
             className='myreview-item flex w-full items-center justify-between gap-20'
@@ -95,6 +135,36 @@ const MyReview = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className='pagination'>
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+        >
+          <MdKeyboardDoubleArrowLeft />
+        </button>
+        <button
+          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          <MdKeyboardArrowLeft />
+        </button>
+        {renderPageNumbers()}
+        <button
+          onClick={() =>
+            handlePageChange(Math.min(currentPage + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          <MdKeyboardArrowRight />
+        </button>
+        <button
+          onClick={() => handlePageChange(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          <MdKeyboardDoubleArrowRight />
+        </button>
       </div>
     </div>
   );
