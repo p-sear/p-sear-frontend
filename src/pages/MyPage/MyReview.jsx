@@ -13,6 +13,18 @@ const MyReview = () => {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('인증 토큰이 없습니다.');
+        }
+
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            config,
+          },
+        };
+
         const response = await axios.get(
           'http://localhost:5173/dummy/myReservation.json',
         );
