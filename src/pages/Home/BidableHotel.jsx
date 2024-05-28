@@ -54,7 +54,7 @@ const BidableHotel = () => {
     <div className='bidableHotel-container'>
       <div className='bidableHotel-title flex items-center justify-between'>
         <h1>입찰 가능 숙소</h1>
-        <a href='' className='flex items-center justify-center'>
+        <a href='/bidable' className='flex items-center justify-center'>
           더보기{' '}
           <span>
             <IoIosArrowForward />
