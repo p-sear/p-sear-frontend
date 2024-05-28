@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import { FaArrowLeft, FaStar } from 'react-icons/fa';
 
 import pserLoading from '../../assets/images/loading.png';
@@ -6,6 +9,40 @@ import PeopleSelector from '../../components/Search/PeopleSelector';
 import './BidableHotelList.css';
 
 const BidableHotelList = () => {
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(10);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5173/dummy/bidableHotelList.json')
+      .then(response => {
+        const data = response.data.body.content;
+        setHotels(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  const getCategoryInKorean = category => {
+    const categoryMap = {
+      HOTEL: '호텔',
+      PANSION: '펜션',
+    };
+    return categoryMap[category] || category;
+  };
+
+  const loadMoreHotels = () => {
+    setVisibleCount(prevCount => prevCount + 10);
+  };
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
   return (
     <div className='bidable flex items-center justify-center'>
       <div className='bidable-container flex flex-col items-center justify-center'>
@@ -28,25 +65,42 @@ const BidableHotelList = () => {
           </div>
 
           <div className='bidable-list w-full'>
-            <div className='bidable-card flex w-full items-center justify-center'>
-              <img src={pserLoading} alt='' className='h-full object-cover' />
-
-              <div className='bidable-content w-full self-start'>
-                <p>3성급 호텔</p>
-                <h3>호텔 이름</h3>
-                <p>숙소 위치</p>
-                <p className='relative'>
-                  <FaStar className='star-icon absolute' />
-                  별점
-                </p>
+            {hotels.slice(0, visibleCount).map(hotel => (
+              <div
+                key={hotel.id}
+                className='bidable-card flex w-full items-center justify-center'
+              >
+                <img
+                  src={hotel.mainImage || pserLoading}
+                  alt={hotel.name}
+                  className='h-full object-cover'
+                />
+                <div className='bidable-content w-full self-start'>
+                  <p>{getCategoryInKorean(hotel.category)}</p>
+                  <h3>{hotel.name}</h3>
+                  <p>{hotel.city}</p>
+                  <p className='relative'>
+                    <FaStar className='star-icon absolute' />
+                    {hotel.rating}
+                  </p>
+                </div>
+                <div className='w-full self-end'>
+                  <p className='text-right'>
+                    최고 입찰가: {hotel.highestBid} 원
+                  </p>
+                  <p className='text-right'>
+                    즉시 입찰가: {hotel.instantBid} 원
+                  </p>
+                </div>
               </div>
-
-              <div className='w-full self-end'>
-                <p className='text-right'>최고 입잘가: 100,000 원</p>
-                <p className='text-right'>즉시 입찰가: 150,000 원</p>
-              </div>
-            </div>
+            ))}
           </div>
+
+          {visibleCount < hotels.length && (
+            <button className='load-more-btn w-full' onClick={loadMoreHotels}>
+              더 불러오기
+            </button>
+          )}
         </div>
       </div>
     </div>

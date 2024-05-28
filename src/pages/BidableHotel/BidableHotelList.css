@@ -12,7 +12,7 @@
 }
 
 .bidable-box {
-  gap: 30px;
+  gap: 50px;
 }
 
 .bidable-search {
@@ -28,6 +28,7 @@
   gap: 20px;
   grid-auto-rows: min-content;
   grid-template-columns: repeat(3, minmax(40px, 1fr));
+  grid-template-rows: repeat(3, min-content);
   height: auto;
   justify-content: center;
 }
@@ -57,4 +58,21 @@
   fill: #ffbb00;
   top: 50%;
   transform: translateY('-50%');
+}
+
+.bidable-card > div:nth-of-type(2) > p {
+  font-weight: bold;
+}
+.bidable-card > div:nth-of-type(2) > p:nth-of-type(2) {
+  color: #d83131;
+}
+
+.load-more-btn {
+  border: 1px solid lightgray;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px;
+}
+.load-more-btn:hover {
+  background-color: #f0e8e8;
 }
