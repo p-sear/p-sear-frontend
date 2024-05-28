@@ -22,7 +22,7 @@ const BidableHotelList = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
         setLoading(false);
       });
   }, []);
@@ -64,7 +64,7 @@ const BidableHotelList = () => {
             <button className='search-btn'>검색</button>
           </div>
 
-          <div className='bidable-list w-full'>
+          <div className='bidable-list flex w-full flex-col'>
             {hotels.slice(0, visibleCount).map(hotel => (
               <div
                 key={hotel.id}

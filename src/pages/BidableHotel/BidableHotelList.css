@@ -22,20 +22,28 @@
   gap: 10px;
 }
 
+.bidable-list {
+  gap: 30px;
+}
 .bidable-card {
   display: grid;
   flex: none;
   gap: 20px;
   grid-auto-rows: min-content;
   grid-template-columns: repeat(3, minmax(40px, 1fr));
-  grid-template-rows: repeat(3, min-content);
   height: auto;
   justify-content: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e7e7e7;
+  cursor: pointer;
 }
 .bidable-card > img {
   width: 100%;
   aspect-ratio: 3/2;
   border-radius: 10px;
+}
+.bidable-card > img:hover {
+  filter: brightness(0.8);
 }
 
 .bidable-content > p:nth-of-type(1) {
