@@ -57,8 +57,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "100,000",
-        "checkIn": "2024.05.20",
-        "checkOut": "2024.05.22"
+        "checkIn": "2024.11.11",
+        "checkOut": "2024.11.15"
       },
       {
         "id": 2,
@@ -95,8 +95,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "120,000",
-        "checkIn": "2024.01.27",
-        "checkOut": "2024.01.30"
+        "checkIn": "2024.08.03",
+        "checkOut": "2024.08.07"
       },
       {
         "id": 3,
@@ -133,8 +133,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "99,000",
-        "checkIn": "2023.06.18",
-        "checkOut": "2023.06.22"
+        "checkIn": "2024.06.18",
+        "checkOut": "2024.06.22"
       },
       {
         "id": 4,
@@ -171,8 +171,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "240,000",
-        "checkIn": "2023.05.05",
-        "checkOut": "2023.05.09"
+        "checkIn": "2024.05.05",
+        "checkOut": "2024.05.09"
       },
       {
         "id": 5,
@@ -209,8 +209,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "150,000",
-        "checkIn": "2022.12.25",
-        "checkOut": "2022.12.31"
+        "checkIn": "2023.12.25",
+        "checkOut": "2023.12.31"
       },
       {
         "id": 1,
@@ -247,8 +247,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "100,000",
-        "checkIn": "2024.05.20",
-        "checkOut": "2024.05.22"
+        "checkIn": "2022.05.20",
+        "checkOut": "2022.05.22"
       },
       {
         "id": 2,
@@ -285,8 +285,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "120,000",
-        "checkIn": "2024.01.27",
-        "checkOut": "2024.01.30"
+        "checkIn": "2022.01.27",
+        "checkOut": "2022.01.30"
       },
       {
         "id": 3,
