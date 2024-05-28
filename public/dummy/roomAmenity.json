@@ -1,0 +1,61 @@
+{
+  "message": "",
+  "body": {
+    "content": [
+      {
+        "id": 1,
+        "roomId": 1,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 1,
+        "roomId": 2,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 1,
+        "roomId": 3,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathub": true,
+        "iron": false,
+        "pool": false,
+        "pet": false,
+        "inAnnex": false
+      }
+    ]
+  }
+}

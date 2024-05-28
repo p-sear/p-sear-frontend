@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
@@ -73,52 +74,62 @@ const HotelList = () => {
   }, [fetchData]);
 
   return (
-    <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
-      <div className='flex flex-col space-y-4 lg:w-1/4'>
-        <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
-          <KaKaoMap />
+    <div>
+      <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
+        <div className='flex flex-col space-y-4 lg:w-1/4'>
+          <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
+            <KaKaoMap />
+          </div>
+
+          <MapModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+
+          <div className='m-4'>
+            <ListFilter />
+          </div>
         </div>
-        <MapModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        <div className='m-4'>
-          <ListFilter />
+        <div className='lg:flex lg:w-3/4 lg:justify-center'>
+          <div className='flex flex-col gap-4'>
+            <Typography variant='h3' className='-mb-4 mt-4'>
+              &apos;지역&apos; 숙소 ---개
+            </Typography>
+            {data.slice(0, visibleHotels).map((hotel, index) => {
+              if (index + 1 === visibleHotels) {
+                return (
+                  <HotelCard
+                    ref={lastHotelCardRef}
+                    key={index}
+                    id={hotel.id}
+                    name={hotel.name}
+                    description={hotel.description}
+                    imageUrl={hotel.imageUrl}
+                  />
+                );
+              } else {
+                return (
+                  <HotelCard
+                    key={index}
+                    id={hotel.id}
+                    name={hotel.name}
+                    description={hotel.description}
+                    imageUrl={hotel.imageUrl}
+                  />
+                );
+              }
+            })}
+          </div>
         </div>
+        {showScrollToTop && (
+          <button
+            onClick={scrollToTop}
+            className='fixed bottom-4 right-4 flex items-center justify-center rounded-full bg-blue-100 p-3 text-white shadow-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50'
+          >
+            <FontAwesomeIcon icon={faArrowUp} />
+          </button>
+        )}
       </div>
-      <div className='lg:flex lg:w-3/4 lg:justify-center'>
-        <div className='flex flex-col gap-4'>
-          {data.slice(0, visibleHotels).map((hotel, index) => {
-            if (index + 1 === visibleHotels) {
-              return (
-                <HotelCard
-                  ref={lastHotelCardRef}
-                  key={index}
-                  id={hotel.id}
-                  name={hotel.name}
-                  description={hotel.description}
-                  imageUrl={hotel.imageUrl}
-                />
-              );
-            } else {
-              return (
-                <HotelCard
-                  key={index}
-                  id={hotel.id}
-                  name={hotel.name}
-                  description={hotel.description}
-                  imageUrl={hotel.imageUrl}
-                />
-              );
-            }
-          })}
-        </div>
-      </div>
-      {showScrollToTop && (
-        <button
-          onClick={scrollToTop}
-          className='fixed bottom-4 right-4 flex items-center justify-center rounded-full bg-blue-100 p-3 text-white shadow-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50'
-        >
-          <FontAwesomeIcon icon={faArrowUp} />
-        </button>
-      )}
     </div>
   );
 };
