@@ -1,0 +1,35 @@
+{
+  "message": "",
+  "body": [
+    {
+      "id": "1",
+      "userId": "1",
+      "name": "히든 클리프 호텔&네이처",
+      "category": "5성급 블랙 호텔",
+      "description": "하이",
+      "notice": "",
+      "province": "",
+      "city": "제주",
+      "district": "서귀포시",
+      "detailedAddress": "예래해안로 542",
+      "latitude": "33.2548845",
+      "longtitude": "126.4023408",
+      "mainImage": "",
+      "visitGuidance": "",
+      "wifi": true,
+      "barbecue": true,
+      "sauna": true,
+      "swimmingPool": true,
+      "restaurant": true,
+      "roofTop": true,
+      "fitness": true,
+      "dryer": true,
+      "breakfast": true,
+      "smokingArea": true,
+      "allTimeDesk": true,
+      "luggageStorage": true,
+      "snackBar": true,
+      "petFriendly": true
+    }
+  ]
+}
