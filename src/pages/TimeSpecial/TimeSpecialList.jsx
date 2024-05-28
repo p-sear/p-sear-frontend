@@ -6,7 +6,7 @@ import { FaArrowLeft, FaStar } from 'react-icons/fa';
 import pserLoading from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
-import './TimeSpecial.css';
+import './TimeSpecialList.css';
 
 const TimeSpecialList = () => {
   const [hotels, setHotels] = useState([]);
@@ -64,7 +64,7 @@ const TimeSpecialList = () => {
             <button className='search-btn'>검색</button>
           </div>
 
-          <div className='timespecial-list w-full'>
+          <div className='timespecial-list flex w-full flex-col'>
             {hotels.slice(0, visibleCount).map(hotel => (
               <div
                 key={hotel.id}
@@ -84,10 +84,12 @@ const TimeSpecialList = () => {
                     {hotel.rating}
                   </p>
                 </div>
-                <div className='w-full self-end'>
-                  <b>타임 특가</b>
-                  <span>{hotel.price} 원</span>
-                  <span>{hotel.special} 원</span>
+                <div className='flex w-full flex-col items-end justify-end self-end'>
+                  <p>{hotel.price} 원</p>
+                  <div className='flex items-center gap-2'>
+                    <p>타임 특가</p>
+                    <p>{hotel.special} 원</p>
+                  </div>
                 </div>
               </div>
             ))}
