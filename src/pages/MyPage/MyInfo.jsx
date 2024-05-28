@@ -132,13 +132,18 @@ const MyInfo = () => {
                 name='password'
                 value={tempInfo.password}
                 onChange={handleChange}
+                className='pw-input'
               />
             ) : (
-              <p>
-                {userInfo.password == null
-                  ? localStorage.getItem('password')
-                  : userInfo.password}
-              </p>
+              <input
+                type='password'
+                value={
+                  userInfo.password == null
+                    ? localStorage.getItem('password')
+                    : userInfo.password
+                }
+                className='pw-saved'
+              />
             )}
           </div>
           <button

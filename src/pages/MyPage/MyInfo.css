@@ -35,7 +35,7 @@
 
 .myinfo-name > div > input,
 .myinfo-tel > div > input,
-.myinfo-pw > div > input,
+.pw-input,
 .myinfo-intro > div > textarea {
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -48,4 +48,8 @@
 .myinfo-pw > div > input:focus,
 .myinfo-intro > div > textarea:focus {
   outline: none;
+}
+
+.pw-saved {
+  background-color: #f8f8f8;
 }
