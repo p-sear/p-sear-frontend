@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import authInstance from '../../axios/utils/authInstance';
-import userinfoState from '../../recoils/userinfoState';
+import userinfoState from '../../recoils/userinfoState.js';
 import './Login.css';
 import SocialLogin from './SocialLogin';
 

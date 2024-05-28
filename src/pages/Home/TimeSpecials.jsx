@@ -1,47 +1,48 @@
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './TimeSpecials.css';
 
 const TimeSpecials = () => {
-  const hotels = [
-    {
-      id: 1,
-      name: '호텔 A',
-      location: '서울',
-      rating: 5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 2,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 3,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 4,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-  ];
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/timeSpecialList.json',
+          {
+            params: {
+              page: 0,
+              size: 4,
+              sort: 'string',
+            },
+          },
+        );
+
+        const hotelsData = response.data.body.content
+          .slice(0, 4)
+          .map(hotel => ({
+            id: hotel.id,
+            name: hotel.name,
+            location: `${hotel.city}`,
+            rating: hotel.rating,
+            price: hotel.price,
+            special: hotel.special,
+            photo: hotel.mainImage || pserLoading,
+          }));
+
+        setHotels(hotelsData);
+      } catch (error) {
+        console.error('타임 특가 숙소 조회 API 오류: ', error);
+      }
+    };
+
+    fetchHotels();
+  }, []);
 
   return (
     <div className='timespecials-container'>

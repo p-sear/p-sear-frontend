@@ -1,64 +1,54 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import hotelImg from '../../assets/images/hotel.png';
+import pserLoading from '../../assets/images/loading.png';
 import './BidableHotel.css';
 
 const BidableHotel = () => {
-  // const [hotels, setHotels] = useState([]);
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // const fetchHotels = async () => {
-  //     try {
-  //       const response = await fetch('api/rooms');
-  //       if (!response.ok) {
-  //         throw new Error('API 호출에 실패했습니다.');
-  //       }
-  //       const data = await response.json();
-  //       return data.hotels;
-  //     } catch (error) {
-  //       console.error(error);
-  //       return [];
-  //     }
-  // };
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/bidableHotelList.json',
+          {
+            params: {
+              page: 0,
+              size: 4,
+              sort: 'string', // 필요한 정렬 기준으로 수정
+            },
+          },
+        );
 
-  const hotels = [
-    {
-      id: 1,
-      name: '호텔 A',
-      location: '서울',
-      rating: 5,
-      highestBid: '100,000',
-      instantBid: '150,000',
-      photo: hotelImg,
-    },
-    {
-      id: 2,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-    {
-      id: 3,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-    {
-      id: 4,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-  ];
+        // API에서 필요한 데이터만 추출하여 상태에 저장
+        const hotelsData = response.data.body.content.map(hotel => ({
+          id: hotel.id,
+          name: hotel.name,
+          location: `${hotel.city}`,
+          rating: hotel.rating, // 실제 API에 아직 별점 없음
+          highestBid: hotel.highestBid, // 실제 백엔드 API에 아직 최고 입찰가 없는 상태
+          instantBid: hotel.instantBid, // 실제 백엔드 API에 아직 즉시 입찰가 없는 상태
+          photo: hotel.mainImage || pserLoading, // 이미지가 없는 경우 기본 이미지 사용
+        }));
+
+        setHotels(hotelsData);
+        setLoading(false);
+      } catch (error) {
+        console.error('호텔 조회 API 오류:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchHotels();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='bidableHotel-container'>
@@ -72,21 +62,8 @@ const BidableHotel = () => {
         </a>
       </div>
 
-      {/* <div className="bidableHotel-content">
-          {hotels.map(hotel => (
-          <div key={hotel.id}>
-              <img src={hotel.photo} alt={hotel.name} style={{ width: '100px', height: '100px' }} />
-              <h2>{hotel.name}</h2>
-              <p>위치: {hotel.location}</p>
-              <p>별점: {hotel.rating}</p>
-              <p>최고 입찰가: {hotel.highestBid}</p>
-              <p>즉시 입찰가: {hotel.instantBid}</p>
-          </div>
-          ))}
-          </div> */}
-
       <div className='bidableHotel-content'>
-        {hotels.map(hotel => (
+        {hotels.slice(0, 4).map(hotel => (
           <div
             className='bidableHotel-box flex flex-col justify-center'
             key={hotel.id}
