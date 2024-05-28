@@ -13,7 +13,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 // eslint-disable-next-line react/prop-types
-const DetailModal = ({ roomId }) => {
+const DetailModal = ({ roomId, name }) => {
   const [open, setOpen] = useState(false);
   const [roomImages, setRoomImages] = useState([]);
   const [roomAmenities, setRoomAmenities] = useState([]);
@@ -86,7 +86,7 @@ const DetailModal = ({ roomId }) => {
         </svg>
       </Button>
       <Dialog open={open} handler={handleOpen} dismissible={false}>
-        <DialogHeader className='ml-4 mt-4'>스탠다드</DialogHeader>
+        <DialogHeader className='ml-4 mt-4'>{name}</DialogHeader>
         <DialogBody>
           {roomImages.length > 0 && (
             <Carousel
@@ -119,7 +119,7 @@ const DetailModal = ({ roomId }) => {
               ))}
             </Carousel>
           )}
-          <div className='mb-4 flex flex-wrap'>
+          <div className='mt-4 flex flex-wrap'>
             {roomAmenities.heatingSystem && (
               <span className='m-1 rounded bg-gray-200 px-3 py-1'>난방</span>
             )}

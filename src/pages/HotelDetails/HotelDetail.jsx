@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { Button, Card, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
-import { router } from '../../router';
 import RatingBar from '../HotelInquiry/RatingBar';
 import RecommendCard from './RecommendCard';
 import HotelImage from './hotelImage';
@@ -19,6 +19,7 @@ const HotelDetail = () => {
   const [roomData, setRoomData] = useState([]);
   const [recommendedHotels, setRecommendedHotels] = useState([]);
   const [hotelDetails, setHotelDetails] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRoomData = async () => {
@@ -58,9 +59,10 @@ const HotelDetail = () => {
     fetchRoomData();
     fetchRecommendedHotels();
   }, []);
+  console.log(roomData);
 
-  const handleButtonClick = () => {
-    router.navigate('/hotel-reservation');
+  const handleButtonClick = (hotelName, roomData) => {
+    navigate('/hotel-reservation', { state: { hotelName, roomData } });
   };
 
   const sliderSettings = {
@@ -103,7 +105,6 @@ const HotelDetail = () => {
       <div className='mb-8'>
         <HotelImage />
       </div>
-
       <div
         key={hotelDetails.id}
         className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'
@@ -223,14 +224,17 @@ const HotelDetail = () => {
               <DateSelector />
               <PeopleSelector />
 
-              <Button color='blue' fullWidth onClick={handleButtonClick}>
+              <Button
+                color='blue'
+                fullWidth
+                onClick={() => handleButtonClick(hotelDetail.name, roomData)}
+              >
                 예약하기
               </Button>
             </div>
           </>
         ))}
       </div>
-
       <div className='m-4'>
         <Card className='w-full bg-gray-50 p-4 shadow-md'>
           <div className='flex items-center justify-between'>

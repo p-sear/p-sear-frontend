@@ -44,7 +44,7 @@ const RoomCard = props => {
           </Typography>
         </CardBody>
         <div className='mt-auto flex justify-end  '>
-          <DetailModal roomId={roomId} />
+          <DetailModal roomId={roomId} name={name} />
         </div>
       </div>
     </Card>
