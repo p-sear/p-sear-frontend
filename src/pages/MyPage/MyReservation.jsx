@@ -36,19 +36,16 @@ const MyReservation = () => {
           'http://localhost:5173/dummy/myReservation.json',
           config,
         );
+        const data = response.data.body.content;
 
-        const myReservationDatas = response.data.body.content.map(
-          myReservation => ({
-            id: myReservation.id,
-            name: myReservation.name,
-            roomType: myReservation.roomType,
-            checkIn: myReservation.checkIn,
-            checkOut: myReservation.checkOut,
-            price: myReservation.price,
-            photo: myReservation.mainImage || pserLoading,
-          }),
-        );
-        setReservations(myReservationDatas);
+        // 현재 날짜를 가져와서 체크인/체크아웃 날짜와 비교하여 예정인 예약만 필터링
+        const now = new Date();
+        const upcomingReservations = data.filter(reservation => {
+          const checkInDate = new Date(reservation.checkIn);
+          return checkInDate > now;
+        });
+
+        setReservations(upcomingReservations);
       } catch (error) {
         setError(error);
       } finally {
@@ -110,7 +107,7 @@ const MyReservation = () => {
             className='myreservation-item flex w-full items-center justify-between gap-20'
           >
             <div className='flex h-full items-center'>
-              <img src={reservation.photo || pserLoading} alt='' />
+              <img src={reservation.mainImage || pserLoading} alt='' />
 
               <div className='flex h-full items-center'>
                 <div className='flex h-full flex-col justify-between'>
