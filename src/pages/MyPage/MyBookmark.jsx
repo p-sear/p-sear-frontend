@@ -8,22 +8,30 @@ import './MyBookmark.css';
 
 const MyBookmark = () => {
   const [reservations, setReservations] = useState([]);
+  const accessToken = localStorage.getItem('token');
 
   useEffect(() => {
     axios
-      .get('http://localhost:5173/dummy/bookmark.json')
+      .get('http://localhost:5173/dummy/bookmark.json', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then(response => {
         setReservations(response.data.bookmark);
       })
       .catch(error => {
         console.error('찜 목록 조회 API 호출 에러:', error);
       });
-  }, []);
+  }, [accessToken]);
 
   // 숙소 찜(즐겨찾기) 취소 함수
   const cancelBookmark = hotel_id => {
     axios
       .delete('http://localhost:5173/dummy/bookmark.json', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
         data: { status: 0, hotel_id },
       })
       .then(response => {
