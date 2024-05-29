@@ -59,7 +59,8 @@ const HotelDetail = () => {
     fetchRoomData();
     fetchRecommendedHotels();
   }, []);
-  console.log(roomData);
+  console.log('test');
+  console.log(hotelDetails.name);
 
   const handleButtonClick = (hotelName, roomData) => {
     navigate('/hotel-reservation', { state: { hotelName, roomData } });
@@ -255,7 +256,7 @@ const HotelDetail = () => {
             checkOut={room.checkOut}
             price={room.price}
             roomData={roomData}
-            hotelName={hotelDetails.name}
+            hotelDetails={hotelDetails}
           />
         ))}
       </div>

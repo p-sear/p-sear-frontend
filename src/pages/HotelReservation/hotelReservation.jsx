@@ -8,7 +8,7 @@ import { router } from '../../router';
 
 const HotelReservation = () => {
   const location = useLocation();
-  const hotelName = location.state?.hotelName;
+  const hotelDetails = location.state?.hotelDetails;
   const roomData = location.state?.roomData || [];
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [tableRows, setTableRows] = useState([]);
@@ -17,7 +17,7 @@ const HotelReservation = () => {
     if (selectedRoom) {
       const newTableRows = [
         {
-          name: hotelName,
+          name: hotelDetails[0].name,
           room: selectedRoom?.name,
           date: `${selectedRoom?.checkIn} ~ ${selectedRoom?.checkOut}`,
           price: `${selectedRoom?.price}`,
@@ -27,7 +27,7 @@ const HotelReservation = () => {
     } else {
       setTableRows([]);
     }
-  }, [selectedRoom, hotelName]);
+  }, [selectedRoom, hotelDetails]);
 
   const handleRoomChange = roomName => {
     const room = roomData.find(r => r.name === roomName);

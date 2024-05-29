@@ -18,8 +18,7 @@ const RoomCard = props => {
     checkOut,
     price,
     roomData,
-
-    hotelName,
+    hotelDetails,
   } = props;
 
   return (
@@ -58,7 +57,7 @@ const RoomCard = props => {
             roomId={roomId}
             name={name}
             roomData={roomData.filter(room => room.roomId === roomId)}
-            hotelName={hotelName}
+            hotelDetails={hotelDetails}
           />
         </div>
       </div>

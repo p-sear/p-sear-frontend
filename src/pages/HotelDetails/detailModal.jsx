@@ -15,7 +15,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 // eslint-disable-next-line no-unused-vars
-const DetailModal = ({ roomId, name, roomData, hotelName }) => {
+const DetailModal = ({ roomId, name, roomData, hotelDetails }) => {
   const [open, setOpen] = useState(false);
   const [roomImages, setRoomImages] = useState([]);
   const [roomAmenities, setRoomAmenities] = useState([]);
@@ -68,7 +68,7 @@ const DetailModal = ({ roomId, name, roomData, hotelName }) => {
   console.log(roomData);
 
   const handleReservation = () => {
-    navigate('/hotel-reservation1', { state: { hotelName: name, roomData } });
+    navigate('/hotel-reservation1', { state: { hotelDetails, roomData } });
   };
 
   return (
