@@ -24,6 +24,78 @@
       "hotelName": "스카이베이",
       "hotelImage": "https://images.trvl-media.com/lodging/22000000/21240000/21230400/21230386/0b3e26c2.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
       "price": "155,900"
+    },
+    {
+      "id": "1",
+      "hotel_id": "1",
+      "status": "1",
+      "hotelName": "호텔A",
+      "hotelImage": "https://www.hotelscombined.co.kr/rimg/dimg/68/70/3b6806ce-city-20339-163ffc98a38.jpg?width=1366&height=768&xhint=1492&yhint=1248&crop=true",
+      "price": "120,000"
+    },
+    {
+      "id": "2",
+      "hotel_id": "2",
+      "status": "1",
+      "hotelName": "더 블로섬 교토",
+      "hotelImage": "https://www.jrhotelgroup.com/img/194/1.jpg",
+      "price": "90,000"
+    },
+    {
+      "id": "3",
+      "hotel_id": "5",
+      "status": "1",
+      "hotelName": "스카이베이",
+      "hotelImage": "https://images.trvl-media.com/lodging/22000000/21240000/21230400/21230386/0b3e26c2.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+      "price": "155,900"
+    },
+    {
+      "id": "1",
+      "hotel_id": "1",
+      "status": "1",
+      "hotelName": "호텔A",
+      "hotelImage": "https://www.hotelscombined.co.kr/rimg/dimg/68/70/3b6806ce-city-20339-163ffc98a38.jpg?width=1366&height=768&xhint=1492&yhint=1248&crop=true",
+      "price": "120,000"
+    },
+    {
+      "id": "2",
+      "hotel_id": "2",
+      "status": "1",
+      "hotelName": "더 블로섬 교토",
+      "hotelImage": "https://www.jrhotelgroup.com/img/194/1.jpg",
+      "price": "90,000"
+    },
+    {
+      "id": "3",
+      "hotel_id": "5",
+      "status": "1",
+      "hotelName": "스카이베이",
+      "hotelImage": "https://images.trvl-media.com/lodging/22000000/21240000/21230400/21230386/0b3e26c2.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+      "price": "155,900"
+    },
+    {
+      "id": "1",
+      "hotel_id": "1",
+      "status": "1",
+      "hotelName": "호텔A",
+      "hotelImage": "https://www.hotelscombined.co.kr/rimg/dimg/68/70/3b6806ce-city-20339-163ffc98a38.jpg?width=1366&height=768&xhint=1492&yhint=1248&crop=true",
+      "price": "120,000"
+    },
+    {
+      "id": "2",
+      "hotel_id": "2",
+      "status": "1",
+      "hotelName": "더 블로섬 교토",
+      "hotelImage": "https://www.jrhotelgroup.com/img/194/1.jpg",
+      "price": "90,000"
+    },
+    {
+      "id": "3",
+      "hotel_id": "5",
+      "status": "1",
+      "hotelName": "스카이베이",
+      "hotelImage": "https://images.trvl-media.com/lodging/22000000/21240000/21230400/21230386/0b3e26c2.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+      "price": "155,900"
     }
   ]
 }

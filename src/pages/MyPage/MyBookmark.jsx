@@ -2,13 +2,24 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { GoHeartFill } from 'react-icons/go';
+import {
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from 'react-icons/md';
 
 import pserLoading from '../../assets/images/loading.png';
 import './MyBookmark.css';
 
 const MyBookmark = () => {
-  const [reservations, setReservations] = useState([]);
+  const [bookmakrs, setBookmarks] = useState([]);
+
   const accessToken = localStorage.getItem('token');
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // 페이지당 항목 수
+  const totalPages = Math.ceil(bookmakrs.length / itemsPerPage);
 
   useEffect(() => {
     axios
@@ -18,7 +29,7 @@ const MyBookmark = () => {
         },
       })
       .then(response => {
-        setReservations(response.data.bookmark);
+        setBookmarks(response.data.bookmark);
       })
       .catch(error => {
         console.error('찜 목록 조회 API 호출 에러:', error);
@@ -37,8 +48,8 @@ const MyBookmark = () => {
       .then(response => {
         console.log(response.data.message);
         // 즐겨찾기 취소 성공 후 목록 갱신
-        setReservations(
-          reservations.filter(item => item.hotel_id !== hotel_id.toString()),
+        setBookmarks(
+          bookmakrs.filter(item => item.hotel_id !== hotel_id.toString()),
         );
       })
       .catch(error => {
@@ -46,23 +57,53 @@ const MyBookmark = () => {
       });
   };
 
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1;
+    const endPage = Math.min(startPage + 9, totalPages);
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`page-number ${currentPage === i ? 'active' : ''}`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i}
+        </button>,
+      );
+    }
+
+    return pageNumbers;
+  };
+
+  const currentBookmakrs = bookmakrs.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
   return (
     <div className='mybookmark-container flex flex-col'>
       <h1>찜한 숙소</h1>
 
       <div className='mybookmark-box flex w-full flex-col items-center justify-center'>
-        {reservations.map((reservation, index) => (
+        {currentBookmakrs.map((bookmark, index) => (
           <div
             key={index}
             className='mybookmark-item flex w-full items-center justify-between gap-20'
           >
             <div className='flex h-full items-center'>
               <div className='mybookmark-img relative'>
-                <img src={reservation.hotelImage || pserLoading} alt='' />
+                <img src={bookmark.hotelImage || pserLoading} alt='' />
                 <GoHeartFill
                   className='mybookmark-heart absolute'
                   size={'30px'}
-                  onClick={() => cancelBookmark(reservation.hotel_id)}
+                  onClick={() => cancelBookmark(bookmark.hotel_id)}
                 />
               </div>
 
@@ -72,8 +113,8 @@ const MyBookmark = () => {
                   <p>숙박 가격</p>
                 </div>
                 <div className='flex h-full flex-col justify-evenly font-bold'>
-                  <p>{reservation.hotelName}</p>
-                  <p>{reservation.price} 원</p>
+                  <p>{bookmark.hotelName}</p>
+                  <p>{bookmark.price} 원</p>
                 </div>
               </div>
             </div>
@@ -83,6 +124,36 @@ const MyBookmark = () => {
             </a>
           </div>
         ))}
+      </div>
+
+      <div className='pagination'>
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+        >
+          <MdKeyboardDoubleArrowLeft />
+        </button>
+        <button
+          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          <MdKeyboardArrowLeft />
+        </button>
+        {renderPageNumbers()}
+        <button
+          onClick={() =>
+            handlePageChange(Math.min(currentPage + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          <MdKeyboardArrowRight />
+        </button>
+        <button
+          onClick={() => handlePageChange(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          <MdKeyboardDoubleArrowRight />
+        </button>
       </div>
     </div>
   );
