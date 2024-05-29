@@ -10,6 +10,7 @@ import HotelList from './pages/HotelInquiry/HotelList.jsx';
 import StepProgress from './pages/HotelRegistration/StepProgress';
 import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
+import HotelReservation1 from './pages/HotelReservation/hotelReservation.jsx';
 import MyPage from './pages/MyPage/MyPage';
 import Review from './pages/Review/Review';
 import ReviewRegister from './pages/Review/register';
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: '/review-register', element: <ReviewRegister /> },
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
+      { path: '/hotel-reservation1', element: <HotelReservation1 /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
       { path: '/hotel-auction', element: <HotelAuction /> },
       { path: '/service-center', element: <ServiceCenter /> },

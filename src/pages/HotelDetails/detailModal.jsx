@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 
 import {
@@ -9,14 +10,16 @@ import {
 } from '@material-tailwind/react';
 import { Carousel } from '@material-tailwind/react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-// eslint-disable-next-line react/prop-types
-const DetailModal = ({ roomId, name }) => {
+// eslint-disable-next-line no-unused-vars
+const DetailModal = ({ roomId, name, roomData, hotelName }) => {
   const [open, setOpen] = useState(false);
   const [roomImages, setRoomImages] = useState([]);
   const [roomAmenities, setRoomAmenities] = useState([]);
+  const navigate = useNavigate();
 
   const handleOpen = () => setOpen(!open);
   const handleClose = () => setOpen(false);
@@ -62,6 +65,12 @@ const DetailModal = ({ roomId, name }) => {
     }
   }, [open, roomId]);
 
+  console.log(roomData);
+
+  const handleReservation = () => {
+    navigate('/hotel-reservation1', { state: { hotelName: name, roomData } });
+  };
+
   return (
     <>
       <Button
@@ -99,9 +108,7 @@ const DetailModal = ({ roomId, name }) => {
                   {new Array(length).fill('').map((_, i) => (
                     <span
                       key={i}
-                      className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                        activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
-                      }`}
+                      className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'}`}
                       onClick={() => setActiveIndex(i)}
                     />
                   ))}
@@ -170,7 +177,7 @@ const DetailModal = ({ roomId, name }) => {
         <DialogFooter className='flex justify-end gap-2'>
           <Button
             color='blue'
-            onClick={handleClose}
+            onClick={handleReservation}
             className='mr-1 text-white'
           >
             예약하기

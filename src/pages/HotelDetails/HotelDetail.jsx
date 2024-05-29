@@ -254,6 +254,8 @@ const HotelDetail = () => {
             checkIn={room.checkIn}
             checkOut={room.checkOut}
             price={room.price}
+            roomData={roomData}
+            hotelName={hotelDetails.name}
           />
         ))}
       </div>
