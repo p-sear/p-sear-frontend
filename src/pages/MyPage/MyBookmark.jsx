@@ -70,7 +70,9 @@ const MyBookmark = () => {
               </div>
             </div>
 
-            <button className='mybook-reserve-btn'>예약하기 &gt;</button>
+            <a href='/hotel-reservation' className='mybook-reserve-btn'>
+              예약하기 &gt;
+            </a>
           </div>
         ))}
       </div>
