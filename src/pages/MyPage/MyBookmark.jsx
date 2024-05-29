@@ -9,6 +9,7 @@ import {
   MdKeyboardDoubleArrowRight,
 } from 'react-icons/md';
 
+import emptyImg from '../../assets/icons/empty.png';
 import pserLoading from '../../assets/images/loading.png';
 import './MyBookmark.css';
 
@@ -92,38 +93,49 @@ const MyBookmark = () => {
       <h1>찜한 숙소</h1>
 
       <div className='mybookmark-box flex w-full flex-col items-center justify-center'>
-        {currentBookmakrs.map((bookmark, index) => (
-          <div
-            key={index}
-            className='mybookmark-item flex w-full items-center justify-between gap-20'
-          >
-            <div className='flex h-full items-center'>
-              <div className='mybookmark-img relative'>
-                <img src={bookmark.hotelImage || pserLoading} alt='' />
-                <GoHeartFill
-                  className='mybookmark-heart absolute'
-                  size={'30px'}
-                  onClick={() => cancelBookmark(bookmark.hotel_id)}
-                />
-              </div>
-
+        {currentBookmakrs.length > 0 ? (
+          currentBookmakrs.map((bookmark, index) => (
+            <div
+              key={index}
+              className='mybookmark-item flex w-full items-center justify-between gap-20'
+            >
               <div className='flex h-full items-center'>
-                <div className='flex h-full flex-col justify-evenly'>
-                  <p>숙소</p>
-                  <p>숙박 가격</p>
+                <div className='mybookmark-img relative'>
+                  <img src={bookmark.hotelImage || pserLoading} alt='' />
+                  <GoHeartFill
+                    className='mybookmark-heart absolute'
+                    size={'30px'}
+                    onClick={() => cancelBookmark(bookmark.hotel_id)}
+                  />
                 </div>
-                <div className='flex h-full flex-col justify-evenly font-bold'>
-                  <p>{bookmark.hotelName}</p>
-                  <p>{bookmark.price} 원</p>
+
+                <div className='flex h-full items-center'>
+                  <div className='flex h-full flex-col justify-evenly'>
+                    <p>숙소</p>
+                    <p>숙박 가격</p>
+                  </div>
+                  <div className='flex h-full flex-col justify-evenly font-bold'>
+                    <p>{bookmark.hotelName}</p>
+                    <p>{bookmark.price} 원</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <a href='/hotel-reservation' className='mybook-reserve-btn'>
-              예약하기 &gt;
-            </a>
+              <a href='/hotel-reservation' className='mybook-reserve-btn'>
+                예약하기 &gt;
+              </a>
+            </div>
+          ))
+        ) : (
+          <div className='flex flex-col items-center justify-center gap-5'>
+            <img src={emptyImg} alt='' style={{ width: '200px' }} />
+            <p className='text-center'>
+              찜 목록이 비어있어요.
+              <br />
+              마음에 드는 숙소를 찜 목록에 담아보세요!
+            </p>
           </div>
-        ))}
+        )}
       </div>
 
       <div className='pagination'>
