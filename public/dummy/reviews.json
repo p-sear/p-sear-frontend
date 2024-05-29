@@ -1,0 +1,84 @@
+{
+  "message": "후기 조회 성공",
+  "content": [
+    {
+      "id": "0",
+      "userName": "홍길동",
+      "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7oZfkbwXWHHaDIT-8UFRoDyvLFUyDMqOFFw&s",
+      "rating": "4",
+      "reviewDate": "2024.04.16",
+      "roomName": "[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰",
+      "reviewContent": "아난티 코브로 이름이 변경되었는데 코브란 말 자체가 대형 리조트란 뜻이라 호텔 규모가 엄청큽니다.주말에는 주차요원이 있었는데 평일이라 지하에 안내요원이 없어 처음오면 잘 찾아가야 합니다.G층을 거쳐1층 컨시어지를 지나 10층이 체크인(9층은 이그제큐티브 이상객실 체크인)하는 곳으로 엘베 각 층마다 오션뷰가 펼쳐지고 곳곳이 포토존 입니다.엘베에서 먼 843호에 투숙했습니다.",
+      "reviewImages": [
+        "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/STq/image/UNlYynqatq10eEFUrYnuCrKNRA4.jpg",
+        "https://www.kukinews.com/data/kuk/image/20180831/art_1533112445.jpg",
+        "https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/wlQ/image/CcuIgdVZO1E2OGWS3fyO2I3h3wE.jpg"
+      ]
+    },
+    {
+      "id": "1",
+      "userName": "유저2",
+      "userImg": "",
+      "rating": "5",
+      "reviewDate": "2024.3.20",
+      "roomName": "[시티뷰] 스탠다드 트윈 룸",
+      "reviewContent": "너무 좋았어요. 다음에도 방문하고 싶어요.",
+      "reviewImages": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHKeDE8dm3kVH11c6V55MSPR1qTamw0WOKJw&s",
+        "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/05/Best-hotels-in-Tokyo-9.Mandarin-Oriental-Tokyo2.jpg",
+        "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/05/Best-hotels-in-Tokyo-10.Ritz-Carlton-Tokyo2.jpg",
+        "https://www.princehotels.com/parktower/wp-content/uploads/sites/14/2019/07/20221220-1.jpg",
+        "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/05/Best-hotels-in-Tokyo-1.Palace-Hotel-Tokyo1.jpg",
+        "https://www.hotelscombined.co.kr/rimg/himg/9b/88/58/ice-157315710-79078021_3XL-654675.jpg?width=968&height=607&crop=true"
+      ]
+    },
+    {
+      "id": "2",
+      "userName": "권지용",
+      "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFJSK2xOS5AyzheD0YOBfiEZbeyZ4Nib-owQ&s",
+      "rating": "5",
+      "reviewDate": "2024.03.11",
+      "roomName": "슈페리어 패밀리 트윈 (노오션뷰 / Room Only)",
+      "reviewContent": "1. 위치 : 일단 바다앞🌊이라 이걸로 만족도가 너무 큽니다👍👍👍 객실타입중 오션뷰는 누워서 바로 바다만보이고 하프오션뷰도 해변가쭉이어서 바다보여 고층배정만 된다면 만족하실겁니다. 숙소 앞 소나무와 산책거리도 조용하고 공기도 상쾌해 너무 좋습니다 강문해변 걸어서 5분거리이고 차탄다면 경포해변&안목해변 차로 5분거리라 위치도 훌륭합니다 2. 객실 및 컨디션 : 객실정비 깔끔합니다 다만 바닥이나 화장실쪽은 생활기스나 파임정도는 눈에보이네요 전반적으로 사용하는데 불편함은 아예없었습니다 3. 부대시설 : 수영장 및 사우나 다 있지만 이번에는 라운지에서 해피아워만 즐겼습니다 해피아워 2인 포함에 이정도 객실요금이면 가성비 끝판왕이긴 합니다 라운지 음식도 생각보단 종류 다양했고 무엇보다 주류가 무제한이라 천천히 얘기하면서 바다뷰 즐겼네요 다만 이용시간 한시간은 너무 짧은거같네요(라운지는 전용 외부 엘베이용해야됩니다!) ❗️처음가신분들은 부대시설 및 숙소이용시 엘베 잘 숙지해야될거같고 사전체크인 미리 등록하여 불필요한 대기시간 줄이시면 될거같습니다",
+      "reviewImages": [
+        "https://content.r9cdn.net/rimg/himg/03/be/4f/ice-4844-107468398-988588.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1a58bcUHOdk_L3ux_vOPMZJj_yjloNRL1kw&s"
+      ]
+    },
+    {
+      "id": "3",
+      "userName": "아이유",
+      "userImg": "https://t4.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2fG8/image/LFot76NsuESpozaYaUdtxk6u5LU.jpg",
+      "rating": "3",
+      "reviewDate": "2024.02.26",
+      "roomName": "[2인 조식 패키지] 슈페리어 더블 시티뷰",
+      "reviewContent": "만족합니다.",
+      "reviewImages": []
+    },
+    {
+      "id": "4",
+      "userName": "태양",
+      "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvsPlk-Nzu488J_YLkjeyaBPEqh817XD20fNzk1xkypQr8n05hM_S4YE2JjGJp4e3tmCY&usqp=CAU",
+      "rating": "2",
+      "reviewDate": "2024.01.30",
+      "roomName": "디럭스 더블 오션뷰",
+      "reviewContent": "객실내에 필요한 물품이 다 구비되어있어서 굉장히 편합니다. 인덕션, 세탁기, 전자레인지, 포트, 식기류, 프라이팬 등이 구비되어 있습니다. 머리맡에 조명스위치가 있어서 편리했고 작지만 테이블과 의자2개도 유용하게 사용했습니다. 경포 해변에서 물놀이할 때 투숙하려고 생각중입니다. 주변에 식당도 있고 편의점도 있어서 새벽까지 먹고 노는데는 큰 무리 없었습니다. 두명이 동시에 샤워하기에는 부스가 조금 좁았습니다. 암막 커튼없이 블라인드가 설치되어있어서 늦잠을 자기에는 무리가 있을 것 같고 지하주차장은 1개층으로 되어있어서 여유가 있진 않습니다.  그치만 주변 길가에 주차가 가능해 문제는 없어보입니다.",
+      "reviewImages": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/98/04/96/tcn.jpg?w=1200&h=-1&s=1"
+      ]
+    },
+    {
+      "id": "5",
+      "userName": "테스트유저",
+      "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx1LwwOuP5y-VG3vI3QOG5v6BNNyzwZuV4gi1kNGQJMJSR81wfpSH_JrNGcvzKe5NEiU8&usqp=CAU",
+      "rating": "5",
+      "reviewDate": "2024.01.27",
+      "roomName": "듀플렉스 더블 (Room Only / 비전망)",
+      "reviewContent": "강릉에 자주 놀러가는 편인데 이번에는 다른곳에 숙소를 잡아보고싶어 찾아보다가 예약한 숙소인데 가격도 저렴한데 생각보다 건물이 엄청커서놀랐습니다. 직원분들도 친절하시고 방도 깔끔했습니다. 위치도 좋아서 근처에 편의점과 식당들도많고 날씨가좋아 루프탑도 정말예쁘고 좋앗습니다. 특히 여행다닐때 청결에 민감한편인데 정말깔끔하고 좋았습니다.주차장도 지상에 자리가 있어서 지하는 내려가보지못했지만 주차장도 넓고 좋았습니다. 정말만족한 숙소였습니다.ㅎㅎ",
+      "reviewImages": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMR3ktlMOZB6AjQXHdxDzEDsex6CTdmbMjgA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTliCItnqxGUEQfl7tXHG_A0vNxFZ7EwMsWzA&s"
+      ]
+    }
+  ]
+}
