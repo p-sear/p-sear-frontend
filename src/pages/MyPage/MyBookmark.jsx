@@ -38,27 +38,6 @@ const MyBookmark = () => {
       });
   };
 
-  // const reservations = [
-  //   {
-  //     id: 1,
-  //     photo: hotelImg,
-  //     name: '호텔 A',
-  //     price: '150,000',
-  //   },
-  //   {
-  //     id: 2,
-  //     photo: hotelImg,
-  //     name: '호텔 B',
-  //     price: '90,000',
-  //   },
-  //   {
-  //     id: 3,
-  //     photo: hotelImg,
-  //     name: '호텔 C',
-  //     price: '88,000',
-  //   },
-  // ];
-
   return (
     <div className='mybookmark-container flex flex-col'>
       <h1>찜한 숙소</h1>
