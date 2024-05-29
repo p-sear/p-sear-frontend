@@ -48,7 +48,7 @@ const TimeSpecials = () => {
     <div className='timespecials-container'>
       <div className='timespecials-title flex items-center justify-between'>
         <h1>타임 특가 숙소</h1>
-        <a href='' className='flex items-center justify-center'>
+        <a href='/time-special' className='flex items-center justify-center'>
           더보기{' '}
           <span>
             <IoIosArrowForward />
