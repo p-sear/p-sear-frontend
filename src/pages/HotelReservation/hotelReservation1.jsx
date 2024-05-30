@@ -15,7 +15,7 @@ const HotelReservation1 = () => {
     if (roomData) {
       const newTableRows = [
         {
-          name: hotelName, // 여기에서 hotelName을 설정합니다.
+          name: hotelName,
           room: roomData.name,
           date: `${roomData.checkIn} ~ ${roomData.checkOut}`,
           price: `${roomData.price}`,
