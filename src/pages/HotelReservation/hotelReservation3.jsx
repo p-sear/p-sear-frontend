@@ -6,17 +6,17 @@ import { useLocation } from 'react-router-dom';
 
 import kakaopay from '../../assets/icons/kakaopay.png';
 
-const HotelReservation2 = () => {
+const HotelReservation3 = () => {
   const location = useLocation();
   const hotelName = location.state?.hotelName;
-  const selectedRoom = location.state?.selectedRoom;
+  const roomData = location.state?.roomData;
 
   const [name, setName] = useState('');
   const [phoneNum, setPhoneNum] = useState('');
   const [visitMethod, setVisitMethod] = useState('');
 
   console.log(hotelName);
-  console.log(selectedRoom);
+  console.log(roomData);
   console.log(name);
   console.log(phoneNum);
 
@@ -109,4 +109,4 @@ const HotelReservation2 = () => {
   );
 };
 
-export default HotelReservation2;
+export default HotelReservation3;
