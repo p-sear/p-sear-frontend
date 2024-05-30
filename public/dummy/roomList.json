@@ -1,0 +1,35 @@
+{
+  "message": "",
+  "body": [
+    {
+      "id": "1",
+      "roomId": 1,
+      "name": "디럭스 트윈",
+      "description": "침대 두개.",
+      "checkIn": "17:00 시",
+      "checkOut": "11:00 시",
+      "price": "70,000원",
+      "imageUrl": "https://res.klook.com/image/upload/c_fill,w_627,h_470/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/awessankdbaeuib4xjks.webp"
+    },
+    {
+      "id": "1 ",
+      "roomId": 2,
+      "name": "디럭스 더블",
+      "checkIn": "17:00 시",
+      "checkOut": "11:00 시",
+      "price": "65,000원",
+      "description": "더블 침대 하나.",
+      "imageUrl": "https://www.yongpyong.co.kr/images/room/mobile/hotel/m_img_hotel_sdo_01.jpg"
+    },
+    {
+      "id": "1",
+      "roomId": 3,
+      "name": "싱글 트윈",
+      "description": "싱글 침대 두개.",
+      "checkIn": "20:00 시",
+      "checkOut": "11:00 시",
+      "price": "55,000원",
+      "imageUrl": "https://wehotel.co.kr/wp-content/uploads/sites/35/2023/07/WE-Hotel-Superior-Floor-OceanSFO_m-1.jpg"
+    }
+  ]
+}

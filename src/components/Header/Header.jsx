@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import logo from '../../assets/images/logo.png';
-import userinfoState from '../../recoils/userinfoState';
+import userinfoState from '../../recoils/userinfoState.js';
 import './Header.css';
 
 const Header = () => {
@@ -41,7 +41,7 @@ const Header = () => {
           {showDropdown && (
             <div className='header-menu absolute top-12 flex flex-col items-center justify-center'>
               <a href='/profile'>마이페이지</a>
-              <a href=''>설정</a>
+              <a href='/profile/settings'>설정</a>
               <button onClick={handleLogout}>로그아웃</button>
             </div>
           )}

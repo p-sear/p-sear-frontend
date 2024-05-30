@@ -32,7 +32,7 @@ const Auction = () => {
       <div className='flex justify-center'>
         <Accordion
           open={open === 0}
-          className=' m-4 w-2/3 rounded-lg border border-blue-gray-100 bg-blue-50 px-4'
+          className=' m-4 w-2/3 rounded-lg bg-gray-50 px-4 shadow-md'
         >
           <AccordionHeader className='flex justify-between'>
             <Typography variant='h5' className='ml-8 mr-8'>

@@ -132,6 +132,13 @@
   transform: translateY(-50%);
 }
 
+.user-img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 1300px) {
   .review-container {
     padding: 50px 100px 100px 100px;
