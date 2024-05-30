@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-// eslint-disable-next-line
 const DetailModal = ({ roomId, name, roomData, hotelName }) => {
   const [open, setOpen] = useState(false);
   const [roomImages, setRoomImages] = useState([]);
