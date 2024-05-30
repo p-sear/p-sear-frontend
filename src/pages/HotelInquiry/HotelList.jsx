@@ -97,8 +97,8 @@ const HotelList = () => {
             <Typography variant='h3' className='-mb-4 mt-4'>
               &apos;지역&apos; 숙소 ---개
             </Typography>
-            {data.slice(0, visibleHotels).map((hotel, index) => {
-              if (index + 1 === visibleHotels) {
+            {data.map((hotel, index) => {
+              if (index + 1) {
                 return (
                   <HotelCard
                     ref={lastHotelCardRef}
