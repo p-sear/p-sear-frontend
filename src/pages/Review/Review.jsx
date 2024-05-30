@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import axios from 'axios';
 import { FaArrowAltCircleLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { IoIosArrowUp, IoIosClose } from 'react-icons/io';
 
-import hotelImg from '../../assets/images/hotel.png';
-import roomImg from '../../assets/images/room.jpg';
+import pserLoading from '../../assets/images/loading.png';
 import './Review.css';
 
 const Review = () => {
@@ -35,41 +35,20 @@ const Review = () => {
     );
   };
 
-  const reviews = [
-    {
-      userName: '유저1',
-      rating: 4,
-      reviewDate: '2024.04.16',
-      roomName: '[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰',
-      reviewContent:
-        '아난티 코브로 이름이 변경되었는데 코브란 말 자체가 대형 리조트란 뜻이라 호텔 규모가 엄청큽니다.주말에는 주차요원이 있었는데 평일이라 지하에 안내요원이 없어 처음오면 잘 찾아가야 합니다.G층을 거쳐1층 컨시어지를 지나 10층이 체크인(9층은 이그제큐티브 이상객실 체크인)하는 곳으로 엘베 각 층마다 오션뷰가 펼쳐지고 곳곳이 포토존 입니다.엘베에서 먼 843호에 투숙했습니다.',
-      reviewImages: [hotelImg, roomImg, hotelImg, roomImg, hotelImg, roomImg],
-    },
-    {
-      userName: '유저2',
-      rating: 5,
-      reviewDate: '2024.04.13',
-      roomName: '[시티뷰] 스탠다드 트윈 룸',
-      reviewContent: '다음에도 방문하고 싶어요',
-      reviewImages: [roomImg, hotelImg],
-    },
-    {
-      userName: '유저3',
-      rating: 5,
-      reviewDate: '2024.04.12',
-      roomName: '[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰',
-      reviewContent: '정말 좋았어요.',
-      reviewImages: [roomImg, hotelImg, roomImg, hotelImg],
-    },
-    {
-      userName: '유저4',
-      rating: 3,
-      reviewDate: '2024.03.26',
-      roomName: '[시티뷰] 스탠다드 트윈 룸',
-      reviewContent: '다음에도 방문하고 싶어요',
-      reviewImages: [roomImg, hotelImg, roomImg, hotelImg, roomImg, roomImg],
-    },
-  ];
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5173/dummy/reviews.json')
+      .then(response => {
+        const fetchedReviews = response.data.content;
+        setReviews(fetchedReviews);
+        setSlideIndices(fetchedReviews.map(() => 0));
+      })
+      .catch(error => {
+        console.error('리뷰 조회 API 호출 실패:', error);
+      });
+  }, []);
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
@@ -139,7 +118,11 @@ const Review = () => {
         <div key={reviewIndex} className='review-box w-full'>
           <div className='flex w-full'>
             <div className='review-user flex h-full w-full items-center gap-2'>
-              <FaRegUserCircle size='20' />
+              {review.userImg ? (
+                <img src={review.userImg || pserLoading} className='user-img' />
+              ) : (
+                <FaRegUserCircle size='30' />
+              )}
               <p>{review.userName}</p>
             </div>
             <div className='review-content flex w-full flex-col gap-4'>
