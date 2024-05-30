@@ -12,6 +12,7 @@ import StepProgress from './pages/HotelRegistration/StepProgress';
 import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
 import MyPage from './pages/MyPage/MyPage';
+import ReservationDetail from './pages/MyPage/ReservationDetail.jsx';
 import Review from './pages/Review/Review';
 import ReviewRegister from './pages/Review/register';
 import RoomStep from './pages/RoomRegistration/RoomStep.jsx';
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
+      { path: '/reservatoin-detail', element: <ReservationDetail /> },
       { path: '/hotel-auction', element: <HotelAuction /> },
       { path: '/service-center', element: <ServiceCenter /> },
       { path: '/review', element: <Review /> },
