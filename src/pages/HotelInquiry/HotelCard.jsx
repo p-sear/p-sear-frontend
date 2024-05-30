@@ -30,7 +30,7 @@ const HotelCard = forwardRef((props, ref) => {
         <img
           src={imageUrl}
           alt='card-image'
-          className='h-full w-full object-cover'
+          className='h-64 w-full object-cover'
         />
       </CardHeader>
       <CardBody className='relative'>
