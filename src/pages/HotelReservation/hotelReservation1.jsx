@@ -26,7 +26,7 @@ const HotelReservation1 = () => {
   }, [roomData, hotelName]);
 
   const handleButtonClick = () => {
-    router.navigate('/hotel-reservation2');
+    router.navigate('/hotel-reservation3', { state: { hotelName, roomData } });
   };
 
   const TABLE_COLUMNS = [
