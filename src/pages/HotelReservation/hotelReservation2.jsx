@@ -4,6 +4,8 @@ import { Input, Typography } from '@material-tailwind/react';
 import { Button, Radio } from '@material-tailwind/react';
 import { useLocation } from 'react-router-dom';
 
+import kakaopay from '../../assets/icons/kakaopay.png';
+
 const HotelReservation2 = () => {
   const location = useLocation();
   const hotelName = location.state?.hotelName;
@@ -96,8 +98,12 @@ const HotelReservation2 = () => {
       <Typography variant='h6' color='blue' className='mx-auto mt-4'>
         결제 수단
       </Typography>
-      <Button color='yellow' className='m-4'>
-        카카오 페이
+      <Button
+        color='yellow'
+        className='m-4'
+        style={{ width: '120px', height: '40px' }}
+      >
+        <img className='h-full w-full' src={kakaopay} alt='KakaoPay' />
       </Button>
     </div>
   );
