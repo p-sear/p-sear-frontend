@@ -14,13 +14,13 @@ import pserLoading from '../../assets/images/loading.png';
 import './MyBookmark.css';
 
 const MyBookmark = () => {
-  const [bookmakrs, setBookmarks] = useState([]);
+  const [bookmarks, setBookmarks] = useState([]);
 
   const accessToken = localStorage.getItem('token');
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // 페이지당 항목 수
-  const totalPages = Math.ceil(bookmakrs.length / itemsPerPage);
+  const totalPages = Math.ceil(bookmarks.length / itemsPerPage);
 
   useEffect(() => {
     axios
@@ -50,7 +50,7 @@ const MyBookmark = () => {
         console.log(response.data.message);
         // 즐겨찾기 취소 성공 후 목록 갱신
         setBookmarks(
-          bookmakrs.filter(item => item.hotel_id !== hotel_id.toString()),
+          bookmarks.filter(item => item.hotel_id !== hotel_id.toString()),
         );
       })
       .catch(error => {
@@ -83,7 +83,7 @@ const MyBookmark = () => {
     return pageNumbers;
   };
 
-  const currentBookmakrs = bookmakrs.slice(
+  const currentBookmakrs = bookmarks.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
@@ -139,33 +139,37 @@ const MyBookmark = () => {
       </div>
 
       <div className='pagination'>
-        <button
-          onClick={() => handlePageChange(1)}
-          disabled={currentPage === 1}
-        >
-          <MdKeyboardDoubleArrowLeft />
-        </button>
-        <button
-          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          <MdKeyboardArrowLeft />
-        </button>
-        {renderPageNumbers()}
-        <button
-          onClick={() =>
-            handlePageChange(Math.min(currentPage + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-        >
-          <MdKeyboardArrowRight />
-        </button>
-        <button
-          onClick={() => handlePageChange(totalPages)}
-          disabled={currentPage === totalPages}
-        >
-          <MdKeyboardDoubleArrowRight />
-        </button>
+        {bookmarks.length > 0 && (
+          <>
+            <button
+              onClick={() => handlePageChange(1)}
+              disabled={currentPage === 1}
+            >
+              <MdKeyboardDoubleArrowLeft />
+            </button>
+            <button
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              <MdKeyboardArrowLeft />
+            </button>
+            {renderPageNumbers()}
+            <button
+              onClick={() =>
+                handlePageChange(Math.min(currentPage + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+            >
+              <MdKeyboardArrowRight />
+            </button>
+            <button
+              onClick={() => handlePageChange(totalPages)}
+              disabled={currentPage === totalPages}
+            >
+              <MdKeyboardDoubleArrowRight />
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
