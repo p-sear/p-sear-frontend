@@ -7,17 +7,18 @@ import {
   CardHeader,
   Typography,
 } from '@material-tailwind/react';
+import { useNavigate } from 'react-router-dom';
 
-import { router } from '../../router';
 import RatingBar from './RatingBar';
 
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
   const { id, name, description, imageUrl } = props;
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    router.navigate('/hotel-detail');
+    navigate('/hotel-detail', { state: { id } });
   };
 
   return (
@@ -46,29 +47,27 @@ const HotelCard = forwardRef((props, ref) => {
 
         <RatingBar />
 
-        <a href='#' className='absolute bottom-4 right-4'>
-          <Button
-            variant='text'
-            className='flex items-center gap-2'
-            onClick={handleButtonClick}
+        <Button
+          variant='text'
+          className='bg-gary-50 -mb-6s ml-96 mt-2 flex items-end gap-2'
+          onClick={handleButtonClick}
+        >
+          더보기
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            strokeWidth={2}
+            className='h-4 w-4'
           >
-            더보기
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              strokeWidth={2}
-              className='h-4 w-4'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
-              />
-            </svg>
-          </Button>
-        </a>
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
+            />
+          </svg>
+        </Button>
       </CardBody>
     </Card>
   );
