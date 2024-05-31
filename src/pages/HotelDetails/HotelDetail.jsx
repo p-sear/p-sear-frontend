@@ -65,7 +65,7 @@ const HotelDetail = () => {
     fetchHotelDetails();
     fetchRoomData();
     fetchRecommendedHotels();
-  }, []);
+  }, [hotelId]);
 
   const handleButtonClick = (hotelName, roomData) => {
     navigate('/hotel-reservation', { state: { hotelName, roomData } });
