@@ -14,7 +14,7 @@ import RatingBar from './RatingBar';
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
-  const { id, name, description, imageUrl } = props;
+  const { id, name, description, imageUrl, price } = props;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -31,11 +31,11 @@ const HotelCard = forwardRef((props, ref) => {
         <img
           src={imageUrl}
           alt='card-image'
-          className='h-64 w-full object-cover'
+          className='h-72 w-full object-cover'
         />
       </CardHeader>
       <CardBody className='relative'>
-        <Typography variant='h6' color='gray' className='mb-4 uppercase'>
+        <Typography variant='h6' color='gray' className='mb-2 '>
           {id}
         </Typography>
         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -44,30 +44,34 @@ const HotelCard = forwardRef((props, ref) => {
         <Typography color='gray' className='mb-8 font-normal'>
           {description}
         </Typography>
+        <Typography color='black' className='mb-8 font-normal '>
+          가격 : {price}
+        </Typography>
+        <div className='mt-4  flex justify-between'>
+          <RatingBar />
 
-        <RatingBar />
-
-        <Button
-          variant='text'
-          className='bg-gary-50 -mb-5 ml-96 mt-2 flex items-end gap-2'
-          onClick={handleButtonClick}
-        >
-          더보기
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth={2}
-            className='h-4 w-4'
+          <Button
+            variant='text'
+            className='bg-gary-50 ml-48 flex items-end gap-2'
+            onClick={handleButtonClick}
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
-            />
-          </svg>
-        </Button>
+            더보기
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+              strokeWidth={2}
+              className='h-4 w-4'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
+              />
+            </svg>
+          </Button>
+        </div>
       </CardBody>
     </Card>
   );
