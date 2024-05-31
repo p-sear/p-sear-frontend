@@ -14,12 +14,11 @@ import ListFilter from './ListFilter';
 
 const HotelList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visibleHotels, setVisibleHotels] = useState(4);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const observer = useRef();
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get('keyword');
-  const page = searchParams.get('page');
+  const [page, setPage] = useState(1);
   const size = 10;
   const [data, setData] = useState([]);
 
@@ -28,7 +27,7 @@ const HotelList = () => {
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         setTimeout(() => {
-          setVisibleHotels(prevVisibleHotels => prevVisibleHotels + 4);
+          setPage(prevPage => prevPage + 1);
         }, 1000); // 1초
       }
     });
@@ -57,21 +56,24 @@ const HotelList = () => {
     };
   }, []);
 
-  const fetchData = useCallback(async () => {
-    const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
-    console.log('fetchData');
-    await axios
-      .get(apiUrl)
-      .then(response => {
-        console.log(response.data.body);
-        setData(response.data.body, ...data);
-      })
-      .catch(() => {});
-  }, [keyword, page, size]);
+  const fetchData = useCallback(
+    async page => {
+      const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
+      console.log('apiUrl :' + apiUrl);
+      await axios
+        .get(apiUrl)
+        .then(response => {
+          console.log(response.data.body);
+          setData(prevData => [...prevData, ...response.data.body]);
+        })
+        .catch(() => {});
+    },
+    [keyword, page, size],
+  );
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchData(page);
+  }, [fetchData, page]);
 
   return (
     <div>
@@ -95,8 +97,8 @@ const HotelList = () => {
             <Typography variant='h3' className='-mb-4 mt-4'>
               &apos;지역&apos; 숙소 ---개
             </Typography>
-            {data.slice(0, visibleHotels).map((hotel, index) => {
-              if (index + 1 === visibleHotels) {
+            {data.map((hotel, index) => {
+              if (index + 1) {
                 return (
                   <HotelCard
                     ref={lastHotelCardRef}
