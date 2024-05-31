@@ -49,7 +49,7 @@ const HotelCard = forwardRef((props, ref) => {
 
         <Button
           variant='text'
-          className='bg-gary-50 -mb-6s ml-96 mt-2 flex items-end gap-2'
+          className='bg-gary-50 -mb-5 ml-96 mt-2 flex items-end gap-2'
           onClick={handleButtonClick}
         >
           더보기
