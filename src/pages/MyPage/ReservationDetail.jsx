@@ -106,10 +106,9 @@ const ReservationDetail = () => {
               <h3>객실 정보</h3>
               <div className='flex gap-3'>
                 <img
-                  src={reservationData.mainImage || pserLoading}
+                  src={reservationData.roomImage || pserLoading}
                   className='res-room-img'
                 />
-                {/* 객실 이미지 사진으로 교체해야 함. */}
                 <div className='flex flex-col gap-2'>
                   <b>{reservationData.roomType}</b>
                   <p>
