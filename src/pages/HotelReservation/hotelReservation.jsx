@@ -35,7 +35,11 @@ const HotelReservation = () => {
   };
 
   const handleButtonClick = () => {
-    router.navigate('/hotel-reservation2');
+    if (selectedRoom) {
+      router.navigate('/hotel-reservation2', {
+        state: { hotelName, selectedRoom },
+      });
+    }
   };
 
   const TABLE_COLUMNS = [

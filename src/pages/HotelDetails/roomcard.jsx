@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Card,
   CardBody,
@@ -8,9 +9,17 @@ import {
 import DetailModal from './detailModal';
 
 const RoomCard = props => {
-  // eslint-disable-next-line react/prop-types
-  const { roomId, name, description, imageUrl, checkIn, checkOut, price } =
-    props;
+  const {
+    roomId,
+    name,
+    description,
+    imageUrl,
+    checkIn,
+    checkOut,
+    price,
+    roomData,
+    hotelName,
+  } = props;
 
   return (
     <Card className='mt-8 w-full max-w-6xl flex-row'>
@@ -44,7 +53,12 @@ const RoomCard = props => {
           </Typography>
         </CardBody>
         <div className='mt-auto flex justify-end  '>
-          <DetailModal roomId={roomId} name={name} />
+          <DetailModal
+            roomId={roomId}
+            name={name}
+            roomData={roomData.filter(room => room.roomId === roomId)}
+            hotelName={hotelName}
+          />
         </div>
       </div>
     </Card>
