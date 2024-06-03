@@ -5,26 +5,35 @@ import { TbUserFilled } from 'react-icons/tb';
 
 import './PeopleSelector.css';
 
-function PeopleSelector() {
+// eslint-disable-next-line react/prop-types
+function PeopleSelector({ initialCount = 1, onPeopleCountChange }) {
   const [showSelector, setShowSelector] = useState(false);
-  const [peopleCount, setPeopleCount] = useState(1);
+  const [peopleCount, setPeopleCount] = useState(initialCount);
   const selectorRef = useRef(null);
 
   useEffect(() => {
-    // 외부 클릭 감지 함수
+    setPeopleCount(initialCount);
+  }, [initialCount]);
+
+  useEffect(() => {
     function handleClickOutside(event) {
       if (selectorRef.current && !selectorRef.current.contains(event.target)) {
         setShowSelector(false);
       }
     }
 
-    // 이벤트 리스너 추가
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      // 컴포넌트 제거 시 이벤트 리스너 제거
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [selectorRef]);
+
+  const handleCountChange = newCount => {
+    setPeopleCount(newCount);
+    if (onPeopleCountChange) {
+      onPeopleCountChange(newCount);
+    }
+  };
 
   return (
     <div ref={selectorRef}>
@@ -45,7 +54,7 @@ function PeopleSelector() {
 
           <div>
             <button
-              onClick={() => setPeopleCount(peopleCount - 1)}
+              onClick={() => handleCountChange(peopleCount - 1)}
               disabled={peopleCount <= 1}
               className='minus-btn'
             >
@@ -53,7 +62,7 @@ function PeopleSelector() {
             </button>
             <span>{peopleCount}</span>
             <button
-              onClick={() => setPeopleCount(peopleCount + 1)}
+              onClick={() => handleCountChange(peopleCount + 1)}
               className='plus-btn'
             >
               <FaPlusCircle />

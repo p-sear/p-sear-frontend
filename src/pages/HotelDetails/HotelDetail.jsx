@@ -23,6 +23,7 @@ const HotelDetail = () => {
   const location = useLocation();
   const hotelId = location.state?.id;
   const dateRange = location.state?.datesRange;
+  const peopleCount = location.state?.peopleCount;
 
   console.log(hotelId);
   console.log('test');
@@ -229,7 +230,7 @@ const HotelDetail = () => {
                 </Map>
               </div>
               <DateSelector initialRange={dateRange} />
-              <PeopleSelector />
+              <PeopleSelector initialCount={peopleCount} />
 
               <Button
                 color='blue'
