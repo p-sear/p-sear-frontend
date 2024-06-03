@@ -4,6 +4,7 @@ import axios from 'axios';
 import { differenceInDays, parseISO } from 'date-fns';
 import { FaArrowLeftLong, FaStar } from 'react-icons/fa6';
 
+import printIcon from '../../assets/icons/print.png';
 import pserLoading from '../../assets/images/loading.png';
 import './ReservationDetail.css';
 
@@ -57,6 +58,10 @@ const ReservationDetail = () => {
   const checkInDate = parseISO(reservationData.checkIn);
   const checkOutDate = parseISO(reservationData.checkOut);
   const numberOfNights = differenceInDays(checkOutDate, checkInDate);
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   return (
     <div className='resDetail flex items-center justify-center'>
@@ -199,6 +204,14 @@ const ReservationDetail = () => {
             </div>
           </div>
         </div>
+
+        <button
+          onClick={handlePrint}
+          className='print-btn mt-20 flex flex-col items-center justify-center gap-1 self-center'
+        >
+          <img src={printIcon} alt='' />
+          인쇄
+        </button>
       </div>
     </div>
   );
