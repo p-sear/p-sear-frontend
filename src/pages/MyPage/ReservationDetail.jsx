@@ -58,12 +58,6 @@ const ReservationDetail = () => {
   const checkOutDate = parseISO(reservationData.checkOut);
   const numberOfNights = differenceInDays(checkOutDate, checkInDate);
 
-  // const daysBetweenDates = (checkInDate, checkOutDate) => {
-  //   const a = new Date(checkInDate).getTime(),
-  //     b = new Date(checkOutDate).getTime();
-  //   return Math.round(Math.abs(a - b) / (1000 * 60 * 60 * 24));
-  // };
-
   return (
     <div className='resDetail flex items-center justify-center'>
       <div className='resDetail-container flex flex-col justify-center gap-5'>
