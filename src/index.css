@@ -16,6 +16,7 @@
   box-sizing: border-box;
   color: #3c3c3c;
   font-family: 'SUITE-Regular';
+  -webkit-print-color-adjust: exact;
 }
 
 a {
