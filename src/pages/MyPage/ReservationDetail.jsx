@@ -112,7 +112,7 @@ const ReservationDetail = () => {
                 <div className='flex flex-col gap-2'>
                   <b>{reservationData.roomType}</b>
                   <p>
-                    {reservationData.category} | 객실 너비 | 금연 | 침대 사이즈
+                    {reservationData.area}㎡ | {reservationData.bed} 침대
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ const ReservationDetail = () => {
               <h3>투숙객 정보</h3>
               <div>
                 <p>대표 투숙객</p>
-                <b>예약자 이름</b>
+                <b>{reservationData.userName}</b>
               </div>
             </div>
 
@@ -145,7 +145,7 @@ const ReservationDetail = () => {
 
             <div className='p-5'>
               <p>총 예약 인원</p>
-              <b>성인 2명</b>
+              <b>{reservationData.members}명</b>
             </div>
           </div>
 
