@@ -22,7 +22,6 @@ const HotelList = () => {
   const size = 10;
   const [data, setData] = useState([]);
   const dateRange = location.state?.dateRange;
-  const peopleCount = location.state?.peopleCount;
 
   const lastHotelCardRef = useCallback(node => {
     if (observer.current) observer.current.disconnect();
@@ -92,7 +91,7 @@ const HotelList = () => {
           />
 
           <div className='m-4'>
-            <ListFilter dateRange={dateRange} peopleCount={peopleCount} />
+            <ListFilter dateRange={dateRange} />
           </div>
         </div>
         <div className='lg:flex lg:w-3/4 lg:justify-center'>
@@ -112,7 +111,6 @@ const HotelList = () => {
                     imageUrl={hotel.imageUrl}
                     price={hotel.price}
                     dateRange={dateRange}
-                    peopleCount={peopleCount}
                   />
                 );
               } else {
@@ -125,7 +123,6 @@ const HotelList = () => {
                     imageUrl={hotel.imageUrl}
                     price={hotel.price}
                     dateRange={dateRange}
-                    peopleCount={peopleCount}
                   />
                 );
               }

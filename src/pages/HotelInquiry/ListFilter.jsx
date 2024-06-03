@@ -5,7 +5,7 @@ import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 
 // eslint-disable-next-line react/prop-types
-const ListFilter = ({ dateRange, onFilterChange, peopleCount }) => {
+const ListFilter = ({ dateRange, onFilterChange }) => {
   const [selected, setSelected] = useState([]);
   const [selectedPublicServices, setSelectedPublicServices] = useState([]);
   const [selectedRoomServices, setSelectedRoomServices] = useState([]);
@@ -111,7 +111,7 @@ const ListFilter = ({ dateRange, onFilterChange, peopleCount }) => {
     <div className='rounded-lg p-4 shadow-md'>
       <div className='m-2'>
         <DateSelector initialRange={dateRange}></DateSelector>
-        <PeopleSelector initialCount={peopleCount} />
+        <PeopleSelector></PeopleSelector>
       </div>
       <h1 className='mb-2 text-lg font-bold'>필터</h1>
       <div className='mb-4'>
