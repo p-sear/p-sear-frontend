@@ -22,9 +22,10 @@ const HotelDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const hotelId = location.state?.id;
-  const dateRange = location.state?.datesRange;
+  const dateRange = location.state?.dateRange;
+  const peopleCount = location.state?.peopleCount;
 
-  console.log(hotelId);
+  console.log(dateRange);
   console.log('test');
 
   useEffect(() => {
@@ -68,8 +69,10 @@ const HotelDetail = () => {
     fetchRecommendedHotels();
   }, [hotelId]);
 
-  const handleButtonClick = (hotelName, roomData) => {
-    navigate('/hotel-reservation', { state: { hotelName, roomData } });
+  const handleButtonClick = (hotelName, roomData, peopleCount, dateRange) => {
+    navigate('/hotel-reservation', {
+      state: { hotelName, roomData, peopleCount, dateRange },
+    });
   };
 
   const sliderSettings = {
@@ -229,12 +232,19 @@ const HotelDetail = () => {
                 </Map>
               </div>
               <DateSelector initialRange={dateRange} />
-              <PeopleSelector />
+              <PeopleSelector initialCount={peopleCount} />
 
               <Button
                 color='blue'
                 fullWidth
-                onClick={() => handleButtonClick(hotelDetail.name, roomData)}
+                onClick={() =>
+                  handleButtonClick(
+                    hotelDetail.name,
+                    roomData,
+                    peopleCount,
+                    dateRange,
+                  )
+                }
               >
                 예약하기
               </Button>

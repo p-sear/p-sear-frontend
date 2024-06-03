@@ -14,11 +14,12 @@ import RatingBar from './RatingBar';
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
-  const { id, name, description, imageUrl, price, dateRange } = props;
+  const { id, name, description, imageUrl, price, dateRange, peopleCount } =
+    props;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/hotel-detail', { state: { id, dateRange } });
+    navigate('/hotel-detail', { state: { id, dateRange, peopleCount } });
   };
 
   return (

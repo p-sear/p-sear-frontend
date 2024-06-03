@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
