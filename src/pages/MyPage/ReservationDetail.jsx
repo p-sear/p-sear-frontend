@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import { differenceInDays, parseISO } from 'date-fns';
 import { FaArrowLeftLong, FaStar } from 'react-icons/fa6';
 
 import pserLoading from '../../assets/images/loading.png';
@@ -53,6 +54,16 @@ const ReservationDetail = () => {
     { name: '반려견 동반', available: reservationData.petFriendly },
   ].filter(service => service.available);
 
+  const checkInDate = parseISO(reservationData.checkIn);
+  const checkOutDate = parseISO(reservationData.checkOut);
+  const numberOfNights = differenceInDays(checkOutDate, checkInDate);
+
+  // const daysBetweenDates = (checkInDate, checkOutDate) => {
+  //   const a = new Date(checkInDate).getTime(),
+  //     b = new Date(checkOutDate).getTime();
+  //   return Math.round(Math.abs(a - b) / (1000 * 60 * 60 * 24));
+  // };
+
   return (
     <div className='resDetail flex items-center justify-center'>
       <div className='resDetail-container flex flex-col justify-center gap-5'>
@@ -86,7 +97,7 @@ const ReservationDetail = () => {
                   <b>{reservationData.checkIn}</b>
                   <p>15:00</p>
                 </div>
-                <p className='out-in'>4박</p>
+                <p className='out-in'>{numberOfNights}박</p>
                 <div>
                   <p className='text-xs'>체크아웃</p>
                   <b>{reservationData.checkOut}</b>
@@ -159,7 +170,7 @@ const ReservationDetail = () => {
 
               <div className='flex flex-col gap-1'>
                 <div className='flex justify-between'>
-                  <p>객실 1개 x 4박</p>
+                  <p>객실 1개 x {numberOfNights}박</p>
                   <p>KRW 229,441.83</p>
                 </div>
                 <div className='flex justify-between'>
