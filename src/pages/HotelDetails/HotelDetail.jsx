@@ -22,6 +22,7 @@ const HotelDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const hotelId = location.state?.id;
+  const dateRange = location.state?.datesRange;
 
   console.log(hotelId);
   console.log('test');
@@ -227,7 +228,7 @@ const HotelDetail = () => {
                   ></MapMarker>
                 </Map>
               </div>
-              <DateSelector />
+              <DateSelector initialRange={dateRange} />
               <PeopleSelector />
 
               <Button

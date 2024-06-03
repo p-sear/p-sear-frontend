@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -22,9 +21,7 @@ const HotelList = () => {
   const [page, setPage] = useState(1);
   const size = 10;
   const [data, setData] = useState([]);
-  const buttonText = location.state?.buttonText;
-
-  console.log('btntext text', { buttonText });
+  const dateRange = location.state?.dateRange;
 
   const lastHotelCardRef = useCallback(node => {
     if (observer.current) observer.current.disconnect();
@@ -41,6 +38,7 @@ const HotelList = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const handleScroll = () => {
     if (window.scrollY > 300) {
       setShowScrollToTop(true);
@@ -93,7 +91,7 @@ const HotelList = () => {
           />
 
           <div className='m-4'>
-            <ListFilter buttonText={buttonText} />
+            <ListFilter dateRange={dateRange} />
           </div>
         </div>
         <div className='lg:flex lg:w-3/4 lg:justify-center'>
@@ -112,6 +110,7 @@ const HotelList = () => {
                     description={hotel.description}
                     imageUrl={hotel.imageUrl}
                     price={hotel.price}
+                    dateRange={dateRange}
                   />
                 );
               } else {
@@ -123,6 +122,7 @@ const HotelList = () => {
                     description={hotel.description}
                     imageUrl={hotel.imageUrl}
                     price={hotel.price}
+                    dateRange={dateRange}
                   />
                 );
               }

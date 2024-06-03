@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import RangeSlider from '../../components/Modal/RangeSlider';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 
 // eslint-disable-next-line react/prop-types
-const ListFilter = ({ onFilterChange }) => {
+const ListFilter = ({ dateRange, onFilterChange }) => {
   const [selected, setSelected] = useState([]);
   const [selectedPublicServices, setSelectedPublicServices] = useState([]);
   const [selectedRoomServices, setSelectedRoomServices] = useState([]);
+
+  useEffect(() => {
+    if (dateRange) {
+      // 날짜가 초기 설정된 경우 다른 로직을 실행할 수 있음
+    }
+  }, [dateRange]);
 
   const hotelCategory = [
     '전체',
@@ -104,7 +110,7 @@ const ListFilter = ({ onFilterChange }) => {
   return (
     <div className='rounded-lg p-4 shadow-md'>
       <div className='m-2'>
-        <DateSelector></DateSelector>
+        <DateSelector initialRange={dateRange}></DateSelector>
         <PeopleSelector></PeopleSelector>
       </div>
       <h1 className='mb-2 text-lg font-bold'>필터</h1>
