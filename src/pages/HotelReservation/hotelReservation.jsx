@@ -33,7 +33,7 @@ const HotelReservation = () => {
     } else {
       setTableRows([]);
     }
-  }, [selectedRoom, hotelName]);
+  }, [selectedRoom, hotelName, dateRange, peopleCount]);
 
   const handleRoomChange = roomName => {
     const room = roomData.find(r => r.name === roomName);
