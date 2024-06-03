@@ -117,7 +117,7 @@ const ReservationDetail = () => {
                 <div className='flex flex-col gap-2'>
                   <b>{reservationData.roomType}</b>
                   <p>
-                    {reservationData.area}㎡ | {reservationData.bed} 침대
+                    {reservationData.area}㎡ | {reservationData.bed} 베드
                   </p>
                 </div>
               </div>
