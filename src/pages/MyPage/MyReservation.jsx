@@ -127,7 +127,9 @@ const MyReservation = () => {
               </div>
             </div>
 
-            <button className='myres-detail-btn'>상세 조회 &gt;</button>
+            <a href='/reservation-detail' className='myres-detail-btn'>
+              상세 조회 &gt;
+            </a>
           </div>
         ))}
       </div>
