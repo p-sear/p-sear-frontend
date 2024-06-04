@@ -25,7 +25,7 @@
       {
         "id": 1,
         "userId": 1,
-        "name": "호텔 A",
+        "name": "시그니엘 호텔",
         "category": "HOTEL",
         "roomType": "스탠다드",
         "description": "",
@@ -37,7 +37,12 @@
         "detailedAddress": "",
         "latitude": 0,
         "longtitude": 0,
-        "mainImage": "https://www.wyndhamhotels.com/content/dam/creative-images/apac/flat/1x1/apac_1x1_57994_gr__kien_giang_province.jpg?downsize=700:*",
+        "mainImage": "https://www.lottehotel.com/content/dam/lotte-hotel/global/common/company/seoul-signiel.jpg",
+        "roomImage": "https://www.lotteresort.com/static/upload/images/20221214/0ec012f8-56e2-4ffd-9362-8ad771423418.jpg",
+        "area": 32,
+        "members": 2,
+        "bed": "더블",
+        "userName": "홍길동",
         "businessNumber": "",
         "certUrl": "",
         "visitGuidance": "",
@@ -57,8 +62,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "100,000",
-        "checkIn": "2024.11.11",
-        "checkOut": "2024.11.15"
+        "checkIn": "2024-11-11",
+        "checkOut": "2024-11-15"
       },
       {
         "id": 2,
@@ -95,8 +100,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "120,000",
-        "checkIn": "2024.08.03",
-        "checkOut": "2024.08.07"
+        "checkIn": "2024-08-03",
+        "checkOut": "2024-08-07"
       },
       {
         "id": 3,
@@ -133,8 +138,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "99,000",
-        "checkIn": "2024.06.18",
-        "checkOut": "2024.06.22"
+        "checkIn": "2024-06-18",
+        "checkOut": "2024-06-22"
       },
       {
         "id": 4,
@@ -171,8 +176,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "240,000",
-        "checkIn": "2024.05.05",
-        "checkOut": "2024.05.09"
+        "checkIn": "2024-05-05",
+        "checkOut": "2024-05-09"
       },
       {
         "id": 5,
@@ -209,8 +214,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "150,000",
-        "checkIn": "2023.12.25",
-        "checkOut": "2023.12.31"
+        "checkIn": "2023-12-25",
+        "checkOut": "2023-12-31"
       },
       {
         "id": 1,
@@ -247,8 +252,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "100,000",
-        "checkIn": "2022.05.20",
-        "checkOut": "2022.05.22"
+        "checkIn": "2022-05-20",
+        "checkOut": "2022-05-22"
       },
       {
         "id": 2,
@@ -285,8 +290,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "120,000",
-        "checkIn": "2022.01.27",
-        "checkOut": "2022.01.30"
+        "checkIn": "2022-01-27",
+        "checkOut": "2022-01-30"
       },
       {
         "id": 3,
@@ -323,8 +328,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "99,000",
-        "checkIn": "2023.06.18",
-        "checkOut": "2023.06.22"
+        "checkIn": "2023-06-18",
+        "checkOut": "2023-06-22"
       },
       {
         "id": 4,
@@ -361,8 +366,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "240,000",
-        "checkIn": "2023.05.05",
-        "checkOut": "2023.05.09"
+        "checkIn": "2023-05-05",
+        "checkOut": "2023-05-09"
       },
       {
         "id": 5,
@@ -399,8 +404,8 @@
         "snackBar": true,
         "petFriendly": true,
         "price": "150,000",
-        "checkIn": "2022.12.25",
-        "checkOut": "2022.12.31"
+        "checkIn": "2022-12-25",
+        "checkOut": "2022-12-31"
       }
     ],
     "number": 0,
