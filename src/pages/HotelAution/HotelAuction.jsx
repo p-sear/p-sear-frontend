@@ -178,10 +178,11 @@ const HotelAuction = () => {
             </div>
           </Card>
         </div>
-        <Card>
+
+        <div className='m-4 flex items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'>
           <AuctionRoom></AuctionRoom>
           <AuctionBar></AuctionBar>
-        </Card>
+        </div>
       </div>
     </div>
   );
