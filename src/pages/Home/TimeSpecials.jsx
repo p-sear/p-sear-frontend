@@ -28,10 +28,10 @@ const TimeSpecials = () => {
           .map(hotel => ({
             id: hotel.id,
             name: hotel.name,
-            location: `${hotel.city}`,
-            rating: hotel.rating,
-            price: hotel.price,
-            special: hotel.special,
+            city: `${hotel.city}`,
+            gradeAverage: hotel.gradeAverage,
+            previousPrice: hotel.previousPrice,
+            salePrice: hotel.salePrice,
             photo: hotel.mainImage || pserLoading,
           }));
 
@@ -64,13 +64,15 @@ const TimeSpecials = () => {
           >
             <img src={hotel.photo} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>
-            <p>{hotel.location}</p>
+            <p>{hotel.city}</p>
             <p className='relative'>
-              <span className='star-icon absolute'>⭐</span> {hotel.rating}
+              <span className='star-icon absolute'>⭐</span>{' '}
+              {hotel.gradeAverage}
             </p>
             <b>타임 특가</b>
             <p>
-              <span>{hotel.price}</span> ➡️ <span>{hotel.special} 원</span>
+              <span>{hotel.previousPrice}</span> ➡️{' '}
+              <span>{hotel.salePrice} 원</span>
             </p>
           </div>
         ))}
