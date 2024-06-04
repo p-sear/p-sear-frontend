@@ -29,10 +29,16 @@
   grid-column: auto;
   width: 100%;
 }
+.timespecials-box:hover {
+  cursor: pointer;
+}
 .hotel-img {
   border-radius: 10px;
   width: 100%;
   aspect-ratio: 3/2;
+}
+.hotel-img:hover {
+  filter: brightness(0.8);
 }
 .timespecials-box > h3 {
   font-size: 20px;
