@@ -11,17 +11,30 @@ import { FaRegCalendar } from 'react-icons/fa6';
 
 import './DateSelector.css';
 
-function DateSelector() {
+// eslint-disable-next-line react/prop-types
+function DateSelector({ onDateChange, initialRange }) {
   const [state, setState] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
+      // eslint-disable-next-line react/prop-types
+      startDate: initialRange?.[0]?.startDate || new Date(),
+      // eslint-disable-next-line react/prop-types
+      endDate: initialRange?.[0]?.endDate || addDays(new Date(), 1),
       key: 'selection',
     },
   ]);
 
+  useEffect(() => {
+    if (initialRange) {
+      setState(initialRange);
+    }
+  }, [initialRange]);
+
   function handleSelect(ranges) {
-    setState([ranges.selection]);
+    const newRange = [ranges.selection];
+    setState(newRange);
+    if (onDateChange) {
+      onDateChange(newRange);
+    }
   }
 
   const [showPicker, setShowPicker] = useState(false);

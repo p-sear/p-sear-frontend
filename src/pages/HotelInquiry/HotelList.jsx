@@ -5,7 +5,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@material-tailwind/react';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import MapModal from '../../components/Modal/MapModal';
 import HotelCard from './HotelCard';
@@ -16,11 +16,14 @@ const HotelList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const observer = useRef();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get('keyword');
   const [page, setPage] = useState(1);
   const size = 10;
   const [data, setData] = useState([]);
+  const dateRange = location.state?.dateRange;
+  const peopleCount = location.state?.peopleCount;
 
   const lastHotelCardRef = useCallback(node => {
     if (observer.current) observer.current.disconnect();
@@ -37,6 +40,7 @@ const HotelList = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const handleScroll = () => {
     if (window.scrollY > 300) {
       setShowScrollToTop(true);
@@ -89,7 +93,7 @@ const HotelList = () => {
           />
 
           <div className='m-4'>
-            <ListFilter />
+            <ListFilter dateRange={dateRange} peopleCount={peopleCount} />
           </div>
         </div>
         <div className='lg:flex lg:w-3/4 lg:justify-center'>
@@ -107,6 +111,9 @@ const HotelList = () => {
                     name={hotel.name}
                     description={hotel.description}
                     imageUrl={hotel.imageUrl}
+                    price={hotel.price}
+                    dateRange={dateRange}
+                    peopleCount={peopleCount}
                   />
                 );
               } else {
@@ -117,6 +124,9 @@ const HotelList = () => {
                     name={hotel.name}
                     description={hotel.description}
                     imageUrl={hotel.imageUrl}
+                    price={hotel.price}
+                    dateRange={dateRange}
+                    peopleCount={peopleCount}
                   />
                 );
               }

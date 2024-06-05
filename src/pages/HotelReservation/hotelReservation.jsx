@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Card, Typography } from '@material-tailwind/react';
 import { Button, Option, Select } from '@material-tailwind/react';
+import format from 'date-fns/format';
 import { useLocation } from 'react-router-dom';
 
 import { router } from '../../router';
@@ -12,6 +13,10 @@ const HotelReservation = () => {
   const roomData = location.state?.roomData || [];
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [tableRows, setTableRows] = useState([]);
+  const peopleCount = location.state?.peopleCount;
+  const dateRange = location.state?.dateRange;
+
+  console.log(dateRange);
 
   useEffect(() => {
     if (selectedRoom) {
@@ -19,7 +24,8 @@ const HotelReservation = () => {
         {
           name: hotelName,
           room: selectedRoom?.name,
-          date: `${selectedRoom?.checkIn} ~ ${selectedRoom?.checkOut}`,
+          date: `${format(dateRange[0].startDate, 'yyyy.MM.dd')}  ${selectedRoom?.checkIn} ~ ${format(dateRange[0].endDate, 'yyyy.MM.dd')} ${selectedRoom?.checkOut}`,
+          people: peopleCount,
           price: `${selectedRoom?.price}`,
         },
       ];
@@ -27,7 +33,7 @@ const HotelReservation = () => {
     } else {
       setTableRows([]);
     }
-  }, [selectedRoom, hotelName]);
+  }, [selectedRoom, hotelName, dateRange, peopleCount]);
 
   const handleRoomChange = roomName => {
     const room = roomData.find(r => r.name === roomName);
@@ -46,6 +52,7 @@ const HotelReservation = () => {
     { label: '숙소', dataKey: 'name' },
     { label: '객실', dataKey: 'room' },
     { label: '일정', dataKey: 'date' },
+    { label: '인원', dataKey: 'people' },
     { label: '결제 금액', dataKey: 'price' },
   ];
 
@@ -112,7 +119,11 @@ const HotelReservation = () => {
                       color='black'
                       className='font-normal'
                     >
-                      {tableRows.length > 0 && tableRows[0][dataKey]}
+                      {dataKey === 'people'
+                        ? tableRows.length > 0 && tableRows[0][dataKey]
+                          ? `${tableRows[0][dataKey]}명`
+                          : ''
+                        : tableRows.length > 0 && tableRows[0][dataKey]}
                     </Typography>
                   </td>
                 </tr>

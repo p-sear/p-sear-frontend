@@ -9,10 +9,14 @@ import './Search.css';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
+  const [dateRange, setDateRange] = useState(null);
+  const [peopleCount, setPeopleCount] = useState(1);
   const navigate = useNavigate();
 
   const onSearch = () => {
-    navigate(`/hotel-list?keyword=${keyword}&page=1`);
+    navigate(`/hotel-list?keyword=${keyword}&page=1`, {
+      state: { dateRange, peopleCount },
+    });
   };
 
   return (
@@ -29,11 +33,14 @@ const Search = () => {
         </div>
 
         <div className='comp-wrapper'>
-          <DateSelector />
+          <DateSelector onDateChange={setDateRange} />
         </div>
 
         <div className='comp-wrapper'>
-          <PeopleSelector />
+          <PeopleSelector
+            initialCount={peopleCount}
+            onPeopleCountChange={setPeopleCount}
+          />
         </div>
 
         <button className='search-btn' onClick={onSearch}>

@@ -7,17 +7,19 @@ import {
   CardHeader,
   Typography,
 } from '@material-tailwind/react';
+import { useNavigate } from 'react-router-dom';
 
-import { router } from '../../router';
 import RatingBar from './RatingBar';
 
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
   // eslint-disable-next-line react/prop-types
-  const { id, name, description, imageUrl } = props;
+  const { id, name, description, imageUrl, price, dateRange, peopleCount } =
+    props;
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    router.navigate('/hotel-detail');
+    navigate('/hotel-detail', { state: { id, dateRange, peopleCount } });
   };
 
   return (
@@ -30,11 +32,11 @@ const HotelCard = forwardRef((props, ref) => {
         <img
           src={imageUrl}
           alt='card-image'
-          className='h-full w-full object-cover'
+          className='h-72 w-full object-cover'
         />
       </CardHeader>
       <CardBody className='relative'>
-        <Typography variant='h6' color='gray' className='mb-4 uppercase'>
+        <Typography variant='h6' color='gray' className='mb-2 '>
           {id}
         </Typography>
         <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -43,13 +45,15 @@ const HotelCard = forwardRef((props, ref) => {
         <Typography color='gray' className='mb-8 font-normal'>
           {description}
         </Typography>
+        <Typography color='black' className='mb-8 font-normal '>
+          가격 : {price}
+        </Typography>
+        <div className='mt-4  flex justify-between'>
+          <RatingBar />
 
-        <RatingBar />
-
-        <a href='#' className='absolute bottom-4 right-4'>
           <Button
             variant='text'
-            className='flex items-center gap-2'
+            className='bg-gary-50 ml-48 flex items-end gap-2'
             onClick={handleButtonClick}
           >
             더보기
@@ -68,7 +72,7 @@ const HotelCard = forwardRef((props, ref) => {
               />
             </svg>
           </Button>
-        </a>
+        </div>
       </CardBody>
     </Card>
   );

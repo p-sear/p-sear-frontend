@@ -2,64 +2,44 @@
   "message": "",
   "body": [
     {
-      "id": "블랙.5성급.호텔",
+      "id": "1",
+      "category": "5성급 블랙 호텔",
       "name": "서울신라호텔",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+      "description": "3호선 동대입구역 5번 출구에서 도보로 5분 ",
+      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp",
+      "price": "150,000"
     },
     {
-      "id": "블랙.5성급.호텔",
-      "name": "강원도 신라호텔2",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+      "id": "2",
+      "category": "모텔",
+      "name": "종로 부티크 호텔K",
+      "description": "종로 3가역 도보 6분",
+      "imageUrl": "https://image.goodchoice.kr/resize_792x480/adimg_new/1742/104937/a6a12c63b7b24ad6b5f91366fc69829d.jpg",
+      "price": "250,000"
     },
     {
-      "id": "블랙.5성급.호텔",
-      "name": "인천신라호텔3",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+      "id": "3",
+      "category": "모텔",
+      "name": "영등포 H-AVENUE",
+      "description": "영등포역 도보 4분",
+      "imageUrl": "https://image.goodchoice.kr/resize_792x480/adimg_new/844/524245/ea9c450caf813674d66fa972a1901ab2.jpg",
+      "price": "200,000"
     },
     {
-      "id": "블랙.5성급.호텔",
-      "name": "서울신라호텔",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+      "id": "4",
+      "category": "3성급 호텔",
+      "name": "신라스테이 구로",
+      "description": "구로디지털단지역 도보 7분",
+      "imageUrl": "https://image.goodchoice.kr/resize_792x480/affiliate/2021/12/30/61cd5eb540030.jpg",
+      "price": "250,000"
     },
     {
-      "id": "블랙.5성급.호텔",
-      "name": "강원도 신라호텔2",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
-    },
-    {
-      "id": "블랙.5성급.호텔",
-      "name": "인천신라호텔3",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
-    },
-    {
-      "id": "블랙.5성급.호텔",
-      "name": "서울신라호텔",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
-    },
-    {
-      "id": "블랙.5성급.호텔",
-      "name": "강원도 신라호텔2",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
-    },
-    {
-      "id": "블랙.5성급.호텔",
-      "name": "인천신라호텔3",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
-    },
-    {
-      "id": "블랙.5성급.호텔",
-      "name": "시흥 신라호텔4",
-      "description": "서울 장충동에 위치한 한국 최고의 특급호텔, 서울신라호텔입니다. 3호선 동대입구역 5번 출구에서 도보로 5분 거리에 있으며 명동과 동대문 방면으로 무료 셔틀버스를 운행하고 있습니다.",
-      "imageUrl": "https://i.namu.wiki/i/_VdL80a6q8YfJ3ob0cH0g6M4C4u3eafyHQV8oHFnZetT7yEjHPC8hybEh7-Xwfz6H6S4EkwBn6mkLvhb7rGscQ.webp"
+      "id": "5",
+      "category": "모텔",
+      "name": "건대 더 디자이너스 프리미어-화양동",
+      "description": "어린이대공원역 도보 10분",
+      "imageUrl": "https://image.goodchoice.kr/resize_792x480/adimg_new/49461/8046/17a48e6759fbbd5e0db7f5195d52db07.jpg",
+      "price": "50,000"
     }
   ]
 }
