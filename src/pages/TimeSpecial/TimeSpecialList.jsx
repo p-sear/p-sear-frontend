@@ -31,6 +31,7 @@ const TimeSpecialList = () => {
     const categoryMap = {
       HOTEL: '호텔',
       PANSION: '펜션',
+      POOL: '풀빌라',
     };
     return categoryMap[category] || category;
   };
@@ -81,14 +82,14 @@ const TimeSpecialList = () => {
                   <p>{hotel.city}</p>
                   <p className='relative'>
                     <FaStar className='star-icon absolute' />
-                    {hotel.rating}
+                    {hotel.gradeAverage}
                   </p>
                 </div>
                 <div className='flex w-full flex-col items-end justify-end self-end'>
-                  <p>{hotel.price} 원</p>
+                  <p>{hotel.previousPrice} 원</p>
                   <div className='flex items-center gap-2'>
                     <p>타임 특가</p>
-                    <p>{hotel.special} 원</p>
+                    <p>{hotel.salePrice} 원</p>
                   </div>
                 </div>
               </div>

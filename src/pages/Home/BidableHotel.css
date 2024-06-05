@@ -29,6 +29,9 @@
   grid-column: auto;
   width: 100%;
 }
+.bidableHotel-box:hover {
+  cursor: pointer;
+}
 .hotel-img {
   width: 100%;
   border-radius: 10px;
