@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, Card, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -20,6 +20,13 @@ const HotelDetail = () => {
   const [recommendedHotels, setRecommendedHotels] = useState([]);
   const [hotelDetails, setHotelDetails] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const hotelId = location.state?.id;
+  const dateRange = location.state?.dateRange;
+  const peopleCount = location.state?.peopleCount;
+
+  console.log(dateRange);
+  console.log('test');
 
   useEffect(() => {
     const fetchRoomData = async () => {
@@ -47,9 +54,11 @@ const HotelDetail = () => {
     const fetchHotelDetails = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5173/dummy/hotel.json',
+          `http://localhost:5173/dummy/hotel.json?id=${hotelId})`,
         );
-        setHotelDetails(response.data.body);
+        setHotelDetails(
+          response.data.body.filter(hotel => hotel.id === hotelId),
+        );
       } catch (error) {
         console.error('호텔 설명 오류', error);
       }
@@ -58,10 +67,12 @@ const HotelDetail = () => {
     fetchHotelDetails();
     fetchRoomData();
     fetchRecommendedHotels();
-  }, []);
+  }, [hotelId]);
 
-  const handleButtonClick = (hotelName, roomData) => {
-    navigate('/hotel-reservation', { state: { hotelName, roomData } });
+  const handleButtonClick = (hotelName, roomData, peopleCount, dateRange) => {
+    navigate('/hotel-reservation', {
+      state: { hotelName, roomData, peopleCount, dateRange },
+    });
   };
 
   const sliderSettings = {
@@ -110,7 +121,7 @@ const HotelDetail = () => {
       >
         {hotelDetails.map(hotelDetail => (
           <>
-            <div className=' group-disabled:w-full lg:mr-4 lg:w-3/4'>
+            <div className='group-disabled:w-full lg:mr-4 lg:w-3/4'>
               <Card className='bg-white p-6 shadow-md'>
                 <Typography variant='h6' color='black' className='mb-2'>
                   {hotelDetail.category}
@@ -220,13 +231,20 @@ const HotelDetail = () => {
                   ></MapMarker>
                 </Map>
               </div>
-              <DateSelector />
-              <PeopleSelector />
+              <DateSelector initialRange={dateRange} />
+              <PeopleSelector initialCount={peopleCount} />
 
               <Button
                 color='blue'
                 fullWidth
-                onClick={() => handleButtonClick(hotelDetail.name, roomData)}
+                onClick={() =>
+                  handleButtonClick(
+                    hotelDetail.name,
+                    roomData,
+                    peopleCount,
+                    dateRange,
+                  )
+                }
               >
                 예약하기
               </Button>

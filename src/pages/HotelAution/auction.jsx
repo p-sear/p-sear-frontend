@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 import {
   Accordion,
@@ -8,25 +10,42 @@ import {
 import { Typography } from '@material-tailwind/react';
 import { Input } from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
-
-const data = [
-  {
-    date: '24/04/30/12:00',
-    price: '74,000원',
-  },
-  {
-    date: '24/04/30/12:00',
-    price: '72,000원',
-  },
-  {
-    date: '24/04/30/12:00',
-    price: '70,000원',
-  },
-];
+import axios from 'axios';
 
 const Auction = () => {
   const [open, setOpen] = React.useState(1);
   const handleOpen = value => setOpen(open === value ? 0 : value);
+  const [auctionData, setAuctionData] = useState([]);
+  const [latestAuction, setLatestAuction] = useState({ date: '', price: '' });
+  const [inputPrice, setInputPrice] = useState('');
+
+  useEffect(() => {
+    const fetchAuctionData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/auctionData.json',
+        );
+        setAuctionData(response.data.body);
+        if (response.data.body.length > 0) {
+          const latest = response.data.body[response.data.body.length - 1];
+          setLatestAuction({ date: latest.date, price: latest.price });
+        }
+      } catch (error) {
+        console.error('경매 데이터 오류', error);
+      }
+    };
+
+    fetchAuctionData();
+  });
+  const handleInputPriceChange = e => {
+    const input = e.target.value;
+    const isNumber = /^[0-9]*$/;
+    if (isNumber.test(input) || input === '') {
+      setInputPrice(input);
+    }
+  };
+
+  console.log(inputPrice);
   return (
     <div>
       <div className='flex justify-center'>
@@ -40,11 +59,15 @@ const Auction = () => {
             </Typography>
 
             <Typography variant='h5' className='mr-4'>
-              24/04/30/13:00 80,000원
+              {latestAuction.date} {latestAuction.price}
             </Typography>
 
             <div className='mr-8 w-2/12'>
-              <Input label='금액 입력'></Input>
+              <Input
+                label='금액 입력'
+                value={inputPrice}
+                onChange={handleInputPriceChange}
+              ></Input>
             </div>
 
             <Button color='blue'>입찰</Button>
@@ -55,7 +78,7 @@ const Auction = () => {
             </div>
           </AccordionHeader>
 
-          {data.map(data => (
+          {auctionData.map(data => (
             <AccordionBody className='' key={data.price}>
               <Typography variant='h5' className='float-left'>
                 {data.date}
