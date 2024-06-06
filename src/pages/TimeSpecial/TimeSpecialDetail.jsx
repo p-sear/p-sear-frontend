@@ -1,276 +1,141 @@
-import { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa6';
+import { GoHeart } from 'react-icons/go';
 
-import { Button, Card, Typography } from '@material-tailwind/react';
-import axios from 'axios';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import { useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-
+import hotelImg from '../../assets/images/hotel.png';
+import pserLoadig from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
-import RecommendCard from '../HotelDetails/RecommendCard';
-import HotelImage from '../HotelDetails/hotelImage';
-import RoomCard from '../HotelDetails/roomcard';
-import RatingBar from '../HotelInquiry/RatingBar';
+import KaKaoMap from '../HotelInquiry/KaKaoMap';
+import './TimeSpecialDetail.css';
 
 const TimeSpecialDetail = () => {
-  const [roomData, setRoomData] = useState([]);
-  const [recommendedHotels, setRecommendedHotels] = useState([]);
-  const [hotelDetails, setHotelDetails] = useState([]);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchRoomData = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:5173/dummy/roomList.json',
-        );
-        setRoomData(response.data.body);
-      } catch (error) {
-        console.error('객실 리스트 오류', error);
-      }
-    };
-
-    const fetchRecommendedHotels = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:5173/dummy/recommendedList.json',
-        );
-        setRecommendedHotels(response.data.body);
-      } catch (error) {
-        console.error('추천 숙소 오류', error);
-      }
-    };
-
-    const fetchHotelDetails = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:5173/dummy/hotel.json',
-        );
-        setHotelDetails(response.data.body);
-      } catch (error) {
-        console.error('호텔 설명 오류', error);
-      }
-    };
-
-    fetchHotelDetails();
-    fetchRoomData();
-    fetchRecommendedHotels();
-  }, []);
-
-  const handleButtonClick = (hotelName, roomData) => {
-    navigate('/hotel-reservation', { state: { hotelName, roomData } });
-  };
-
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: '0px',
-    autoplay: true,
-    autoplaySpeed: 1000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
-    <div className='mx-auto max-w-7xl p-4'>
-      <div className='mb-8'>
-        <HotelImage />
-      </div>
-      <div
-        key={hotelDetails.id}
-        className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'
-      >
-        {hotelDetails.map(hotelDetail => (
-          <>
-            <div className=' group-disabled:w-full lg:mr-4 lg:w-3/4'>
-              <Card className='bg-white p-6 shadow-md'>
-                <Typography variant='h6' color='black' className='mb-2'>
-                  {hotelDetail.category}
-                </Typography>
-                <Typography variant='h3' color='black' className='mb-4'>
-                  {hotelDetail.name}
-                </Typography>
-                <Typography variant='h5' color='black' className='mb-4'>
-                  서비스 및 부대시설
-                </Typography>
-                <div className='mb-4 flex flex-wrap'>
-                  {hotelDetail.wifi && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      WIFI
-                    </span>
-                  )}
-                  {hotelDetail.barbecue && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      바베큐
-                    </span>
-                  )}
-                  {hotelDetail.sauna && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      사우나/스파
-                    </span>
-                  )}
-                  {hotelDetail.swimmingPool && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      수영장
-                    </span>
-                  )}
-                  {hotelDetail.restaurant && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      레스토랑
-                    </span>
-                  )}
-                  {hotelDetail.roofTop && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      루프탑
-                    </span>
-                  )}
-                  {hotelDetail.fitness && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      피트니스
-                    </span>
-                  )}
-                  {hotelDetail.dryer && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      건조기
-                    </span>
-                  )}
-                  {hotelDetail.breakfast && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      조식
-                    </span>
-                  )}
-                  {hotelDetail.smokingArea && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      흡연구역
-                    </span>
-                  )}
-                  {hotelDetail.allTimeDesk && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      24시간 데스크
-                    </span>
-                  )}
-                  {hotelDetail.luggageStorage && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      짐보관
-                    </span>
-                  )}
-                  {hotelDetail.snackBar && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      스낵바
-                    </span>
-                  )}
-                  {hotelDetail.petFriendly && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      반려동물동반
-                    </span>
-                  )}
-                </div>
-                <Typography variant='h4' color='black' className='mb-2'>
-                  숙소 소개
-                </Typography>
-                <Typography variant='body1' color='black'>
-                  &quot;{hotelDetail.description}&quot;
-                </Typography>
-              </Card>
-            </div>
-            <div className='flex w-full flex-col space-y-4 lg:w-1/4'>
-              <div className='h-40 w-72 rounded-lg'>
-                <Map
-                  center={{
-                    lat: hotelDetail.latitude,
-                    lng: hotelDetail.longtitude,
-                  }}
-                  style={{ width: '100%', height: '100%' }}
-                  level={3}
-                  className='rounded-lg'
-                >
-                  <MapMarker
-                    position={{
-                      lat: hotelDetail.latitude,
-                      lng: hotelDetail.longtitude,
-                    }}
-                  ></MapMarker>
-                </Map>
-              </div>
-              <DateSelector />
-              <PeopleSelector />
+    <div className='specialDetail flex items-center justify-center'>
+      <div className='specialDetail-container flex flex-col gap-10'>
+        <div className='specialDetail-images grid w-full'>
+          <img src={hotelImg} alt='' />
+          <img src={pserLoadig} className='sd-img' />
+          <img src={hotelImg} className='sd-img' />
+          <img src={pserLoadig} className='sd-img' />
+          <img src={pserLoadig} className='sd-img' />
+        </div>
 
-              <Button
-                color='blue'
-                fullWidth
-                onClick={() => handleButtonClick(hotelDetail.name, roomData)}
-              >
-                예약하기
-              </Button>
+        <div className='specialDetail-content flex gap-10'>
+          <div className='specialDetail-hotel flex flex-col gap-5'>
+            <div className='flex items-center justify-between'>
+              <div className='flex flex-col gap-1'>
+                <p>호텔</p>
+                <h1 className='text-2xl font-bold'>호텔 이름</h1>
+                <p className='res-grade relative bg-white'>
+                  <FaStar className='star-icon absolute' />
+                  평점
+                </p>
+              </div>
+              <GoHeart size={30} className='bookmark-icon' />
             </div>
-          </>
-        ))}
-      </div>
-      <div className='m-4'>
-        <Card className='w-full bg-gray-50 p-4 shadow-md'>
-          <div className='flex items-center justify-between'>
-            <RatingBar />
-            <Button color='white'>더보기</Button>
-          </div>
-        </Card>
-      </div>
-      <div className='mx-auto mb-8 w-full lg:w-2/3'>
-        {roomData.map((room, index) => (
-          <RoomCard
-            key={index}
-            roomId={room.roomId}
-            name={room.name}
-            description={room.description}
-            imageUrl={room.imageUrl}
-            checkIn={room.checkIn}
-            checkOut={room.checkOut}
-            price={room.price}
-            roomData={roomData}
-            hotelName={hotelDetails[0].name}
-          />
-        ))}
-      </div>
-      <div className=''>
-        <Typography variant='h4' color='black' className='mb-4'>
-          추천 숙소
-        </Typography>
-        <Slider {...sliderSettings}>
-          {recommendedHotels.map(hotel => (
-            <div key={hotel.id} className='p-3'>
-              <div className=''>
-                <RecommendCard name={hotel.name} imageUrl={hotel.imageUrl} />
+
+            <hr style={{ border: '1px solid #ededed' }} />
+
+            <div className='flex flex-col gap-2'>
+              <b className='text-lg'>서비스 및 부대시설</b>
+              <div className='special-service flex flex-wrap gap-3'>
+                <span>피트니스</span>
+                <span>수영장</span>
               </div>
             </div>
-          ))}
-        </Slider>
+
+            <hr style={{ border: '1px solid #ededed' }} />
+
+            <div className='flex flex-col gap-2'>
+              <b className='text-lg'>숙소 소개</b>
+              <p>
+                강문해변 앞에 자리 잡아 객실에서 드넓고 아름다운 바다를 감상할
+                수 있습니다.
+                <br />
+                아름다운 대자연과 어우러지는 특별하고도 환상적인 경험을 느낄 수
+                있습니다.
+              </p>
+            </div>
+
+            <hr style={{ border: '1px solid #ededed' }} />
+
+            <div className='flex flex-col gap-2'>
+              <b className='text-lg'>객실 선택</b>
+
+              <div className='special-room-card flex gap-5'>
+                <img src={pserLoadig} className='special-room-img' />
+
+                <div className='special-room-content flex w-full flex-col justify-between'>
+                  <b>디럭스 더블</b>
+                  <div className='flex w-full justify-between rounded-lg bg-white p-3'>
+                    <div>
+                      <p className='text-sm'>입실 15:00</p>
+                      <p className='text-sm'>퇴실 11:00</p>
+                    </div>
+
+                    <div className='flex flex-col gap-2'>
+                      <b>229,000 원</b>
+                      <button className='special-res-btn flex-end w-full text-sm'>
+                        객실 예약
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className='rounded-lg bg-white p-3'>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>객실 정보</p>
+                      <p className='text-sm'>기준 2인 | 최대 3인(유료)</p>
+                    </div>
+
+                    <div className='flex items-center justify-between'>
+                      <p className='text-sm'>추가 정보</p>
+                      <p className='text-sm'>오션뷰</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr style={{ border: '1px solid #ededed' }} />
+
+            <div className='flex flex-col gap-2'>
+              <div className='flex items-center justify-between'>
+                <b className='text-lg'>리뷰</b>
+                <a href='' style={{ color: 'gray' }} className='text-sm'>
+                  더 보기 &gt;
+                </a>
+              </div>
+
+              <div className='special-review flex flex-col gap-2'>
+                <div className='flex items-center justify-between'>
+                  <p className='flex items-center gap-1'>
+                    <FaStar className='star-i' size={20} />
+                    <span className='text-lg'>평점</span>
+                  </p>
+                  <p>날짜</p>
+                </div>
+
+                <p>리뷰 내용</p>
+              </div>
+            </div>
+          </div>
+
+          <article className='flex flex-col gap-5'>
+            <div>
+              <KaKaoMap />
+            </div>
+
+            <div className='specialDetail-res flex flex-col items-center justify-center gap-3'>
+              <div className='w-full'>
+                <DateSelector />
+              </div>
+              <div className='w-full'>
+                <PeopleSelector />
+              </div>
+              <button className='w-full'>예약하기</button>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   );
