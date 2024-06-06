@@ -1,0 +1,87 @@
+.specialDetail {
+  padding: 50px 100px 100px 100px;
+}
+
+.specialDetail-container {
+  width: 1200px;
+}
+
+.specialDetail-images {
+  grid-auto-flow: column;
+  gap: 10px;
+}
+.specialDetail-images > img:nth-of-type(1) {
+  grid-row: span 2;
+  grid-column: span 3;
+  object-fit: cover;
+  height: 100%;
+}
+
+.special-service > span {
+  background-color: #e5e5e5;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.sd-img {
+  grid-row: span 1;
+  grid-column: span 1;
+  object-fit: cover;
+  height: 100%;
+}
+
+.bookmark-icon {
+  cursor: pointer;
+}
+.specialDetail-hotel {
+  flex: 3;
+}
+.specialDetail-content > article {
+  flex: 1;
+}
+
+.specialDetail-res {
+  background-color: #e2f2ff;
+  padding: 20px;
+  border-radius: 10px;
+  position: sticky;
+}
+.specialDetail-res > button {
+  background-color: #4a8fff;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.special-room-card {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+}
+.special-room-img {
+  flex-grow: 1;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  object-fit: cover;
+  width: 25%;
+  height: 100%;
+}
+.special-room-content {
+  flex-grow: 3;
+}
+.special-res-btn {
+  background-color: #4a8fff;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.special-review {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.star-i {
+  fill: #ffbb00;
+}
