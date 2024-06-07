@@ -8,7 +8,7 @@ import { TbPhotoPlus } from 'react-icons/tb';
 import { useParams } from 'react-router-dom';
 
 // import hotelImg from '../../assets/images/hotel.png';
-import pserLoadig from '../../assets/images/loading.png';
+// import pserLoadig from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 import ScrollToTop from '../../helpers/ScrollToTop';
@@ -24,6 +24,8 @@ const TimeSpecialDetail = () => {
   const [imageUrls, setImageUrls] = useState([]);
 
   const [allHotelsData, setAllHotelsData] = useState([]);
+  const [roomData, setRoomData] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
     const fetchHotelData = async () => {
@@ -45,8 +47,26 @@ const TimeSpecialDetail = () => {
           'http://localhost:5173/dummy/hotel.json',
         );
         setAllHotelsData(allHotelsResponse.data.body);
+
+        // 객실 API 호출
+        const roomResponse = await axios.get(
+          'http://localhost:5173/dummy/roomList.json',
+        );
+        const roomData = roomResponse.data.body.filter(
+          room => room.id === timeSpecialHotel.id,
+        );
+        setRoomData(roomData);
+
+        // 리뷰 데이터 가져오기
+        const reviewResponse = await axios.get(
+          'http://localhost:5173/dummy/reviews.json',
+        );
+        const reviewData = reviewResponse.data.content.filter(
+          review => review.id === timeSpecialHotel.id,
+        );
+        setReviewData(reviewData);
       } catch (error) {
-        console.error('타임 특가 조회 api 호출 실패:', error);
+        console.error('데이터 조회 실패:', error);
       }
     };
     fetchHotelData();
@@ -164,9 +184,9 @@ const TimeSpecialDetail = () => {
     : [];
 
   return (
-    <div className='specialDetail flex items-center justify-center'>
+    <div className='specialDetail flex items-center  justify-center'>
       <ScrollToTop />
-      <div className='specialDetail-container flex flex-col gap-10'>
+      <div className='specialDetail-container flex flex-col  gap-10'>
         <div className='specialDetail-images relative grid w-full'>
           {hotelData && (
             <>
@@ -197,7 +217,7 @@ const TimeSpecialDetail = () => {
         </div>
 
         {showModal && (
-          <div className='modal fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-50'>
+          <div className='modal fixed left-0 top-0 z-50 flex w-full items-center justify-center bg-gray-900 bg-opacity-50'>
             <div className='modal-content relative flex flex-col rounded-lg bg-white p-10'>
               <button
                 className='absolute right-1 top-1'
@@ -264,45 +284,48 @@ const TimeSpecialDetail = () => {
 
             <hr style={{ border: '1px solid #ededed' }} />
 
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-3'>
               <b className='text-lg'>객실 선택</b>
 
-              <div className='special-room-card flex gap-5'>
-                <img src={pserLoadig} className='special-room-img' />
-
-                <div className='special-room-content flex w-full flex-col justify-between'>
-                  <b>디럭스 더블</b>
-                  <div className='flex w-full justify-between rounded-lg bg-white p-3'>
-                    <div>
-                      <p className='text-sm'>입실 15:00</p>
-                      <p className='text-sm'>퇴실 11:00</p>
-                    </div>
-
-                    <div className='flex flex-col gap-2'>
-                      <div className='flex flex-col'>
-                        <p className='line-through' style={{ color: 'gray' }}>
-                          430,000 원
-                        </p>
-                        <b>229,000 원</b>
+              <div className='flex flex-col gap-6'>
+                {roomData.map(room => (
+                  <div key={room.id} className='special-room-card flex gap-5'>
+                    <img src={room.imageUrl} className='special-room-img' />
+                    <div className='special-room-content flex w-full flex-col justify-between'>
+                      <b>{room.name}</b>
+                      <div className='flex w-full justify-between rounded-lg bg-white p-3'>
+                        <div>
+                          <p className='text-sm'>입실 {room.checkIn}</p>
+                          <p className='text-sm'>퇴실 {room.checkOut}</p>
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                          <div className='flex flex-col'>
+                            <p
+                              className='line-through'
+                              style={{ color: 'gray' }}
+                            >
+                              {hotelData.previousPrice} 원
+                            </p>
+                            <b>{hotelData.salePrice} 원</b>
+                          </div>
+                          <button className='special-res-btn flex-end w-full text-sm'>
+                            객실 예약
+                          </button>
+                        </div>
                       </div>
-                      <button className='special-res-btn flex-end w-full text-sm'>
-                        객실 예약
-                      </button>
+                      <div className='rounded-lg bg-white p-3'>
+                        <div className='flex items-center justify-between'>
+                          <p className='text-sm'>객실 정보</p>
+                          <p className='text-sm'>{room.description}</p>
+                        </div>
+                        <div className='flex items-center justify-between'>
+                          <p className='text-sm'>추가 정보</p>
+                          <p className='text-sm'>오션뷰</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className='rounded-lg bg-white p-3'>
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>객실 정보</p>
-                      <p className='text-sm'>기준 2인 | 최대 3인(유료)</p>
-                    </div>
-
-                    <div className='flex items-center justify-between'>
-                      <p className='text-sm'>추가 정보</p>
-                      <p className='text-sm'>오션뷰</p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -311,21 +334,28 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-2'>
               <div className='flex items-center justify-between'>
                 <b className='text-lg'>리뷰</b>
-                <a href='' style={{ color: 'gray' }} className='text-sm'>
+                <a href='/review' style={{ color: 'gray' }} className='text-sm'>
                   더 보기 &gt;
                 </a>
               </div>
 
-              <div className='special-review flex flex-col gap-2'>
-                <div className='flex items-center justify-between'>
-                  <p className='flex items-center gap-1'>
-                    <FaStar className='star-i' size={20} />
-                    <span className='text-lg'>평점</span>
-                  </p>
-                  <p>날짜</p>
-                </div>
-
-                <p>리뷰 내용</p>
+              <div className='special-review flex flex-col gap-6'>
+                {reviewData.map(review => (
+                  <div key={review.id} className='flex flex-col gap-2'>
+                    <div className='flex items-center justify-between'>
+                      <p className='flex items-center gap-2'>
+                        <FaStar className='star-i' size={20} />
+                        <b className='text-lg'>{review.rating}</b>
+                      </p>
+                      <p className='text-sm'>{review.reviewDate}</p>
+                    </div>
+                    <p>
+                      {review.reviewContent.length > 100
+                        ? review.reviewContent.slice(0, 100) + '...'
+                        : review.reviewContent}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
