@@ -16,6 +16,14 @@
   object-fit: cover;
   height: 100%;
 }
+.more-img-btn {
+  right: 10px;
+  bottom: 10px;
+  background-color: #0000008e;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
 
 .special-service > span {
   background-color: #e5e5e5;

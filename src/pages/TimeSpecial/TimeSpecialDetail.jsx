@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
 import { GoHeart } from 'react-icons/go';
+import { TbPhotoPlus } from 'react-icons/tb';
 
-import hotelImg from '../../assets/images/hotel.png';
+// import hotelImg from '../../assets/images/hotel.png';
 import pserLoadig from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
@@ -9,16 +13,104 @@ import KaKaoMap from '../HotelInquiry/KaKaoMap';
 import './TimeSpecialDetail.css';
 
 const TimeSpecialDetail = () => {
+  const [hotelData, setHotelData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchHotelData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/timeSpecialList.json',
+        );
+        setHotelData(response.data.body.content);
+      } catch (error) {
+        console.error('Error fetching hotel data:', error);
+      }
+    };
+    fetchHotelData();
+  }, []);
+
+  const handleShowModal = index => {
+    setCurrentIndex(index);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex === 0 ? hotelData.length - 1 : prevIndex - 1,
+    );
+  };
+
+  const handleNextImage = () => {
+    setCurrentIndex(prevIndex =>
+      prevIndex === hotelData.length - 1 ? 0 : prevIndex + 1,
+    );
+  };
+
   return (
     <div className='specialDetail flex items-center justify-center'>
       <div className='specialDetail-container flex flex-col gap-10'>
-        <div className='specialDetail-images grid w-full'>
-          <img src={hotelImg} alt='' />
-          <img src={pserLoadig} className='sd-img' />
-          <img src={hotelImg} className='sd-img' />
-          <img src={pserLoadig} className='sd-img' />
-          <img src={pserLoadig} className='sd-img' />
+        <div className='specialDetail-images relative grid w-full'>
+          {hotelData && (
+            <>
+              <img src={hotelData[0].mainImage} alt='' />
+              {hotelData[0].hotelImageUrls.slice(0, 4).map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Hotel Image ${index + 1}`}
+                  className='sd-img'
+                  onClick={() => handleShowModal(index + 1)}
+                />
+              ))}
+              {hotelData[0].hotelImageUrls.length > 4 && (
+                <button
+                  className='more-img-btn absolute'
+                  onClick={() => handleShowModal(0)}
+                >
+                  <TbPhotoPlus stroke='white' />
+                </button>
+              )}
+            </>
+          )}
         </div>
+
+        {showModal && (
+          <div className='modal fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-50'>
+            <div className='modal-content relative rounded-lg bg-white p-6'>
+              <button
+                className='absolute right-2 top-2 text-gray-500 hover:text-gray-700'
+                onClick={handleCloseModal}
+              >
+                X
+              </button>
+              <img
+                src={hotelData[0].hotelImageUrls[currentIndex]}
+                alt={`Hotel Image ${currentIndex + 1}`}
+                className='max-h-[80vh] object-contain'
+              />
+              <div className='mt-4 flex justify-between'>
+                <button
+                  className='rounded bg-gray-200 px-4 py-2 hover:bg-gray-300'
+                  onClick={handlePrevImage}
+                >
+                  이전
+                </button>
+                <button
+                  className='rounded bg-gray-200 px-4 py-2 hover:bg-gray-300'
+                  onClick={handleNextImage}
+                >
+                  다음
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className='specialDetail-content flex gap-10'>
           <div className='specialDetail-hotel flex flex-col gap-5'>

@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-list', element: <HotelList /> },
       { path: '/bidable', element: <BidableHotelList /> },
       { path: '/time-special', element: <TimeSpecialList /> },
-      { path: '/timespecial-detail', element: <TimeSpecialDetail /> },
+      { path: '/timespecial-detail/:id', element: <TimeSpecialDetail /> },
       { path: '/hotel/new', element: <StepProgress /> },
       { path: '/review-register', element: <ReviewRegister /> },
       { path: '/hotel-detail', element: <HotelDetail /> },
