@@ -74,7 +74,12 @@ const TimeSpecialDetail = () => {
                     </div>
 
                     <div className='flex flex-col gap-2'>
-                      <b>229,000 원</b>
+                      <div className='flex flex-col'>
+                        <p className='line-through' style={{ color: 'gray' }}>
+                          430,000 원
+                        </p>
+                        <b>229,000 원</b>
+                      </div>
                       <button className='special-res-btn flex-end w-full text-sm'>
                         객실 예약
                       </button>
