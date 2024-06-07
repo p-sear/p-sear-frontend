@@ -1,0 +1,76 @@
+.resDetail {
+  padding: 100px;
+}
+.resDetail h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.resDetail-container {
+  width: 700px;
+}
+
+.hotel-card,
+.room-card,
+.member-card,
+.cancel-card,
+.pay-card {
+  background-color: #fefafa;
+  border-radius: 20px;
+  box-shadow: 0 5px 8px -4px gray;
+}
+
+.hotel-card > img {
+  aspect-ratio: 3/1;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.res-grade {
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 70px;
+  text-align: center;
+}
+.out-in {
+  width: 70px;
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.res-room-img {
+  width: 150px;
+  height: 150px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.res-services {
+  background-color: lightgray;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.print-btn {
+  width: 80px;
+  height: 80px;
+  background-color: #fffbf6;
+  border-radius: 50%;
+  padding: 20px;
+  border: 2px solid lightgray;
+}
+.print-btn > img {
+  width: 30px;
+}
+
+@media print {
+  .print-btn {
+    display: none;
+  }
+}
