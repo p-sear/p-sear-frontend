@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -84,7 +83,7 @@ const HotelList = () => {
       <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
         <div className='flex flex-col space-y-4 lg:w-1/4'>
           <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
-            <KaKaoMap />
+            <KaKaoMap keyword={keyword} />
           </div>
 
           <MapModal
