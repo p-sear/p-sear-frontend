@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
 const { kakao } = window;
 
-const KaKaoMap = () => {
+const KaKaoMap = ({ onHotelDataLoaded }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,6 +15,7 @@ const KaKaoMap = () => {
           'http://localhost:5173/dummy/hotel.json',
         );
         setData(response.data.body);
+        onHotelDataLoaded(response.data.body);
       } catch (error) {
         console.error('객실 리스트 오류', error);
       }
