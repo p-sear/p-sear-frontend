@@ -21,7 +21,7 @@
         "id": 0,
         "name": "파라다이스시티",
         "category": "HOTEL",
-        "description": "string",
+        "description": "파라다이스시티는 동북아 최초의 복합 리조트입니다. 파라다이스시티는 호텔, 카지노, 컨벤션, 쇼핑, 아트 갤러리, 스파, 클럽, 카니발, 공연 등 다양한 Hospitality 및 Entertainment가 결합된 동북아 최초의 한국형 복합 리조트입니다. 모든 면에서 최고 수준의 퀄리티를 선보이기 위해, Hospitality 분야의 세계적인 파트너사들과 협력하고 있습니다.",
         "mainImage": "https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg",
         "province": "string",
         "city": "인천",

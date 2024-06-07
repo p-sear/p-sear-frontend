@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
 import { GoHeart } from 'react-icons/go';
+import { IoClose } from 'react-icons/io5';
 import { TbPhotoPlus } from 'react-icons/tb';
 import { useParams } from 'react-router-dom';
 
@@ -39,6 +40,15 @@ const TimeSpecialDetail = () => {
     };
     fetchHotelData();
   }, [id]);
+
+  const getCategoryInKorean = category => {
+    const categoryMap = {
+      HOTEL: '호텔',
+      PANSION: '펜션',
+      POOL: '풀빌라',
+    };
+    return categoryMap[category] || category;
+  };
 
   const handleShowModal = index => {
     setCurrentIndex(index);
@@ -96,12 +106,12 @@ const TimeSpecialDetail = () => {
 
         {showModal && (
           <div className='modal fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-50'>
-            <div className='modal-content relative rounded-lg bg-white p-6'>
+            <div className='modal-content relative flex flex-col rounded-lg bg-white p-10'>
               <button
-                className='absolute right-2 top-2 text-gray-500 hover:text-gray-700'
+                className='absolute right-1 top-1'
                 onClick={handleCloseModal}
               >
-                X
+                <IoClose size={30} />
               </button>
               <img
                 src={imageUrls[currentIndex]}
@@ -130,11 +140,13 @@ const TimeSpecialDetail = () => {
           <div className='specialDetail-hotel flex flex-col gap-5'>
             <div className='flex items-center justify-between'>
               <div className='flex flex-col gap-1'>
-                <p>호텔</p>
-                <h1 className='text-2xl font-bold'>호텔 이름</h1>
+                <p>
+                  {getCategoryInKorean(hotelData?.category)} | {hotelData?.city}
+                </p>
+                <h1 className='text-2xl font-bold'>{hotelData?.name}</h1>
                 <p className='res-grade relative bg-white'>
                   <FaStar className='star-icon absolute' />
-                  평점
+                  {hotelData?.gradeAverage}
                 </p>
               </div>
               <GoHeart size={30} className='bookmark-icon' />
@@ -154,13 +166,7 @@ const TimeSpecialDetail = () => {
 
             <div className='flex flex-col gap-2'>
               <b className='text-lg'>숙소 소개</b>
-              <p>
-                강문해변 앞에 자리 잡아 객실에서 드넓고 아름다운 바다를 감상할
-                수 있습니다.
-                <br />
-                아름다운 대자연과 어우러지는 특별하고도 환상적인 경험을 느낄 수
-                있습니다.
-              </p>
+              <p>{hotelData?.description}</p>
             </div>
 
             <hr style={{ border: '1px solid #ededed' }} />
