@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
 import './TimeSpecials.css';
@@ -44,6 +45,12 @@ const TimeSpecials = () => {
     fetchHotels();
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleClick = hotelId => {
+    navigate(`/timespecial-detail/${hotelId}`);
+  };
+
   return (
     <div className='timespecials-container'>
       <div className='timespecials-title flex items-center justify-between'>
@@ -61,6 +68,7 @@ const TimeSpecials = () => {
           <div
             className='timespecials-box flex flex-col justify-center'
             key={hotel.id}
+            onClick={() => handleClick(hotel.id)}
           >
             <img src={hotel.photo} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>

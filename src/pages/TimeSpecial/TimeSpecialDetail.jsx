@@ -4,15 +4,19 @@ import axios from 'axios';
 import { FaStar } from 'react-icons/fa6';
 import { GoHeart } from 'react-icons/go';
 import { TbPhotoPlus } from 'react-icons/tb';
+import { useParams } from 'react-router-dom';
 
 // import hotelImg from '../../assets/images/hotel.png';
 import pserLoadig from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
+import ScrollToTop from '../../helpers/ScrollToTop';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
 import './TimeSpecialDetail.css';
 
 const TimeSpecialDetail = () => {
+  const { id } = useParams();
+
   const [hotelData, setHotelData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,13 +27,15 @@ const TimeSpecialDetail = () => {
         const response = await axios.get(
           'http://localhost:5173/dummy/timeSpecialList.json',
         );
-        setHotelData(response.data.body.content);
+        setHotelData(
+          response.data.body.content.find(r => r.id === parseInt(id)),
+        );
       } catch (error) {
-        console.error('Error fetching hotel data:', error);
+        console.error('타임 특가 조회 api 호출 실패:', error);
       }
     };
     fetchHotelData();
-  }, []);
+  }, [id]);
 
   const handleShowModal = index => {
     setCurrentIndex(index);
@@ -54,12 +60,13 @@ const TimeSpecialDetail = () => {
 
   return (
     <div className='specialDetail flex items-center justify-center'>
+      <ScrollToTop />
       <div className='specialDetail-container flex flex-col gap-10'>
         <div className='specialDetail-images relative grid w-full'>
           {hotelData && (
             <>
-              <img src={hotelData[0].mainImage} alt='' />
-              {hotelData[0].hotelImageUrls.slice(0, 4).map((url, index) => (
+              <img src={hotelData.mainImage} alt='' />
+              {hotelData.hotelImageUrls.slice(0, 4).map((url, index) => (
                 <img
                   key={index}
                   src={url}
@@ -68,7 +75,7 @@ const TimeSpecialDetail = () => {
                   onClick={() => handleShowModal(index + 1)}
                 />
               ))}
-              {hotelData[0].hotelImageUrls.length > 4 && (
+              {hotelData.hotelImageUrls.length > 4 && (
                 <button
                   className='more-img-btn absolute'
                   onClick={() => handleShowModal(0)}
@@ -90,7 +97,7 @@ const TimeSpecialDetail = () => {
                 X
               </button>
               <img
-                src={hotelData[0].hotelImageUrls[currentIndex]}
+                src={hotelData.hotelImageUrls[currentIndex]}
                 alt={`Hotel Image ${currentIndex + 1}`}
                 className='max-h-[80vh] object-contain'
               />

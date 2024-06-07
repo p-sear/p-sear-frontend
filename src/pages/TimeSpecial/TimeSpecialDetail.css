@@ -14,7 +14,7 @@
   grid-row: span 2;
   grid-column: span 3;
   object-fit: cover;
-  height: 100%;
+  /* height: 100%; */
 }
 .more-img-btn {
   right: 10px;
