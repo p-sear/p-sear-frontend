@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { differenceInDays, parseISO } from 'date-fns';
 import { FaArrowLeftLong, FaStar } from 'react-icons/fa6';
+import { useParams } from 'react-router-dom';
 
 import printIcon from '../../assets/icons/print.png';
 import pserLoading from '../../assets/images/loading.png';
@@ -11,6 +12,7 @@ import './ReservationDetail.css';
 const ReservationDetail = () => {
   const [reservationData, setReservationData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +20,10 @@ const ReservationDetail = () => {
         const response = await axios.get(
           `http://localhost:5173/dummy/myReservation.json`,
         );
-        setReservationData(response.data.body.content[0]); // 첫 번째 예약 데이터 사용
+        const reservationData = response.data.body.content.find(
+          r => r.id === parseInt(id),
+        );
+        setReservationData(reservationData);
         setLoading(false);
       } catch (error) {
         console.error('숙소 예약 조회 API 호출 실패:', error);
@@ -27,7 +32,7 @@ const ReservationDetail = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <p>정보 불러오는 중...</p>;
@@ -163,26 +168,13 @@ const ReservationDetail = () => {
           </div>
 
           <div className='pay-card w-full'>
-            <div className='flex flex-col gap-3 p-5'>
+            <div className='flex flex-col gap-1 p-5'>
               <h3>결제 정보</h3>
-
-              <div className='flex flex-col gap-1'>
-                <div className='flex justify-between'>
-                  <p>객실 1개 x {numberOfNights}박</p>
-                  <p>KRW 229,441.83</p>
-                </div>
-                <div className='flex justify-between'>
-                  <p>세금 및 봉사료</p>
-                  <p>KRW 22,936.17</p>
-                </div>
-              </div>
-
-              <hr />
 
               <div className='flex flex-col gap-3'>
                 <div className='flex justify-between'>
-                  <h4 className='text-lg font-bold'>총 금액</h4>
-                  <h4 className='text-lg font-bold'>KRW 252,378.00</h4>
+                  <h4 className='font-bold'>총 금액</h4>
+                  <h4 className='font-bold'>KRW {reservationData.price}</h4>
                 </div>
 
                 <div className='flex flex-col gap-1'>

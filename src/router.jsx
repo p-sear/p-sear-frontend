@@ -20,6 +20,7 @@ import Review from './pages/Review/Review';
 import ReviewRegister from './pages/Review/register';
 import RoomStep from './pages/RoomRegistration/RoomStep.jsx';
 import ServiceCenter from './pages/ServiceCenter/index';
+import TimeSpecialDetail from './pages/TimeSpecial/TimeSpecialDetail.jsx';
 import TimeSpecialList from './pages/TimeSpecial/TimeSpecialList.jsx';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -42,13 +43,14 @@ export const router = createBrowserRouter([
       { path: '/hotel-list', element: <HotelList /> },
       { path: '/bidable', element: <BidableHotelList /> },
       { path: '/time-special', element: <TimeSpecialList /> },
+      { path: '/timespecial-detail/:id', element: <TimeSpecialDetail /> },
       { path: '/hotel/new', element: <StepProgress /> },
       { path: '/review-register', element: <ReviewRegister /> },
       { path: '/hotel-detail', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation1', element: <HotelReservation1 /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
-      { path: '/reservation-detail', element: <ReservationDetail /> },
+      { path: '/reservation-detail/:id', element: <ReservationDetail /> },
       { path: '/hotel-reservation3', element: <HotelReservation3 /> },
       { path: '/hotel-auction', element: <HotelAuction /> },
       { path: '/service-center', element: <ServiceCenter /> },
