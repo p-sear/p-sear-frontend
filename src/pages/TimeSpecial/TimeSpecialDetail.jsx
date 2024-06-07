@@ -287,46 +287,52 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-3'>
               <b className='text-lg'>객실 선택</b>
 
-              <div className='flex flex-col gap-6'>
-                {roomData.map(room => (
-                  <div key={room.id} className='special-room-card flex gap-5'>
-                    <img src={room.imageUrl} className='special-room-img' />
-                    <div className='special-room-content flex w-full flex-col justify-between'>
-                      <b>{room.name}</b>
-                      <div className='flex w-full justify-between rounded-lg bg-white p-3'>
-                        <div>
-                          <p className='text-sm'>입실 {room.checkIn}</p>
-                          <p className='text-sm'>퇴실 {room.checkOut}</p>
-                        </div>
-                        <div className='flex flex-col gap-2'>
-                          <div className='flex flex-col'>
-                            <p
-                              className='line-through'
-                              style={{ color: 'gray' }}
-                            >
-                              {hotelData.previousPrice} 원
-                            </p>
-                            <b>{hotelData.salePrice} 원</b>
+              {roomData.length === 0 ? (
+                <div className='p-5 text-center text-gray-500'>
+                  예약 가능한 객실이 없습니다.
+                </div>
+              ) : (
+                <div className='flex flex-col gap-6'>
+                  {roomData.map(room => (
+                    <div key={room.id} className='special-room-card flex gap-5'>
+                      <img src={room.imageUrl} className='special-room-img' />
+                      <div className='special-room-content flex w-full flex-col justify-between'>
+                        <b>{room.name}</b>
+                        <div className='flex w-full justify-between rounded-lg bg-white p-3'>
+                          <div>
+                            <p className='text-sm'>입실 {room.checkIn}</p>
+                            <p className='text-sm'>퇴실 {room.checkOut}</p>
                           </div>
-                          <button className='special-res-btn flex-end w-full text-sm'>
-                            객실 예약
-                          </button>
+                          <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col'>
+                              <p
+                                className='line-through'
+                                style={{ color: 'gray' }}
+                              >
+                                {hotelData.previousPrice} 원
+                              </p>
+                              <b>{hotelData.salePrice} 원</b>
+                            </div>
+                            <button className='special-res-btn flex-end w-full text-sm'>
+                              객실 예약
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <div className='rounded-lg bg-white p-3'>
-                        <div className='flex items-center justify-between'>
-                          <p className='text-sm'>객실 정보</p>
-                          <p className='text-sm'>{room.description}</p>
-                        </div>
-                        <div className='flex items-center justify-between'>
-                          <p className='text-sm'>추가 정보</p>
-                          <p className='text-sm'>오션뷰</p>
+                        <div className='rounded-lg bg-white p-3'>
+                          <div className='flex items-center justify-between'>
+                            <p className='text-sm'>객실 정보</p>
+                            <p className='text-sm'>{room.description}</p>
+                          </div>
+                          <div className='flex items-center justify-between'>
+                            <p className='text-sm'>추가 정보</p>
+                            <p className='text-sm'>오션뷰</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <hr style={{ border: '1px solid #ededed' }} />
