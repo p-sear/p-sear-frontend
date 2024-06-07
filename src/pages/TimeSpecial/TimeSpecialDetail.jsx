@@ -23,17 +23,28 @@ const TimeSpecialDetail = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageUrls, setImageUrls] = useState([]);
 
+  const [allHotelsData, setAllHotelsData] = useState([]);
+
   useEffect(() => {
     const fetchHotelData = async () => {
       try {
         const response = await axios.get(
           'http://localhost:5173/dummy/timeSpecialList.json',
         );
-        const hotel = response.data.body.content.find(
+        const timeSpecialHotel = response.data.body.content.find(
           r => r.id === parseInt(id),
         );
-        setHotelData(hotel);
-        setImageUrls([hotel.mainImage, ...hotel.hotelImageUrls]);
+        setHotelData(timeSpecialHotel);
+        setImageUrls([
+          timeSpecialHotel.mainImage,
+          ...timeSpecialHotel.hotelImageUrls,
+        ]);
+
+        // 전체 호텔 데이터 가져오기
+        const allHotelsResponse = await axios.get(
+          'http://localhost:5173/dummy/hotel.json',
+        );
+        setAllHotelsData(allHotelsResponse.data.body);
       } catch (error) {
         console.error('타임 특가 조회 api 호출 실패:', error);
       }
@@ -70,6 +81,87 @@ const TimeSpecialDetail = () => {
       prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1,
     );
   };
+
+  // 서비스 및 부대시설 정보 가져오기
+  const services = allHotelsData.find(hotel => hotel.id === hotelData?.id)
+    ? [
+        {
+          name: '주차',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .parkingLot,
+        },
+        {
+          name: '와이파이',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .wifi,
+        },
+        {
+          name: 'BBQ',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .barbecue,
+        },
+        {
+          name: '사우나',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .sauna,
+        },
+        {
+          name: '수영장',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .swimmingPool,
+        },
+        {
+          name: '레스토랑',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .restaurant,
+        },
+        {
+          name: '루프탑',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .roofTop,
+        },
+        {
+          name: '피트니스',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .fitness,
+        },
+        {
+          name: '건조기',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .dryer,
+        },
+        {
+          name: '조식',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .breakfast,
+        },
+        {
+          name: '흡연 구역',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .smokingArea,
+        },
+        {
+          name: '24시간 데스크',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .allTimeDesk,
+        },
+        {
+          name: '짐 보관',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .luggageStorage,
+        },
+        {
+          name: '매점',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .snackBar,
+        },
+        {
+          name: '반려견 동반',
+          available: allHotelsData.find(hotel => hotel.id === hotelData?.id)
+            .petFriendly,
+        },
+      ].filter(service => service.available)
+    : [];
 
   return (
     <div className='specialDetail flex items-center justify-center'>
@@ -157,8 +249,9 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-2'>
               <b className='text-lg'>서비스 및 부대시설</b>
               <div className='special-service flex flex-wrap gap-3'>
-                <span>피트니스</span>
-                <span>수영장</span>
+                {services.map((service, index) => (
+                  <span key={index}>{service.name}</span>
+                ))}
               </div>
             </div>
 
