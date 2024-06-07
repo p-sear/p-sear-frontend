@@ -20,6 +20,7 @@ const TimeSpecialDetail = () => {
   const [hotelData, setHotelData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageUrls, setImageUrls] = useState([]);
 
   useEffect(() => {
     const fetchHotelData = async () => {
@@ -27,9 +28,11 @@ const TimeSpecialDetail = () => {
         const response = await axios.get(
           'http://localhost:5173/dummy/timeSpecialList.json',
         );
-        setHotelData(
-          response.data.body.content.find(r => r.id === parseInt(id)),
+        const hotel = response.data.body.content.find(
+          r => r.id === parseInt(id),
         );
+        setHotelData(hotel);
+        setImageUrls([hotel.mainImage, ...hotel.hotelImageUrls]);
       } catch (error) {
         console.error('타임 특가 조회 api 호출 실패:', error);
       }
@@ -48,13 +51,13 @@ const TimeSpecialDetail = () => {
 
   const handlePrevImage = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex === 0 ? hotelData.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? imageUrls.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNextImage = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex === hotelData.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === imageUrls.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
@@ -65,7 +68,11 @@ const TimeSpecialDetail = () => {
         <div className='specialDetail-images relative grid w-full'>
           {hotelData && (
             <>
-              <img src={hotelData.mainImage} alt='' />
+              <img
+                src={hotelData.mainImage}
+                alt=''
+                onClick={() => handleShowModal(0)}
+              />
               {hotelData.hotelImageUrls.slice(0, 4).map((url, index) => (
                 <img
                   key={index}
@@ -78,7 +85,7 @@ const TimeSpecialDetail = () => {
               {hotelData.hotelImageUrls.length > 4 && (
                 <button
                   className='more-img-btn absolute'
-                  onClick={() => handleShowModal(0)}
+                  onClick={() => handleShowModal(1)}
                 >
                   <TbPhotoPlus stroke='white' />
                 </button>
@@ -97,7 +104,7 @@ const TimeSpecialDetail = () => {
                 X
               </button>
               <img
-                src={hotelData.hotelImageUrls[currentIndex]}
+                src={imageUrls[currentIndex]}
                 alt={`Hotel Image ${currentIndex + 1}`}
                 className='max-h-[80vh] object-contain'
               />
