@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from 'react';
 
 import addDays from 'date-fns/addDays';
 import format from 'date-fns/format';
-// 테마
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
-// 메인 스타일 파일
 import 'react-date-range/dist/theme/default.css';
 import { FaRegCalendar } from 'react-icons/fa6';
 
@@ -15,9 +14,7 @@ import './DateSelector.css';
 function DateSelector({ onDateChange, initialRange }) {
   const [state, setState] = useState([
     {
-      // eslint-disable-next-line react/prop-types
       startDate: initialRange?.[0]?.startDate || new Date(),
-      // eslint-disable-next-line react/prop-types
       endDate: initialRange?.[0]?.endDate || addDays(new Date(), 1),
       key: 'selection',
     },
@@ -38,9 +35,7 @@ function DateSelector({ onDateChange, initialRange }) {
   }
 
   const [showPicker, setShowPicker] = useState(false);
-
   const buttonText = `${format(state[0].startDate, 'yyyy.MM.dd')} - ${format(state[0].endDate, 'yyyy.MM.dd')}`;
-
   const selectorRef = useRef(null);
 
   useEffect(() => {
