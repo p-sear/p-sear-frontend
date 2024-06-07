@@ -3,6 +3,7 @@ import { Outlet, createBrowserRouter } from 'react-router-dom';
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header.jsx';
 import AccountForm from './pages/Account/AccountForm';
+import TokenRedirectPage from './pages/Account/TokenRedirectPage.jsx';
 import BidableHotelList from './pages/BidableHotel/BidableHotelList.jsx';
 import Main from './pages/Home/Main';
 import HotelAuction from './pages/HotelAution/HotelAuction.jsx';
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: '/service-center', element: <ServiceCenter /> },
       { path: '/review', element: <Review /> },
       { path: '/room/new', element: <RoomStep /> },
+      { path: '/token-redirect', element: <TokenRedirectPage /> },
     ],
   },
 ]);
