@@ -9,7 +9,7 @@ import SocialLogin from './SocialLogin';
 import Timer from './Timer';
 
 const Register = () => {
-  const [nickname, setNickname] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -54,7 +54,7 @@ const Register = () => {
 
     axios
       .post(apiUrl, {
-        nickname,
+        username,
         email,
         password,
         emailCode,
@@ -67,6 +67,8 @@ const Register = () => {
         if (res.status == 403 || res.status == 500) {
           // 이메일 인증이 되지 않은 경우 or 중복된 이메일
           alert('중복된 이메일입니다.');
+        } else {
+          alert(res.data.message);
         }
       })
       .catch(error => {
@@ -76,7 +78,7 @@ const Register = () => {
 
   const submitCheck = () => {
     if (
-      nickname != '' &&
+      username != '' &&
       isEmailAuthentication == true &&
       password != '' &&
       passwordConfirm != '' &&
@@ -119,6 +121,7 @@ const Register = () => {
         }
       })
       .catch(error => {
+        alert('중복된 이메일입니다.');
         console.log(error);
       });
   };
@@ -166,9 +169,9 @@ const Register = () => {
           <input
             type='text'
             placeholder='이름을 입력해주세요.'
-            onChange={e => setNickname(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
-          {name == '' ? (
+          {username == '' ? (
             <p className='pt-2 text-red-800'>이름은 필수 입력 사항입니다.</p>
           ) : (
             <p></p>
