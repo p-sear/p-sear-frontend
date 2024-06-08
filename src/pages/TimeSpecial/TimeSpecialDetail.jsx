@@ -7,8 +7,6 @@ import { IoClose } from 'react-icons/io5';
 import { TbPhotoPlus } from 'react-icons/tb';
 import { useParams } from 'react-router-dom';
 
-// import hotelImg from '../../assets/images/hotel.png';
-// import pserLoadig from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 import ScrollToTop from '../../helpers/ScrollToTop';
@@ -195,7 +193,7 @@ const TimeSpecialDetail = () => {
                 alt=''
                 onClick={() => handleShowModal(0)}
               />
-              {hotelData.hotelImageUrls.slice(0, 4).map((url, index) => (
+              {hotelData.hotelImageUrls.slice(0, 4)?.map((url, index) => (
                 <img
                   key={index}
                   src={url}
@@ -217,7 +215,7 @@ const TimeSpecialDetail = () => {
         </div>
 
         {showModal && (
-          <div className='modal fixed left-0 top-0 z-50 flex w-full items-center justify-center bg-gray-900 bg-opacity-50'>
+          <div className='modal-backdrop fixed left-0 top-0 z-50 flex w-full items-center justify-center'>
             <div className='modal-content relative flex flex-col rounded-lg bg-white p-10'>
               <button
                 className='absolute right-1 top-1'
@@ -269,7 +267,7 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-2'>
               <b className='text-lg'>서비스 및 부대시설</b>
               <div className='special-service flex flex-wrap gap-3'>
-                {services.map((service, index) => (
+                {services?.map((service, index) => (
                   <span key={index}>{service.name}</span>
                 ))}
               </div>
@@ -287,13 +285,9 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-3'>
               <b className='text-lg'>객실 선택</b>
 
-              {roomData.length === 0 ? (
-                <div className='p-5 text-center text-gray-500'>
-                  예약 가능한 객실이 없습니다.
-                </div>
-              ) : (
+              {roomData && roomData.length > 0 ? (
                 <div className='flex flex-col gap-6'>
-                  {roomData.map(room => (
+                  {roomData?.map(room => (
                     <div key={room.id} className='special-room-card flex gap-5'>
                       <img src={room.imageUrl} className='special-room-img' />
                       <div className='special-room-content flex w-full flex-col justify-between'>
@@ -332,6 +326,10 @@ const TimeSpecialDetail = () => {
                     </div>
                   ))}
                 </div>
+              ) : (
+                <div className='p-6 text-center text-gray-500'>
+                  예약 가능한 객실이 없습니다.
+                </div>
               )}
             </div>
 
@@ -340,13 +338,17 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-2'>
               <div className='flex items-center justify-between'>
                 <b className='text-lg'>리뷰</b>
-                <a href='/review' style={{ color: 'gray' }} className='text-sm'>
+                <a
+                  href={`/review/${hotelData?.id}`}
+                  style={{ color: 'gray' }}
+                  className='text-sm'
+                >
                   더 보기 &gt;
                 </a>
               </div>
 
               <div className='special-review flex flex-col gap-6'>
-                {reviewData.map(review => (
+                {reviewData?.map(review => (
                   <div key={review.id} className='flex flex-col gap-2'>
                     <div className='flex items-center justify-between'>
                       <p className='flex items-center gap-2'>
