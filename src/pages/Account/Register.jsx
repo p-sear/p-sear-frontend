@@ -9,7 +9,7 @@ import SocialLogin from './SocialLogin';
 import Timer from './Timer';
 
 const Register = () => {
-  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -50,11 +50,14 @@ const Register = () => {
   };
 
   const handleSubmit = () => {
-    const apiUrl = 'http://localhost:5173/dummy/signupSuccess.json';
+    const apiUrl = `${import.meta.env.VITE_PROD_API_SERVER}/member/signup`;
 
     axios
       .post(apiUrl, {
+        nickname,
         email,
+        password,
+        emailCode,
       })
       .then(res => {
         if (res.status == 200) {
@@ -73,7 +76,7 @@ const Register = () => {
 
   const submitCheck = () => {
     if (
-      name != '' &&
+      nickname != '' &&
       isEmailAuthentication == true &&
       password != '' &&
       passwordConfirm != '' &&
@@ -96,8 +99,7 @@ const Register = () => {
       alert('이메일 형식을 확인해주세요.');
       return;
     }
-
-    const apiUrl = 'http://localhost:5173/dummy/sendEmailSuccess.json';
+    const apiUrl = `${import.meta.env.VITE_PROD_API_SERVER}/member/send-mail`;
 
     axios
       .post(apiUrl, {
@@ -128,7 +130,7 @@ const Register = () => {
     }
 
     // 이메일 인증 API 호출 구현 예정
-    const apiUrl = 'http://localhost:5173/dummy/validationEmailSuccess.json';
+    const apiUrl = `${import.meta.env.VITE_PROD_API_SERVER}/member/confirm-mail`;
 
     axios
       .post(apiUrl, {
@@ -164,7 +166,7 @@ const Register = () => {
           <input
             type='text'
             placeholder='이름을 입력해주세요.'
-            onChange={e => setName(e.target.value)}
+            onChange={e => setNickname(e.target.value)}
           />
           {name == '' ? (
             <p className='pt-2 text-red-800'>이름은 필수 입력 사항입니다.</p>
