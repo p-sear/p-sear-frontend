@@ -57,7 +57,7 @@ const Review = () => {
       .catch(error => {
         console.error('리뷰 조회 API 호출 실패:', error);
       });
-  }, []);
+  }, [id]);
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
