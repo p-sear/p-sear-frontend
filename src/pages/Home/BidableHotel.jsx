@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
 import './BidableHotel.css';
@@ -9,6 +10,8 @@ import './BidableHotel.css';
 const BidableHotel = () => {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -67,6 +70,7 @@ const BidableHotel = () => {
           <div
             className='bidableHotel-box flex flex-col justify-center'
             key={hotel.id}
+            onClick={() => navigate('/hotel-auction')}
           >
             <img src={hotel.photo} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>

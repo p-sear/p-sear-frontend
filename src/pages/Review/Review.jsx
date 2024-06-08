@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
-import { FaArrowAltCircleLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
+import { FaArrowLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { IoIosArrowUp, IoIosClose } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
 import './Review.css';
 
 const Review = () => {
+  const { id } = useParams();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,20 +38,26 @@ const Review = () => {
     );
   };
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     axios
       .get('http://localhost:5173/dummy/reviews.json')
       .then(response => {
-        const fetchedReviews = response.data.content;
+        const fetchedReviews = response.data.content.filter(
+          review => review.id === parseInt(id),
+        );
         setReviews(fetchedReviews);
         setSlideIndices(fetchedReviews.map(() => 0));
       })
       .catch(error => {
         console.error('리뷰 조회 API 호출 실패:', error);
       });
-  }, []);
+  }, [id]);
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
@@ -108,9 +117,9 @@ const Review = () => {
   return (
     <div className='review-container flex w-full flex-col justify-center'>
       <div className='review-title flex items-center gap-4'>
-        <a href=''>
-          <FaArrowAltCircleLeft size={'30px'} />
-        </a>
+        <button onClick={handleGoBack}>
+          <FaArrowLeft size={'30px'} />
+        </button>
         <h1>리뷰</h1>
       </div>
 
