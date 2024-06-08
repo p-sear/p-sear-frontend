@@ -4,6 +4,10 @@ import { SiNaver } from 'react-icons/si';
 import './SocialLogin.css';
 
 const SocialLogin = () => {
+  const handleGoogleLogin = () => {
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}&response_type=code&scope=email`;
+  };
+
   return (
     <div className='socialLogin-container'>
       <div className='flex items-center justify-center gap-3'>
@@ -35,7 +39,7 @@ const SocialLogin = () => {
           </span>
           <p>네이버 로그인</p>
         </button>
-        <button className='google-login relative'>
+        <button className='google-login relative' onClick={handleGoogleLogin}>
           <span className='google-icon absolute'>
             <FcGoogle size={20} />
           </span>

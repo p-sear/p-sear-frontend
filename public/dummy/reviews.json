@@ -2,7 +2,7 @@
   "message": "후기 조회 성공",
   "content": [
     {
-      "id": "0",
+      "id": 0,
       "userName": "홍길동",
       "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7oZfkbwXWHHaDIT-8UFRoDyvLFUyDMqOFFw&s",
       "rating": "4",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "1",
+      "id": 0,
       "userName": "유저2",
       "userImg": "",
       "rating": "5",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": 1,
       "userName": "권지용",
       "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFJSK2xOS5AyzheD0YOBfiEZbeyZ4Nib-owQ&s",
       "rating": "5",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": 2,
       "userName": "아이유",
       "userImg": "https://t4.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2fG8/image/LFot76NsuESpozaYaUdtxk6u5LU.jpg",
       "rating": "3",
@@ -56,7 +56,7 @@
       "reviewImages": []
     },
     {
-      "id": "4",
+      "id": 3,
       "userName": "태양",
       "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvsPlk-Nzu488J_YLkjeyaBPEqh817XD20fNzk1xkypQr8n05hM_S4YE2JjGJp4e3tmCY&usqp=CAU",
       "rating": "2",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": 4,
       "userName": "테스트유저",
       "userImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx1LwwOuP5y-VG3vI3QOG5v6BNNyzwZuV4gi1kNGQJMJSR81wfpSH_JrNGcvzKe5NEiU8&usqp=CAU",
       "rating": "5",
