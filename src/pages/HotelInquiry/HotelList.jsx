@@ -122,6 +122,7 @@ const HotelList = () => {
                     price={hotel.price}
                     dateRange={dateRange}
                     peopleCount={peopleCount}
+                    review={hotel.review}
                   />
                 );
               } else {
@@ -135,6 +136,7 @@ const HotelList = () => {
                     price={hotel.price}
                     dateRange={dateRange}
                     peopleCount={peopleCount}
+                    review={hotel.review}
                   />
                 );
               }

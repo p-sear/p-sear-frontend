@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { forwardRef } from 'react';
 
 import {
@@ -13,13 +14,22 @@ import RatingBar from './RatingBar';
 
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
-  // eslint-disable-next-line react/prop-types
-  const { id, name, description, imageUrl, price, dateRange, peopleCount } =
-    props;
+  const {
+    id,
+    name,
+    description,
+    imageUrl,
+    price,
+    dateRange,
+    peopleCount,
+    review,
+  } = props;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/hotel-detail', { state: { id, dateRange, peopleCount } });
+    navigate('/hotel-detail', {
+      state: { id, dateRange, peopleCount, review },
+    });
   };
 
   return (
@@ -49,7 +59,7 @@ const HotelCard = forwardRef((props, ref) => {
           가격 : {price}
         </Typography>
         <div className='mt-4  flex justify-between'>
-          <RatingBar />
+          <RatingBar review={review} />
 
           <Button
             variant='text'

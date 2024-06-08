@@ -24,6 +24,7 @@ const HotelDetail = () => {
   const hotelId = location.state?.id;
   const dateRange = location.state?.dateRange;
   const peopleCount = location.state?.peopleCount;
+  const review = location.state?.review;
 
   console.log(dateRange);
   console.log('test');
@@ -255,7 +256,7 @@ const HotelDetail = () => {
       <div className='m-4'>
         <Card className='w-full bg-gray-50 p-4 shadow-md'>
           <div className='flex items-center justify-between'>
-            <RatingBar />
+            <RatingBar review={review} />
             <Button color='white'>더보기</Button>
           </div>
         </Card>
