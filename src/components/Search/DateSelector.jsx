@@ -10,7 +10,6 @@ import { FaRegCalendar } from 'react-icons/fa6';
 
 import './DateSelector.css';
 
-// eslint-disable-next-line react/prop-types
 function DateSelector({ onDateChange, initialRange }) {
   const [state, setState] = useState([
     {
