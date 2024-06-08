@@ -32,9 +32,9 @@ const Header = () => {
           >
             <FaRegUserCircle size='20' />
             <span>
-              {userinfo.username == null
-                ? localStorage.getItem('username')
-                : userinfo.username}
+              {userinfo.email == null
+                ? localStorage.getItem('email')
+                : userinfo.email}
               님
             </span>
           </button>
