@@ -338,7 +338,11 @@ const TimeSpecialDetail = () => {
             <div className='flex flex-col gap-2'>
               <div className='flex items-center justify-between'>
                 <b className='text-lg'>리뷰</b>
-                <a href='/review' style={{ color: 'gray' }} className='text-sm'>
+                <a
+                  href={`/review/${hotelData?.id}`}
+                  style={{ color: 'gray' }}
+                  className='text-sm'
+                >
                   더 보기 &gt;
                 </a>
               </div>
