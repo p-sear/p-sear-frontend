@@ -345,7 +345,7 @@ const TimeSpecialDetail = () => {
                                 className='line-through'
                                 style={{ color: 'gray' }}
                               >
-                                {hotelData.previousPrice} 원
+                                {room.price} 원
                               </p>
                               <b>{hotelData.salePrice} 원</b>
                             </div>
