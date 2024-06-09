@@ -85,7 +85,7 @@ const RoomDetail = ({ onClose, hotelId, roomId }) => {
                 borderRadius: '5px',
               }}
             >
-              {amenity.name},{' '}
+              {amenity.name}
             </span>
           ))}
         </div>
