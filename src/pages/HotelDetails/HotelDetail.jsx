@@ -57,9 +57,7 @@ const HotelDetail = () => {
         const response = await axios.get(
           `http://localhost:5173/dummy/hotel.json?id=${hotelId})`,
         );
-        setHotelDetails(
-          response.data.body.filter(hotel => hotel.id === hotelId),
-        );
+        setHotelDetails(response.data.body);
       } catch (error) {
         console.error('호텔 설명 오류', error);
       }
