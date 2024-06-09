@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import addDays from 'date-fns/addDays';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +10,13 @@ import './Search.css';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
-  const [dateRange, setDateRange] = useState(null);
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 1),
+      key: 'selection',
+    },
+  ]);
   const [peopleCount, setPeopleCount] = useState(1);
   const navigate = useNavigate();
 
@@ -33,7 +40,7 @@ const Search = () => {
         </div>
 
         <div className='comp-wrapper'>
-          <DateSelector onDateChange={setDateRange} />
+          <DateSelector onDateChange={setDateRange} initialRange={dateRange} />
         </div>
 
         <div className='comp-wrapper'>

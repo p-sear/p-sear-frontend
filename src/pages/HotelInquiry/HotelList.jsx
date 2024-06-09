@@ -24,6 +24,7 @@ const HotelList = () => {
   const [data, setData] = useState([]);
   const dateRange = location.state?.dateRange;
   const peopleCount = location.state?.peopleCount;
+  const [hotelData, setHotelData] = useState([]);
 
   const lastHotelCardRef = useCallback(node => {
     if (observer.current) observer.current.disconnect();
@@ -39,6 +40,9 @@ const HotelList = () => {
 
   const openModal = () => {
     setIsModalOpen(true);
+  };
+  const handleHotelDataLoaded = data => {
+    setHotelData(data);
   };
 
   const handleScroll = () => {
@@ -84,12 +88,17 @@ const HotelList = () => {
       <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
         <div className='flex flex-col space-y-4 lg:w-1/4'>
           <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
-            <KaKaoMap />
+            <KaKaoMap
+              keyword={keyword}
+              onHotelDataLoaded={handleHotelDataLoaded}
+              s
+            />
           </div>
 
           <MapModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
+            hotelData={hotelData}
           />
 
           <div className='m-4'>
@@ -99,7 +108,7 @@ const HotelList = () => {
         <div className='lg:flex lg:w-3/4 lg:justify-center'>
           <div className='flex flex-col gap-4'>
             <Typography variant='h3' className='-mb-4 mt-4'>
-              &apos;지역&apos; 숙소 ---개
+              &apos;{keyword}&apos; 숙소 {data.length}개
             </Typography>
             {data.map((hotel, index) => {
               if (index + 1) {
@@ -114,6 +123,7 @@ const HotelList = () => {
                     price={hotel.price}
                     dateRange={dateRange}
                     peopleCount={peopleCount}
+                    review={hotel.review}
                   />
                 );
               } else {
@@ -127,6 +137,7 @@ const HotelList = () => {
                     price={hotel.price}
                     dateRange={dateRange}
                     peopleCount={peopleCount}
+                    review={hotel.review}
                   />
                 );
               }

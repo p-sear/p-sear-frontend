@@ -44,15 +44,12 @@ const HotelAuction = () => {
   return (
     <div>
       <Auction></Auction>
-      <div className='mx-auto max-w-7xl p-4'>
-        <div className='mb-8'>
-          <HotelImage />
-        </div>
-        <div
-          key={hotelDetails.id}
-          className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'
-        >
-          {hotelDetails.map(hotelDetail => (
+      {hotelDetails.map(hotelDetail => (
+        <div key={hotelDetails.id} className='mx-auto max-w-7xl p-4'>
+          <div className='mb-8'>
+            <HotelImage />
+          </div>
+          <div className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'>
             <>
               <div className='group-disabled:w-full lg:mr-4 lg:w-3/4'>
                 <Card className='bg-white p-6 shadow-md'>
@@ -168,22 +165,22 @@ const HotelAuction = () => {
                 <PeopleSelector initialCount={peopleCount} />
               </div>
             </>
-          ))}
-        </div>
-        <div className='m-4'>
-          <Card className='w-full bg-gray-50 p-4 shadow-md'>
-            <div className='flex items-center justify-between'>
-              <RatingBar />
-              <Button color='white'>더보기</Button>
-            </div>
-          </Card>
-        </div>
+          </div>
+          <div className='m-4'>
+            <Card className='w-full bg-gray-50 p-4 shadow-md'>
+              <div className='flex items-center justify-between'>
+                <RatingBar review={hotelDetail.review} />
+                <Button color='white'>더보기</Button>
+              </div>
+            </Card>
+          </div>
 
-        <div className='m-4 flex items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'>
-          <AuctionRoom></AuctionRoom>
-          <AuctionBar></AuctionBar>
+          <div className='m-4 flex items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'>
+            <AuctionRoom></AuctionRoom>
+            <AuctionBar maxBid={hotelDetail.maxBid}></AuctionBar>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
