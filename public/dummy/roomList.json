@@ -19,20 +19,20 @@
         "precaution": "string",
         "price": 480000,
         "checkIn": {
-          "hour": 0,
+          "hour": 15,
           "minute": 0,
           "second": 0,
           "nano": 0
         },
         "checkOut": {
-          "hour": 0,
+          "hour": 11,
           "minute": 0,
           "second": 0,
           "nano": 0
         },
         "standardCapacity": 0,
         "maxCapacity": 0,
-        "totalRooms": 0,
+        "totalRooms": 5,
         "heatingSystem": true,
         "tv": true,
         "refrigerator": true,
