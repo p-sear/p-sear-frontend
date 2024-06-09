@@ -72,8 +72,8 @@ const TimeSpecialDetail = () => {
         const reviewResponse = await axios.get(
           'http://localhost:5173/dummy/reviews.json',
         );
-        const reviewData = reviewResponse.data.content.filter(
-          review => review.id === timeSpecialHotel.id,
+        const reviewData = reviewResponse.data.body.content.filter(
+          review => review.hotelId === timeSpecialHotel.id,
         );
         setReviewData(reviewData);
       } catch (error) {
@@ -402,22 +402,30 @@ const TimeSpecialDetail = () => {
               </div>
 
               <div className='special-review flex flex-col gap-6'>
-                {reviewData?.map(review => (
-                  <div key={review.id} className='flex flex-col gap-2'>
-                    <div className='flex items-center justify-between'>
-                      <p className='flex items-center gap-2'>
-                        <FaStar className='star-i' size={20} />
-                        <b className='text-lg'>{review.rating}</b>
+                {reviewData?.length > 0 ? (
+                  reviewData?.slice(0, 2).map(review => (
+                    <div key={review.id} className='flex flex-col gap-2'>
+                      <div className='flex items-center justify-between'>
+                        <p className='flex items-center gap-2'>
+                          <FaStar className='star-i' size={20} />
+                          <b className='text-lg'>{review.grade}</b>
+                        </p>
+                        <p className='text-sm'>
+                          {new Date(review.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <p>
+                        {review.detail.length > 100
+                          ? review.detail.slice(0, 100) + '...'
+                          : review.detail}
                       </p>
-                      <p className='text-sm'>{review.reviewDate}</p>
                     </div>
-                    <p>
-                      {review.reviewContent.length > 100
-                        ? review.reviewContent.slice(0, 100) + '...'
-                        : review.reviewContent}
-                    </p>
+                  ))
+                ) : (
+                  <div className='p-6 text-center text-gray-500'>
+                    아직 작성된 리뷰가 없습니다.
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
