@@ -1,0 +1,42 @@
+{
+  "message": "string",
+  "body": {
+    "id": 0,
+    "hotelId": 0,
+    "name": "디럭스",
+    "description": "string",
+    "mainImageUrl": "string",
+    "precaution": "string",
+    "price": 0,
+    "checkIn": {
+      "hour": 0,
+      "minute": 0,
+      "second": 0,
+      "nano": 0
+    },
+    "checkOut": {
+      "hour": 0,
+      "minute": 0,
+      "second": 0,
+      "nano": 0
+    },
+    "standardCapacity": 0,
+    "maxCapacity": 0,
+    "totalRooms": 0,
+    "heatingSystem": true,
+    "tv": true,
+    "refrigerator": true,
+    "airConditioner": true,
+    "washer": true,
+    "terrace": true,
+    "coffeeMachine": true,
+    "internet": true,
+    "kitchen": true,
+    "bathtub": true,
+    "iron": true,
+    "pool": true,
+    "pet": true,
+    "inAnnex": true,
+    "roomImages": ["string"]
+  }
+}

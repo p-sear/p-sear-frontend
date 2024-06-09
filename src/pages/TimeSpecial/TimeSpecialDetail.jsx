@@ -27,9 +27,11 @@ const TimeSpecialDetail = () => {
   const [reviewData, setReviewData] = useState([]);
 
   const [roomModal, setRoomModal] = useState(false);
+  const [selectedRoomId, setSelectedRoomId] = useState(null);
 
-  const openRoomModal = () => {
+  const openRoomModal = roomId => {
     setRoomModal(true);
+    setSelectedRoomId(roomId);
   };
   const closeRoomModal = () => {
     setRoomModal(false);
@@ -309,14 +311,18 @@ const TimeSpecialDetail = () => {
                           <b>{room.name}</b>
                           <p
                             className='cursor-pointer text-right text-sm'
-                            onClick={openRoomModal}
+                            onClick={() => openRoomModal(room.id)}
                           >
                             상세 정보 &gt;
                           </p>
                           {roomModal && (
                             <div className='modal-backdrop'>
-                              <div className='modal-content'>
-                                <RoomDetail onClose={closeRoomModal} />
+                              <div className='modal-box rou w-1/3 rounded-xl bg-white p-8'>
+                                <RoomDetail
+                                  onClose={closeRoomModal}
+                                  hotelId={hotelData.id}
+                                  roomId={selectedRoomId}
+                                />
                               </div>
                             </div>
                           )}
