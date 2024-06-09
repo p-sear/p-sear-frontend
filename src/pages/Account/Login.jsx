@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const apiUrl = 'http://localhost:5173/dummy/login.json';
+    const apiUrl = `${import.meta.env.VITE_PROD_API_SERVER}/member/authenticate`;
 
     axios
       .post(apiUrl, {
