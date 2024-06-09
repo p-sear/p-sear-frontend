@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { Button, Card, Typography } from '@material-tailwind/react';
 import axios from 'axios';
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa6';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -25,7 +27,13 @@ const HotelDetail = () => {
   const dateRange = location.state?.dateRange;
   const peopleCount = location.state?.peopleCount;
   const review = location.state?.review;
+  const [reviewData, setReviewData] = useState([]);
 
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
+  const handleShowMoreReviews = () => {
+    setShowAllReviews(!showAllReviews);
+  };
   console.log(dateRange);
   console.log('test');
 
@@ -35,7 +43,7 @@ const HotelDetail = () => {
         const response = await axios.get(
           'http://localhost:5173/dummy/roomList.json',
         );
-        setRoomData(response.data.body);
+        setRoomData(response.data.body.content);
       } catch (error) {
         console.error('객실 리스트 오류', error);
       }
@@ -62,7 +70,17 @@ const HotelDetail = () => {
         console.error('호텔 설명 오류', error);
       }
     };
-
+    const fetchReviewData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/reviews.json',
+        );
+        setReviewData(response.data.content);
+      } catch (error) {
+        console.error('리뷰 오류', error);
+      }
+    };
+    fetchReviewData();
     fetchHotelDetails();
     fetchRoomData();
     fetchRecommendedHotels();
@@ -253,9 +271,49 @@ const HotelDetail = () => {
       </div>
       <div className='m-4'>
         <Card className='w-full bg-gray-50 p-4 shadow-md'>
-          <div className='flex items-center justify-between'>
-            <RatingBar review={review} />
-            <Button color='white'>더보기</Button>
+          <div className='flex flex-col gap-2'>
+            <div className='flex items-center justify-between'>
+              <RatingBar review={review} />
+              <a
+                href={`/review/${hotelDetails.id}`}
+                style={{ color: 'gray' }}
+                className='text-sm'
+              >
+                더 보기 &gt;
+              </a>
+            </div>
+            <div className='special-review flex flex-col gap-6'>
+              {(showAllReviews ? reviewData : reviewData.slice(0, 2))?.map(
+                review => (
+                  <div key={review.id} className='flex flex-col gap-2'>
+                    <div className='flex items-center justify-between'>
+                      <p className='flex items-center gap-2'>
+                        <FaStar className='star-i' size={20} />
+                        <b className='text-lg'>{review.rating}</b>
+                      </p>
+                      <p className='text-sm'>{review.reviewDate}</p>
+                    </div>
+                    <p>
+                      {review.reviewContent.length > 100
+                        ? review.reviewContent.slice(0, 100) + '...'
+                        : review.reviewContent}
+                    </p>
+                  </div>
+                ),
+              )}
+            </div>
+            {reviewData.length > 2 && (
+              <button
+                onClick={handleShowMoreReviews}
+                className='mt-2 flex items-center justify-center text-blue-500'
+              >
+                {showAllReviews ? (
+                  <FaArrowUp size={20} />
+                ) : (
+                  <FaArrowDown size={20} />
+                )}
+              </button>
+            )}
           </div>
         </Card>
       </div>
@@ -263,12 +321,12 @@ const HotelDetail = () => {
         {roomData.map((room, index) => (
           <RoomCard
             key={index}
-            roomId={room.roomId}
+            roomId={room.id}
             name={room.name}
             description={room.description}
-            imageUrl={room.imageUrl}
-            checkIn={room.checkIn}
-            checkOut={room.checkOut}
+            imageUrl={room.mainImageUrl}
+            checkIn={room.checkIn.hour}
+            checkOut={room.checkOut.hour}
             price={room.price}
             roomData={roomData}
             hotelName={hotelDetails[0].name}

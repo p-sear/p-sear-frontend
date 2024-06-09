@@ -43,10 +43,10 @@ const RoomCard = props => {
             {description}
           </Typography>
           <Typography color='gray' className=' mt-4 font-normal'>
-            체크인 : {checkIn}
+            체크인 : {checkIn}:00
           </Typography>
           <Typography color='gray' className=' font-normal'>
-            체크아웃 : {checkOut}
+            체크아웃 : {checkOut}:00
           </Typography>
           <Typography color='gray' className=' font-normal'>
             가격 : {price}

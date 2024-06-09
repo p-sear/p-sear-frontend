@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Card, Typography } from '@material-tailwind/react';
+import { Card, Typography } from '@material-tailwind/react';
 import axios from 'axios';
+import { FaStar } from 'react-icons/fa';
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useLocation } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,7 +24,13 @@ const HotelAuction = () => {
 
   const dateRange = location.state?.dateRange;
   const peopleCount = location.state?.peopleCount;
+  const [reviewData, setReviewData] = useState([]);
 
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
+  const handleShowMoreReviews = () => {
+    setShowAllReviews(!showAllReviews);
+  };
   console.log(dateRange);
   console.log('test');
 
@@ -37,6 +45,17 @@ const HotelAuction = () => {
         console.error('경매 호텔 설명 오류', error);
       }
     };
+    const fetchReviewData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/reviews.json',
+        );
+        setReviewData(response.data.content);
+      } catch (error) {
+        console.error('리뷰 오류', error);
+      }
+    };
+    fetchReviewData();
 
     fetchHotelDetails();
   }, []);
@@ -168,9 +187,49 @@ const HotelAuction = () => {
           </div>
           <div className='m-4'>
             <Card className='w-full bg-gray-50 p-4 shadow-md'>
-              <div className='flex items-center justify-between'>
-                <RatingBar review={hotelDetail.review} />
-                <Button color='white'>더보기</Button>
+              <div className='flex flex-col gap-2'>
+                <div className='flex items-center justify-between'>
+                  <RatingBar review={4} />
+                  <a
+                    href={`/review/${hotelDetails.id}`}
+                    style={{ color: 'gray' }}
+                    className='text-sm'
+                  >
+                    더 보기 &gt;
+                  </a>
+                </div>
+                <div className='special-review flex flex-col gap-6'>
+                  {(showAllReviews ? reviewData : reviewData.slice(0, 2))?.map(
+                    review => (
+                      <div key={review.id} className='flex flex-col gap-2'>
+                        <div className='flex items-center justify-between'>
+                          <p className='flex items-center gap-2'>
+                            <FaStar className='star-i' size={20} />
+                            <b className='text-lg'>{review.rating}</b>
+                          </p>
+                          <p className='text-sm'>{review.reviewDate}</p>
+                        </div>
+                        <p>
+                          {review.reviewContent.length > 100
+                            ? review.reviewContent.slice(0, 100) + '...'
+                            : review.reviewContent}
+                        </p>
+                      </div>
+                    ),
+                  )}
+                </div>
+                {reviewData.length > 2 && (
+                  <button
+                    onClick={handleShowMoreReviews}
+                    className='mt-2 flex items-center justify-center text-blue-500'
+                  >
+                    {showAllReviews ? (
+                      <FaArrowUp size={20} />
+                    ) : (
+                      <FaArrowDown size={20} />
+                    )}
+                  </button>
+                )}
               </div>
             </Card>
           </div>
