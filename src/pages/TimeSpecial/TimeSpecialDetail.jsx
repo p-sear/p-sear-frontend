@@ -5,12 +5,14 @@ import { FaStar } from 'react-icons/fa6';
 import { GoHeart } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { TbPhotoPlus } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import DateSelector from '../../components/Search/DateSelector';
 import PeopleSelector from '../../components/Search/PeopleSelector';
 import ScrollToTop from '../../helpers/ScrollToTop';
 import KaKaoMap from '../HotelInquiry/KaKaoMap';
+import RoomDetail from './RoomDetail';
 import './TimeSpecialDetail.css';
 
 const TimeSpecialDetail = () => {
@@ -24,6 +26,19 @@ const TimeSpecialDetail = () => {
   const [allHotelsData, setAllHotelsData] = useState([]);
   const [roomData, setRoomData] = useState([]);
   const [reviewData, setReviewData] = useState([]);
+
+  const [roomModal, setRoomModal] = useState(false);
+  const [selectedRoomId, setSelectedRoomId] = useState(null);
+
+  const navigate = useNavigate();
+
+  const openRoomModal = roomId => {
+    setRoomModal(true);
+    setSelectedRoomId(roomId);
+  };
+  const closeRoomModal = () => {
+    setRoomModal(false);
+  };
 
   useEffect(() => {
     const fetchHotelData = async () => {
@@ -48,12 +63,10 @@ const TimeSpecialDetail = () => {
 
         // 객실 API 호출
         const roomResponse = await axios.get(
+          // `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}/rooms`,
           'http://localhost:5173/dummy/roomList.json',
         );
-        const roomData = roomResponse.data.body.filter(
-          room => room.id === timeSpecialHotel.id,
-        );
-        setRoomData(roomData);
+        setRoomData(roomResponse.data.body.content);
 
         // 리뷰 데이터 가져오기
         const reviewResponse = await axios.get(
@@ -288,14 +301,43 @@ const TimeSpecialDetail = () => {
               {roomData && roomData.length > 0 ? (
                 <div className='flex flex-col gap-6'>
                   {roomData?.map(room => (
-                    <div key={room.id} className='special-room-card flex gap-5'>
-                      <img src={room.imageUrl} className='special-room-img' />
-                      <div className='special-room-content flex w-full flex-col justify-between'>
-                        <b>{room.name}</b>
+                    <div
+                      key={room.id}
+                      className='special-room-card flex items-center gap-5'
+                    >
+                      <img
+                        src={room.mainImageUrl}
+                        className='special-room-img'
+                      />
+                      <div className='special-room-content flex h-full w-full flex-col justify-between gap-2'>
+                        <div>
+                          <b>{room.name}</b>
+                          <p
+                            className='cursor-pointer text-right text-sm'
+                            onClick={() => openRoomModal(room.id)}
+                          >
+                            상세 정보 &gt;
+                          </p>
+                          {roomModal && (
+                            <div className='modal-backdrop'>
+                              <div className='modal-box rou w-1/3 rounded-xl bg-white p-8'>
+                                <RoomDetail
+                                  onClose={closeRoomModal}
+                                  hotelId={hotelData.id}
+                                  roomId={selectedRoomId}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
                         <div className='flex w-full justify-between rounded-lg bg-white p-3'>
                           <div>
-                            <p className='text-sm'>입실 {room.checkIn}</p>
-                            <p className='text-sm'>퇴실 {room.checkOut}</p>
+                            <p className='text-sm'>
+                              입실 {room.checkIn.hour}:00
+                            </p>
+                            <p className='text-sm'>
+                              퇴실 {room.checkOut.hour}:00
+                            </p>
                           </div>
                           <div className='flex flex-col gap-2'>
                             <div className='flex flex-col'>
@@ -303,23 +345,35 @@ const TimeSpecialDetail = () => {
                                 className='line-through'
                                 style={{ color: 'gray' }}
                               >
-                                {hotelData.previousPrice} 원
+                                {room.price} 원
                               </p>
                               <b>{hotelData.salePrice} 원</b>
                             </div>
-                            <button className='special-res-btn flex-end w-full text-sm'>
-                              객실 예약
-                            </button>
+                            {room.totalRooms === 0 ? (
+                              <p className='special-impRes-btn flex-end w-full text-center text-sm'>
+                                예약 불가
+                              </p>
+                            ) : (
+                              <button
+                                className='special-res-btn flex-end w-full text-sm'
+                                onClick={() => navigate('/hotel-reservation')}
+                              >
+                                객실 예약
+                              </button>
+                            )}
                           </div>
                         </div>
                         <div className='rounded-lg bg-white p-3'>
                           <div className='flex items-center justify-between'>
                             <p className='text-sm'>객실 정보</p>
-                            <p className='text-sm'>{room.description}</p>
+                            <p className='text-sm'>
+                              기준 인원 {room.standardCapacity} | 최대 인원{' '}
+                              {room.maxCapacity}
+                            </p>
                           </div>
                           <div className='flex items-center justify-between'>
-                            <p className='text-sm'>추가 정보</p>
-                            <p className='text-sm'>오션뷰</p>
+                            <p className='text-sm'>남은 객실</p>
+                            <p className='text-sm'>{room.totalRooms}</p>
                           </div>
                         </div>
                       </div>
