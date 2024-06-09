@@ -114,7 +114,14 @@
         "province": "string",
         "city": "강릉",
         "district": "string",
-        "hotelImageUrls": [],
+        "hotelImageUrls": [
+          "https://www.p-city.com/mobilePub/static/images/hotelParadise/img_facilities_outdoor01.jpg",
+          "https://lh6.googleusercontent.com/proxy/SGPLcpF2TdId0B71yn7DCLrTbzd863eY4dULToUeua4RXudGS-231ACjLqSmcJ6In5f_XK7lDog-heC2WNDXfdctxUrt-iH-IkuQAtf0PqkC2CFArQwkng30USCXQTOgmC9lcLe-X-7aBB12iBxkt-T9o0tVs9OPwvO0VS6HEyaoBOKs8jBBjMHdcf6_8-rZKlWkMlgJ2cmhE_g63y6iQdbGR9Rq",
+          "https://img.allmytour.com/images/onda/159/1653445131943.jpg?type=w&w=1600&quality=80&ttype=jpg",
+          "https://www.travelmap.co.kr/contents/files/board/news/2021/06/title_4060_1623908883.jpg",
+          "https://item.elandrs.com/r/image/item/2023-07-10/86504beb-a5b1-4de4-8147-6694121c0787.jpg?w=750&h=&q=100",
+          "https://benepia.tourok.co.kr/_goods_img/1970-01/404_1_1587529406.jpg"
+        ],
         "gradeAverage": 4.5,
         "salePrice": "190,000",
         "previousPrice": "328,000"

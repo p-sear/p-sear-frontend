@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { FaArrowLeft, FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 import pserLoading from '../../assets/images/loading.png';
 import DateSelector from '../../components/Search/DateSelector';
@@ -12,6 +13,8 @@ const TimeSpecialList = () => {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(10);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -70,6 +73,7 @@ const TimeSpecialList = () => {
               <div
                 key={hotel.id}
                 className='timespecial-card flex w-full items-center justify-center'
+                onClick={() => navigate(`/timespecial-detail/${hotel.id}`)}
               >
                 <img
                   src={hotel.mainImage || pserLoading}
