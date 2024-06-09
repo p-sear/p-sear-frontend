@@ -48,12 +48,9 @@ const TimeSpecialDetail = () => {
 
         // 객실 API 호출
         const roomResponse = await axios.get(
-          'http://localhost:5173/dummy/roomList.json',
+          `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}/rooms`,
         );
-        const roomData = roomResponse.data.body.filter(
-          room => room.id === timeSpecialHotel.id,
-        );
-        setRoomData(roomData);
+        setRoomData(roomResponse.data.body.content);
 
         // 리뷰 데이터 가져오기
         const reviewResponse = await axios.get(

@@ -1,35 +1,180 @@
 {
-  "message": "",
-  "body": [
-    {
-      "id": 0,
-      "roomId": 1,
-      "name": "디럭스 트윈",
-      "description": "침대 두개",
-      "checkIn": "17:00",
-      "checkOut": "11:00",
-      "price": "230,000",
-      "imageUrl": "https://res.klook.com/image/upload/c_fill,w_627,h_470/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/awessankdbaeuib4xjks.webp"
+  "message": "객실 조회 성공",
+  "body": {
+    "totalPages": 0,
+    "totalElements": 0,
+    "sort": {
+      "empty": true,
+      "sorted": true,
+      "unsorted": true
     },
-    {
-      "id": 0,
-      "roomId": 2,
-      "name": "디럭스 더블",
-      "checkIn": "17:00",
-      "checkOut": "11:00",
-      "price": "290,000",
-      "description": "더블 침대 하나",
-      "imageUrl": "https://www.yongpyong.co.kr/images/room/mobile/hotel/m_img_hotel_sdo_01.jpg"
+    "number": 0,
+    "size": 0,
+    "content": [
+      {
+        "id": 0,
+        "name": "디럭스",
+        "description": "예술적 감성과 아늑함을 동시에 느낄 수 있는 디럭스 객실",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room1.jpg",
+        "precaution": "string",
+        "price": 480000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 1,
+        "name": "스위트",
+        "description": "여유로운 휴식을 즐길 수 있는 우아한 감성의 스위트 객실",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room5.jpg",
+        "precaution": "string",
+        "price": 560000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 2,
+        "name": "풀빌라",
+        "description": "프라이빗하게 즐길 수 있어 자유롭고 힐링 가득한 고급 풀빌라",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room11.jpg",
+        "precaution": "string",
+        "price": 710000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 3,
+        "name": "라운지",
+        "description": "호텔 파라다이스에서의 시간을 더욱 빛내줄 고급 라운지 시설",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room14.jpg",
+        "precaution": "string",
+        "price": 1020000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      }
+    ],
+    "numberOfElements": 0,
+    "first": true,
+    "last": true,
+    "pageable": {
+      "sort": {
+        "empty": true,
+        "sorted": true,
+        "unsorted": true
+      },
+      "offset": 0,
+      "pageNumber": 0,
+      "pageSize": 0,
+      "paged": true,
+      "unpaged": true
     },
-    {
-      "id": 0,
-      "roomId": 3,
-      "name": "싱글 트윈",
-      "description": "싱글 침대 두개",
-      "checkIn": "20:00",
-      "checkOut": "11:00",
-      "price": "219,000",
-      "imageUrl": "https://wehotel.co.kr/wp-content/uploads/sites/35/2023/07/WE-Hotel-Superior-Floor-OceanSFO_m-1.jpg"
-    }
-  ]
+    "empty": true
+  }
 }
