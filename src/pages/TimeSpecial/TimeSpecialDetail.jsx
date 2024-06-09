@@ -5,6 +5,7 @@ import { FaStar } from 'react-icons/fa6';
 import { GoHeart } from 'react-icons/go';
 import { IoClose } from 'react-icons/io5';
 import { TbPhotoPlus } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import DateSelector from '../../components/Search/DateSelector';
@@ -28,6 +29,8 @@ const TimeSpecialDetail = () => {
 
   const [roomModal, setRoomModal] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState(null);
+
+  const navigate = useNavigate();
 
   const openRoomModal = roomId => {
     setRoomModal(true);
@@ -351,7 +354,10 @@ const TimeSpecialDetail = () => {
                                 예약 불가
                               </p>
                             ) : (
-                              <button className='special-res-btn flex-end w-full text-sm'>
+                              <button
+                                className='special-res-btn flex-end w-full text-sm'
+                                onClick={() => navigate('/hotel-reservation')}
+                              >
                                 객실 예약
                               </button>
                             )}
