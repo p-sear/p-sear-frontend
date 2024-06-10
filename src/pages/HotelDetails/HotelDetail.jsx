@@ -4,6 +4,7 @@ import { Button, Card, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -17,29 +18,31 @@ import RoomCard from './roomcard';
 
 const HotelDetail = () => {
   const [roomData, setRoomData] = useState([]);
+  const { hotelId } = useParams();
   const [recommendedHotels, setRecommendedHotels] = useState([]);
   const [hotelDetails, setHotelDetails] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const hotelId = location.state?.id;
   const dateRange = location.state?.dateRange;
   const peopleCount = location.state?.peopleCount;
-  const review = location.state?.review;
-
-  console.log(dateRange);
-  console.log('test');
 
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5173/dummy/roomList.json',
+          `${import.meta.env.VITE_PROD_API_SERVER}/search/hotels/${hotelId}`,
         );
-        setRoomData(response.data.body);
+        console.log(response.data.body.rooms);
+        setRoomData(response.data.body.rooms);
+        console.log(response.data.body);
+        setHotelDetails(response.data.body);
+        console.log(response.data.body.images);
       } catch (error) {
         console.error('객실 리스트 오류', error);
       }
     };
+
+    fetchRoomData();
 
     const fetchRecommendedHotels = async () => {
       try {
@@ -52,19 +55,6 @@ const HotelDetail = () => {
       }
     };
 
-    const fetchHotelDetails = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5173/dummy/hotel.json?id=${hotelId})`,
-        );
-        setHotelDetails(response.data.body);
-      } catch (error) {
-        console.error('호텔 설명 오류', error);
-      }
-    };
-
-    fetchHotelDetails();
-    fetchRoomData();
     fetchRecommendedHotels();
   }, [hotelId]);
 
@@ -109,105 +99,114 @@ const HotelDetail = () => {
     ],
   };
 
+  if (!hotelDetails) {
+    console.log('loading..');
+    return <>Loading..</>;
+  }
+
   return (
     <div className='mx-auto max-w-7xl p-4'>
-      <div className='mb-8'>
-        <HotelImage />
-      </div>
-      <div
-        key={hotelDetails.id}
-        className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'
-      >
-        {hotelDetails.map(hotelDetail => (
-          <>
+      {hotelDetails ? (
+        <>
+          <div className='mb-8'>
+            {hotelDetails.images && hotelDetails.images.length > 0 && (
+              <HotelImage imgList={hotelDetails.images} />
+            )}
+          </div>
+          <div className='m-4 flex flex-col items-start justify-between rounded-lg bg-gray-50 p-6 shadow-md lg:flex-row lg:items-center'>
             <div className='group-disabled:w-full lg:mr-4 lg:w-3/4'>
               <Card className='bg-white p-6 shadow-md'>
                 <Typography variant='h6' color='black' className='mb-2'>
-                  {hotelDetail.category}
+                  {hotelDetails.category}
                 </Typography>
                 <Typography variant='h3' color='black' className='mb-4'>
-                  {hotelDetail.name}
+                  {hotelDetails.name}
                 </Typography>
                 <Typography variant='h5' color='black' className='mb-4'>
                   서비스 및 부대시설
                 </Typography>
-                <div className='mb-4 flex flex-wrap'>
-                  {hotelDetail.wifi && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      WIFI
-                    </span>
-                  )}
-                  {hotelDetail.barbecue && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      바베큐
-                    </span>
-                  )}
-                  {hotelDetail.sauna && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      사우나/스파
-                    </span>
-                  )}
-                  {hotelDetail.swimmingPool && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      수영장
-                    </span>
-                  )}
-                  {hotelDetail.restaurant && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      레스토랑
-                    </span>
-                  )}
-                  {hotelDetail.roofTop && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      루프탑
-                    </span>
-                  )}
-                  {hotelDetail.fitness && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      피트니스
-                    </span>
-                  )}
-                  {hotelDetail.dryer && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      건조기
-                    </span>
-                  )}
-                  {hotelDetail.breakfast && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      조식
-                    </span>
-                  )}
-                  {hotelDetail.smokingArea && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      흡연구역
-                    </span>
-                  )}
-                  {hotelDetail.allTimeDesk && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      24시간 데스크
-                    </span>
-                  )}
-                  {hotelDetail.luggageStorage && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      짐보관
-                    </span>
-                  )}
-                  {hotelDetail.snackBar && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      스낵바
-                    </span>
-                  )}
-                  {hotelDetail.petFriendly && (
-                    <span className='m-1 rounded bg-gray-200 px-3 py-1'>
-                      반려동물동반
-                    </span>
-                  )}
-                </div>
+                {hotelDetails.facility && hotelDetails.facility.length > 0 ? (
+                  <div className='mb-4 flex flex-wrap'>
+                    {hotelDetails.facility.wifi && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        WIFI
+                      </span>
+                    )}
+                    {hotelDetails.facility.barbecue && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        바베큐
+                      </span>
+                    )}
+                    {hotelDetails.facility.sauna && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        사우나/스파
+                      </span>
+                    )}
+                    {hotelDetails.facility.swimmingPool && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        수영장
+                      </span>
+                    )}
+                    {hotelDetails.facility.restaurant && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        레스토랑
+                      </span>
+                    )}
+                    {hotelDetails.facility.roofTop && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        루프탑
+                      </span>
+                    )}
+                    {hotelDetails.facility.fitness && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        피트니스
+                      </span>
+                    )}
+                    {hotelDetails.facility.dryer && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        건조기
+                      </span>
+                    )}
+                    {hotelDetails.facility.breakfast && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        조식
+                      </span>
+                    )}
+                    {hotelDetails.facility.smokingArea && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        흡연구역
+                      </span>
+                    )}
+                    {hotelDetails.facility.allTimeDesk && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        24시간 데스크
+                      </span>
+                    )}
+                    {hotelDetails.facility.luggageStorage && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        짐보관
+                      </span>
+                    )}
+                    {hotelDetails.facility.snackBar && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        스낵바
+                      </span>
+                    )}
+                    {hotelDetails.facility.petFriendly && (
+                      <span className='m-1 rounded bg-gray-200 px-3 py-1'>
+                        반려동물동반
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div>loading...</div>
+                )}
+
                 <Typography variant='h4' color='black' className='mb-2'>
                   숙소 소개
                 </Typography>
                 <Typography variant='body1' color='black'>
-                  &quot;{hotelDetail.description}&quot;
+                  &quot;{hotelDetails.description}&quot;
                 </Typography>
               </Card>
             </div>
@@ -215,8 +214,8 @@ const HotelDetail = () => {
               <div className='h-40 w-72 rounded-lg'>
                 <Map
                   center={{
-                    lat: hotelDetail.latitude,
-                    lng: hotelDetail.longtitude,
+                    lat: hotelDetails.latitude,
+                    lng: hotelDetails.longitude,
                   }}
                   style={{ width: '100%', height: '100%' }}
                   level={3}
@@ -224,8 +223,8 @@ const HotelDetail = () => {
                 >
                   <MapMarker
                     position={{
-                      lat: hotelDetail.latitude,
-                      lng: hotelDetail.longtitude,
+                      lat: hotelDetails.latitude,
+                      lng: hotelDetails.longtitude,
                     }}
                   ></MapMarker>
                 </Map>
@@ -238,7 +237,7 @@ const HotelDetail = () => {
                 fullWidth
                 onClick={() =>
                   handleButtonClick(
-                    hotelDetail.name,
+                    hotelDetails.name,
                     roomData,
                     peopleCount,
                     dateRange,
@@ -248,13 +247,16 @@ const HotelDetail = () => {
                 예약하기
               </Button>
             </div>
-          </>
-        ))}
-      </div>
+          </div>
+        </>
+      ) : (
+        <div>Loading.....</div>
+      )}
+
       <div className='m-4'>
         <Card className='w-full bg-gray-50 p-4 shadow-md'>
           <div className='flex items-center justify-between'>
-            <RatingBar review={review} />
+            <RatingBar review={4} />
             <Button color='white'>더보기</Button>
           </div>
         </Card>
@@ -266,12 +268,12 @@ const HotelDetail = () => {
             roomId={room.roomId}
             name={room.name}
             description={room.description}
-            imageUrl={room.imageUrl}
+            imageUrl={room.mainImageUrl}
             checkIn={room.checkIn}
             checkOut={room.checkOut}
             price={room.price}
             roomData={roomData}
-            hotelName={hotelDetails[0].name}
+            hotelName={hotelDetails.name}
           />
         ))}
       </div>
@@ -279,15 +281,17 @@ const HotelDetail = () => {
         <Typography variant='h4' color='black' className='mb-4'>
           추천 숙소
         </Typography>
-        <Slider {...sliderSettings}>
-          {recommendedHotels.map(hotel => (
-            <div key={hotel.id} className='p-3'>
-              <div className=''>
-                <RecommendCard name={hotel.name} imageUrl={hotel.imageUrl} />
+        {
+          <Slider {...sliderSettings}>
+            {recommendedHotels.map(hotel => (
+              <div key={hotel.id} className='p-3'>
+                <div className=''>
+                  <RecommendCard name={hotel.name} imageUrl={hotel.imageUrl} />
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        }
       </div>
     </div>
   );
