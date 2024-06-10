@@ -265,7 +265,7 @@ const HotelDetail = () => {
         {roomData.map((room, index) => (
           <RoomCard
             key={index}
-            roomId={room.roomId}
+            roomId={room.id}
             name={room.name}
             description={room.description}
             imageUrl={room.mainImageUrl}

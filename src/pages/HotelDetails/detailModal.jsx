@@ -24,6 +24,7 @@ const DetailModal = ({ roomId, name, roomData, hotelName }) => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
+    console.log(roomId);
     const fetchRoomImage = async () => {
       try {
         const response = await axios.get(
@@ -67,7 +68,9 @@ const DetailModal = ({ roomId, name, roomData, hotelName }) => {
   console.log(roomData);
 
   const handleReservation = () => {
-    navigate('/hotel-reservation1', { state: { hotelName, roomData } });
+    navigate(`/reservation-payment/${roomId}`, {
+      state: { hotelName, roomData },
+    });
   };
 
   return (

@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Input, Typography } from '@material-tailwind/react';
 import { Button, Radio } from '@material-tailwind/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import kakaopay from '../../assets/icons/kakaopay.png';
 
 const HotelReservation2 = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const hotelName = location.state?.hotelName;
   const selectedRoom = location.state?.selectedRoom;
 
@@ -32,6 +33,13 @@ const HotelReservation2 = () => {
     setVisitMethod(method);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('로그인 후 이용해주세요.');
+      navigate('/');
+    }
+  });
   return (
     <div className='flex flex-col items-center justify-center'>
       <div>

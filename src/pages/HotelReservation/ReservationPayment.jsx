@@ -1,28 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Input, Typography } from '@material-tailwind/react';
 import { Button, Radio } from '@material-tailwind/react';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import kakaopay from '../../assets/icons/kakaopay.png';
-import { getHotelServiceRequest } from '../../axios/hotelServiceApi';
-import { postPaymentCheck, postReservation } from '../../axios/reservationApi';
 import AlertModal from '../../components/Modal/AlertModal';
 import MessageModal from '../../components/Modal/MessageModal';
 import { sleep } from '../../util/util';
 
 const ReservationPayment = () => {
   const location = useLocation();
+  const { roomId } = useParams();
   const hotelName = location.state?.hotelName || '가산 RAPA 무인텔';
   const selectedRoom = location.state?.selectedRoom || {
-    roomId: 4,
-    roomName: '특실',
+    roomId: roomId,
+    roomName: '특실1',
     visitorCount: 1,
     adultCount: 1,
     childCount: 0,
-    startAt: '2024-06-12',
-    endAt: '2024-06-13',
+    startAt: '2025-07-23',
+    endAt: '2025-07-24',
   };
   const BEFORE_CHECKIN = 'BEFORE_CHECKIN';
 
@@ -50,55 +51,141 @@ const ReservationPayment = () => {
     setVisitMethod(method);
   };
 
-  const requestPay = merchantUid => {
-    const IMP = window.IMP;
+  // const requestPay1 = merchantUid => {
+  //   const IMP = window.IMP;
+  //   IMP.init('imp24543664');
+  //   console.log(merchantUid);
+  //   postReservation(selectedRoom)
+  //     .then(resp => {
+  //       console.log(resp);
+  //       const path = resp.headers.location;
+  //       return getHotelServiceRequest(path);
+  //     })
+  //     .then(resp => {
+  //       console.log(resp.data);
+  //       return resp.data.body;
+  //     })
+  //     .then(reservation => {
+  //       IMP.request_pay(
+  //         {
+  //           pg: 'kakaopay',
+  //           merchant_uid: reservation.merchantUid,
+  //           name: `${hotelName} - ${selectedRoom.roomName}`,
+  //           amount: 500,
+  //         },
+  //         async function (resp) {
+  //           if (resp.success) {
+  //             console.log(resp);
+  //             for (let i = 0; i < 5; i++) {
+  //               const paymentCheckResp = await postPaymentCheck(
+  //                 reservation.id,
+  //                 resp.imp_uid,
+  //               );
+  //               if (paymentCheckResp.data.body === BEFORE_CHECKIN) {
+  //                 setMessageModalOpen(true);
+  //                 console.log('messageModal: ' + messageModalOpen);
+  //                 return;
+  //               }
+  //               console.log('data.body: ' + paymentCheckResp.data.body);
+  //               await sleep(500);
+  //             }
+  //             if (!messageModalOpen) {
+  //               setAlertModalOpen(true);
+  //               console.log('alertModal: ' + messageModalOpen);
+  //             }
+  //           } else {
+  //             console.log(resp);
+  //           }
+  //         },
+  //       );
+  //     });
+  // };
+  const requestPay = (merchant_uid, price, reservationId) => {
+    const { IMP } = window;
     IMP.init('imp24543664');
-    console.log(merchantUid);
-    postReservation(selectedRoom)
+
+    IMP.request_pay(
+      {
+        pg: 'kakaopay',
+        merchant_uid: merchant_uid,
+        name: `${hotelName} - ${selectedRoom.roomName}`,
+        amount: price,
+      },
+      async function (resp) {
+        if (resp.success) {
+          console.log(resp);
+          for (let i = 0; i < 5; i++) {
+            const token = localStorage.getItem('token');
+            const paymentCheckResp = await axios.post(
+              `${import.meta.env.VITE_PROD_API_SERVER}/hotel/reservations/${reservationId}/check-payment`,
+              resp.imp_uid,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            );
+
+            if (paymentCheckResp.data.body === BEFORE_CHECKIN) {
+              setMessageModalOpen(true);
+              console.log('messageModal: ' + messageModalOpen);
+              return;
+            }
+            console.log('data.body: ' + paymentCheckResp.data.body);
+            await sleep(500);
+          }
+          if (!messageModalOpen) {
+            setAlertModalOpen(true);
+            console.log('alertModal: ' + messageModalOpen);
+          }
+        } else {
+          console.log(resp);
+        }
+      },
+    );
+  };
+
+  const requestMerchantUid = () => {
+    const token = localStorage.getItem('token');
+    axios
+      .post(
+        `${import.meta.env.VITE_PROD_API_SERVER}/hotel/reservations`,
+        selectedRoom,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
       .then(resp => {
         console.log(resp);
+        console.log(resp.headers);
         const path = resp.headers.location;
-        return getHotelServiceRequest(path);
-      })
-      .then(resp => {
-        console.log(resp.data);
-        return resp.data.body;
-      })
-      .then(reservation => {
-        IMP.request_pay(
-          {
-            pg: 'kakaopay',
-            merchant_uid: reservation.merchantUid,
-            name: `${hotelName} - ${selectedRoom.roomName}`,
-            amount: 500,
-          },
-          async function (resp) {
-            if (resp.success) {
-              console.log(resp);
-              for (let i = 0; i < 5; i++) {
-                const paymentCheckResp = await postPaymentCheck(
-                  reservation.id,
-                  resp.imp_uid,
-                );
-                if (paymentCheckResp.data.body === BEFORE_CHECKIN) {
-                  setMessageModalOpen(true);
-                  console.log('messageModal: ' + messageModalOpen);
-                  return;
-                }
-                console.log('data.body: ' + paymentCheckResp.data.body);
-                await sleep(500);
-              }
-              if (!messageModalOpen) {
-                setAlertModalOpen(true);
-                console.log('alertModal: ' + messageModalOpen);
-              }
-            } else {
-              console.log(resp);
-            }
-          },
-        );
+        axios
+          .get(`${import.meta.env.VITE_PROD_API_SERVER}/hotel${path}`)
+          .then(res => {
+            console.log(res.data.body);
+            requestPay(
+              res.data.body.merchantUid,
+              res.data.body.price,
+              res.data.body.id,
+            );
+          });
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('로그인 후 이용해주세요.');
+      navigate('/');
+    } else {
+      const storedName = localStorage.getItem('username');
+      if (storedName) {
+        setName(storedName);
+      }
+    }
+  }, [navigate]);
 
   const onMessageModalClose = () => {
     setMessageModalOpen(false);
@@ -190,7 +277,7 @@ const ReservationPayment = () => {
         color='yellow'
         className='m-4'
         style={{ width: '120px', height: '40px' }}
-        onClick={requestPay}
+        onClick={requestMerchantUid}
       >
         <img className='h-full w-full' src={kakaopay} alt='KakaoPay' />
       </Button>
