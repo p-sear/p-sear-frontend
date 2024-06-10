@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 
-import pserLoading from '../../assets/images/loading.png';
+import Spinner from '../../helpers/Spinner';
 import './BidableHotel.css';
 
 const BidableHotel = () => {
@@ -14,43 +14,45 @@ const BidableHotel = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchHotels = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:5173/dummy/bidableHotelList.json',
-          {
-            params: {
-              page: 0,
-              size: 4,
-              sort: 'string', // 필요한 정렬 기준으로 수정
-            },
-          },
-        );
+    axios
+      .get('http://1.228.166.90:8000/hotels', {
+        params: {
+          page: 0,
+          size: 4,
+          sort: ['id'],
+        },
+      })
+      .then(response => {
+        const data = response.data.body.content;
+        const hotelIds = data.map(hotel => hotel.id);
 
-        // API에서 필요한 데이터만 추출하여 상태에 저장
-        const hotelsData = response.data.body.content.map(hotel => ({
-          id: hotel.id,
-          name: hotel.name,
-          location: `${hotel.city}`,
-          rating: hotel.rating, // 실제 API에 아직 별점 없음
-          highestBid: hotel.highestBid, // 실제 백엔드 API에 아직 최고 입찰가 없는 상태
-          instantBid: hotel.instantBid, // 실제 백엔드 API에 아직 즉시 입찰가 없는 상태
-          photo: hotel.mainImage || pserLoading, // 이미지가 없는 경우 기본 이미지 사용
-        }));
-
-        setHotels(hotelsData);
+        Promise.all(
+          hotelIds.map(id =>
+            axios.get(`http://1.228.166.90:8000/auctions/${id}`),
+          ),
+        )
+          .then(responses => {
+            const bidableHotels = responses.map(response => response.data.body);
+            setHotels(bidableHotels);
+            setLoading(false);
+          })
+          .catch(error => {
+            console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+            setLoading(false);
+          });
+      })
+      .catch(error => {
+        console.error('전체 호텔 조회 API 호출 실패:', error);
         setLoading(false);
-      } catch (error) {
-        console.error('호텔 조회 API 오류:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchHotels();
+      });
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -76,10 +78,11 @@ const BidableHotel = () => {
             <h3>{hotel.name}</h3>
             <p>{hotel.location}</p>
             <p className='relative'>
-              <span className='star-icon absolute'>⭐</span> {hotel.rating}
+              <span className='star-icon absolute'>⭐</span>{' '}
+              {hotel.gradeAverage}
             </p>
-            <p>최고 입잘가: {hotel.highestBid} 원</p>
-            <p>즉시 입찰가: {hotel.instantBid} 원</p>
+            <p>경매 시작가: {hotel.price} 원</p>
+            {/* <p>낙찰가: {hotel.endPrice} 원</p> */}
           </div>
         ))}
       </div>
