@@ -43,21 +43,48 @@ const Review = () => {
   };
 
   const [reviews, setReviews] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5173/dummy/reviews.json')
+  //     // .get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`)
+  //     .then(response => {
+  //       const fetchedReviews = response.data.body.content.filter(
+  //         review => review.hotelId === parseInt(id),
+  //       );
+  //       setReviews(fetchedReviews);
+  //       setSlideIndices(fetchedReviews.map(() => 0));
+  //     })
+  //     .catch(error => {
+  //       console.error('리뷰 조회 API 호출 실패:', error);
+  //     });
+  // }, [id]);
   useEffect(() => {
-    axios
-      .get('http://localhost:5173/dummy/reviews.json')
-      .then(response => {
-        const fetchedReviews = response.data.body.content.filter(
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
+        );
+        // const response = await axios.get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`);
+        const { content, totalPages } = response.data.body;
+        const filteredReviews = content.filter(
           review => review.hotelId === parseInt(id),
         );
-        setReviews(fetchedReviews);
-        setSlideIndices(fetchedReviews.map(() => 0));
-      })
-      .catch(error => {
+        setReviews(prevReviews => [...prevReviews, ...filteredReviews]);
+        setTotalPages(totalPages);
+        setSlideIndices(filteredReviews.map(() => 0));
+      } catch (error) {
         console.error('리뷰 조회 API 호출 실패:', error);
-      });
-  }, [id]);
+      }
+    };
+
+    fetchReviews();
+  }, [id, page]);
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
@@ -197,6 +224,11 @@ const Review = () => {
           </div>
         </div>
       ))}
+      {page < totalPages - 1 && (
+        <button onClick={handleLoadMore} className='load-more-btn w-full'>
+          더 불러오기
+        </button>
+      )}
 
       {modalIsOpen && (
         <div className='modal-backdrop'>
