@@ -14,21 +14,12 @@ import RatingBar from './RatingBar';
 
 // eslint-disable-next-line react/display-name
 const HotelCard = forwardRef((props, ref) => {
-  const {
-    id,
-    name,
-    description,
-    imageUrl,
-    price,
-    dateRange,
-    peopleCount,
-    review,
-  } = props;
+  const { id, name, description, imageUrl, dateRange, peopleCount } = props;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate('/hotel-detail', {
-      state: { id, dateRange, peopleCount, review },
+      state: { id, dateRange, peopleCount },
     });
   };
 
@@ -46,9 +37,6 @@ const HotelCard = forwardRef((props, ref) => {
         />
       </CardHeader>
       <CardBody className='relative'>
-        <Typography variant='h6' color='gray' className='mb-2 '>
-          {id}
-        </Typography>
         <Typography variant='h4' color='blue-gray' className='mb-2'>
           {name}
         </Typography>
@@ -56,10 +44,10 @@ const HotelCard = forwardRef((props, ref) => {
           {description}
         </Typography>
         <Typography color='black' className='mb-8 font-normal '>
-          가격 : {price}
+          &nbsp;
         </Typography>
         <div className='mt-4  flex justify-between'>
-          <RatingBar review={review} />
+          <RatingBar review={4} />
 
           <Button
             variant='text'
