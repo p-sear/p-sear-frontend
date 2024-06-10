@@ -44,7 +44,15 @@ const TimeSpecialDetail = () => {
     const fetchHotelData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5173/dummy/timeSpecialList.json',
+          // 'http://localhost:5173/dummy/timeSpecialList.json',
+          'http://1.228.166.90:8000/timesales',
+          {
+            params: {
+              page: 0, // 몇 번째 페이지인지
+              size: 1, // 몇 개 가져올 건지
+              sort: ['id'], // 어떤 걸 기준으로 정렬할 건지
+            },
+          },
         );
         const timeSpecialHotel = response.data.body.content.find(
           r => r.id === parseInt(id),
@@ -55,25 +63,47 @@ const TimeSpecialDetail = () => {
           ...timeSpecialHotel.hotelImageUrls,
         ]);
 
-        // 전체 호텔 데이터 가져오기
+        // (모든)호텔 단건 데이터 가져오기
         const allHotelsResponse = await axios.get(
-          'http://localhost:5173/dummy/hotel.json',
+          // 'http://localhost:5173/dummy/hotel.json',
+          `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}`,
+          {
+            params: {
+              hotelId: timeSpecialHotel.id,
+            },
+          },
         );
         setAllHotelsData(allHotelsResponse.data.body);
 
         // 객실 API 호출
         const roomResponse = await axios.get(
-          // `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}/rooms`,
-          'http://localhost:5173/dummy/roomList.json',
+          // 'http://localhost:5173/dummy/roomList.json',
+          `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}/rooms`,
+          {
+            params: {
+              hotelId: timeSpecialHotel.id,
+              page: 0,
+              size: 999,
+              sort: ['id'],
+            },
+          },
         );
         setRoomData(roomResponse.data.body.content);
 
         // 리뷰 데이터 가져오기
         const reviewResponse = await axios.get(
-          'http://localhost:5173/dummy/reviews.json',
+          // 'http://localhost:5173/dummy/reviews.json',
+          'http://1.228.166.90:8000/reviews',
+          {
+            params: {
+              page: 0,
+              size: 2,
+              sort: ['createdAt'],
+            },
+          },
         );
-        const reviewData = reviewResponse.data.content.filter(
-          review => review.id === timeSpecialHotel.id,
+        const reviewData = reviewResponse.data.body.content.filter(
+          review => review.hotelId === timeSpecialHotel.id,
         );
         setReviewData(reviewData);
       } catch (error) {
@@ -88,6 +118,12 @@ const TimeSpecialDetail = () => {
       HOTEL: '호텔',
       PANSION: '펜션',
       POOL: '풀빌라',
+      MOTEL: '모텔',
+      RESORT: '리조트',
+      CAMPING: '캠핑/글램핑',
+      GUESTHOUSE: '게스트 하우스',
+      HANOK: '한옥',
+      HOUSE: '단독 주택',
     };
     return categoryMap[category] || category;
   };
@@ -402,22 +438,30 @@ const TimeSpecialDetail = () => {
               </div>
 
               <div className='special-review flex flex-col gap-6'>
-                {reviewData?.map(review => (
-                  <div key={review.id} className='flex flex-col gap-2'>
-                    <div className='flex items-center justify-between'>
-                      <p className='flex items-center gap-2'>
-                        <FaStar className='star-i' size={20} />
-                        <b className='text-lg'>{review.rating}</b>
+                {reviewData?.length > 0 ? (
+                  reviewData?.slice(0, 2).map(review => (
+                    <div key={review.id} className='flex flex-col gap-2'>
+                      <div className='flex items-center justify-between'>
+                        <p className='flex items-center gap-2'>
+                          <FaStar className='star-i' size={20} />
+                          <b className='text-lg'>{review.grade}</b>
+                        </p>
+                        <p className='text-sm'>
+                          {new Date(review.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                      <p>
+                        {review.detail.length > 100
+                          ? review.detail.slice(0, 100) + '...'
+                          : review.detail}
                       </p>
-                      <p className='text-sm'>{review.reviewDate}</p>
                     </div>
-                    <p>
-                      {review.reviewContent.length > 100
-                        ? review.reviewContent.slice(0, 100) + '...'
-                        : review.reviewContent}
-                    </p>
+                  ))
+                ) : (
+                  <div className='p-6 text-center text-gray-500'>
+                    아직 작성된 리뷰가 없습니다.
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>

@@ -14,12 +14,13 @@ const TimeSpecials = () => {
     const fetchHotels = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:5173/dummy/timeSpecialList.json',
+          // 'http://localhost:5173/dummy/timeSpecialList.json',
+          'http://1.228.166.90:8000/timesales',
           {
             params: {
               page: 0,
               size: 4,
-              sort: 'string',
+              sort: ['id'],
             },
           },
         );

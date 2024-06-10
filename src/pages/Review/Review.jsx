@@ -43,21 +43,48 @@ const Review = () => {
   };
 
   const [reviews, setReviews] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5173/dummy/reviews.json')
+  //     // .get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`)
+  //     .then(response => {
+  //       const fetchedReviews = response.data.body.content.filter(
+  //         review => review.hotelId === parseInt(id),
+  //       );
+  //       setReviews(fetchedReviews);
+  //       setSlideIndices(fetchedReviews.map(() => 0));
+  //     })
+  //     .catch(error => {
+  //       console.error('리뷰 조회 API 호출 실패:', error);
+  //     });
+  // }, [id]);
   useEffect(() => {
-    axios
-      .get('http://localhost:5173/dummy/reviews.json')
-      .then(response => {
-        const fetchedReviews = response.data.content.filter(
-          review => review.id === parseInt(id),
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
         );
-        setReviews(fetchedReviews);
-        setSlideIndices(fetchedReviews.map(() => 0));
-      })
-      .catch(error => {
+        // const response = await axios.get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`);
+        const { content, totalPages } = response.data.body;
+        const filteredReviews = content.filter(
+          review => review.hotelId === parseInt(id),
+        );
+        setReviews(prevReviews => [...prevReviews, ...filteredReviews]);
+        setTotalPages(totalPages);
+        setSlideIndices(filteredReviews.map(() => 0));
+      } catch (error) {
         console.error('리뷰 조회 API 호출 실패:', error);
-      });
-  }, [id]);
+      }
+    };
+
+    fetchReviews();
+  }, [id, page]);
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
@@ -127,12 +154,15 @@ const Review = () => {
         <div key={reviewIndex} className='review-box w-full'>
           <div className='flex w-full'>
             <div className='review-user flex h-full w-full items-center gap-2'>
-              {review.userImg ? (
-                <img src={review.userImg || pserLoading} className='user-img' />
+              {review.profileImageUrl ? (
+                <img
+                  src={review.profileImageUrl || pserLoading}
+                  className='user-img'
+                />
               ) : (
                 <FaRegUserCircle size='30' />
               )}
-              <p>{review.userName}</p>
+              <p>{review.reviewerName}</p>
             </div>
             <div className='review-content flex w-full flex-col gap-4'>
               <div className='flex w-full justify-between'>
@@ -140,24 +170,24 @@ const Review = () => {
                   {[...Array(5)].map((star, index) => (
                     <FaStar
                       key={index}
-                      fill={index < review.rating ? '#ffc400' : 'lightgray'}
+                      fill={index < review.grade ? '#ffc400' : 'lightgray'}
                     />
                   ))}
                 </p>
-                <p>{review.reviewDate}</p>
+                <p>{new Date(review.createdAt).toLocaleDateString()}</p>
               </div>
               <div className='review-preview w-full items-center'>
-                {review.reviewImages.length > 4 &&
+                {review.imageUrls.length > 4 &&
                   slideIndices[reviewIndex] > 0 && (
                     <FaChevronLeft
                       onClick={() =>
-                        prevSlide(reviewIndex, review.reviewImages.length)
+                        prevSlide(reviewIndex, review.imageUrls.length)
                       }
                       className='prev-left-btn'
                     />
                   )}
                 <div className='w-full'>
-                  {review.reviewImages
+                  {review.imageUrls
                     .slice(
                       slideIndices[reviewIndex],
                       slideIndices[reviewIndex] + 4,
@@ -169,32 +199,36 @@ const Review = () => {
                         alt=''
                         onClick={() =>
                           openModal(
-                            review.reviewImages,
+                            review.imageUrls,
                             index + slideIndices[reviewIndex],
                           )
                         }
                       />
                     ))}
                 </div>
-                {review.reviewImages.length > 4 &&
-                  slideIndices[reviewIndex] + 4 <
-                    review.reviewImages.length && (
+                {review.imageUrls.length > 4 &&
+                  slideIndices[reviewIndex] + 4 < review.imageUrls.length && (
                     <FaChevronRight
                       onClick={() =>
-                        nextSlide(reviewIndex, review.reviewImages.length)
+                        nextSlide(reviewIndex, review.imageUrls.length)
                       }
                       className='prev-right-btn'
                     />
                   )}
               </div>
               <div className='review-comment flex flex-col gap-1'>
-                <h3>{review.roomName}</h3>
-                <p>{renderReviewContent(review.reviewContent, reviewIndex)}</p>
+                <h3>review.roomName</h3>
+                <p>{renderReviewContent(review.detail, reviewIndex)}</p>
               </div>
             </div>
           </div>
         </div>
       ))}
+      {page < totalPages - 1 && (
+        <button onClick={handleLoadMore} className='load-more-btn w-full'>
+          더 불러오기
+        </button>
+      )}
 
       {modalIsOpen && (
         <div className='modal-backdrop'>

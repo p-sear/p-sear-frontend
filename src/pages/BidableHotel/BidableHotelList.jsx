@@ -16,16 +16,50 @@ const BidableHotelList = () => {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5173/dummy/bidableHotelList.json')
+  //     .then(response => {
+  //       const data = response.data.body.content;
+  //       setHotels(data);
+  //       setLoading(false);
+  //     })
+  //     .catch(error => {
+  //       console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
   useEffect(() => {
     axios
-      .get('http://localhost:5173/dummy/bidableHotelList.json')
+      .get('http://1.228.166.90:8000/hotels', {
+        params: {
+          page: 0,
+          size: 999,
+          sort: ['id'],
+        },
+      })
       .then(response => {
         const data = response.data.body.content;
-        setHotels(data);
-        setLoading(false);
+        const hotelIds = data.map(hotel => hotel.id);
+
+        Promise.all(
+          hotelIds.map(id =>
+            axios.get(`http://1.228.166.90:8000/auctions/${id}`),
+          ),
+        )
+          .then(responses => {
+            const bidableHotels = responses.map(response => response.data.body);
+            setHotels(bidableHotels);
+            setLoading(false);
+          })
+          .catch(error => {
+            console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+            setLoading(false);
+          });
       })
       .catch(error => {
-        console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+        console.error('전체 호텔 조회 API 호출 실패:', error);
         setLoading(false);
       });
   }, []);
@@ -34,6 +68,13 @@ const BidableHotelList = () => {
     const categoryMap = {
       HOTEL: '호텔',
       PANSION: '펜션',
+      POOL: '풀빌라',
+      MOTEL: '모텔',
+      RESORT: '리조트',
+      CAMPING: '캠핑/글램핑',
+      GUESTHOUSE: '게스트 하우스',
+      HANOK: '한옥',
+      HOUSE: '단독 주택',
     };
     return categoryMap[category] || category;
   };
@@ -85,16 +126,12 @@ const BidableHotelList = () => {
                   <p>{hotel.city}</p>
                   <p className='relative'>
                     <FaStar className='star-icon absolute' />
-                    {hotel.rating}
+                    {hotel.gradeAverage}
                   </p>
                 </div>
                 <div className='w-full self-end'>
-                  <p className='text-right'>
-                    최고 입찰가: {hotel.highestBid} 원
-                  </p>
-                  <p className='text-right'>
-                    즉시 입찰가: {hotel.instantBid} 원
-                  </p>
+                  <p className='text-right'>경매 시작가: {hotel.price} 원</p>
+                  {/* <p className='text-right'>낙찰가: {hotel.endPrice} 원</p> */}
                 </div>
               </div>
             ))}

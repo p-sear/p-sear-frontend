@@ -16,9 +16,18 @@ const TimeSpecialList = () => {
 
   const navigate = useNavigate();
 
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     axios
-      .get('http://localhost:5173/dummy/timeSpecialList.json')
+      // .get('http://localhost:5173/dummy/timeSpecialList.json')
+      .get('http://1.228.166.90:8000/timesales', {
+        params: {
+          page: currentPage,
+          size: 10,
+          sort: ['id'],
+        },
+      })
       .then(response => {
         const data = response.data.body.content;
         setHotels(data);
@@ -28,18 +37,25 @@ const TimeSpecialList = () => {
         console.error('타임 특가 숙소 조회 API 호출 실패:', error);
         setLoading(false);
       });
-  }, []);
+  }, [currentPage]);
 
   const getCategoryInKorean = category => {
     const categoryMap = {
       HOTEL: '호텔',
       PANSION: '펜션',
       POOL: '풀빌라',
+      MOTEL: '모텔',
+      RESORT: '리조트',
+      CAMPING: '캠핑/글램핑',
+      GUESTHOUSE: '게스트 하우스',
+      HANOK: '한옥',
+      HOUSE: '단독 주택',
     };
     return categoryMap[category] || category;
   };
 
   const loadMoreHotels = () => {
+    setCurrentPage(prevPage => prevPage + 1);
     setVisibleCount(prevCount => prevCount + 10);
   };
 
