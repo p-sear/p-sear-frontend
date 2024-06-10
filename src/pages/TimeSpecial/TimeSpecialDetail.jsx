@@ -50,7 +50,6 @@ const TimeSpecialDetail = () => {
             params: {
               page: 0, // 몇 번째 페이지인지
               size: 1, // 몇 개 가져올 건지
-              sort: ['id'], // 어떤 걸 기준으로 정렬할 건지
             },
           },
         );
@@ -84,7 +83,6 @@ const TimeSpecialDetail = () => {
               hotelId: timeSpecialHotel.id,
               page: 0,
               size: 999,
-              sort: ['id'],
             },
           },
         );
@@ -98,7 +96,6 @@ const TimeSpecialDetail = () => {
             params: {
               page: 0,
               size: 2,
-              sort: ['createdAt'],
             },
           },
         );

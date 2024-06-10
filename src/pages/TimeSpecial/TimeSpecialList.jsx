@@ -25,7 +25,6 @@ const TimeSpecialList = () => {
         params: {
           page: currentPage,
           size: 10,
-          sort: ['id'],
         },
       })
       .then(response => {

@@ -64,10 +64,12 @@ const Review = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
+        // const response = await axios.get(
+        //   `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
+        // );
         const response = await axios.get(
-          `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
+          `http://1.228.166.90:8000/reviews?page=${page}&size=5`,
         );
-        // const response = await axios.get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`);
         const { content, totalPages } = response.data.body;
         const filteredReviews = content.filter(
           review => review.hotelId === parseInt(id),
