@@ -131,7 +131,7 @@ const ReservationPayment = () => {
       alert('로그인 후 이용해주세요.');
       navigate('/');
     } else {
-      const storedName = localStorage.getItem('username');
+      const storedName = localStorage.getItem('email');
       if (storedName) {
         setName(storedName);
       }
