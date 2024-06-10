@@ -20,7 +20,6 @@ const TimeSpecials = () => {
             params: {
               page: 0,
               size: 4,
-              sort: ['id'],
             },
           },
         );
