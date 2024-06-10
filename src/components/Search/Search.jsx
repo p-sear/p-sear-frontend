@@ -21,7 +21,7 @@ const Search = () => {
   const navigate = useNavigate();
 
   const onSearch = () => {
-    navigate(`/hotel-list?keyword=${keyword}&page=1`, {
+    navigate(`/hotel-list?keyword=${keyword}`, {
       state: { dateRange, peopleCount },
     });
   };
