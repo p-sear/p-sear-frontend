@@ -36,7 +36,6 @@ const BidableHotelList = () => {
         params: {
           page: 0,
           size: 999,
-          sort: ['id'],
         },
       })
       .then(response => {
