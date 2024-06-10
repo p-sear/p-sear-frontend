@@ -2,7 +2,8 @@ import Search from '../../components/Search/Search';
 import ScrollToTop from '../../helpers/ScrollToTop';
 import BidableHotel from './BidableHotel';
 import RecommendedLocation from './RecommendedLocation';
-import TimeSpecials from './TimeSpecials';
+
+// import TimeSpecials from './TimeSpecials';
 
 const Main = () => {
   const mainStyle = {
@@ -22,7 +23,7 @@ const Main = () => {
       <div style={mainStyle}>
         <RecommendedLocation />
         <BidableHotel />
-        <TimeSpecials />
+        {/* <TimeSpecials /> */}
       </div>
     </div>
   );
