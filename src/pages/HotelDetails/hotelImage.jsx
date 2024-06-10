@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { Carousel } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 
