@@ -51,55 +51,6 @@ const ReservationPayment = () => {
     setVisitMethod(method);
   };
 
-  // const requestPay1 = merchantUid => {
-  //   const IMP = window.IMP;
-  //   IMP.init('imp24543664');
-  //   console.log(merchantUid);
-  //   postReservation(selectedRoom)
-  //     .then(resp => {
-  //       console.log(resp);
-  //       const path = resp.headers.location;
-  //       return getHotelServiceRequest(path);
-  //     })
-  //     .then(resp => {
-  //       console.log(resp.data);
-  //       return resp.data.body;
-  //     })
-  //     .then(reservation => {
-  //       IMP.request_pay(
-  //         {
-  //           pg: 'kakaopay',
-  //           merchant_uid: reservation.merchantUid,
-  //           name: `${hotelName} - ${selectedRoom.roomName}`,
-  //           amount: 500,
-  //         },
-  //         async function (resp) {
-  //           if (resp.success) {
-  //             console.log(resp);
-  //             for (let i = 0; i < 5; i++) {
-  //               const paymentCheckResp = await postPaymentCheck(
-  //                 reservation.id,
-  //                 resp.imp_uid,
-  //               );
-  //               if (paymentCheckResp.data.body === BEFORE_CHECKIN) {
-  //                 setMessageModalOpen(true);
-  //                 console.log('messageModal: ' + messageModalOpen);
-  //                 return;
-  //               }
-  //               console.log('data.body: ' + paymentCheckResp.data.body);
-  //               await sleep(500);
-  //             }
-  //             if (!messageModalOpen) {
-  //               setAlertModalOpen(true);
-  //               console.log('alertModal: ' + messageModalOpen);
-  //             }
-  //           } else {
-  //             console.log(resp);
-  //           }
-  //         },
-  //       );
-  //     });
-  // };
   const requestPay = (merchant_uid, price, reservationId) => {
     const { IMP } = window;
     IMP.init('imp24543664');
@@ -180,7 +131,7 @@ const ReservationPayment = () => {
       alert('로그인 후 이용해주세요.');
       navigate('/');
     } else {
-      const storedName = localStorage.getItem('username');
+      const storedName = localStorage.getItem('email');
       if (storedName) {
         setName(storedName);
       }

@@ -34,19 +34,20 @@ const MyReservation = () => {
         };
 
         const response = await axios.get(
-          'http://localhost:5173/dummy/myReservation.json',
+          `${import.meta.env.VITE_PROD_API_SERVER}/search/reservations`,
           config,
         );
         const data = response.data.body.content;
+        console.log(data);
 
-        // 현재 날짜를 가져와서 체크인/체크아웃 날짜와 비교하여 예정인 예약만 필터링
-        const now = new Date();
-        const upcomingReservations = data.filter(reservation => {
-          const checkInDate = new Date(reservation.checkIn);
-          return checkInDate > now;
-        });
+        // // 현재 날짜를 가져와서 체크인/체크아웃 날짜와 비교하여 예정인 예약만 필터링
+        // const now = new Date();
+        // const upcomingReservations = data.filter(reservation => {
+        //   const checkInDate = new Date(reservation.checkIn);
+        //   return checkInDate > now;
+        // });
 
-        setReservations(upcomingReservations);
+        setReservations(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -109,7 +110,7 @@ const MyReservation = () => {
               className='myreservation-item flex w-full items-center justify-between gap-20'
             >
               <div className='flex h-full items-center'>
-                <img src={reservation.mainImage || pserLoading} alt='' />
+                <img src={reservation.hotel.mainImage || pserLoading} alt='' />
 
                 <div className='flex h-full items-center'>
                   <div className='flex h-full flex-col justify-between'>
@@ -119,12 +120,12 @@ const MyReservation = () => {
                     <p>결제 금액</p>
                   </div>
                   <div className='flex h-full flex-col justify-between font-bold'>
-                    <p>{reservation.name}</p>
-                    <p>{reservation.roomType}</p>
+                    <p>{reservation.hotel.name}</p>
+                    <p>{reservation.room.name}</p>
                     <p>
-                      {reservation.checkIn} ~ {reservation.checkOut}
+                      {reservation.room.checkIn} ~ {reservation.room.checkOut}
                     </p>
-                    <p>{reservation.price} 원</p>
+                    <p>{reservation.room.price} 원</p>
                   </div>
                 </div>
               </div>

@@ -15,7 +15,7 @@ const BidableHotel = () => {
 
   useEffect(() => {
     axios
-      .get('https://chiikawa.online/hotels', {
+      .get(`${import.meta.env.VITE_PROD_API_SERVER}/search/hotels`, {
         params: {
           page: 0,
           size: 4,
@@ -23,22 +23,27 @@ const BidableHotel = () => {
       })
       .then(response => {
         const data = response.data.body.content;
-        const hotelIds = data.map(hotel => hotel.id);
+        console.log(data);
+        setHotels(data);
+        setLoading(false);
+        // const hotelIds = data.map(hotel => hotel.id);
 
-        Promise.all(
-          hotelIds.map(id =>
-            axios.get(`https://chiikawa.online/auctions/${id}`),
-          ),
-        )
-          .then(responses => {
-            const bidableHotels = responses.map(response => response.data.body);
-            setHotels(bidableHotels);
-            setLoading(false);
-          })
-          .catch(error => {
-            console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
-            setLoading(false);
-          });
+        // Promise.all(
+        //   hotelIds.map(id =>
+        //     axios.get(`https://chiikawa.online/auctions/${id}`),
+        //   ),
+        // )
+        //   .then(responses => {
+        //     const bidableHotels = responses.map(
+        //       response => response.data.body.content,
+        //     );
+        //     setHotels(bidableHotels);
+        //     setLoading(false);
+        //   })
+        //   .catch(error => {
+        //     console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+        //     setLoading(false);
+        //   });
       })
       .catch(error => {
         console.error('전체 호텔 조회 API 호출 실패:', error);
@@ -71,17 +76,24 @@ const BidableHotel = () => {
           <div
             className='bidableHotel-box flex flex-col justify-center'
             key={hotel.id}
-            onClick={() => navigate('/hotel-auction')}
+            onClick={() => navigate(`/hotel-detail/${hotel.id}`)}
           >
-            <img src={hotel.photo} alt='' className='hotel-img' />
+            <img src={hotel.mainImage} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>
             <p>{hotel.location}</p>
-            <p className='relative'>
-              <span className='star-icon absolute'>⭐</span>{' '}
-              {hotel.gradeAverage}
+            <p className='flex'>
+              <div className='flex-grow'></div>
+              <span className='star-icon'>⭐</span>
+              <div className='flex-grow'></div>
+              {4}
+              <div className='flex-grow'></div>
             </p>
-            <p>경매 시작가: {hotel.price} 원</p>
-            {/* <p>낙찰가: {hotel.endPrice} 원</p> */}
+            <p>
+              최저 가격: {Math.min(...hotel.rooms.map(room => room.price))} 원
+            </p>
+            <p>
+              최고 가격: {Math.max(...hotel.rooms.map(room => room.price))} 원
+            </p>
           </div>
         ))}
       </div>
