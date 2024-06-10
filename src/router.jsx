@@ -10,6 +10,7 @@ import HotelAuction from './pages/HotelAution/HotelAuction.jsx';
 import HotelDetail from './pages/HotelDetails/HotelDetail.jsx';
 import HotelList from './pages/HotelInquiry/HotelList.jsx';
 import StepProgress from './pages/HotelRegistration/StepProgress';
+import ReservationPayment from './pages/HotelReservation/ReservationPayment.jsx';
 import HotelReservation2 from './pages/HotelReservation/hotelReservation2.jsx';
 import HotelReservation3 from './pages/HotelReservation/hotelReservation3.jsx';
 import HotelReservation from './pages/HotelReservation/hotelReservation.jsx';
@@ -50,6 +51,7 @@ export const router = createBrowserRouter([
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation1', element: <HotelReservation1 /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },
+      { path: '/reservation-payment', element: <ReservationPayment /> },
       { path: '/reservation-detail/:id', element: <ReservationDetail /> },
       { path: '/hotel-reservation3', element: <HotelReservation3 /> },
       { path: '/hotel-auction', element: <HotelAuction /> },
