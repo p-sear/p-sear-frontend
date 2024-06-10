@@ -24,6 +24,13 @@ const HotelList = () => {
   const [loading, setLoading] = useState(false);
   const [last, setLast] = useState(false);
 
+  // eslint-disable-next-line no-unused-vars
+  const [hotelData, setHotelData] = useState([]);
+
+  const handleHotelDataLoaded = data => {
+    setHotelData(data);
+  };
+
   const lastElementRef = useCallback(
     node => {
       if (loading) return;
@@ -74,7 +81,10 @@ const HotelList = () => {
       <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
         <div className='flex flex-col space-y-4 lg:w-1/4'>
           <div className='m-4 rounded-lg shadow-md'>
-            <KaKaoMap />
+            <KaKaoMap
+              keyword={keyword}
+              onHotelDataLoaded={handleHotelDataLoaded}
+            />
           </div>
           <div className='m-4'>
             <ListFilter dateRange={dateRange} peopleCount={peopleCount} />
