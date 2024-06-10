@@ -49,7 +49,7 @@ const Review = () => {
   // useEffect(() => {
   //   axios
   //     .get('http://localhost:5173/dummy/reviews.json')
-  //     // .get(`http://1.228.166.90:8000/reviews?page=${page}&size=5`)
+  //     // .get(`https://chiikawa.online/reviews?page=${page}&size=5`)
   //     .then(response => {
   //       const fetchedReviews = response.data.body.content.filter(
   //         review => review.hotelId === parseInt(id),
@@ -68,7 +68,7 @@ const Review = () => {
         //   `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
         // );
         const response = await axios.get(
-          `http://1.228.166.90:8000/reviews?page=${page}&size=5`,
+          `https://chiikawa.online/reviews?page=${page}&size=5`,
         );
         const { content, totalPages } = response.data.body;
         const filteredReviews = content.filter(

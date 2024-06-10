@@ -45,7 +45,7 @@ const TimeSpecialDetail = () => {
       try {
         const response = await axios.get(
           // 'http://localhost:5173/dummy/timeSpecialList.json',
-          'http://1.228.166.90:8000/timesales',
+          'https://chiikawa.online/timesales',
           {
             params: {
               page: 0, // 몇 번째 페이지인지
@@ -65,7 +65,7 @@ const TimeSpecialDetail = () => {
         // (모든)호텔 단건 데이터 가져오기
         const allHotelsResponse = await axios.get(
           // 'http://localhost:5173/dummy/hotel.json',
-          `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}`,
+          `https://chiikawa.online/hotels/${timeSpecialHotel.id}`,
           {
             params: {
               hotelId: timeSpecialHotel.id,
@@ -77,7 +77,7 @@ const TimeSpecialDetail = () => {
         // 객실 API 호출
         const roomResponse = await axios.get(
           // 'http://localhost:5173/dummy/roomList.json',
-          `http://1.228.166.90:8000/hotels/${timeSpecialHotel.id}/rooms`,
+          `https://chiikawa.online/hotels/${timeSpecialHotel.id}/rooms`,
           {
             params: {
               hotelId: timeSpecialHotel.id,
@@ -91,7 +91,7 @@ const TimeSpecialDetail = () => {
         // 리뷰 데이터 가져오기
         const reviewResponse = await axios.get(
           // 'http://localhost:5173/dummy/reviews.json',
-          'http://1.228.166.90:8000/reviews',
+          'https://chiikawa.online/reviews',
           {
             params: {
               page: 0,

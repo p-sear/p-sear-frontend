@@ -21,7 +21,7 @@ const TimeSpecialList = () => {
   useEffect(() => {
     axios
       // .get('http://localhost:5173/dummy/timeSpecialList.json')
-      .get('http://1.228.166.90:8000/timesales', {
+      .get('https://chiikawa.online/timesales', {
         params: {
           page: currentPage,
           size: 10,
