@@ -1,28 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { Carousel } from '@material-tailwind/react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
-const HotelImage = () => {
-  const [hotelImages, setHotelImages] = useState([]);
-
-  useEffect(() => {
-    const fetchHotelImages = async () => {
-      try {
-        const response = await axios.get(
-          'http://localhost:5173/dummy/hotelImage.json',
-        );
-        // 모든 이미지 링크들을 배열로 펼쳐서 하나의 배열로 만듦
-        const images = response.data.body.flatMap(item => item.imgelink);
-        setHotelImages(images);
-      } catch (error) {
-        console.error('호텔 이미지 오류', error);
-      }
-    };
-
-    fetchHotelImages();
-  }, []);
-
+// eslint-disable-next-line react/prop-types
+const HotelImage = ({ imgList }) => {
   return (
     <div>
       <Carousel
@@ -44,7 +26,7 @@ const HotelImage = () => {
           </div>
         )}
       >
-        {hotelImages.map((imgelink, index) => (
+        {imgList.map((imgelink, index) => (
           <div key={index} className='flex items-center justify-center'>
             <img
               src={imgelink}
@@ -56,6 +38,14 @@ const HotelImage = () => {
       </Carousel>
     </div>
   );
+};
+
+HotelImage.propTypes = {
+  imgList: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+HotelImage.propTypes = {
+  imgList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default HotelImage;
