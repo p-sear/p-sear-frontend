@@ -15,7 +15,7 @@ const TimeSpecials = () => {
       try {
         const response = await axios.get(
           // 'http://localhost:5173/dummy/timeSpecialList.json',
-          'http://1.228.166.90:8000/timesales',
+          'https://chiikawa.online/timesales',
           {
             params: {
               page: 0,

@@ -11,7 +11,7 @@ const RoomDetail = ({ onClose, hotelId, roomId }) => {
     const fetchRoomData = async () => {
       try {
         const response = await axios.get(
-          `http://1.228.166.90:8000/hotels/${hotelId}/rooms/${roomId}`,
+          `https://chiikawa.online/hotels/${hotelId}/rooms/${roomId}`,
           // 'http://localhost:5173/dummy/roomData.json',
         );
         setRoomData(response.data.body);

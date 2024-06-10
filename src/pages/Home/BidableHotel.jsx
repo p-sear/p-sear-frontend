@@ -15,7 +15,7 @@ const BidableHotel = () => {
 
   useEffect(() => {
     axios
-      .get('http://1.228.166.90:8000/hotels', {
+      .get('https://chiikawa.online/hotels', {
         params: {
           page: 0,
           size: 4,
@@ -27,7 +27,7 @@ const BidableHotel = () => {
 
         Promise.all(
           hotelIds.map(id =>
-            axios.get(`http://1.228.166.90:8000/auctions/${id}`),
+            axios.get(`https://chiikawa.online/auctions/${id}`),
           ),
         )
           .then(responses => {
