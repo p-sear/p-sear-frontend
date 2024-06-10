@@ -24,7 +24,7 @@ const HotelReservation = () => {
         {
           name: hotelName,
           room: selectedRoom?.name,
-          date: `${format(dateRange[0].startDate, 'yyyy.MM.dd')}  ${selectedRoom?.checkIn} ~ ${format(dateRange[0].endDate, 'yyyy.MM.dd')} ${selectedRoom?.checkOut}`,
+          date: `${format(dateRange[0].startDate, 'yyyy.MM.dd')}  ${selectedRoom?.checkIn.hour}:00 ~ ${format(dateRange[0].endDate, 'yyyy.MM.dd')} ${selectedRoom?.checkOut.hour}:00`,
           people: peopleCount,
           price: `${selectedRoom?.price}`,
         },
