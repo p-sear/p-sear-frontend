@@ -1,7 +1,6 @@
 import { Carousel } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
 const HotelImage = ({ imgList }) => {
   return (
     <div>
