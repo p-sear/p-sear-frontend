@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
       { path: '/timespecial-detail/:id', element: <TimeSpecialDetail /> },
       { path: '/hotel/new', element: <StepProgress /> },
       { path: '/review-register', element: <ReviewRegister /> },
-      { path: '/hotel-detail', element: <HotelDetail /> },
+      { path: '/hotel-detail/:hotelId', element: <HotelDetail /> },
       { path: '/hotel-reservation', element: <HotelReservation /> },
       { path: '/hotel-reservation1', element: <HotelReservation1 /> },
       { path: '/hotel-reservation2', element: <HotelReservation2 /> },

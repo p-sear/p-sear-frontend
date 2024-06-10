@@ -18,7 +18,7 @@ const HotelCard = forwardRef((props, ref) => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/hotel-detail', {
+    navigate(`/hotel-detail/${id}`, {
       state: { id, dateRange, peopleCount },
     });
   };
