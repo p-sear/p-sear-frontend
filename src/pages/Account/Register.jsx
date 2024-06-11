@@ -67,8 +67,6 @@ const Register = () => {
         if (res.status == 403 || res.status == 500) {
           // 이메일 인증이 되지 않은 경우 or 중복된 이메일
           alert('중복된 이메일입니다.');
-        } else {
-          alert(res.data.message);
         }
       })
       .catch(error => {
