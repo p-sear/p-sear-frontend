@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import authInstance from '../../axios/utils/authInstance';
-import userinfoState from '../../recoils/userinfoState';
+import userinfoState from '../../recoils/userinfoState.js';
 import './Login.css';
 import SocialLogin from './SocialLogin';
 
@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const apiUrl = 'http://localhost:5173/dummy/login.json';
+    const apiUrl = `${import.meta.env.VITE_PROD_API_SERVER}/member/authenticate`;
 
     axios
       .post(apiUrl, {

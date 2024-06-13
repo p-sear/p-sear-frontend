@@ -2,7 +2,10 @@ import { atom } from 'recoil';
 
 const userinfoState = atom({
   key: 'userinfoState',
-  default: { id: undefined, email: undefined, username: undefined },
+  default: {
+    email: undefined,
+    password: undefined,
+  },
 });
 
 export default userinfoState;

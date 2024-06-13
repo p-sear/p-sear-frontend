@@ -1,0 +1,134 @@
+{
+  "message": "",
+  "body": {
+    "pageable": {
+      "pageNumber": 0,
+      "pageSize": 0,
+      "sort": {
+        "sorted": true,
+        "empty": true,
+        "unsorted": true
+      },
+      "offset": 0,
+      "paged": true,
+      "unpaged": true
+    },
+    "first": true,
+    "last": true,
+    "size": 0,
+    "content": [
+      {
+        "id": 0,
+        "name": "파라다이스시티",
+        "category": "HOTEL",
+        "description": "파라다이스시티는 동북아 최초의 복합 리조트입니다. 파라다이스시티는 호텔, 카지노, 컨벤션, 쇼핑, 아트 갤러리, 스파, 클럽, 카니발, 공연 등 다양한 Hospitality 및 Entertainment가 결합된 동북아 최초의 한국형 복합 리조트입니다. 모든 면에서 최고 수준의 퀄리티를 선보이기 위해, Hospitality 분야의 세계적인 파트너사들과 협력하고 있습니다.",
+        "mainImage": "https://www.p-city.com/mobilePub/static/images/hotelParadise/img_main_visual.jpg",
+        "province": "string",
+        "city": "인천",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://www.p-city.com/mobilePub/static/images/hotelParadise/img_facilities_outdoor01.jpg",
+          "https://lh6.googleusercontent.com/proxy/SGPLcpF2TdId0B71yn7DCLrTbzd863eY4dULToUeua4RXudGS-231ACjLqSmcJ6In5f_XK7lDog-heC2WNDXfdctxUrt-iH-IkuQAtf0PqkC2CFArQwkng30USCXQTOgmC9lcLe-X-7aBB12iBxkt-T9o0tVs9OPwvO0VS6HEyaoBOKs8jBBjMHdcf6_8-rZKlWkMlgJ2cmhE_g63y6iQdbGR9Rq",
+          "https://img.allmytour.com/images/onda/159/1653445131943.jpg?type=w&w=1600&quality=80&ttype=jpg",
+          "https://www.travelmap.co.kr/contents/files/board/news/2021/06/title_4060_1623908883.jpg",
+          "https://item.elandrs.com/r/image/item/2023-07-10/86504beb-a5b1-4de4-8147-6694121c0787.jpg?w=750&h=&q=100",
+          "https://benepia.tourok.co.kr/_goods_img/1970-01/404_1_1587529406.jpg"
+        ],
+        "gradeAverage": 4.98,
+        "salePrice": "240,000",
+        "previousPrice": "560,000"
+      },
+      {
+        "id": 1,
+        "name": "시그니엘 서울",
+        "category": "HOTEL",
+        "description": "string",
+        "mainImage": "https://www.lottehotel.com/content/dam/lotte-hotel/global/common/company/seoul-signiel.jpg",
+        "province": "string",
+        "city": "서울",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://www.lottehotel.com/content/dam/lotte-hotel/signiel/seoul/accommodation/premier/180708-30-2000-acc-seoul-signiel.jpg.thumb.1440.1440.jpg",
+          "https://cf.bstatic.com/xdata/images/hotel/max1024x768/102296793.jpg?k=a63c0d0c72746d875c9e7cffebc602f0cd80db5e51d8d9c5a7d6f529e1d3e88c&o=&hp=1"
+        ],
+        "gradeAverage": 4.99,
+        "salePrice": "593,000",
+        "previousPrice": "650,000"
+      },
+      {
+        "id": 2,
+        "name": "L7 홍대",
+        "category": "HOTEL",
+        "description": "string",
+        "mainImage": "https://images.trvl-media.com/lodging/23000000/22320000/22318700/22318672/49920e33.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+        "province": "string",
+        "city": "서울",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://www.lottehotel.com/content/dam/lotte-hotel/l7/hongdae/accommodation/standard/2742-180206-2000-acc-l7hd.jpg.thumb.1440.1440.jpg",
+          "https://www.lottehotel.com/content/dam/lotte-hotel/l7/myeongdong/accommodation/standard/3073-160120-2000-acc-ltl7.jpg.thumb.768.768.jpg"
+        ],
+        "gradeAverage": 4.23,
+        "salePrice": "210,000",
+        "previousPrice": "350,000"
+      },
+      {
+        "id": 3,
+        "name": "풀빌라 드림",
+        "category": "POOL",
+        "description": "string",
+        "mainImage": "https://cdn.imweb.me/thumbnail/20200611/f6a01feca9e7e.jpg",
+        "province": "string",
+        "city": "가평",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://cdn.imweb.me/thumbnail/20200611/38c29d554b9d1.jpg",
+          "https://cdn.imweb.me/thumbnail/20200611/e8c27df2ed4fd.jpg"
+        ],
+        "gradeAverage": 3.95,
+        "salePrice": "110,000",
+        "previousPrice": "280,000"
+      },
+      {
+        "id": 4,
+        "name": "호텔1",
+        "category": "HOTEL",
+        "description": "string",
+        "mainImage": "https://image.goodchoice.kr/resize_1000X500x0/affiliate/2020/11/12/5facd1c4769bd.jpg",
+        "province": "string",
+        "city": "부산",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://www.hotelscombined.co.kr/rimg/himg/aa/65/78/revato-1644923-11801284-232566.jpg?width=1200&height=630&crop=true"
+        ],
+        "gradeAverage": 3.22,
+        "salePrice": "89,000",
+        "previousPrice": "120,000"
+      },
+      {
+        "id": 5,
+        "name": "세인트존스",
+        "category": "HOTEL",
+        "description": "string",
+        "mainImage": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/150338603.jpg?k=0a21fb7fbb7da9b6b0cba77e6a25de335b63376e8ae2de6bf1c97da6919d278a&o=&hp=1",
+        "province": "string",
+        "city": "강릉",
+        "district": "string",
+        "hotelImageUrls": [
+          "https://www.p-city.com/mobilePub/static/images/hotelParadise/img_facilities_outdoor01.jpg",
+          "https://lh6.googleusercontent.com/proxy/SGPLcpF2TdId0B71yn7DCLrTbzd863eY4dULToUeua4RXudGS-231ACjLqSmcJ6In5f_XK7lDog-heC2WNDXfdctxUrt-iH-IkuQAtf0PqkC2CFArQwkng30USCXQTOgmC9lcLe-X-7aBB12iBxkt-T9o0tVs9OPwvO0VS6HEyaoBOKs8jBBjMHdcf6_8-rZKlWkMlgJ2cmhE_g63y6iQdbGR9Rq",
+          "https://img.allmytour.com/images/onda/159/1653445131943.jpg?type=w&w=1600&quality=80&ttype=jpg",
+          "https://www.travelmap.co.kr/contents/files/board/news/2021/06/title_4060_1623908883.jpg",
+          "https://item.elandrs.com/r/image/item/2023-07-10/86504beb-a5b1-4de4-8147-6694121c0787.jpg?w=750&h=&q=100",
+          "https://benepia.tourok.co.kr/_goods_img/1970-01/404_1_1587529406.jpg"
+        ],
+        "gradeAverage": 4.5,
+        "salePrice": "190,000",
+        "previousPrice": "328,000"
+      }
+    ],
+    "number": 0,
+    "numberOfElements": 0,
+    "empty": true
+  }
+}

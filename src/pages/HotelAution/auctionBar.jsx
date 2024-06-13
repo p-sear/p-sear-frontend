@@ -1,12 +1,70 @@
+/* eslint-disable react/prop-types */
+
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 import { Typography } from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
 import { Card } from '@material-tailwind/react';
 import { Input } from '@material-tailwind/react';
+import axios from 'axios';
 
-const AuctionBar = () => {
+const AuctionBar = ({ maxBid }) => {
+  const [inputPrice, setInputPrice] = useState('');
+  const [auctionData, setAuctionData] = useState([]);
+  const [latestAuction, setLatestAuction] = useState({ date: '', price: '' });
+  const handleInputPriceChange = e => {
+    const input = e.target.value;
+    const isNumber = /^[0-9]*$/;
+    if (isNumber.test(input) || input === '') {
+      setInputPrice(input);
+    }
+  };
+
+  useEffect(() => {
+    const fetchAuctionData = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5173/dummy/auctionData.json',
+        );
+        setAuctionData(response.data.body);
+        if (response.data.body.length > 0) {
+          const latest = response.data.body[response.data.body.length - 1];
+          setLatestAuction({ date: latest.date, price: latest.price });
+        }
+      } catch (error) {
+        console.error('경매 데이터 오류', error);
+      }
+    };
+
+    fetchAuctionData();
+  });
+
+  const postBidData = async () => {
+    try {
+      const url = 'http://1.228.166.90:8000/auctions/{auctionId}/deposits';
+      const data = { price: inputPrice };
+      const response = await axios.post(url, data);
+      console.log('Server response:', response.data);
+    } catch (error) {
+      console.error('Error posting bid data:', error);
+    }
+  };
+  const postMaxBidData = async () => {
+    try {
+      const url = 'http://1.228.166.90:8000/auctions/{auctionId}/deposits';
+      const data = { price: maxBid };
+      const response = await axios.post(url, data);
+      console.log('Server response:', response.data);
+    } catch (error) {
+      console.error('Error posting bid data:', error);
+    }
+  };
+
   return (
-    <div className='m-4 flex justify-end'>
-      <Card className=' flex w-1/5 bg-gray-50 shadow-md'>
+    <div className='m-4 flex justify-between'>
+      <Card className=' flex   shadow-md'>
         <div className='m-3 flex flex-col'>
           <Typography variant='h4' color='blue' className='m-1 text-center'>
             입찰하기
@@ -23,24 +81,28 @@ const AuctionBar = () => {
             현재 최고 입찰가
           </Typography>
           <Typography variant='h5' color='red' className='text-center'>
-            60,000원
+            {latestAuction.price}
           </Typography>
           <Typography variant='h6' className='text-center'>
             즉시 입찰가
           </Typography>
           <Typography variant='h5' color='red' className='text-center'>
-            75,000원
+            {maxBid}원
           </Typography>
           <Typography variant='h6' className='text-center'>
             입찰가
           </Typography>
 
           <div className=' m-2 flex justify-center'>
-            <Input label='금액 입력'></Input>
+            <Input
+              label='금액 입력'
+              value={inputPrice}
+              onChange={handleInputPriceChange}
+            ></Input>
           </div>
 
           <div className=' m-2 flex justify-center'>
-            <Button className='m-1' color='blue'>
+            <Button className='m-1' color='blue' onClick={postBidData}>
               입찰하기
             </Button>
             <Button className='m-1' color='red'>

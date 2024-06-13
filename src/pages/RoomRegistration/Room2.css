@@ -1,0 +1,100 @@
+.room2-container {
+  width: 400px;
+  gap: 50px;
+}
+.room2-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.room2-box {
+  gap: 50px;
+}
+.room2-box > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.room2-box > div > h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.room2-box > div > input,
+.room2-box > div > div > input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.room2-box > div > input:focus,
+.room2-box > div > div > input:focus {
+  outline: none;
+}
+
+.room2-bed > div > div > select:focus {
+  outline: none;
+}
+.bed-num {
+  border-bottom: 1px solid #ececec;
+  padding: 10px 5px;
+}
+
+.room2-service-box {
+  display: grid;
+  flex: none;
+  gap: 20px;
+  grid-auto-rows: min-content;
+  grid-template-columns: repeat(3, minmax(40px, 1fr));
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+.room2-service-box > li {
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 100%;
+  aspect-ratio: auto 1 / 1;
+}
+.room2-service-box > li:hover {
+  background-color: #f8f8f8;
+}
+.room2-category-box > li > img {
+  width: 50px;
+}
+.room2-service-box > li.selected {
+  background-color: #f8f8f8;
+}
+
+.room2-room-image {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  border: 2px dashed lightgray;
+  border-radius: 10px;
+  padding: 5px;
+  background: url('https://ifh.cc/g/dFPtar.png');
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: 50%;
+}
+.room2-room-image > img {
+  border-radius: 10px;
+}
+.file-btn {
+  cursor: pointer;
+  background-color: #f0eaea;
+  border-radius: 10px;
+  padding: 10px;
+}

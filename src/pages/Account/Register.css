@@ -52,6 +52,10 @@
   padding: 3px;
   margin: 5px 0;
 }
+.email-send:active {
+  scale: 0.95;
+  background-color: #189fff;
+}
 
 .box {
   width: 20px;

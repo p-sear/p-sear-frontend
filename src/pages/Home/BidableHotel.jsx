@@ -1,70 +1,69 @@
-// import { useEffect, useState } from 'react';
-import { IoIosArrowForward } from 'react-icons/io';
+import { useEffect, useState } from 'react';
 
-import hotelImg from '../../assets/images/hotel.png';
+import axios from 'axios';
+import { IoIosArrowForward } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+
+import Spinner from '../../helpers/Spinner';
 import './BidableHotel.css';
 
 const BidableHotel = () => {
-  // const [hotels, setHotels] = useState([]);
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // const fetchHotels = async () => {
-  //     try {
-  //       const response = await fetch('api/rooms');
-  //       if (!response.ok) {
-  //         throw new Error('API 호출에 실패했습니다.');
-  //       }
-  //       const data = await response.json();
-  //       return data.hotels;
-  //     } catch (error) {
-  //       console.error(error);
-  //       return [];
-  //     }
-  // };
+  const navigate = useNavigate();
 
-  const hotels = [
-    {
-      id: 1,
-      name: '호텔 A',
-      location: '서울',
-      rating: 5,
-      highestBid: '100,000',
-      instantBid: '150,000',
-      photo: hotelImg,
-    },
-    {
-      id: 2,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-    {
-      id: 3,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-    {
-      id: 4,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      highestBid: '80,000',
-      instantBid: '130,000',
-      photo: hotelImg,
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_PROD_API_SERVER}/search/hotels`, {
+        params: {
+          page: 0,
+          size: 4,
+        },
+      })
+      .then(response => {
+        const data = response.data.body.content;
+        console.log(data);
+        setHotels(data);
+        setLoading(false);
+        // const hotelIds = data.map(hotel => hotel.id);
+
+        // Promise.all(
+        //   hotelIds.map(id =>
+        //     axios.get(`https://chiikawa.online/auctions/${id}`),
+        //   ),
+        // )
+        //   .then(responses => {
+        //     const bidableHotels = responses.map(
+        //       response => response.data.body.content,
+        //     );
+        //     setHotels(bidableHotels);
+        //     setLoading(false);
+        //   })
+        //   .catch(error => {
+        //     console.error('입찰 가능 숙소 조회 API 호출 실패:', error);
+        //     setLoading(false);
+        //   });
+      })
+      .catch(error => {
+        console.error('전체 호텔 조회 API 호출 실패:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className='bidableHotel-container'>
       <div className='bidableHotel-title flex items-center justify-between'>
         <h1>입찰 가능 숙소</h1>
-        <a href='' className='flex items-center justify-center'>
+        <a href='/bidable' className='flex items-center justify-center'>
           더보기{' '}
           <span>
             <IoIosArrowForward />
@@ -72,33 +71,29 @@ const BidableHotel = () => {
         </a>
       </div>
 
-      {/* <div className="bidableHotel-content">
-          {hotels.map(hotel => (
-          <div key={hotel.id}>
-              <img src={hotel.photo} alt={hotel.name} style={{ width: '100px', height: '100px' }} />
-              <h2>{hotel.name}</h2>
-              <p>위치: {hotel.location}</p>
-              <p>별점: {hotel.rating}</p>
-              <p>최고 입찰가: {hotel.highestBid}</p>
-              <p>즉시 입찰가: {hotel.instantBid}</p>
-          </div>
-          ))}
-          </div> */}
-
       <div className='bidableHotel-content'>
-        {hotels.map(hotel => (
+        {hotels.slice(0, 4).map(hotel => (
           <div
             className='bidableHotel-box flex flex-col justify-center'
             key={hotel.id}
+            onClick={() => navigate(`/hotel-detail/${hotel.id}`)}
           >
-            <img src={hotel.photo} alt='' className='hotel-img' />
+            <img src={hotel.mainImage} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>
             <p>{hotel.location}</p>
-            <p className='relative'>
-              <span className='star-icon absolute'>⭐</span> {hotel.rating}
+            <p className='flex'>
+              <div className='flex-grow'></div>
+              <span className='star-icon'>⭐</span>
+              <div className='flex-grow'></div>
+              {4}
+              <div className='flex-grow'></div>
             </p>
-            <p>최고 입잘가: {hotel.highestBid} 원</p>
-            <p>즉시 입찰가: {hotel.instantBid} 원</p>
+            <p>
+              최저 가격: {Math.min(...hotel.rooms.map(room => room.price))} 원
+            </p>
+            <p>
+              최고 가격: {Math.max(...hotel.rooms.map(room => room.price))} 원
+            </p>
           </div>
         ))}
       </div>

@@ -2,12 +2,14 @@ import { Button } from '@material-tailwind/react';
 
 import RegisterImage from '../../components/Review/registerImage';
 import WriteReview from '../../components/Review/writeReview';
+import ScrollToTop from '../../helpers/ScrollToTop';
 import Grade from './../../components/Review/grade';
 import Nav from './../../components/Review/nav';
 
 const Register = () => {
   return (
     <>
+      <ScrollToTop />
       <Nav></Nav>
       <article>
         <section className='container mx-auto border-b-2'>

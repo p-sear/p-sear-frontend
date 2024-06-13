@@ -1,56 +1,48 @@
-import React from 'react';
+import { Carousel } from '@material-tailwind/react';
+import PropTypes from 'prop-types';
 
-const HotelImage = () => {
-  const data = [
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/59/cf/90/caption.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4f/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-    {
-      imgelink:
-        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/4e/grand-corner-deluxe.jpg?w=1000&h=-1&s=1',
-    },
-  ];
-
-  const [active, setActive] = React.useState(
-    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/11/15/09/the-shilla-seoul-exterior.jpg?w=1000&h=-1&s=1',
-  );
-
+const HotelImage = ({ imgList }) => {
   return (
-    <div className='grid justify-center gap-4'>
-      <div>
-        <img
-          className='h-auto w-full max-w-4xl rounded-xl object-cover object-center shadow-md md:h-[480px]'
-          src={active}
-          alt=''
-        />
-      </div>
-      <div className='grid grid-cols-5 gap-4'>
-        {data.map(({ imgelink }, index) => (
-          <div key={index}>
+    <div>
+      <Carousel
+        loop={true}
+        autoplay={true}
+        autoplayDelay={5000}
+        className='rounded-xl'
+        navigation={({ setActiveIndex, activeIndex, length }) => (
+          <div className='absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2'>
+            {new Array(length).fill('').map((_, i) => (
+              <span
+                key={i}
+                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                  activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
+                }`}
+                onClick={() => setActiveIndex(i)}
+              />
+            ))}
+          </div>
+        )}
+      >
+        {imgList.map((imgelink, index) => (
+          <div key={index} className='flex items-center justify-center'>
             <img
-              onClick={() => setActive(imgelink)}
               src={imgelink}
-              className='shadow-mdobject-cover h-20 w-full max-w-full cursor-pointer rounded-xl object-center'
-              alt='gallery-image'
+              className='h-auto w-full max-w-3xl rounded-xl object-cover object-center shadow-md'
+              alt={`gallery-image-${index}`}
             />
           </div>
         ))}
-      </div>
+      </Carousel>
     </div>
   );
+};
+
+HotelImage.propTypes = {
+  imgList: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+HotelImage.propTypes = {
+  imgList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default HotelImage;

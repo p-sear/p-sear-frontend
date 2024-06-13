@@ -1,0 +1,180 @@
+{
+  "message": "객실 조회 성공",
+  "body": {
+    "totalPages": 0,
+    "totalElements": 0,
+    "sort": {
+      "empty": true,
+      "sorted": true,
+      "unsorted": true
+    },
+    "number": 0,
+    "size": 0,
+    "content": [
+      {
+        "id": 0,
+        "name": "디럭스",
+        "description": "예술적 감성과 아늑함을 동시에 느낄 수 있는 디럭스 객실",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room1.jpg",
+        "precaution": "string",
+        "price": 480000,
+        "checkIn": {
+          "hour": 15,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 11,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 5,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 1,
+        "name": "스위트",
+        "description": "여유로운 휴식을 즐길 수 있는 우아한 감성의 스위트 객실",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room5.jpg",
+        "precaution": "string",
+        "price": 560000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 2,
+        "name": "풀빌라",
+        "description": "프라이빗하게 즐길 수 있어 자유롭고 힐링 가득한 고급 풀빌라",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room11.jpg",
+        "precaution": "string",
+        "price": 710000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      },
+      {
+        "id": 3,
+        "name": "라운지",
+        "description": "호텔 파라다이스에서의 시간을 더욱 빛내줄 고급 라운지 시설",
+        "mainImageUrl": "https://www.p-city.com/pcPub/static/images/hotalParadise/room14.jpg",
+        "precaution": "string",
+        "price": 1020000,
+        "checkIn": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "checkOut": {
+          "hour": 0,
+          "minute": 0,
+          "second": 0,
+          "nano": 0
+        },
+        "standardCapacity": 0,
+        "maxCapacity": 0,
+        "totalRooms": 0,
+        "heatingSystem": true,
+        "tv": true,
+        "refrigerator": true,
+        "airConditioner": true,
+        "washer": true,
+        "terrace": true,
+        "coffeeMachine": true,
+        "internet": true,
+        "kitchen": true,
+        "bathtub": true,
+        "iron": true,
+        "pool": true,
+        "pet": true,
+        "inAnnex": true
+      }
+    ],
+    "numberOfElements": 0,
+    "first": true,
+    "last": true,
+    "pageable": {
+      "sort": {
+        "empty": true,
+        "sorted": true,
+        "unsorted": true
+      },
+      "offset": 0,
+      "pageNumber": 0,
+      "pageSize": 0,
+      "paged": true,
+      "unpaged": true
+    },
+    "empty": true
+  }
+}

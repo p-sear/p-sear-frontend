@@ -1,53 +1,61 @@
-import { IoIosArrowForward } from 'react-icons/io';
+import { useEffect, useState } from 'react';
 
-import hotelImg from '../../assets/images/hotel.png';
+import axios from 'axios';
+import { IoIosArrowForward } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+
+import pserLoading from '../../assets/images/loading.png';
 import './TimeSpecials.css';
 
 const TimeSpecials = () => {
-  const hotels = [
-    {
-      id: 1,
-      name: '호텔 A',
-      location: '서울',
-      rating: 5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 2,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 3,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-    {
-      id: 4,
-      name: '호텔 B',
-      location: '부산',
-      rating: 4.5,
-      price: '150,000',
-      special: '50,000',
-      photo: hotelImg,
-    },
-  ];
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await axios.get(
+          // 'http://localhost:5173/dummy/timeSpecialList.json',
+          'https://chiikawa.online/timesales',
+          {
+            params: {
+              page: 0,
+              size: 4,
+            },
+          },
+        );
+
+        const hotelsData = response.data.body.content
+          .slice(0, 4)
+          .map(hotel => ({
+            id: hotel.id,
+            name: hotel.name,
+            city: `${hotel.city}`,
+            gradeAverage: hotel.gradeAverage,
+            previousPrice: hotel.previousPrice,
+            salePrice: hotel.salePrice,
+            photo: hotel.mainImage || pserLoading,
+          }));
+
+        setHotels(hotelsData);
+      } catch (error) {
+        console.error('타임 특가 숙소 조회 API 오류: ', error);
+      }
+    };
+
+    fetchHotels();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleClick = hotelId => {
+    navigate(`/timespecial-detail/${hotelId}`);
+  };
 
   return (
     <div className='timespecials-container'>
       <div className='timespecials-title flex items-center justify-between'>
         <h1>타임 특가 숙소</h1>
-        <a href='' className='flex items-center justify-center'>
+        <a href='/time-special' className='flex items-center justify-center'>
           더보기{' '}
           <span>
             <IoIosArrowForward />
@@ -60,16 +68,19 @@ const TimeSpecials = () => {
           <div
             className='timespecials-box flex flex-col justify-center'
             key={hotel.id}
+            onClick={() => handleClick(hotel.id)}
           >
             <img src={hotel.photo} alt='' className='hotel-img' />
             <h3>{hotel.name}</h3>
-            <p>{hotel.location}</p>
+            <p>{hotel.city}</p>
             <p className='relative'>
-              <span className='star-icon absolute'>⭐</span> {hotel.rating}
+              <span className='star-icon absolute'>⭐</span>{' '}
+              {hotel.gradeAverage}
             </p>
             <b>타임 특가</b>
             <p>
-              <span>{hotel.price}</span> ➡️ <span>{hotel.special} 원</span>
+              <span>{hotel.previousPrice}</span> ➡️{' '}
+              <span>{hotel.salePrice} 원</span>
             </p>
           </div>
         ))}

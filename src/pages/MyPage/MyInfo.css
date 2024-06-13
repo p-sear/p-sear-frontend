@@ -1,34 +1,55 @@
 .myinfo-container {
-    flex-grow: 1;
-    gap: 50px;
+  flex-grow: 1;
+  gap: 50px;
 }
 
-.myinfo-container>h1 {
-    font-size: 30px;
-    font-weight: bold;
+.myinfo-container > h1 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .myinfo-box {
-    gap: 50px;
+  gap: 50px;
 
-    h3 {
-        font-size: 20px;
-        font-weight: bold;
-    }
-}
-.myinfo-box>div {
-    background-color: #F8F8F8;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 8px -4px lightgray;
-}
-.myinfo-box>div>button {
-    color: #5389ff;
+  h3 {
+    font-size: 20px;
     font-weight: bold;
+  }
+}
+.myinfo-box > div {
+  background-color: #f8f8f8;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 8px -4px lightgray;
+}
+.myinfo-box > div > button {
+  color: #5389ff;
+  font-weight: bold;
 }
 
 .exit-btn {
-    align-self: flex-end;
-    width: auto;
-    color: lightgray;
+  align-self: flex-end;
+  width: auto;
+  color: lightgray;
+}
+
+.myinfo-name > div > input,
+.myinfo-tel > div > input,
+.pw-input,
+.myinfo-intro > div > textarea {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  width: 200%;
+}
+
+.myinfo-name > div > input:focus,
+.myinfo-tel > div > input:focus,
+.myinfo-pw > div > input:focus,
+.myinfo-intro > div > textarea:focus {
+  outline: none;
+}
+
+.pw-saved {
+  background-color: #f8f8f8;
 }

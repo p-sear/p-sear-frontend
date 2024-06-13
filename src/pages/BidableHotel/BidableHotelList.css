@@ -1,0 +1,86 @@
+.bidable {
+  padding: 100px;
+}
+
+.bidable-container {
+  width: 1000px;
+  gap: 30px;
+}
+.bidable-container > div > h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.bidable-box {
+  gap: 50px;
+}
+
+.bidable-search {
+  background-color: #d4ebff;
+  padding: 30px;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.bidable-list {
+  gap: 30px;
+}
+.bidable-card {
+  display: grid;
+  flex: none;
+  gap: 20px;
+  grid-auto-rows: min-content;
+  grid-template-columns: repeat(3, minmax(40px, 1fr));
+  height: auto;
+  justify-content: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e7e7e7;
+  cursor: pointer;
+}
+.bidable-card > img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 10px;
+}
+.bidable-card > img:hover {
+  filter: brightness(0.8);
+}
+
+.bidable-content > p:nth-of-type(1) {
+  font-size: 12px;
+}
+.bidable-content > h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.bidable-content > p:nth-of-type(3) {
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 70px;
+  text-align: center;
+}
+.star-icon {
+  fill: #ffbb00;
+  top: 50%;
+  transform: translateY('-50%');
+}
+
+.bidable-card > div:nth-of-type(2) > p {
+  font-weight: bold;
+}
+.bidable-card > div:nth-of-type(2) > p:nth-of-type(2) {
+  color: #d83131;
+}
+
+.load-more-btn {
+  border: 1px solid lightgray;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px;
+}
+.load-more-btn:hover {
+  background-color: #f0e8e8;
+}

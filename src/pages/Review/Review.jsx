@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { FaArrowAltCircleLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
+import axios from 'axios';
+import { FaArrowLeft, FaRegUserCircle, FaStar } from 'react-icons/fa';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { IoIosArrowUp, IoIosClose } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 
-import hotelImg from '../../assets/images/hotel.png';
-import roomImg from '../../assets/images/room.jpg';
+import pserLoading from '../../assets/images/loading.png';
 import './Review.css';
 
 const Review = () => {
+  const { id } = useParams();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,41 +38,55 @@ const Review = () => {
     );
   };
 
-  const reviews = [
-    {
-      userName: '유저1',
-      rating: 4,
-      reviewDate: '2024.04.16',
-      roomName: '[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰',
-      reviewContent:
-        '아난티 코브로 이름이 변경되었는데 코브란 말 자체가 대형 리조트란 뜻이라 호텔 규모가 엄청큽니다.주말에는 주차요원이 있었는데 평일이라 지하에 안내요원이 없어 처음오면 잘 찾아가야 합니다.G층을 거쳐1층 컨시어지를 지나 10층이 체크인(9층은 이그제큐티브 이상객실 체크인)하는 곳으로 엘베 각 층마다 오션뷰가 펼쳐지고 곳곳이 포토존 입니다.엘베에서 먼 843호에 투숙했습니다.',
-      reviewImages: [hotelImg, roomImg, hotelImg, roomImg, hotelImg, roomImg],
-    },
-    {
-      userName: '유저2',
-      rating: 5,
-      reviewDate: '2024.04.13',
-      roomName: '[시티뷰] 스탠다드 트윈 룸',
-      reviewContent: '다음에도 방문하고 싶어요',
-      reviewImages: [roomImg, hotelImg],
-    },
-    {
-      userName: '유저3',
-      rating: 5,
-      reviewDate: '2024.04.12',
-      roomName: '[오션뷰 스페셜 오퍼] [룸온리] 프리미엄 킹 룸 오션뷰',
-      reviewContent: '정말 좋았어요.',
-      reviewImages: [roomImg, hotelImg, roomImg, hotelImg],
-    },
-    {
-      userName: '유저4',
-      rating: 3,
-      reviewDate: '2024.03.26',
-      roomName: '[시티뷰] 스탠다드 트윈 룸',
-      reviewContent: '다음에도 방문하고 싶어요',
-      reviewImages: [roomImg, hotelImg, roomImg, hotelImg, roomImg, roomImg],
-    },
-  ];
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+  const [reviews, setReviews] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5173/dummy/reviews.json')
+  //     // .get(`https://chiikawa.online/reviews?page=${page}&size=5`)
+  //     .then(response => {
+  //       const fetchedReviews = response.data.body.content.filter(
+  //         review => review.hotelId === parseInt(id),
+  //       );
+  //       setReviews(fetchedReviews);
+  //       setSlideIndices(fetchedReviews.map(() => 0));
+  //     })
+  //     .catch(error => {
+  //       console.error('리뷰 조회 API 호출 실패:', error);
+  //     });
+  // }, [id]);
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        // const response = await axios.get(
+        //   `http://localhost:5173/dummy/reviews.json?page=${page}&size=5`,
+        // );
+        const response = await axios.get(
+          `https://chiikawa.online/reviews?page=${page}&size=5`,
+        );
+        const { content, totalPages } = response.data.body;
+        const filteredReviews = content.filter(
+          review => review.hotelId === parseInt(id),
+        );
+        setReviews(prevReviews => [...prevReviews, ...filteredReviews]);
+        setTotalPages(totalPages);
+        setSlideIndices(filteredReviews.map(() => 0));
+      } catch (error) {
+        console.error('리뷰 조회 API 호출 실패:', error);
+      }
+    };
+
+    fetchReviews();
+  }, [id, page]);
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   const [slideIndices, setSlideIndices] = useState(reviews.map(() => 0));
 
@@ -129,9 +146,9 @@ const Review = () => {
   return (
     <div className='review-container flex w-full flex-col justify-center'>
       <div className='review-title flex items-center gap-4'>
-        <a href=''>
-          <FaArrowAltCircleLeft size={'30px'} />
-        </a>
+        <button onClick={handleGoBack}>
+          <FaArrowLeft size={'30px'} />
+        </button>
         <h1>리뷰</h1>
       </div>
 
@@ -139,8 +156,15 @@ const Review = () => {
         <div key={reviewIndex} className='review-box w-full'>
           <div className='flex w-full'>
             <div className='review-user flex h-full w-full items-center gap-2'>
-              <FaRegUserCircle size='20' />
-              <p>{review.userName}</p>
+              {review.profileImageUrl ? (
+                <img
+                  src={review.profileImageUrl || pserLoading}
+                  className='user-img'
+                />
+              ) : (
+                <FaRegUserCircle size='30' />
+              )}
+              <p>{review.reviewerName}</p>
             </div>
             <div className='review-content flex w-full flex-col gap-4'>
               <div className='flex w-full justify-between'>
@@ -148,24 +172,24 @@ const Review = () => {
                   {[...Array(5)].map((star, index) => (
                     <FaStar
                       key={index}
-                      fill={index < review.rating ? '#ffc400' : 'lightgray'}
+                      fill={index < review.grade ? '#ffc400' : 'lightgray'}
                     />
                   ))}
                 </p>
-                <p>{review.reviewDate}</p>
+                <p>{new Date(review.createdAt).toLocaleDateString()}</p>
               </div>
               <div className='review-preview w-full items-center'>
-                {review.reviewImages.length > 4 &&
+                {review.imageUrls.length > 4 &&
                   slideIndices[reviewIndex] > 0 && (
                     <FaChevronLeft
                       onClick={() =>
-                        prevSlide(reviewIndex, review.reviewImages.length)
+                        prevSlide(reviewIndex, review.imageUrls.length)
                       }
                       className='prev-left-btn'
                     />
                   )}
                 <div className='w-full'>
-                  {review.reviewImages
+                  {review.imageUrls
                     .slice(
                       slideIndices[reviewIndex],
                       slideIndices[reviewIndex] + 4,
@@ -177,32 +201,36 @@ const Review = () => {
                         alt=''
                         onClick={() =>
                           openModal(
-                            review.reviewImages,
+                            review.imageUrls,
                             index + slideIndices[reviewIndex],
                           )
                         }
                       />
                     ))}
                 </div>
-                {review.reviewImages.length > 4 &&
-                  slideIndices[reviewIndex] + 4 <
-                    review.reviewImages.length && (
+                {review.imageUrls.length > 4 &&
+                  slideIndices[reviewIndex] + 4 < review.imageUrls.length && (
                     <FaChevronRight
                       onClick={() =>
-                        nextSlide(reviewIndex, review.reviewImages.length)
+                        nextSlide(reviewIndex, review.imageUrls.length)
                       }
                       className='prev-right-btn'
                     />
                   )}
               </div>
               <div className='review-comment flex flex-col gap-1'>
-                <h3>{review.roomName}</h3>
-                <p>{renderReviewContent(review.reviewContent, reviewIndex)}</p>
+                <h3>review.roomName</h3>
+                <p>{renderReviewContent(review.detail, reviewIndex)}</p>
               </div>
             </div>
           </div>
         </div>
       ))}
+      {page < totalPages - 1 && (
+        <button onClick={handleLoadMore} className='load-more-btn w-full'>
+          더 불러오기
+        </button>
+      )}
 
       {modalIsOpen && (
         <div className='modal-backdrop'>

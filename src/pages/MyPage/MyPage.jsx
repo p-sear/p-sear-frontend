@@ -86,6 +86,14 @@ const MyPage = () => {
             숙소 등록
             <IoIosArrowDropright className='right-arrow-icon' />
           </a>
+          <a
+            href='/room/new'
+            className='flex items-center justify-between'
+            style={{ color: 'gray' }}
+          >
+            객실 등록
+            <IoIosArrowDropright className='right-arrow-icon' />
+          </a>
           <NavLink
             to='/profile/settings'
             className={({ isActive }) =>

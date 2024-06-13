@@ -1,124 +1,133 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography } from '@material-tailwind/react';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-import MapModal from '../../components/Modal/MapModal';
 import HotelCard from './HotelCard';
 import KaKaoMap from './KaKaoMap';
 import ListFilter from './ListFilter';
 
 const HotelList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visibleHotels, setVisibleHotels] = useState(4);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
   const observer = useRef();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get('keyword');
-  const page = searchParams.get('page');
-  const size = 10;
+  const [nextScore, setNextScore] = useState(0);
+  const [nextId, setNextId] = useState(0);
+
+  const dateRange = location.state?.dateRange;
+  const peopleCount = location.state?.peopleCount;
+
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [last, setLast] = useState(false);
 
-  const lastHotelCardRef = useCallback(node => {
-    if (observer.current) observer.current.disconnect();
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        setTimeout(() => {
-          setVisibleHotels(prevVisibleHotels => prevVisibleHotels + 4);
-        }, 1000); // 1초
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, []);
+  // eslint-disable-next-line no-unused-vars
+  const [hotelData, setHotelData] = useState([]);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const handleHotelDataLoaded = data => {
+    setHotelData(data);
   };
-  const handleScroll = () => {
-    if (window.scrollY > 300) {
-      setShowScrollToTop(true);
-    } else {
-      setShowScrollToTop(false);
+
+  const lastElementRef = useCallback(
+    node => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && last == false) {
+          loadMore();
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, nextId, nextScore],
+  );
+
+  const loadMore = () => {
+    setLoading(true);
+    let url = `${import.meta.env.VITE_PROD_API_SERVER}/search/hotels`;
+
+    if (nextId && nextScore && keyword) {
+      url += `?idAfter=${nextId}&scoreAfter=${nextScore}&keyword=${keyword}`;
+    } else if (nextId && nextScore) {
+      url += `?idAfter=${nextId}&scoreAfter=${nextScore}`;
+    } else if (keyword) {
+      url += `?keyword=${keyword}`;
     }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const fetchData = useCallback(async () => {
-    const apiUrl = `http://localhost:5173/dummy/hotelList.json?keyword=${keyword}&page=${page}&size=${size}`;
-    console.log('fetchData');
-    await axios
-      .get(apiUrl)
+    axios
+      .get(url)
       .then(response => {
-        console.log(response.data.body);
-        setData(response.data.body, ...data);
+        console.log(response.data.body.content);
+        setData(prevData => [...prevData, ...response.data.body.content]);
+        setNextId(response.data.body.nextId);
+        setNextScore(response.data.body.nextScore);
+        setLast(response.data.body.last);
+        setLoading(false);
       })
-      .catch(() => {});
-  }, [keyword, page, size]);
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    loadMore(); // Initial load
+  }, []);
 
   return (
-    <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
-      <div className='flex flex-col space-y-4 lg:w-1/4'>
-        <div className='m-4 rounded-lg shadow-md' onClick={openModal}>
-          <KaKaoMap />
+    <div>
+      <div className='container m-4 mx-auto flex flex-col lg:flex-row lg:space-x-8'>
+        <div className='flex flex-col space-y-4 lg:w-1/4'>
+          <div className='m-4 rounded-lg shadow-md'>
+            <KaKaoMap
+              keyword={keyword}
+              onHotelDataLoaded={handleHotelDataLoaded}
+            />
+          </div>
+          <div className='m-4'>
+            <ListFilter dateRange={dateRange} peopleCount={peopleCount} />
+          </div>
         </div>
-        <MapModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        <div className='m-4'>
-          <ListFilter />
+        <div className='lg:flex lg:w-3/4 lg:justify-center'>
+          <div className='flex flex-col gap-4'>
+            <Typography variant='h3' className='-mb-4 mt-4'>
+              &apos;{keyword}&apos; 숙소 {data.length}개
+            </Typography>
+            {data.map((hotel, index) => {
+              if (index + 1) {
+                return (
+                  <HotelCard
+                    ref={lastElementRef}
+                    key={index}
+                    id={hotel.id}
+                    name={hotel.name}
+                    description={hotel.description}
+                    imageUrl={hotel.mainImage}
+                    price={hotel.price}
+                    dateRange={dateRange}
+                    peopleCount={peopleCount}
+                  />
+                );
+              } else {
+                return (
+                  <HotelCard
+                    key={index}
+                    id={hotel.id}
+                    name={hotel.name}
+                    description={hotel.description}
+                    imageUrl={hotel.imageUrl}
+                    dateRange={dateRange}
+                    peopleCount={peopleCount}
+                    review={hotel.review}
+                  />
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
-      <div className='lg:flex lg:w-3/4 lg:justify-center'>
-        <div className='flex flex-col gap-4'>
-          {data.slice(0, visibleHotels).map((hotel, index) => {
-            if (index + 1 === visibleHotels) {
-              return (
-                <HotelCard
-                  ref={lastHotelCardRef}
-                  key={index}
-                  id={hotel.id}
-                  name={hotel.name}
-                  description={hotel.description}
-                  imageUrl={hotel.imageUrl}
-                />
-              );
-            } else {
-              return (
-                <HotelCard
-                  key={index}
-                  id={hotel.id}
-                  name={hotel.name}
-                  description={hotel.description}
-                  imageUrl={hotel.imageUrl}
-                />
-              );
-            }
-          })}
-        </div>
-      </div>
-      {showScrollToTop && (
-        <button
-          onClick={scrollToTop}
-          className='fixed bottom-4 right-4 flex items-center justify-center rounded-full bg-blue-100 p-3 text-white shadow-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50'
-        >
-          <FontAwesomeIcon icon={faArrowUp} />
-        </button>
-      )}
     </div>
   );
 };
